@@ -1,0 +1,1301 @@
+# Translation of Development (trunk) in Bulgarian
+# This file is distributed under the same license as the Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2015-09-15 21:10:06+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/1.0-alpha-1100\n"
+"Project-Id-Version: Development (trunk)\n"
+
+#: common.php:3460
+msgid "Levels 4 and above are unlikely to yield any additional savings."
+msgstr ""
+
+#. translators: used for Bulk Optimize progress bar, like so: Optimized 32/346
+#: bulk.php:363
+msgid "Optimized"
+msgstr ""
+
+#: common.php:3265
+msgid "manually"
+msgstr "ръчно"
+
+#: common.php:3265
+msgid "Pngout is free closed-source software that can produce drastically reduced filesizes for PNGs, but can be very time consuming to process images"
+msgstr "Pngout е безплатен софтуер със затворен код, който може да редуцира драстично файловия размер на PNG изображенията, но може да бъде много времеемък."
+
+#: common.php:3291
+msgid "On"
+msgstr "Вкл."
+
+#: common.php:3294
+msgid "Off"
+msgstr "Изкл."
+
+#: common.php:3297
+msgid "Disabled"
+msgstr "Деактивирано"
+
+#: common.php:3300
+msgid "Enabled"
+msgstr "Активирано"
+
+#: common.php:3303
+msgid "%s only need one, used for conversion, not optimization"
+msgstr "%s има нужда само от една от библиотеките. Използва се за конверсия (не за оптимизация)."
+
+#: common.php:3303
+msgid "Graphics libraries"
+msgstr "Графични библиотеки"
+
+#: common.php:3341
+msgid "Only need one of these:"
+msgstr "Изисква само едно от следните:"
+
+#: common.php:3366 common.php:3370 common.php:3373
+msgid "command not found on your system"
+msgstr "командата не е разпозната от вашата система"
+
+#: common.php:3370
+msgid "not required"
+msgstr "не се изисква"
+
+#: common.php:3373
+msgid "required for automatic pngout installer"
+msgstr "изисква се за автоматичния инсталатор на pngout"
+
+#: common.php:3397
+msgid "Cloud Settings"
+msgstr "Облачни настройки"
+
+#: common.php:3398
+msgid "Basic Settings"
+msgstr "Базови настройки"
+
+#: common.php:3399
+msgid "Advanced Settings"
+msgstr "Разширени настройки"
+
+#: common.php:3400
+msgid "Conversion Settings"
+msgstr "Настройки за преобразуване"
+
+#: common.php:3411
+msgid "If exec() is disabled for security reasons (and enabling it is not an option), or you would like to offload image optimization to a third-party server, you may purchase an API key for our cloud optimization service. The API key should be entered below, and cloud optimization must be enabled for each image format individually."
+msgstr "Ако exec() е деактивиран от съображения за сигурност (и активирането му не е възможно), или ако искате да прехвърлите оптимизацията на изображения към друг сървър, можете да закупите API ключ за нашата облачна оптимизираща услуга. Този API ключ трябва да се въведе по-долу, и облачната оптимизация трябва да се активира за всеки формат поотделно."
+
+#: common.php:3411 common.php:3413 common.php:3432 common.php:3435
+msgid "Purchase an API key."
+msgstr "Закупуване на API ключ."
+
+#: common.php:3413
+msgid "API Key will be validated when you save your settings."
+msgstr "API ключът ще бъде валидиран когато запаметите настройките."
+
+#: common.php:3414
+msgid "JPG cloud optimization"
+msgstr "JPG облачна оптимизация"
+
+#: common.php:3416
+msgid "PNG cloud optimization"
+msgstr "PNG облачна оптимизация"
+
+#: common.php:3418
+msgid "extra PNG compression (slower)"
+msgstr "допълнителна PNG компресия (отнема повече време)"
+
+#: common.php:3420
+msgid "GIF cloud optimization"
+msgstr "GIF облачна оптимизация"
+
+#: common.php:3422
+msgid "Faster lossy optimization"
+msgstr "По-бърза оптимизация със загуба на качество."
+
+#: common.php:3422
+msgid "Speed up the lossy operations by performing less compression."
+msgstr "Ускоряване на компресията със загуби чрез по-слабо компресиране."
+
+#: common.php:3427
+msgid "Debugging"
+msgstr "Отстраняване на програмни грешки"
+
+#: common.php:3427
+msgid "Use this to provide information for support purposes, or if you feel comfortable digging around in the code to fix a problem you are experiencing."
+msgstr "Използвайте този инструмент, за да предоставите информация за отстраняване на програмни грешки или ако се чувствате комфортно да преглеждате програмен код, за да отстраните проблемите, които имате."
+
+#: common.php:3428
+msgid "Remove metadata"
+msgstr "Премахване на метаданни"
+
+#: common.php:3429
+msgid "This will remove ALL metadata: EXIF and comments."
+msgstr "Премахване на ВСИЧКИ метаданни: EXIF и коментари."
+
+#: common.php:3431
+msgid "Lossy JPG optimization"
+msgstr "JPG оптимизация със загуба на качество"
+
+#: common.php:3431 common.php:3434 common.php:3531 common.php:3537
+#: common.php:3540
+msgid "WARNING:"
+msgstr "ВНИМАНИЕ:"
+
+#: common.php:3431 common.php:3434
+msgid "While most users will not notice a difference in image quality, lossy means there IS a loss in image quality."
+msgstr "Макар повечето потребители да не забелязват разлика в качеството на изображението, \"загуба на качество\" означава, че НАИСТИНА качеството на изображението намалява."
+
+#: common.php:3432
+msgid "Requires an EWWW Image Optimizer Cloud Subscription."
+msgstr "Изисква абонамент за облачната услуга EWWW Image Optimizer."
+
+#: common.php:3434
+msgid "Lossy PNG optimization"
+msgstr "PNG оптимизация със загуба на качество"
+
+#: common.php:3435
+msgid "Uses pngquant locally. Use EWWW I.O. Cloud for even better lossy compression."
+msgstr "Използва pngquant локално. Използвайте облачната услуга EWWW I.O. за дори по-добра компресия със загуби."
+
+#: common.php:3437
+msgid "Bulk Delay"
+msgstr "Пакетно закъснение"
+
+#: common.php:3440
+msgid "Automatic Cloudinary upload"
+msgstr "Автоматично качване в Cloudinary"
+
+#: common.php:3440
+msgid "When enabled, uploads to the Media Library will be transferred to Cloudinary after optimization. Cloudinary generates resizes, so only the full-size image is uploaded."
+msgstr "Когато опцията е активна, качените в медийната библиотека файлове ще бъдат прехвърлени в Cloudinary след оптимизацията. Cloudinary ще генерира преоразмерените копия, така че само пълният размер на изображението трябва да бъде качен."
+
+#: common.php:3450
+msgid "optipng optimization level"
+msgstr "optipng ниво на оптимизация"
+
+#: common.php:3452 common.php:3453 common.php:3454 common.php:3455
+#: common.php:3456 common.php:3464 common.php:3465 common.php:3466
+#: common.php:3467
+msgid "Level %d"
+msgstr "Ниво %d"
+
+#: common.php:3452
+msgid "%d trial"
+msgstr "%d опит"
+
+#: common.php:3453 common.php:3454 common.php:3455 common.php:3456
+msgid "%d trials"
+msgstr "%d опита"
+
+#: common.php:3459 common.php:3468
+msgid "default"
+msgstr "по подразбиране"
+
+#: common.php:3462
+msgid "pngout optimization level"
+msgstr "pngout ниво на оптимизация"
+
+#: common.php:3464
+msgid "Xtreme! (Slowest)"
+msgstr "Xtreme! (най-бавно)"
+
+#: common.php:3465
+msgid "Intense (Slow)"
+msgstr "Intense (бавно)"
+
+#: common.php:3466
+msgid "Longest Match (Fast)"
+msgstr "Longest Match (бързо)"
+
+#: common.php:3467
+msgid "Huffman Only (Faster)"
+msgstr "Huffman Only (още по-бързо)"
+
+#: common.php:3469
+msgid "If you have CPU cycles to spare, go with level %d"
+msgstr "Ако можете да си позволите да натоварите процесора, изберете ниво %d"
+
+#: common.php:3472
+msgid "Scheduled optimization"
+msgstr "Оптимизация по график"
+
+#: common.php:3472
+msgid "This will enable scheduled optimization of unoptimized images for your theme, buddypress, and any additional folders you have configured below. Runs hourly: wp_cron only runs when your site is visited, so it may be even longer between optimizations."
+msgstr "Тази опция позволява оптимизация по график на изображенията в използваната тема, buddypress, както и в допълнителните папки, които сте задали по-долу. Изпълнява се веднъж на всеки час, но тъй като wp_cron се изпълнява само когато някой посещава вашата страница, е възможно между отделните операции да има и по-дълък интервал."
+
+#: common.php:3474
+msgid "Folders to optimize"
+msgstr "Папки, подлежащи на оптимизиране"
+
+#: common.php:3474
+msgid "One path per line, must be within %s. Use full paths, not relative paths."
+msgstr "Всяка папка на отделен ред. Трябва да се намира в %s. Използвайте пълни, а не релативни пътища."
+
+#: common.php:3476
+msgid "Provide paths containing images to be optimized using \"Scan and Optimize\" on the Bulk Optimize page or by Scheduled Optimization."
+msgstr "Посочете път към папки със изображения, които да бъдат оптимизирани при изпълняването на функциите \"Сканирай и оптимизирай\" на страницата за пакетна оптимизация или по време на изпълнение на оптимизация по график."
+
+#: common.php:3484
+msgid "Deferred Optimization"
+msgstr "Отложена оптимизация"
+
+#: common.php:3484
+msgid "Optimize images later via wp_cron, after image upload or generation is complete."
+msgstr "Отложено оптимизиране на изображенията през wp_cron, след като качването или генерирането на файлове завърши."
+
+#: common.php:3485
+msgid "Disable Automatic Optimization"
+msgstr "Деактивиране на автоматичната оптимизация"
+
+#: common.php:3485
+msgid "Images will not be optimized on upload. Images may be optimized with the Bulk Optimize tools or with Scheduled optimization."
+msgstr "Изображенията няма да бъдат оптимизирани при първоначалното им качване. Изображенията могат да бъдат оптимизирани чрез инструментите за пакетна оптимизация или чрез оптимизация по график."
+
+#: common.php:3487
+msgid "Include Media Library Folders"
+msgstr "Включване на папките на медийната библиотека."
+
+#: common.php:3487
+msgid "If you have disabled automatic optimization, enable this if you want Scheduled Optimization to include the latest two folders from the Media Library."
+msgstr "В случай, че автоматичната оптимизация е изключена, активирайте тази опция, ако желаете насрочените оптимизация по график да включват двете най-нови папки в медийната библиотека."
+
+#: common.php:3489
+msgid "Disable Resizes"
+msgstr "Изключване на преоразмеряванията"
+
+#: common.php:3489
+msgid "Wordpress, your theme, and other plugins generate various image sizes. You may disable optimization for certain sizes, or completely prevent those sizes from being created."
+msgstr "WordPress, използваната тема и други разширения генерират копия на изображенията с различни размери. Можете да изключите оптимизацията на определени видове преоразмерени изображения или дори да забраните тяхното създаване."
+
+#: common.php:3493
+msgid "Disable Optimization"
+msgstr "Изключване на оптимизацията"
+
+#: common.php:3493
+msgid "Disable Creation"
+msgstr "Изключване на създаването"
+
+#: common.php:3505
+msgid "Skip Small Images"
+msgstr "Прескачане на малки изображения"
+
+#: common.php:3505
+msgid "Do not optimize images smaller than this (in bytes)"
+msgstr "Да не се оптимизират изображения с размер (в байтове) по-малък от посочената стойност"
+
+#: common.php:3507
+msgid "Skip Large PNG Images"
+msgstr "Прескачане на големи PNG изображения"
+
+#: common.php:3507
+msgid "Do not optimize PNG images larger than this (in bytes)"
+msgstr "Да не се оптимизират изображения в PNG формат с размер (в байтове) по-голям от посочената стойност"
+
+#: common.php:3509
+msgid "Exclude full-size images from lossy optimization"
+msgstr "Изключване на изображенията в пълен размер от оптимизация със загуба на качество"
+
+#: common.php:3511
+msgid "Exclude full-size images from metadata removal"
+msgstr "Изключване на изображенията в пълен размер от процедурата по премахване на метаданни."
+
+#: common.php:3513 ewww-image-optimizer.php:410
+msgid "Use System Paths"
+msgstr "Използване на системните пътища"
+
+#: common.php:3513
+msgid "If you have already installed the utilities in a system location, such as %s or %s, use this to force the plugin to use those versions and skip the auto-installers."
+msgstr "Ако вече сте инсталирали помощните програми в системна папка като %s или %s, настройката ще накара разширението да използва тези версии и да прескочи автоматичния инсталатор."
+
+#: common.php:3515 common.php:3517 common.php:3519 common.php:3521
+msgid "disable"
+msgstr "Деактивиране на"
+
+#: common.php:3525
+msgid "Conversion is only available for images in the Media Library (except WebP). By default, all images have a link available in the Media Library for one-time conversion. Turning on individual conversion operations below will enable conversion filters any time an image is uploaded or modified."
+msgstr "Конвертирането е възможно само за изображения в медийната библиотека (с изключение на WebP). По подразбиране всички изображения имат линкове в медийната библиотека за еднократна конверсия. Активирането на индивидуалните операции по конвертиране по-долу ще задейства конверсионните филтри всеки път, когато се качва или модифицира изображение."
+
+#: common.php:3526
+msgid "NOTE:"
+msgstr "ЗАБЕЛЕЖКА:"
+
+#: common.php:3526
+msgid "The plugin will attempt to update image locations for any posts that contain the images. You may still need to manually update locations/urls for converted images."
+msgstr "Разширението ще опита да актуализира връзките към изображенията във всички постове, в които има такива. Въпреки това може да се наложи ръчно да подмените URL връзките да сочат към конвертираните изображения."
+
+#: common.php:3529
+msgid "Hide Conversion Links"
+msgstr "Скриване на връзките за конвертиране"
+
+#: common.php:3529
+msgid "Site or Network admins can use this to prevent other users from using the conversion links in the Media Library which bypass the settings below."
+msgstr "Администраторът на сайта може да използва тази опция, за да забрани на другите потребители да използват линковете за конверсия в медийната библиотека, което би игнорирало изброените по-долу настройки."
+
+#: common.php:3530
+msgid "Delete originals"
+msgstr "Изтриване на оригиналите"
+
+#: common.php:3530
+msgid "This will remove the original image from the server after a successful conversion."
+msgstr "Това ще премахне оригиналните изображения от сървъра след успешна конверсия."
+
+#: common.php:3531
+msgid "JPG/PNG to WebP"
+msgstr "От JPG/PNG към WebP"
+
+#: common.php:3531
+msgid "JPG to WebP conversion is lossy, but quality loss is minimal. PNG to WebP conversion is lossless."
+msgstr "Конверсията от JPG към WebP води до загуба на качество, но тя е минимална. Конверсията от PNG към WebP е без загуба на качество."
+
+#: common.php:3532
+msgid "Originals are never deleted, and WebP images should only be served to supported browsers."
+msgstr "Оригиналите никога не се изтриват, а изображения във WebP формат ще се подават само на браузери, които го поддържат."
+
+#: common.php:3532
+msgid "You can use the rewrite rules below to serve WebP images with Apache."
+msgstr "Можете да използвате mod_rewrite правилата за пренаписване по-долу, за да настроите Apache да подава изображения във WebP формат."
+
+#: common.php:3534
+msgid "Alternative WebP Rewriting"
+msgstr "Алтернативно WebP пренаписване."
+
+#: common.php:3534
+msgid "Uses output buffering and libxml functionality from PHP. Use this if the Apache rewrite rules do not work, or if your images are served from a CDN."
+msgstr "Използва PHP изходно буфериране и libxml функционалност. Използвайте тази опция, ако rewrite правилата на Apache не работят или изображенията се доставят през CDN."
+
+#: common.php:3537 common.php:3540 common.php:3547
+msgid "enable %s to %s conversion"
+msgstr "Активиране на конверсия от %s към %s"
+
+#: common.php:3537
+msgid "Removes metadata and increases cpu usage dramatically."
+msgstr "Премахва мета данните и увеличава драстично натоварването върху процесора."
+
+#: common.php:3538
+msgid "PNG is generally much better than JPG for logos and other images with a limited range of colors. Checking this option will slow down JPG processing significantly, and you may want to enable it only temporarily."
+msgstr "Форматът PNG като правило е много по-подходящ от JPG за лога и други изображения с ограничен набор цветове. Активирането на тази опция ще забави чувствително обработката на JPG файловете. Препоръчваме ви да я активирате само временно при необходимост."
+
+#: common.php:3540
+msgid "This is not a lossless conversion."
+msgstr "Тази конверсия води до загуба на качество."
+
+#: common.php:3541
+msgid "JPG is generally much better than PNG for photographic use because it compresses the image and discards data. PNGs with transparency are not converted by default."
+msgstr "Форматът JPG е принципно много по-подходящ за снимки от PNG, тъй като компресира изображението и премахва данни. По подразбиране PNG файлове с прозрачност не се конвертират."
+
+#: common.php:3542
+msgid "JPG background color:"
+msgstr "Фонов цвят за JPG:"
+
+#: common.php:3542
+msgid "HEX format (#123def)"
+msgstr "HEX формат (#123def)"
+
+#: common.php:3543
+msgid "Background color is used only if the PNG has transparency. Leave this value blank to skip PNGs with transparency."
+msgstr "Фоновият цвят се използва само ако PNG има прозрачност. Оставете това поле празно, за да не конвертирате прозрачни PNG файлове."
+
+#: common.php:3544
+msgid "JPG quality level:"
+msgstr "Ниво на качеството в JPG:"
+
+#: common.php:3544
+msgid "Valid values are 1-100."
+msgstr "Валидните стойности са в интервала 1-100."
+
+#: common.php:3545
+msgid "If JPG quality is blank, the plugin will attempt to set the optimal quality level or default to 92. Remember, this is a lossy conversion, so you are losing pixels, and it is not recommended to actually set the level here unless you want noticable loss of image quality."
+msgstr "Ако полето за ниво на качеството в JPG е празно, разширението ще опита да зададе оптималното ниво на качество или да използва стойност по подразбиране 92. Не забравяйте, че тази конверсия води до загуба на качество и затова не се препоръчва да задавате ръчно стойност оттук, освен ако не сте подготвени за забележителна загуба на визуално качество."
+
+#: common.php:3547
+msgid "No warnings here, just do it."
+msgstr "Без нужда от обяснения - просто използвайте тази опция."
+
+#: common.php:3548
+msgid "PNG is generally better than GIF, but animated images cannot be converted."
+msgstr "Форматът PNG е за предпочитане пред GIF, но анимираните изображения не могат да бъдат конвертирани."
+
+#: common.php:3551
+msgid "Save Changes"
+msgstr "Запазване на настройките"
+
+#: common.php:3555
+msgid "There are many ways to serve WebP images to visitors with supported browsers. You may choose any you wish, but it is recommended to serve them with an .htaccess file using mod_rewrite and mod_headers. The plugin can insert the rules for you if the file is writable, or you can edit .htaccess yourself."
+msgstr "Съществуват различни начини да подавате изображения в WebP формат към браузерите, които го поддържат. Можете да изберете който начин предпочитате, но нашата препоръка е да ги подавате чрез .htaccess файл, използвайки mod_rewrite и mod_headers директиви. Ако .htaccess файлът е разрешен за запис, разширението може да вмъкне в него съответните правила; в противен случай трябва да направите промените ръчно."
+
+#: common.php:3558
+msgid "Rules verified successfully"
+msgstr "Правилата са потвърдени успешно"
+
+#: common.php:3574
+msgid "The image to the right will display a WebP image with WEBP in white text, if your site is serving WebP images and your browser supports WebP."
+msgstr "Ако вашият сървър е настроен да подава WebP изображения и браузерът ви поддържа WebP, вдясно от това поле трябва да виждате изображение във WebP формат с бял надпис WEBP."
+
+#: common.php:3575
+msgid "Insert Rewrite Rules"
+msgstr "Вмъкване на mod_rewrite директивите"
+
+#: common.php:3583
+msgid "Support EWWW I.O."
+msgstr "Подкрепете EWWW I.O."
+
+#: common.php:3584
+msgid "Would you like to help support development of this plugin?"
+msgstr "Имате ли възможност да подпомогнете развитието на това разширение?"
+
+#: common.php:3585
+msgid "Help translate EWWW I.O."
+msgstr "Помощ за локализиране на EWWW I.O."
+
+#: common.php:3586
+msgid "Write a review."
+msgstr "Напишете ревю."
+
+#: common.php:3587
+msgid "Contribute directly via %s."
+msgstr "Подкрепете ни директно чрез %s."
+
+#: common.php:3589
+msgid "Use any of these referral links to show your appreciation:"
+msgstr "Използвайте тези линкове, за да покажете своята подкрепа:"
+
+#: common.php:3590
+msgid "Web Hosting:"
+msgstr "Уеб хостинг:"
+
+#: common.php:3591
+msgctxt "A2 Hosting:"
+msgid "with automatic EWWW IO setup"
+msgstr "с автоматично конфигуриране на EWWW IO"
+
+#: common.php:3597
+msgctxt "abbreviation for Virtual Private Server"
+msgid "VPS:"
+msgstr "Виртуални частни сървъри (VPS):"
+
+#: common.php:3603
+msgctxt "abbreviation for Content Delivery Network"
+msgid "CDN:"
+msgstr "Мрежа за доставка на съдържание (CDN):"
+
+#: common.php:3603
+msgid "Add MaxCDN to increase website speeds dramatically! Sign Up Now and Save 25%."
+msgstr "Активирайте MaxCDN, за да увеличите драматично скоростта на Вашия сайт! Регистрирайте се сега и спестете 25%."
+
+#: common.php:3603
+msgid "Integrate MaxCDN within Wordpress using the W3 Total Cache plugin."
+msgstr "Интегрирайте MaxCDN в WordPress чрез разширението W3 Total Cache."
+
+#: common.php:3625
+msgid "Debugging Information"
+msgstr "Информация за грешките"
+
+#: common.php:3625
+msgid "Select All"
+msgstr "Избиране на всичко"
+
+#: ewww-image-optimizer.php:146
+msgid "EWWW Image Optimizer is supported on Linux, FreeBSD, Mac OSX, and Windows"
+msgstr "EWWW Image Optimizer поддържа Linux, FreeBSD, Mac OSX и Windows"
+
+#: ewww-image-optimizer.php:146
+msgid "Unfortunately, the EWWW Image Optimizer plugin does not work with %s"
+msgstr "За съжаление разширението EWWW Image Optimizer не работи с %s"
+
+#: ewww-image-optimizer.php:152
+msgid "The regular version of the EWWW Image Optimizer plugin is not permitted on WP Engine sites. However, the cloud version has been approved by WP Engine. Please deactivate EWWW Image Optimizer and install EWWW Image Optimizer Cloud to optimize your images."
+msgstr ""
+
+#: ewww-image-optimizer.php:248
+msgid "EWWW Image Optimizer could not create the tool folder"
+msgstr "EWWW Image Optimizer не можа да създаде папката за инструменти"
+
+#: ewww-image-optimizer.php:248
+msgid "Please adjust permissions or create the folder"
+msgstr "Моля проверете правата за четене и запис или създайте папката ръчно"
+
+#: ewww-image-optimizer.php:410
+msgid "EWWW Image Optimizer could not install tools in %s"
+msgstr "EWWW Image Optimizer не можа да инсталира инструмените в %s"
+
+#: ewww-image-optimizer.php:410
+msgid "Please adjust permissions or create the folder. If you have installed the tools elsewhere on your system, check the option to %s."
+msgstr "Моля проверете правата за четене и запис или създайте папката ръчно. Ако сте инсталирали инструментите в друга директория, активирайте опцията за %s."
+
+#: ewww-image-optimizer.php:410
+msgid "For more details, visit the %1$s or the %2$s."
+msgstr "За повече подробности посетете %1$s или %2$s."
+
+#: ewww-image-optimizer.php:410 ewww-image-optimizer.php:536
+msgid "Settings Page"
+msgstr "Панел за настройки"
+
+#: ewww-image-optimizer.php:422
+msgid "EWWW Image Optimizer requires exec(). Your system administrator has disabled this function."
+msgstr "EWWW Image Optimizer има нужда от exec(), но системният администратор е забранил тази функция."
+
+#: ewww-image-optimizer.php:430
+msgid "Safe Mode is turned on for PHP. This plugin cannot operate in Safe Mode."
+msgstr "PHP е настроен да работи в Safe Mode. Разширението не може да оперира в този режим."
+
+#: ewww-image-optimizer.php:536
+msgid "EWWW Image Optimizer uses %1$s, %2$s, %3$s, %4$s, %5$s, and %6$s. You are missing: %7$s. Please install via the %8$s or the %9$s."
+msgstr "EWWW Image Optimizer използва %1$s, %2$s, %3$s, %4$s, %5$s, and %6$s. При вас липсва: %7$s. Моля инсталирайте чрез %8$s или %9$s."
+
+#: ewww-image-optimizer.php:1170 ewww-image-optimizer.php:1296
+#: ewww-image-optimizer.php:1303
+msgid "Optimization skipped"
+msgstr "Оптимизацията е пропусната"
+
+#: ewww-image-optimizer.php:1181
+msgid "Could not find %s"
+msgstr "Не може да бъде открит %s"
+
+#: ewww-image-optimizer.php:1189
+msgid "%s is not writable"
+msgstr "%s не е разрешен за запис"
+
+#: ewww-image-optimizer.php:1212
+msgid "Missing finfo_file(), getimagesize() and mime_content_type() PHP functions"
+msgstr "Липсват PHP функциите finfo_file(), getimagesize() и mime_content_type()"
+
+#: ewww-image-optimizer.php:1362 ewww-image-optimizer.php:1901
+msgid "%s is disabled"
+msgstr "%s е деактивиран"
+
+#: ewww-image-optimizer.php:1397
+msgid "Unable to write file"
+msgstr "Не е възможно да се запише файлът"
+
+#: ewww-image-optimizer.php:1400
+msgid "Optimization failed"
+msgstr "Неуспешна оптимизация"
+
+#: ewww-image-optimizer.php:1625
+msgid "png tools are disabled"
+msgstr "png инструментите са деактивирани"
+
+#: ewww-image-optimizer.php:2053
+msgid "You don't have permission to install image optimizer utilities."
+msgstr "Нямате достатъчни права за да инсталирате инструментите за оптимизация на изображения."
+
+#: ewww-image-optimizer.php:2059
+msgid "tar command not found"
+msgstr "Командата tar не е открита"
+
+#: ewww-image-optimizer.php:2078 ewww-image-optimizer.php:2097
+#: ewww-image-optimizer.php:2115
+msgid "could not move pngout"
+msgstr "pngout не можа да бъде преместен"
+
+#: ewww-image-optimizer.php:2081 ewww-image-optimizer.php:2100
+msgid "could not set permissions"
+msgstr "правата за достъп не можаха да бъдат зададени"
+
+#: ewww-image-optimizer.php:2085 ewww-image-optimizer.php:2104
+msgid "extraction of files failed"
+msgstr "извличането на файловете е неуспешно"
+
+#: flag-integration.php:96 iocli.php:75 iocli.php:83 iocli.php:125
+#: iocli.php:147 nextgen2-integration.php:295
+msgid "%1$d images have been selected (%2$d unoptimized), with %3$d resizes (%4$d unoptimized)."
+msgstr "%1$d изображения са избрани (%2$d неоптимизирани), с %3$d преоразмерявания (%4$d неоптимизирани)."
+
+#: flag-integration.php:231 nextcellent-integration.php:137
+#: nextgen-integration.php:113 nextgen2-integration.php:96
+msgid "You don't have permission to work with uploaded files."
+msgstr "Нямате достатъчни права за работа с качени файлове."
+
+#: flag-integration.php:335 iocli.php:437
+msgid "Optimized size – %s"
+msgstr "Оптимизиран размер – %s"
+
+#: flag-integration.php:342 iocli.php:444 nextcellent-integration.php:120
+#: nextgen-integration.php:97
+msgid "Thumbnail – %s"
+msgstr "Миниатюра – %s"
+
+#: flag-integration.php:368 iocli.php:251 iocli.php:400 iocli.php:462
+#: iocli.php:541 iocli.php:605 nextcellent-integration.php:493
+#: nextgen-integration.php:433 nextgen2-integration.php:504
+msgid "Finished Optimization!"
+msgstr "Оптимизацията приключи успешно!"
+
+#: iocli.php:52
+msgid "Forcing re-optimization of previously processed images."
+msgstr "Принудителна реоптимизация на обработени преди това изображения."
+
+#: iocli.php:55
+msgctxt "string will be something like \"media\" or \"nextgen\""
+msgid "Optimizing %1$s with a %2$d second pause between images."
+msgstr "Оптимизиране на %1$s с пауза от %2$d секунди между отделните изображения."
+
+#: iocli.php:66 iocli.php:107 iocli.php:118 iocli.php:142 iocli.php:157
+msgid "Bulk status has been reset, starting from the beginning."
+msgstr "Пакетният статус е нулиран, започване от началото."
+
+#: iocli.php:87 iocli.php:162
+msgid "%1$d images in other folders need optimizing."
+msgstr "%1$d изображения в други папки се нуждаят от оптимизация."
+
+#: iocli.php:136
+msgid "NextGEN/Nextcellent not installed."
+msgstr "NextGEN/Nextcellent не е инсталиран."
+
+#: iocli.php:151
+msgid "Grand Flagallery not installed."
+msgstr "Grand Flagallery не е инсталиран."
+
+#: iocli.php:172
+msgid "Bulk status has been reset, the next bulk operation will start from the beginning."
+msgstr "Пакетният статус е нулиран, следващата пакетна операция ще започне от началото."
+
+#: iocli.php:174
+msgid "Please specify a valid library option, see \"wp-cli help ewwwio optimize\" for more information."
+msgstr "Моля посочете валидна опция за библиотека. Вижте \"wp-cli help ewwwio optimize\" за повече информация."
+
+#: iocli.php:516 iocli.php:583 nextcellent-integration.php:467
+#: nextgen-integration.php:404 nextgen2-integration.php:472
+msgid "Full size - %s"
+msgstr "Пълен размер - %s"
+
+#: iocli.php:519 iocli.php:589 nextcellent-integration.php:469
+#: nextgen-integration.php:410 nextgen2-integration.php:475
+msgid "Thumbnail - %s"
+msgstr "Миниатюра - %s"
+
+#: mwebp.php:6
+msgid "The migration is split into two parts. First, the plugin needs to scan all folders for webp images. Once it has obtained the list of images to rename, it will proceed with the renaming"
+msgstr "Миграцията протича на два етапа. Най-напред разширенето трябва да сканира всички папки за webp изображения. След като състави списък, разширението ще пристъпи към преименуване."
+
+#: mwebp.php:7
+msgid "Start Migration"
+msgstr "Начало на миграцията"
+
+#: mwebp.php:93
+msgid "Scanning"
+msgstr "Сканиране"
+
+#: mwebp.php:114
+msgid "%d Webp images left to rename."
+msgstr "Остават %d Webp изображения за преименуване."
+
+#: mwebp.php:200
+msgid "Skipped:"
+msgstr "Прескочени:"
+
+#: nextcellent-integration.php:38 nextcellent-integration.php:97
+#: nextgen-integration.php:34 nextgen-integration.php:74
+#: nextgen2-integration.php:38
+msgid "Bulk Thumbnail Optimize"
+msgstr "Пакетно оптимизиране на миниатюри"
+
+#: nextcellent-integration.php:86 nextgen-integration.php:60
+msgid "The thumbnails for your new images have not been optimized."
+msgstr "Миниатюрите за вашите нови изображения не са оптимизирани."
+
+#: nextcellent-integration.php:86 nextgen-integration.php:64
+msgid "Optimize Thumbs"
+msgstr "Оптимизиране на миниатюрите"
+
+#: nextcellent-integration.php:110 nextgen-integration.php:87
+msgid "Processing"
+msgstr "Обработване"
+
+#: nextcellent-integration.php:318
+msgid "Galleries"
+msgstr "Галерии"
+
+#. Plugin Name of the plugin/theme
+msgid "EWWW Image Optimizer"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wordpress.org/extend/plugins/ewww-image-optimizer/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Reduce file sizes for images within WordPress including NextGEN Gallery and GRAND FlAGallery. Uses jpegtran, optipng/pngout, and gifsicle."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Shane Bishop"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://ewww.io/"
+msgstr ""
+
+#: aux-optimize.php:9
+msgid "Scan and optimize"
+msgstr "Сканиране и оптимизация"
+
+#: aux-optimize.php:11
+msgid "Resume previous optimization"
+msgstr "Възобновяване на предишната оптимизация"
+
+#: aux-optimize.php:29
+msgid "Optimize Everything Else"
+msgstr "Оптимизиране на всички останали изображения"
+
+#: aux-optimize.php:30
+msgid "Use this tool to optimize images outside of the Media Library and galleries where we have full integration. Examples: theme images, BuddyPress, WP Symposium, and any folders that you have specified on the settings page."
+msgstr "Използвайте този инструмент, за да оптимизирате изображения, които се намират извън медийната библиотека и галерии с пълна интеграция. Примери: изображения от теми, BuddyPress, WP Symposium и всякакви папки, които сте посочили в страницата с настройки."
+
+#: aux-optimize.php:32
+msgid "The database schema has changed, you need to convert to the new format."
+msgstr "Схемата на базата данни е променена. Трябва да конвертирате към новия формат."
+
+#: aux-optimize.php:36
+msgid "Convert Table"
+msgstr "Конвертиране на таблица"
+
+#: aux-optimize.php:39
+msgid "There are no images to optimize."
+msgstr "Няма изображения, нуждаещи се от оптимизация."
+
+#: aux-optimize.php:40 iocli.php:68 iocli.php:159
+msgid "Scanning, this could take a while"
+msgstr "Сканиране - може да продължи дълго време"
+
+#: aux-optimize.php:42
+msgid "Last optimization was completed on %1$s at %2$s and optimized %3$d images"
+msgstr "Последната оптимизация е направена на %1$s в %2$s и включва %3$d изображения"
+
+#: aux-optimize.php:46 bulk.php:57
+msgid "Optimize Again"
+msgstr "Оптимизация отново"
+
+#: aux-optimize.php:51 bulk.php:63 flag-integration.php:105
+#: nextcellent-integration.php:296 nextgen-integration.php:258
+#: nextgen2-integration.php:303
+msgid "If you would like to start over again, press the Reset Status button to reset the bulk operation status."
+msgstr "Ако искате да започнете от начало, използвайте бутона \"Нулиране на състоянието\", за да изчистите състоянието на пакетната операция."
+
+#: aux-optimize.php:55 bulk.php:67 flag-integration.php:109
+#: nextcellent-integration.php:300 nextgen-integration.php:262
+#: nextgen2-integration.php:307
+msgid "Reset Status"
+msgstr "Нулиране на състоянието"
+
+#: aux-optimize.php:64
+msgid "The plugin keeps track of already optimized images to prevent re-optimization. There are %d images that have been optimized so far."
+msgstr "Разширението следи кои изображения вече са били оптимизирани, за да избегне ненужни реоптимизации. Досега са оптимизирани %d изображения."
+
+#: aux-optimize.php:66
+msgid "Show Optimized Images"
+msgstr "Показване на оптимизираните изображения"
+
+#: aux-optimize.php:74
+msgid "page"
+msgstr "страница"
+
+#: aux-optimize.php:74
+msgid "of"
+msgstr "от"
+
+#: aux-optimize.php:97 aux-optimize.php:134 aux-optimize.php:383
+#: aux-optimize.php:422 bulk.php:407 bulk.php:431 bulk.php:498 common.php:1934
+#: flag-integration.php:285 flag-integration.php:306 flag-integration.php:362
+#: mwebp.php:102 mwebp.php:193 nextcellent-integration.php:419
+#: nextcellent-integration.php:439 nextcellent-integration.php:487
+#: nextgen-integration.php:365 nextgen-integration.php:382
+#: nextgen-integration.php:427 nextgen2-integration.php:422
+#: nextgen2-integration.php:445 nextgen2-integration.php:498
+msgid "Access token has expired, please reload the page."
+msgstr ""
+
+#: aux-optimize.php:254 aux-optimize.php:296 aux-optimize.php:299
+msgid "Unknown Savings"
+msgstr "Неизвестни икономии"
+
+#: aux-optimize.php:319
+msgid "Finished importing"
+msgstr "Край на импортирането"
+
+#: aux-optimize.php:336 common.php:1842 common.php:2390 common.php:2399
+msgid "Previously Optimized"
+msgstr "предишна оптимизация"
+
+#: aux-optimize.php:339 common.php:1881 common.php:2326
+msgid "No savings"
+msgstr "няма икономия"
+
+#: aux-optimize.php:346 bulk.php:122 common.php:1847
+#: ewww-image-optimizer.php:2005
+msgid "License exceeded"
+msgstr "Лимитът на лиценза е превишен"
+
+#: aux-optimize.php:391
+msgid "Filename"
+msgstr "Име на файл"
+
+#: aux-optimize.php:391
+msgid "Image Type"
+msgstr "Тип на изображението"
+
+#: aux-optimize.php:391 common.php:1100 common.php:1132 common.php:2712
+#: common.php:2961 flag-integration.php:374 nextcellent-integration.php:173
+#: nextgen-integration.php:142 nextgen2-integration.php:131
+#: nextgen2-integration.php:134
+msgid "Image Optimizer"
+msgstr "Оптимизатор на изображения"
+
+#: aux-optimize.php:408 common.php:2830 common.php:2885
+#: flag-integration.php:431 flag-integration.php:440
+#: nextcellent-integration.php:229 nextcellent-integration.php:238
+#: nextgen-integration.php:198 nextgen-integration.php:205
+#: nextgen2-integration.php:215
+msgid "Image Size: %s"
+msgstr "Размер на изображението: %s"
+
+#: aux-optimize.php:408
+msgid "Remove from table"
+msgstr "Премахване от таблицата"
+
+#: aux-optimize.php:700 aux-optimize.php:723 aux-optimize.php:739 bulk.php:390
+#: common.php:3077 flag-integration.php:271 mwebp.php:84
+#: nextcellent-integration.php:94 nextcellent-integration.php:405
+#: nextgen-integration.php:71 nextgen-integration.php:352
+#: nextgen2-integration.php:408
+msgid "Access denied."
+msgstr ""
+
+#: aux-optimize.php:711 aux-optimize.php:728 bulk.php:397 bulk.php:416
+#: flag-integration.php:277 flag-integration.php:296 iocli.php:210
+#: nextcellent-integration.php:411 nextcellent-integration.php:429
+#: nextgen-integration.php:358 nextgen-integration.php:375
+#: nextgen2-integration.php:435
+msgid "Optimizing"
+msgstr "Оптимизация"
+
+#: aux-optimize.php:748 bulk.php:504 mwebp.php:204
+#: nextcellent-integration.php:129 nextgen-integration.php:106
+msgid "Finished"
+msgstr "Край на операцията"
+
+#: bulk.php:11 common.php:1014 common.php:2914 common.php:2916 common.php:3181
+#: common.php:3183 flag-integration.php:36 flag-integration.php:41
+#: flag-integration.php:46 flag-integration.php:73
+#: nextcellent-integration.php:37 nextcellent-integration.php:269
+#: nextgen-integration.php:33 nextgen-integration.php:234
+#: nextgen2-integration.php:37 nextgen2-integration.php:272
+#: nextgen2-integration.php:516
+msgid "Bulk Optimize"
+msgstr "Пакетна оптимизация"
+
+#: bulk.php:15 flag-integration.php:78 nextcellent-integration.php:274
+#: nextgen-integration.php:239 nextgen2-integration.php:277
+msgid "Start optimizing"
+msgstr "Начало на оптимизацията"
+
+#: bulk.php:17 flag-integration.php:80 nextcellent-integration.php:276
+#: nextgen-integration.php:241 nextgen2-integration.php:279
+msgid "Resume previous bulk operation"
+msgstr "Възобновяване на започната по-рано пакетна операция"
+
+#: bulk.php:23
+msgid "Importing"
+msgstr "Импортиране"
+
+#: bulk.php:28 flag-integration.php:87 nextcellent-integration.php:283
+#: nextgen2-integration.php:286
+msgid "Stop Optimizing"
+msgstr "Прекратяване на оптимизацията"
+
+#: bulk.php:32
+msgid "You should import Media Library images into the table to prevent duplicate optimization."
+msgstr "Трябва да импортирате изображениято от медийната библиотека в таблицата, за да избегнете двойна оптимизация."
+
+#: bulk.php:34
+msgid "Import Images"
+msgstr "Импортиране на изображения"
+
+#: bulk.php:40 flag-integration.php:91 nextgen2-integration.php:290
+msgid "Force re-optimize"
+msgstr "Принудителна реоптимизация"
+
+#: bulk.php:41 common.php:3437 flag-integration.php:92
+#: nextgen2-integration.php:291
+msgid "Choose how long to pause between images (in seconds, 0 = disabled)"
+msgstr "Продължителност на паузата между отделните изображения (в секунди, 0 = няма пауза)"
+
+#: bulk.php:44
+msgid "Optimize Media Library"
+msgstr "Оптимизиране на медийната библиотека"
+
+#: bulk.php:46 flag-integration.php:68 nextcellent-integration.php:264
+#: nextgen-integration.php:229 nextgen2-integration.php:266
+msgid "You do not appear to have uploaded any images yet."
+msgstr "Изглежда все още не сте качили никакви изображения."
+
+#: bulk.php:50
+msgid "%1$d images in the Media Library have been selected, unable to determine how many resizes and how many are unoptimized."
+msgstr "Избрани са %1$d изображения от медийната библиотека. Не е възможно да се определи колко преоразмерявания са необходими и колко изображения не са оптимизирани."
+
+#: bulk.php:52 iocli.php:70 iocli.php:111
+msgid "%1$d images in the Media Library have been selected (%2$d unoptimized), with %3$d resizes (%4$d unoptimized)."
+msgstr "Избрани са %1$d изображения от медийната библиотека (%2$d от тях са неоптимизирани). Съществуват %3$d преоразмерени копия (%4$d неоптимизирани)."
+
+#: bulk.php:54 flag-integration.php:97 nextcellent-integration.php:288
+#: nextgen-integration.php:250 nextgen2-integration.php:296
+msgid "Previously optimized images will be skipped by default."
+msgstr "Оптимизираните по-рано изображения по подразбиране ще бъдат пропускани."
+
+#: bulk.php:355
+msgid "%d images"
+msgstr "%d изображения"
+
+#: bulk.php:356
+msgid "Operation timed out, you may need to increase the max_execution_time for PHP"
+msgstr "Операцията е прекратена поради превишаване на позволеното време за изпълнение (timeout). Може да се наложи да увеличите стойността на PHP параметъра max_execution_time"
+
+#: bulk.php:357 flag-integration.php:186 nextcellent-integration.php:392
+#: nextgen-integration.php:340 nextgen2-integration.php:395
+msgid "License Exceeded"
+msgstr "Параметрите на лиценза са превишени."
+
+#: bulk.php:358 flag-integration.php:187 nextcellent-integration.php:393
+#: nextgen-integration.php:341 nextgen2-integration.php:396
+msgid "Optimization stopped, reload page to resume."
+msgstr "Оптимизацията е спряна. Презаредете страницата, за да продължите."
+
+#: bulk.php:359 flag-integration.php:188 nextcellent-integration.php:394
+#: nextgen-integration.php:342 nextgen2-integration.php:397
+msgid "Operation Interrupted"
+msgstr "Оптимизацията е прекъсната."
+
+#: bulk.php:360 flag-integration.php:189 nextcellent-integration.php:395
+#: nextgen-integration.php:343 nextgen2-integration.php:398
+msgid "Temporary failure, seconds left to retry:"
+msgstr "Временен проблем, оставащо време в секунди за повторни опити:"
+
+#: bulk.php:361 flag-integration.php:190 nextcellent-integration.php:396
+#: nextgen-integration.php:344 nextgen2-integration.php:399
+msgid "Could not remove image from table."
+msgstr "Премахването на изображението от таблицата е неуспешно."
+
+#: bulk.php:451 common.php:1968 flag-integration.php:328 iocli.php:386
+#: iocli.php:430 iocli.php:510 iocli.php:582 nextcellent-integration.php:466
+#: nextgen-integration.php:403 nextgen2-integration.php:466
+msgid "Optimized image:"
+msgstr "Оптимизирано изображение:"
+
+#: bulk.php:453 iocli.php:218
+msgid "Skipped image, ID:"
+msgstr "Пропуснато изображение, ID:"
+
+#: bulk.php:457 flag-integration.php:329 iocli.php:222 iocli.php:431
+msgid "Full size – %s"
+msgstr "Пълен размер – %s"
+
+#: bulk.php:472 common.php:1974 flag-integration.php:347 iocli.php:237
+#: iocli.php:392 iocli.php:449 iocli.php:527 iocli.php:592
+#: nextcellent-integration.php:123 nextcellent-integration.php:472
+#: nextgen-integration.php:100 nextgen-integration.php:413
+#: nextgen2-integration.php:483
+msgid "Elapsed: %.3f seconds"
+msgstr "Време на изпълнение: %.3f секунди"
+
+#: bulk.php:504
+msgid "Return to Media Library"
+msgstr "Обратно към медийната библиотека"
+
+#: common.php:706
+msgid "Settings saved"
+msgstr "Настройките са запаметени"
+
+#: common.php:1015 common.php:2949
+msgid "Unoptimized Images"
+msgstr "Неоптимизирани изображения"
+
+#: common.php:1016 mwebp.php:5
+msgid "Migrate WebP Images"
+msgstr "Мигриране на WebP изображения"
+
+#: common.php:1035
+msgid "Image Store Optimize"
+msgstr "Оптимизиране на банката с изображения"
+
+#: common.php:1035
+msgid "Optimize"
+msgstr "Оптимизация"
+
+#: common.php:1089
+msgid "Image Store Optimization"
+msgstr "Оптимизация на банката с изображения"
+
+#: common.php:1099
+msgid "Choose a gallery or"
+msgstr "Изберете галерия или"
+
+#: common.php:1099
+msgid "optimize all galleries"
+msgstr "оптимизирайте всички галерии"
+
+#: common.php:1100
+msgid "Gallery ID"
+msgstr "ID на галерия"
+
+#: common.php:1100
+msgid "Gallery Name"
+msgstr "Име на галерия"
+
+#: common.php:1100
+msgid "Images"
+msgstr "Изображения"
+
+#: common.php:1116 common.php:1131
+msgid "Optimize Gallery"
+msgstr "Оптимизиране на галерия"
+
+#: common.php:1132 common.php:2961
+msgid "Title"
+msgstr "Заглавие"
+
+#: common.php:1132 nextgen-integration.php:14 nextgen-integration.php:274
+msgid "Gallery"
+msgstr "Галерия"
+
+#: common.php:1215
+msgid "Settings"
+msgstr "Настройки"
+
+#: common.php:1365
+msgid "You don't have permission to optimize images."
+msgstr "Нямате необходимите права за оптимизиране на изображения."
+
+#: common.php:1370 flag-integration.php:235 nextcellent-integration.php:141
+#: nextgen-integration.php:117 nextgen2-integration.php:100
+msgid "No attachment ID was provided."
+msgstr "Не е посочен ID на прикачен файл"
+
+#: common.php:1413 common.php:1448
+msgid "Original Restored"
+msgstr "Възстановен оригинал"
+
+#: common.php:1665
+msgid "optimized %1$d images, usage will reset in %2$d day."
+msgid_plural "optimized %1$d images, usage will reset in %2$d days."
+msgstr[0] "Оптимизирани %1$d изображения, статистиката за употреба ще се нулира след %2$d ден."
+msgstr[1] "Оптимизирани %1$d изображения, статистиката за употреба ще се нулира след %2$d дни."
+
+#: common.php:1667
+msgid "%1$d image credit remaining."
+msgid_plural "%1$d image credits remaining."
+msgstr[0] "Остава %1$d кредит."
+msgstr[1] "Остават %1$d кредита."
+
+#: common.php:1669
+msgid "used %1$d of %2$d, usage will reset in %3$d day."
+msgid_plural "used %1$d of %2$d, usage will reset in %3$d days."
+msgstr[0] "Използвани %1$d от %2$d, статистиката на употреба ще се нулира след %3$d ден."
+msgstr[1] "Използвани %1$d от %2$d, статистиката на употреба ще се нулира след %3$d дни."
+
+#: common.php:1893
+msgid "Reduced by %01.1f%% (%s)"
+msgstr "намаление с %01.1f%% (%s)"
+
+#: common.php:2734
+msgid "Cloudinary image"
+msgstr "Изображение от Cloudinary"
+
+#: common.php:2738
+msgid "Azure Storage image"
+msgstr "Изображение в Azure Storage"
+
+#: common.php:2742
+msgid "Amazon S3 image"
+msgstr "Изображение в Amazon S3"
+
+#: common.php:2758
+msgid "Could not retrieve file path."
+msgstr "Неуспешно извличане на файла"
+
+#: common.php:2779 common.php:2790 common.php:2801
+#: ewww-image-optimizer.php:1366 ewww-image-optimizer.php:1629
+#: ewww-image-optimizer.php:1633 ewww-image-optimizer.php:1905
+#: flag-integration.php:405 flag-integration.php:411 flag-integration.php:417
+#: nextcellent-integration.php:201 nextcellent-integration.php:208
+#: nextcellent-integration.php:215 nextgen-integration.php:170
+#: nextgen-integration.php:177 nextgen-integration.php:184
+#: nextgen2-integration.php:174 nextgen2-integration.php:181
+#: nextgen2-integration.php:188
+msgid "%s is missing"
+msgstr "%s липсва"
+
+#: common.php:2781
+msgid "JPG to PNG"
+msgstr "от JPG към PNG"
+
+#: common.php:2783
+msgid "WARNING: Removes metadata. Requires GD or ImageMagick. PNG is generally much better than JPG for logos and other images with a limited range of colors."
+msgstr "ВНИМАНИЕ: Премахва мета данните. Изисква GD или ImageMagick. Форматът PNG като правило е много по-подходящ от JPG за лога и други изображения с ограничен набор цветове."
+
+#: common.php:2792
+msgid "PNG to JPG"
+msgstr "от PNG в JPG"
+
+#: common.php:2794
+msgid "WARNING: This is not a lossless conversion and requires GD or ImageMagick. JPG is much better than PNG for photographic use because it compresses the image and discards data. Transparent images will only be converted if a background color has been set."
+msgstr "ВНИМАНИЕ: Тази конверсия причинява загуба на каество и изисква GD или ImageMagick. Форматът JPG е много по-подходящ от PNG за снимки, тъй като компресира изображението и изтрива данни. Прозрачни изображения ще се конвертират само ако е зададена стойност за фоновия цвят."
+
+#: common.php:2803
+msgid "GIF to PNG"
+msgstr "от GIF в PNG"
+
+#: common.php:2805
+msgid "PNG is generally better than GIF, but does not support animation. Animated images will not be converted."
+msgstr "Форматът PNG като правило е по-подходящ от GIF, но не поддържа анимация. Анимирани изображения няма да бъдат конвертирани."
+
+#: common.php:2810 flag-integration.php:425 nextcellent-integration.php:223
+#: nextgen-integration.php:192 nextgen2-integration.php:196
+msgid "Unsupported file type"
+msgstr "Неподдържан файлов формат"
+
+#: common.php:2821 common.php:2888 flag-integration.php:444
+#: nextcellent-integration.php:242 nextgen-integration.php:208
+#: nextgen2-integration.php:239
+msgid "Optimize now!"
+msgstr "Оптимизиране сега!"
+
+#: common.php:2835 flag-integration.php:435 nextcellent-integration.php:233
+#: nextgen-integration.php:201 nextgen2-integration.php:235
+msgid "Re-optimize"
+msgstr "Реоптимизация"
+
+#: common.php:2862
+msgid "Restore original"
+msgstr "Възстановяване на оригинала"
+
+#: common.php:2883 flag-integration.php:439 nextcellent-integration.php:237
+#: nextgen-integration.php:204 nextgen2-integration.php:209
+msgid "Not processed"
+msgstr "Не е обработен"
+
+#: common.php:2950 iocli.php:78 iocli.php:131 nextcellent-integration.php:287
+#: nextgen-integration.php:249
+msgid "We have %d images to optimize."
+msgstr "Трябва да оптимизираме %d изображения."
+
+#: common.php:2956
+msgid "Optimize All Images"
+msgstr "Оптимизиране на всички изображения"
+
+#: common.php:2975
+msgid "There are too many images to display."
+msgstr "Не е възможно да се покажат всички съществуващи изображения."
+
+#: common.php:3081
+msgid "Insertion successful"
+msgstr "Успешно вмъкване"
+
+#: common.php:3083
+msgid "Insertion failed"
+msgstr "Неуспешно вмъкване"
+
+#: common.php:3149
+msgid "Pngout was successfully installed, check the Plugin Status area for version information."
+msgstr "Pngout е инсталиран успешно. В панела за статус на разширенето ще намерите информация за версията."
+
+#: common.php:3154
+msgid "Pngout was not installed: %1$s. Make sure this folder is writable: %2$s"
+msgstr "Pngout не е инсталиран: %1$s. Уверете се, че папката %2$s е разрешена за запис."
+
+#: common.php:3176
+msgid "Plugin Home Page"
+msgstr "Интернет страница на разширението"
+
+#: common.php:3177 ewww-image-optimizer.php:410 ewww-image-optimizer.php:536
+msgid "Installation Instructions"
+msgstr "Инструкции за инсталация"
+
+#: common.php:3178
+msgid "Plugin Support"
+msgstr "Поддръжка"
+
+#: common.php:3179
+msgid "Cloud Status"
+msgstr "Статус на облачната услуга"
+
+#: common.php:3181
+msgid "Media Library"
+msgstr "Медийна библиотека"
+
+#: common.php:3185
+msgid "New images uploaded to the Media Library will be optimized automatically. If you have existing images you would like to optimize, you can use the %s tool."
+msgstr "Качваните оттук нататък в медийната библиотека изображения ще бъдат оптимизирани автоматично. Ако желаете да оптимизирате вече качени изображения, използвайте инструмента %s."
+
+#: common.php:3192
+msgid "Click to toggle"
+msgstr "Кликнете за превключване"
+
+#: common.php:3193
+msgid "Plugin Status"
+msgstr "Състояние на разширението"
+
+#: common.php:3194
+msgid "All Clear"
+msgstr "Всичко е наред"
+
+#: common.php:3195
+msgid "Requires Attention"
+msgstr "Изисква намеса"
+
+#: common.php:3198
+msgid "Total Savings:"
+msgstr "Обща икономия"
+
+#: common.php:3200 common.php:3413
+msgid "Cloud optimization API Key"
+msgstr "API ключ за облачна оптимизация"
+
+#: common.php:3203 common.php:3205
+msgid "Verified,"
+msgstr "Потвърдено,"
+
+#: common.php:3207
+msgid "Not Verified"
+msgstr "Непотвърдено"
+
+#: common.php:3219
+msgid "If updated versions are available below you may either download the newer versions and install them yourself, or uncheck \"Use System Paths\" and use the bundled tools."
+msgstr "Ако в списъка по-долу пише, че съществуват по-нови версии на инструментите от инсталираните на вашата система версии, имате избор: да актуализирате вашата система или да изключите опцията \"Използване на системни пътища\" и да използвате по-новите версии, които разширението инсталира."
+
+#: common.php:3220 common.php:3223
+msgid "Updates are optional, but may contain increased optimization or security patches"
+msgstr "Актуализациите не са задължителни, но могат да съдържат подобрени алгоритми за оптимизация или корекции за повишаване на сигурността."
+
+#: common.php:3222
+msgid "If updated versions are available below, you may need to enable write permission on the %s folder to use the automatic installs."
+msgstr "Ако списъкът съдържа по-нови версии и искате да ги инсталирате автоматично, може да се наложи да разрешите права за запис за папката %s. "
+
+#: common.php:3233 common.php:3243 common.php:3253 common.php:3263
+#: common.php:3273 common.php:3283 common.php:3307 common.php:3315
+#: common.php:3323 common.php:3331 common.php:3345 common.php:3351
+#: common.php:3359
+msgid "Installed"
+msgstr "Инсталиран"
+
+#: common.php:3233 common.php:3243 common.php:3253 common.php:3263
+#: common.php:3273 common.php:3283
+msgid "version"
+msgstr "версия"
+
+#: common.php:3235 common.php:3245 common.php:3255 common.php:3265
+#: common.php:3275 common.php:3285 common.php:3310 common.php:3318
+#: common.php:3326 common.php:3334 common.php:3348 common.php:3356
+#: common.php:3362
+msgid "Missing"
+msgstr "Липсва"
+
+#: common.php:3265
+msgid "Install"
+msgstr "Инсталиране"
+
+#: common.php:3265
+msgid "automatically"
+msgstr "автоматично"

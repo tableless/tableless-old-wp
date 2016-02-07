@@ -1,0 +1,14 @@
+/**
+ * Settings page
+ */
+.swpsmtp_info {
+    font-size: 10px;
+    color: #888;
+}
+#swpsmtp_settings_form input[type='text'], 
+input[type='password']{
+    width: 250px;
+}
+textarea#swpsmtp_message{
+    width: 250px;
+}

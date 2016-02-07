@@ -1,0 +1,384 @@
+# Translation of Twenty Ten in Portuguese (Brazil)
+# This file is distributed under the same license as the Twenty Ten package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2015-07-27 22:21:27+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: GlotPress/1.0-alpha-1100\n"
+"Project-Id-Version: Twenty Ten\n"
+
+#. Author URI of the plugin/theme
+msgid "https://wordpress.org/"
+msgstr "https://wordpress.org/"
+
+#. Template Name of the plugin/theme
+msgid "One column, no sidebar"
+msgstr "Uma coluna, sem barra lateral"
+
+#. Author of the plugin/theme
+msgid "the WordPress team"
+msgstr "Equipe WordPress"
+
+#. Description of the plugin/theme
+msgid "The 2010 theme for WordPress is stylish, customizable, simple, and readable -- make it yours with a custom menu, header image, and background. Twenty Ten supports six widgetized areas (two in the sidebar, four in the footer) and featured images (thumbnails for gallery posts and custom header images for posts and pages). It includes stylesheets for print and the admin Visual Editor, special styles for posts in the \"Asides\" and \"Gallery\" categories, and has an optional one-column page template that removes the sidebar."
+msgstr "O tema 2010 para WordPress é classudo, personalizável, simples e legível -- torne-o seu com um menu personalizado, imagem de cabeçalho e de fundo. O Twenty Ten suporta seis áreas de widgets (duas na sidebar, quatro no rodapé) e imagens destacadas (miniaturas para posts de galerias e imagens de cabeçalho personalizadas para posts e páginas). Ele inclui folhas de estilos para impressão e para o Editor Visual, estilos especiais para posts nas categorias \"Notas\" e \"Galeria\", e possui um modelo opcional de página de uma coluna que remove a barra lateral."
+
+#. Theme URI of the plugin/theme
+msgid "https://wordpress.org/themes/twentyten/"
+msgstr "https://wordpress.org/themes/twentyten/"
+
+#. Theme Name of the plugin/theme
+msgid "Twenty Ten"
+msgstr "Twenty Ten"
+
+#: tag.php:16
+msgid "Tag Archives: %s"
+msgstr "Arquivo da tag: %s"
+
+#: sidebar.php:35
+msgid "Meta"
+msgstr "Meta"
+
+#: sidebar.php:28
+msgid "Archives"
+msgstr "Arquivo"
+
+#: search.php:29
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Nenhum resultado correspondente ao seu critério de busca. Tente outra vez com palavras-chave diferentes."
+
+#: search.php:27
+msgid "Nothing Found"
+msgstr "Nada encontrado"
+
+#: search.php:16
+msgid "Search Results for: %s"
+msgstr "Resultados da busca por: %s"
+
+#: loop.php:161
+msgid "<span class=\"%1$s\">Tagged</span> %2$s"
+msgstr "<span class=\"%1$s\">Com a tag </span> %2$s"
+
+#: loop.php:152
+msgid "<span class=\"%1$s\">Posted in</span> %2$s"
+msgstr "<span class=\"%1$s\">Publicado em</span> %2$s"
+
+#: loop.php:107
+msgctxt "asides category slug"
+msgid "asides"
+msgstr "notas"
+
+#: loop.php:100 loop.php:123 loop.php:165
+msgid "% Comments"
+msgstr "% comentários"
+
+#: loop.php:100 loop.php:123 loop.php:165
+msgid "1 Comment"
+msgstr "1 comentário"
+
+#: loop.php:100 loop.php:123 loop.php:165
+msgid "Leave a comment"
+msgstr "Deixar um comentário"
+
+#: loop.php:97
+msgid "View posts in the Gallery category"
+msgstr "Ver posts na categoria Galeria"
+
+#: loop.php:94 loop.php:97
+msgid "More Galleries"
+msgstr "Mais galerias"
+
+#: loop.php:94
+msgid "View Galleries"
+msgstr "Ver Galerias"
+
+#: loop.php:84
+msgid "Permalink to %s"
+msgstr "Link permanente para %s"
+
+#: loop.php:83
+msgid "This gallery contains <a %1$s>%2$s photo</a>."
+msgid_plural "This gallery contains <a %1$s>%2$s photos</a>."
+msgstr[0] "Esta galeria contém <a %1$s>%2$s foto</a>."
+msgstr[1] "Esta galeria contém <a %1$s>%2$s fotos</a>."
+
+#: loop.php:62 loop.php:96
+msgctxt "gallery category slug"
+msgid "gallery"
+msgstr "galeria"
+
+#: loop.php:35
+msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
+msgstr "Nenhum resultado foi encontrado para o arquivo requisitado. Talvez fazer uma pesquisa lhe ajude a encontrar um post relacionado."
+
+#: loop.php:26 loop.php:180
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Posts recentes <span class=\"meta-nav\">&rarr;</span>"
+
+#: loop.php:25 loop.php:179
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Posts mais antigos"
+
+#: loop-single.php:50
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Ver todos posts de %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: loop-single.php:22 loop-single.php:65
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: loop-single.php:21 loop-single.php:64
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: loop-attachment.php:120 loop-page.php:29 loop-single.php:34 loop.php:145
+msgid "Pages:"
+msgstr "Páginas:"
+
+#: loop-attachment.php:63 loop-attachment.php:126 loop-page.php:30
+#: loop-single.php:59 loop.php:101 loop.php:124 loop.php:166
+msgid "Edit"
+msgstr "Editar"
+
+#: loop-attachment.php:56
+msgid "Link to full-size image"
+msgstr "Link para imagem em tamanho real"
+
+#: loop-attachment.php:53
+msgid "Full size is %s pixels"
+msgstr "O tamanho real é de %s pixels"
+
+#: loop-attachment.php:43
+msgid "<span class=\"%1$s\">Published</span> %2$s"
+msgstr "<span class=\"%1$s\">Publicado</span> %2$s"
+
+#: loop-attachment.php:32
+msgid "<span class=\"%1$s\">By</span> %2$s"
+msgstr "<span class=\"%1$s\">Por</span> %2$s"
+
+#. translators: %s - title of parent post
+#: loop-attachment.php:23
+msgid "<span class=\"meta-nav\">&larr;</span> %s"
+msgstr "<span class=\"meta-nav\">&larr;</span> %s"
+
+#: loop-attachment.php:21
+msgid "Return to %s"
+msgstr "Retornar para %s"
+
+#: header.php:105
+msgid "Skip to content"
+msgstr "Pular para o conteúdo"
+
+#: header.php:33
+msgid "Page %s"
+msgstr "Página %s"
+
+#: functions.php:544
+msgid "Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Adicionar o <a href=\"%3$s\" title=\"Link permanente para %4$s\" rel=\"bookmark\">link permanente</a> aos favoritos."
+
+#: functions.php:542
+msgid "This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Esta entrada foi publicada em %1$s. Adicione o <a href=\"%3$s\" title=\"Link permanente para %4$s\" rel=\"bookmark\">link permanente</a> aos seus favoritos."
+
+#: functions.php:540
+msgid "This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Esta entrada foi publicada em %1$s e marcada com a tag %2$s. Adicione o <a href=\"%3$s\" title=\"Link permanente para %4$s\" rel=\"bookmark\">link permanente</a> aos seus favoritos."
+
+#: functions.php:523 loop-attachment.php:36
+msgid "View all posts by %s"
+msgstr "Ver todos os posts de %s"
+
+#: functions.php:514
+msgid "<span class=\"%1$s\">Posted on</span> %2$s <span class=\"meta-sep\">by</span> %3$s"
+msgstr "<span class=\"%1$s\">Publicado em</span> %2$s <span class=\"meta-sep\">por</span> %3$s"
+
+#: functions.php:478
+msgid "Fourth Footer Widget Area"
+msgstr "Quarta área de widgets do rodapé"
+
+#: functions.php:467
+msgid "Third Footer Widget Area"
+msgstr "Terceira área de widgets do rodapé"
+
+#: functions.php:456
+msgid "Second Footer Widget Area"
+msgstr "Segunda área de widgets do rodapé"
+
+#: functions.php:447 functions.php:458 functions.php:469 functions.php:480
+msgid "An optional widget area for your site footer."
+msgstr "Uma área opcional de widgets para o rodapé de seu site."
+
+#: functions.php:445
+msgid "First Footer Widget Area"
+msgstr "Primeira área de widgets do rodapé"
+
+#: functions.php:436
+msgid "An optional secondary widget area, displays below the primary widget area in your sidebar."
+msgstr "Uma área de widgets secundária opcional , mostrada abaixo da área de widgets primária em sua barra lateral."
+
+#: functions.php:434
+msgid "Secondary Widget Area"
+msgstr "Área de widgets secundária"
+
+#: functions.php:425
+msgid "Add widgets here to appear in your sidebar."
+msgstr "Adicione widgets aqui para que apareçam em sua barra lateral."
+
+#: functions.php:423
+msgid "Primary Widget Area"
+msgstr "Área de widgets primária"
+
+#: functions.php:403
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: functions.php:386 functions.php:403
+msgid "(Edit)"
+msgstr "(Editar)"
+
+#. translators: 1: date, 2: time
+#: functions.php:386
+msgid "%1$s at %2$s"
+msgstr "%1$s às %2$s"
+
+#: functions.php:379
+msgid "Your comment is awaiting moderation."
+msgstr "Seu comentário está aguardando moderação."
+
+#: functions.php:376
+msgid "%s <span class=\"says\">says:</span>"
+msgstr "%s <span class=\"says\">disse:</span>"
+
+#: functions.php:280 loop-attachment.php:119 loop.php:116 loop.php:144
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Continue lendo <span class=\"meta-nav\">&rarr;</span>"
+
+#. translators: header image description
+#: functions.php:207
+msgid "Sunset"
+msgstr "Por do sol"
+
+#. translators: header image description
+#: functions.php:201
+msgid "Path"
+msgstr "Caminho"
+
+#. translators: header image description
+#: functions.php:195
+msgid "Inkwell"
+msgstr "Pingos de tinta"
+
+#. translators: header image description
+#: functions.php:189
+msgid "Forest Floor"
+msgstr "Chão da floresta"
+
+#. translators: header image description
+#: functions.php:183
+msgid "Fern"
+msgstr "Samambaia"
+
+#. translators: header image description
+#: functions.php:177
+msgid "Concave"
+msgstr "Côncavos"
+
+#. translators: header image description
+#: functions.php:171
+msgid "Cherry Blossoms"
+msgstr "Cerejeira em flor"
+
+#. translators: header image description
+#: functions.php:165
+msgid "Berries"
+msgstr "Amoras"
+
+#: functions.php:95
+msgid "Primary Navigation"
+msgstr "Navegação primária"
+
+#: footer.php:40
+msgid "Proudly powered by %s."
+msgstr "Orgulhosamente criado com %s."
+
+#: footer.php:40
+msgid "Semantic Personal Publishing Platform"
+msgstr "Plataforma de Publicação Pessoal Semântica"
+
+#: footer.php:40
+msgid "http://wordpress.org/"
+msgstr "http://wordpress.org/"
+
+#: comments.php:73
+msgid "Comments are closed."
+msgstr "Os comentários estão encerrados."
+
+#: comments.php:43 comments.php:63
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Comentários mais recentes <span class=\"meta-nav\">&rarr;</span>"
+
+#: comments.php:42 comments.php:62
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> Comentários mais antigos"
+
+#: comments.php:36
+msgid "One Response to %2$s"
+msgid_plural "%1$s Responses to %2$s"
+msgstr[0] "Uma resposta a %2$s"
+msgstr[1] "%1$s respostas a %2$s"
+
+#: comments.php:18
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr "Este post é protegido por senha. Digite a senha pra ver os comentários."
+
+#: category.php:16
+msgid "Category Archives: %s"
+msgstr "Arquivo da categoria: %s"
+
+#: author.php:47 loop-single.php:46
+msgid "About %s"
+msgstr "Sobre %s"
+
+#: author.php:28
+msgid "Author Archives: %s"
+msgstr "Arquivo do Autor: %s"
+
+#: archive.php:40
+msgid "Blog Archives"
+msgstr "Arquivo do blog"
+
+#: archive.php:38
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: archive.php:38
+msgid "Yearly Archives: <span>%s</span>"
+msgstr "Arquivo do ano: <span>%s</span>"
+
+#: archive.php:36
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F \\d\\e Y"
+
+#: archive.php:36
+msgid "Monthly Archives: <span>%s</span>"
+msgstr "Arquivo do mês: <span>%s</span>"
+
+#: archive.php:34
+msgid "Daily Archives: <span>%s</span>"
+msgstr "Arquivo do dia: <span>%s</span>"
+
+#: 404.php:18
+msgid "Apologies, but the page you requested could not be found. Perhaps searching will help."
+msgstr "A página solicitada não foi encontrada. Talvez a busca ajude."
+
+#: 404.php:16 loop.php:33
+msgid "Not Found"
+msgstr "Não encontrado"

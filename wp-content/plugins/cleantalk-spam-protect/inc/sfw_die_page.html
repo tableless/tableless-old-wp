@@ -1,0 +1,64 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--  <title></title> -->
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+<style>
+    html{font-size: 14pt;}
+    h1{text-align:center}
+    h1.main{margin-top: 1em;margin-bottom: 3em;}
+    div.container {text-align:center;}
+    div.container p.js_notice{width: 60%; display: inline-block;}
+    div.footer {color: #666; position: absolute; bottom: 1em; text-align: center; width: 100%;}
+    div.footer a {color: #666; vertical-align:bottom; text-align: center;}
+    div#js_passed {display:none;}
+
+    @media (max-width: 600px) {
+    }
+</style>
+<script>
+var reload_timeout = 3000;
+function set_spamFireWallCookie(cookie_name, cookie_value) {
+    document.cookie = cookie_name + "=" + escape(cookie_value) + "; path=/;";
+    return null;
+}
+function get_current_url() {
+    document.write(window.location.href);
+    return null;
+}
+</script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="main">SpamFireWall is activated for your IP <a href="https://cleantalk.org/blacklists/{REMOTE_ADDRESS}" target="_blank">{REMOTE_ADDRESS}</a></h1>
+        
+        <div id="js_info"><br />To continue working with web site, please make sure that you have enabled JavaScript.</div>
+        
+        <div id="js_passed">
+        <h3>Please click bellow to pass protection,</h3>
+        <a href="{REQUEST_URI}"><script>get_current_url();</script></a>
+        <br /><br /><br />
+        <p class="js_notice">Or you will be automatically redirected to the requested page after 3 seconds.</p>
+        </div>
+    </div>
+    <div class="footer">
+    <a href="https://cleantalk.org" target="_blank">Anti-Spam by CleanTalk</a>
+    </div>
+    <script type="text/javascript">
+        document.getElementById('js_info').style.display = 'none';
+        document.getElementById('js_passed').style.display = 'block';
+        set_spamFireWallCookie('ct_sfw_pass_key','{SFW_COOKIE}');
+        setTimeout(function(){
+            window.location.reload(1);
+        }, reload_timeout);
+    </script>
+</body>
+</html>

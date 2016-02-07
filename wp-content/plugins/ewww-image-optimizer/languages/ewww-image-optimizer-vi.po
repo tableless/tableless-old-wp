@@ -1,0 +1,1278 @@
+# Translation of EWWW Image Optimizer in Vietnamese
+# This file is distributed under the same license as the EWWW Image Optimizer package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2015-08-17 03:38:47+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/1.0-alpha-1000\n"
+"Project-Id-Version: EWWW Image Optimizer\n"
+
+#: aux-optimize.php:97 aux-optimize.php:134 aux-optimize.php:383
+#: aux-optimize.php:422 bulk.php:405 bulk.php:429 bulk.php:496 common.php:1922
+#: flag-integration.php:285 flag-integration.php:306 flag-integration.php:362
+#: mwebp.php:102 mwebp.php:193 nextcellent-integration.php:419
+#: nextcellent-integration.php:439 nextcellent-integration.php:487
+#: nextgen-integration.php:365 nextgen-integration.php:382
+#: nextgen-integration.php:427 nextgen2-integration.php:422
+#: nextgen2-integration.php:445 nextgen2-integration.php:498
+msgid "Access token has expired, please reload the page."
+msgstr ""
+
+#: aux-optimize.php:684 aux-optimize.php:707 aux-optimize.php:723 bulk.php:388
+#: common.php:3055 flag-integration.php:271 mwebp.php:84
+#: nextcellent-integration.php:94 nextcellent-integration.php:405
+#: nextgen-integration.php:71 nextgen-integration.php:352
+#: nextgen2-integration.php:408
+msgid "Access denied."
+msgstr ""
+
+#: ewww-image-optimizer.php:152
+msgid "The regular version of the EWWW Image Optimizer plugin is not permitted on WP Engine sites. However, the cloud version has been approved by WP Engine. Please deactivate EWWW Image Optimizer and install EWWW Image Optimizer Cloud to optimize your images."
+msgstr ""
+
+#: common.php:3575
+msgctxt "abbreviation for Virtual Private Server"
+msgid "VPS:"
+msgstr ""
+
+#: common.php:3581
+msgctxt "abbreviation for Content Delivery Network"
+msgid "CDN:"
+msgstr ""
+
+#: common.php:3563
+msgid "Help translate EWWW I.O."
+msgstr ""
+
+#: common.php:3564
+msgid "Write a review."
+msgstr ""
+
+#: common.php:3569
+msgctxt "A2 Hosting:"
+msgid "with automatic EWWW IO setup"
+msgstr ""
+
+#: common.php:3561
+msgid "Support EWWW I.O."
+msgstr ""
+
+#: common.php:3562
+msgid "Would you like to help support development of this plugin?"
+msgstr ""
+
+#: common.php:3565
+msgid "Contribute directly via %s."
+msgstr ""
+
+#: common.php:3567
+msgid "Use any of these referral links to show your appreciation:"
+msgstr ""
+
+#: common.php:3568
+msgid "Web Hosting:"
+msgstr ""
+
+#: common.php:3581
+msgid "Add MaxCDN to increase website speeds dramatically! Sign Up Now and Save 25%."
+msgstr ""
+
+#: common.php:3581
+msgid "Integrate MaxCDN within Wordpress using the W3 Total Cache plugin."
+msgstr ""
+
+#: common.php:3603
+msgid "Debugging Information"
+msgstr "Thông tin gỡ lỗi"
+
+#: common.php:3603
+msgid "Select All"
+msgstr "Chọn tất cả"
+
+#: ewww-image-optimizer.php:2109 ewww-image-optimizer.php:2128
+msgid "extraction of files failed"
+msgstr "Trích xuất các tập tin bị lỗi"
+
+#: common.php:2717
+msgid "Azure Storage image"
+msgstr "Ảnh Azure Storage"
+
+#: common.php:2721
+msgid "Amazon S3 image"
+msgstr "Ảnh Amazon S3"
+
+#: common.php:3462
+msgid "Deferred Optimization"
+msgstr "Tối ưu bị trì hoãn"
+
+#: common.php:3462
+msgid "Optimize images later via wp_cron, after image upload or generation is complete."
+msgstr "Tối ưu các ảnh sau qua wp_cron, sau khi tải lên hoặc khởi tạo ảnh hoàn thành."
+
+#: ewww-image-optimizer.php:1181
+msgid "Could not find %s"
+msgstr "Không thể tìm thấy %s"
+
+#: ewww-image-optimizer.php:1189
+msgid "%s is not writable"
+msgstr "%s không thể ghi được"
+
+#: bulk.php:356
+msgid "Operation timed out, you may need to increase the max_execution_time for PHP"
+msgstr "Hoạt động đã hết giờ, bạn có thể cần tăng max_execution_time cho PHP"
+
+#: bulk.php:357 flag-integration.php:186 nextcellent-integration.php:392
+#: nextgen-integration.php:340 nextgen2-integration.php:395
+msgid "License Exceeded"
+msgstr "Giấy phép đã vượt quá"
+
+#: bulk.php:358 flag-integration.php:187 nextcellent-integration.php:393
+#: nextgen-integration.php:341 nextgen2-integration.php:396
+msgid "Optimization stopped, reload page to resume."
+msgstr "Tối ưu đã ngừng, nạp lại trang để phục hồi."
+
+#: bulk.php:359 flag-integration.php:188 nextcellent-integration.php:394
+#: nextgen-integration.php:342 nextgen2-integration.php:397
+msgid "Operation Interrupted"
+msgstr "Hoạt động đã bị ngắt"
+
+#: bulk.php:360 flag-integration.php:189 nextcellent-integration.php:395
+#: nextgen-integration.php:343 nextgen2-integration.php:398
+msgid "Temporary failure, seconds left to retry:"
+msgstr "Sự cố tạm thời, số giây còn lại để thử lại:"
+
+#: bulk.php:361 flag-integration.php:190 nextcellent-integration.php:396
+#: nextgen-integration.php:344 nextgen2-integration.php:399
+msgid "Could not remove image from table."
+msgstr "Không thể loại bỏ ảnh từ bảng."
+
+#: common.php:3170
+msgid "Click to toggle"
+msgstr "Kích để bật tắt"
+
+#: common.php:3467
+msgid "Disable Resizes"
+msgstr "Vô hiệu thay đổi kích cỡ"
+
+#: common.php:3467
+msgid "Wordpress, your theme, and other plugins generate various image sizes. You may disable optimization for certain sizes, or completely prevent those sizes from being created."
+msgstr "Wordpress, chủ đề của bạn, và các plugin khác tạo kích cỡ hình ảnh khác nhau. Bạn có thể vô hiệu tối ưu hóa cho các kích thước nhất định, hoặc hoàn toàn ngăn chặn việc tạo ra các kích cỡ đó."
+
+#: common.php:3471
+msgid "Disable Optimization"
+msgstr "Vô hiệu tối ưu"
+
+#: common.php:3471
+msgid "Disable Creation"
+msgstr "Vô hiệu tạo"
+
+#: common.php:1353
+msgid "You don't have permission to optimize images."
+msgstr "Bạn không có quyền để tối ưu ảnh."
+
+#: common.php:3400
+msgid "Faster lossy optimization"
+msgstr "Tối ưu hao tổn nhanh hơn"
+
+#: common.php:3400
+msgid "Speed up the lossy operations by performing less compression."
+msgstr "Tăng tốc độ xử lý hao tổn  bằng cách thực hiện nén ít hơn."
+
+#: common.php:3410
+msgid "Requires an EWWW Image Optimizer Cloud Subscription."
+msgstr "Yêu cầu một Đăng ký EWWW Image Optimizer Cloud."
+
+#: common.php:3413
+msgid "Uses pngquant locally. Use EWWW I.O. Cloud for even better lossy compression."
+msgstr ""
+
+#: common.php:3512
+msgid "Uses output buffering and libxml functionality from PHP. Use this if the Apache rewrite rules do not work, or if your images are served from a CDN."
+msgstr "Sử dụng bộ đệm đầu ra và chức năng libxml từ PHP. Sử dụng điều này nếu các quy tắc viết lại Apache không làm việc, hoặc nếu hình ảnh của bạn được xử lý từ một CDN."
+
+#: common.php:1653
+msgid "optimized %1$d images, usage will reset in %2$d day."
+msgid_plural "optimized %1$d images, usage will reset in %2$d days."
+msgstr[0] "%1$d ảnh đã được tối ưu, việc sử dụng sẽ thiết lập lại trong %2$d ngày."
+
+#: common.php:1655
+msgid "%1$d image credit remaining."
+msgid_plural "%1$d image credits remaining."
+msgstr[0] ""
+
+#: common.php:3465
+msgid "Include Media Library Folders"
+msgstr ""
+
+#: common.php:3465
+msgid "If you have disabled automatic optimization, enable this if you want Scheduled Optimization to include the latest two folders from the Media Library."
+msgstr ""
+
+#: common.php:3512
+msgid "Alternative WebP Rewriting"
+msgstr ""
+
+#: bulk.php:355
+msgid "%d images"
+msgstr "%d hình ảnh"
+
+#: common.php:3454
+msgid "Provide paths containing images to be optimized using \"Scan and Optimize\" on the Bulk Optimize page or by Scheduled Optimization."
+msgstr ""
+
+#: iocli.php:55
+msgctxt "string will be something like \"media\" or \"nextgen\""
+msgid "Optimizing %1$s with a %2$d second pause between images."
+msgstr ""
+
+#: iocli.php:52
+msgid "Forcing re-optimization of previously processed images."
+msgstr ""
+
+#: iocli.php:66 iocli.php:107 iocli.php:118 iocli.php:142 iocli.php:157
+msgid "Bulk status has been reset, starting from the beginning."
+msgstr ""
+
+#: iocli.php:172
+msgid "Bulk status has been reset, the next bulk operation will start from the beginning."
+msgstr ""
+
+#: iocli.php:174
+msgid "Please specify a valid library option, see \"wp-cli help ewwwio optimize\" for more information."
+msgstr ""
+
+#: common.php:1003 common.php:2927
+msgid "Unoptimized Images"
+msgstr "Các ảnh chưa được tối ưu"
+
+#: common.php:2934
+msgid "Optimize All Images"
+msgstr "Tối ưu tất cả ảnh"
+
+#: common.php:2953
+msgid "There are too many images to display."
+msgstr "Có quá nhiều ảnh để hiển thị."
+
+#: iocli.php:87 iocli.php:162
+msgid "%1$d images in other folders need optimizing."
+msgstr "%1$d ảnh trong các thư mục khác cần tối ưu."
+
+#: iocli.php:136
+msgid "NextGEN/Nextcellent not installed."
+msgstr "NextGEN/Nextcellent chưa được cài đặt."
+
+#: iocli.php:151
+msgid "Grand Flagallery not installed."
+msgstr "Grand Flagallery chưa được cài đặt."
+
+#: common.php:3463
+msgid "Disable Automatic Optimization"
+msgstr "Vô hiệu Tối Ưu Tự Động"
+
+#: common.php:3463
+msgid "Images will not be optimized on upload. Images may be optimized with the Bulk Optimize tools or with Scheduled optimization."
+msgstr "Các hình ảnh sẽ không được tối ưu lúc tải lên. Các hình ảnh có thể được tối ưu với các công cụ Bulk Optimize hoặc với Tối ưu đã lên lịch trình."
+
+#: common.php:3489
+msgid "Exclude full-size images from metadata removal"
+msgstr ""
+
+#: aux-optimize.php:9
+msgid "Scan and optimize"
+msgstr "Quét và tối ưu"
+
+#: aux-optimize.php:11
+msgid "Resume previous optimization"
+msgstr "Phục hồi trước tối ưu"
+
+#: aux-optimize.php:29
+msgid "Optimize Everything Else"
+msgstr "Tối ưu mọi thứ khác"
+
+#: aux-optimize.php:30
+msgid "Use this tool to optimize images outside of the Media Library and galleries where we have full integration. Examples: theme images, BuddyPress, WP Symposium, and any folders that you have specified on the settings page."
+msgstr ""
+
+#: aux-optimize.php:32
+msgid "The database schema has changed, you need to convert to the new format."
+msgstr ""
+
+#: aux-optimize.php:36
+msgid "Convert Table"
+msgstr "Chuyển đổi Bảng"
+
+#: aux-optimize.php:39
+msgid "There are no images to optimize."
+msgstr "Không có ảnh nào để tối ưu."
+
+#: aux-optimize.php:40 iocli.php:68 iocli.php:159
+msgid "Scanning, this could take a while"
+msgstr "Đang quét, việc này có thể mất một lúc"
+
+#: aux-optimize.php:42
+msgid "Last optimization was completed on %1$s at %2$s and optimized %3$d images"
+msgstr "Lần tối ưu cuối cùng được hoàn thành lúc %1$s tại %2$s và đã tối ưu %3$d ảnh"
+
+#: aux-optimize.php:46 bulk.php:57
+msgid "Optimize Again"
+msgstr "Tối ưu lần nữa"
+
+#: aux-optimize.php:51 bulk.php:63 flag-integration.php:105
+#: nextcellent-integration.php:296 nextgen-integration.php:258
+#: nextgen2-integration.php:303
+msgid "If you would like to start over again, press the Reset Status button to reset the bulk operation status."
+msgstr "Nếu bạn muốn bắt đầu lại một lần nữa, nhấn nút Đặt lại Trạng thái để thiết lập lại trạng thái hoạt động với số lượng lớn."
+
+#: aux-optimize.php:55 bulk.php:67 flag-integration.php:109
+#: nextcellent-integration.php:300 nextgen-integration.php:262
+#: nextgen2-integration.php:307
+msgid "Reset Status"
+msgstr "Đặt lại Trạng thái"
+
+#: aux-optimize.php:64
+msgid "The plugin keeps track of already optimized images to prevent re-optimization. There are %d images that have been optimized so far."
+msgstr "Plugin theo dõi những hình ảnh đã được tối ưu để ngăn ngừa tái tối ưu. Có %d hình ảnh đã được tối ưu cho đến nay."
+
+#: aux-optimize.php:66
+msgid "Show Optimized Images"
+msgstr "Hiện các ảnh đã được tối ưu"
+
+#: aux-optimize.php:74
+msgid "page"
+msgstr "trang"
+
+#: aux-optimize.php:74
+msgid "of"
+msgstr "của"
+
+#: aux-optimize.php:254 aux-optimize.php:296 aux-optimize.php:299
+msgid "Unknown Savings"
+msgstr ""
+
+#: aux-optimize.php:319
+msgid "Finished importing"
+msgstr "Nhập hoàn thành"
+
+#: aux-optimize.php:336 common.php:1830 common.php:2378 common.php:2387
+msgid "Previously Optimized"
+msgstr "Đã tối ưu trước đó"
+
+#: aux-optimize.php:339 common.php:1869 common.php:2314
+msgid "No savings"
+msgstr ""
+
+#: aux-optimize.php:346 bulk.php:122 common.php:1835
+#: ewww-image-optimizer.php:2029
+msgid "License exceeded"
+msgstr "Giấy phép đã quá hạn"
+
+#: aux-optimize.php:391
+msgid "Filename"
+msgstr "Tên tập tin"
+
+#: aux-optimize.php:391
+msgid "Image Type"
+msgstr "Loại Ảnh"
+
+#: aux-optimize.php:391 common.php:1088 common.php:1120 common.php:2691
+#: common.php:2939 flag-integration.php:374 nextcellent-integration.php:173
+#: nextgen-integration.php:142 nextgen2-integration.php:131
+#: nextgen2-integration.php:134
+msgid "Image Optimizer"
+msgstr "Trình tối ưu ảnh"
+
+#: aux-optimize.php:408 common.php:2809 common.php:2863
+#: flag-integration.php:431 flag-integration.php:440
+#: nextcellent-integration.php:229 nextcellent-integration.php:238
+#: nextgen-integration.php:198 nextgen-integration.php:205
+#: nextgen2-integration.php:215
+msgid "Image Size: %s"
+msgstr "Cỡ ảnh: %s"
+
+#: aux-optimize.php:408
+msgid "Remove from table"
+msgstr "Loại bỏ khỏi bảng"
+
+#: aux-optimize.php:666
+msgid "Nothing to optimize"
+msgstr "Không có gì để tối ưu"
+
+#: aux-optimize.php:695 aux-optimize.php:712 bulk.php:395 bulk.php:414
+#: flag-integration.php:277 flag-integration.php:296 iocli.php:210
+#: nextcellent-integration.php:411 nextcellent-integration.php:429
+#: nextgen-integration.php:358 nextgen-integration.php:375
+#: nextgen2-integration.php:435
+msgid "Optimizing"
+msgstr "Đang tối ưu"
+
+#: aux-optimize.php:732 bulk.php:502 mwebp.php:204
+#: nextcellent-integration.php:129 nextgen-integration.php:106
+msgid "Finished"
+msgstr "Đã xong"
+
+#: bulk.php:11 common.php:1002 common.php:2892 common.php:2894 common.php:3159
+#: common.php:3161 flag-integration.php:36 flag-integration.php:41
+#: flag-integration.php:46 flag-integration.php:73
+#: nextcellent-integration.php:37 nextcellent-integration.php:269
+#: nextgen-integration.php:33 nextgen-integration.php:234
+#: nextgen2-integration.php:37 nextgen2-integration.php:272
+#: nextgen2-integration.php:516
+msgid "Bulk Optimize"
+msgstr "Bulk Optimize"
+
+#: bulk.php:15 flag-integration.php:78 nextcellent-integration.php:274
+#: nextgen-integration.php:239 nextgen2-integration.php:277
+msgid "Start optimizing"
+msgstr "Bắt đầu tối ưu"
+
+#: bulk.php:17 flag-integration.php:80 nextcellent-integration.php:276
+#: nextgen-integration.php:241 nextgen2-integration.php:279
+msgid "Resume previous bulk operation"
+msgstr ""
+
+#: bulk.php:23
+msgid "Importing"
+msgstr ""
+
+#: bulk.php:28 flag-integration.php:87 nextcellent-integration.php:283
+#: nextgen2-integration.php:286
+msgid "Stop Optimizing"
+msgstr ""
+
+#: bulk.php:32
+msgid "You should import Media Library images into the table to prevent duplicate optimization."
+msgstr ""
+
+#: bulk.php:34
+msgid "Import Images"
+msgstr ""
+
+#: bulk.php:40 flag-integration.php:91 nextgen2-integration.php:290
+msgid "Force re-optimize"
+msgstr ""
+
+#: bulk.php:41 common.php:3415 flag-integration.php:92
+#: nextgen2-integration.php:291
+msgid "Choose how long to pause between images (in seconds, 0 = disabled)"
+msgstr ""
+
+#: bulk.php:44
+msgid "Optimize Media Library"
+msgstr ""
+
+#: bulk.php:46 flag-integration.php:68 nextcellent-integration.php:264
+#: nextgen-integration.php:229 nextgen2-integration.php:266
+msgid "You do not appear to have uploaded any images yet."
+msgstr ""
+
+#: bulk.php:50
+msgid "%1$d images in the Media Library have been selected, unable to determine how many resizes and how many are unoptimized."
+msgstr ""
+
+#: bulk.php:52 iocli.php:70 iocli.php:111
+msgid "%1$d images in the Media Library have been selected (%2$d unoptimized), with %3$d resizes (%4$d unoptimized)."
+msgstr "%1$d hình ảnh trong Thư viện Media đã được chọn (%2$d chưa được tối ưu), với %3$d thay đổi kích thước (%4$d chưa được tối ưu)."
+
+#: bulk.php:54 flag-integration.php:97 nextcellent-integration.php:288
+#: nextgen-integration.php:250 nextgen2-integration.php:296
+msgid "Previously optimized images will be skipped by default."
+msgstr "Các hình ảnh đã tối ưu trước đó sẽ được bỏ qua theo mặc định."
+
+#: bulk.php:449 common.php:1956 flag-integration.php:328 iocli.php:386
+#: iocli.php:430 iocli.php:510 iocli.php:582 nextcellent-integration.php:466
+#: nextgen-integration.php:403 nextgen2-integration.php:466
+msgid "Optimized image:"
+msgstr "Ảnh đã tối ưu:"
+
+#: bulk.php:451 iocli.php:218
+msgid "Skipped image, ID:"
+msgstr "Ảnh đã bỏ qua, ID:"
+
+#: bulk.php:455 flag-integration.php:329 iocli.php:222 iocli.php:431
+msgid "Full size – %s"
+msgstr "Cỡ đầy đủ - %s"
+
+#: bulk.php:470 common.php:1962 flag-integration.php:347 iocli.php:237
+#: iocli.php:392 iocli.php:449 iocli.php:527 iocli.php:592
+#: nextcellent-integration.php:123 nextcellent-integration.php:472
+#: nextgen-integration.php:100 nextgen-integration.php:413
+#: nextgen2-integration.php:483
+msgid "Elapsed: %.3f seconds"
+msgstr "Đã qua: %.3f giây"
+
+#: bulk.php:502
+msgid "Return to Media Library"
+msgstr "Trở lại Thư viện Media"
+
+#: common.php:711
+msgid "Settings saved"
+msgstr "Các thiết đặt đã lưu"
+
+#: common.php:1004 mwebp.php:5
+msgid "Migrate WebP Images"
+msgstr "Di chuyển các ảnh WebP"
+
+#: common.php:1023
+msgid "Image Store Optimize"
+msgstr "Tối ưu hình ảnh lưu trữ"
+
+#: common.php:1023
+msgid "Optimize"
+msgstr "Tối ưu"
+
+#: common.php:1077
+msgid "Image Store Optimization"
+msgstr "Tối ưu hình ảnh lưu trữ"
+
+#: common.php:1087
+msgid "Choose a gallery or"
+msgstr ""
+
+#: common.php:1087
+msgid "optimize all galleries"
+msgstr ""
+
+#: common.php:1088
+msgid "Gallery ID"
+msgstr ""
+
+#: common.php:1088
+msgid "Gallery Name"
+msgstr ""
+
+#: common.php:1088
+msgid "Images"
+msgstr ""
+
+#: common.php:1104 common.php:1119
+msgid "Optimize Gallery"
+msgstr ""
+
+#: common.php:1120 common.php:2939
+msgid "Title"
+msgstr ""
+
+#: common.php:1120 nextgen-integration.php:14 nextgen-integration.php:274
+msgid "Gallery"
+msgstr ""
+
+#: common.php:1203
+msgid "Settings"
+msgstr ""
+
+#: flag-integration.php:231 nextcellent-integration.php:137
+#: nextgen-integration.php:113 nextgen2-integration.php:96
+msgid "You don't have permission to work with uploaded files."
+msgstr ""
+
+#: common.php:1358 flag-integration.php:235 nextcellent-integration.php:141
+#: nextgen-integration.php:117 nextgen2-integration.php:100
+msgid "No attachment ID was provided."
+msgstr ""
+
+#: common.php:1401 common.php:1436
+msgid "Original Restored"
+msgstr ""
+
+#: common.php:1657
+msgid "used %1$d of %2$d, usage will reset in %3$d day."
+msgid_plural "used %1$d of %2$d, usage will reset in %3$d days."
+msgstr[0] "đã sử dụng %1$d của %2$d, việc sử dụng sẽ thiết đặt lại trong %3$d ngày."
+
+#: common.php:1881
+msgid "Reduced by %01.1f%% (%s)"
+msgstr ""
+
+#: common.php:2713
+msgid "Cloudinary image"
+msgstr ""
+
+#: common.php:2737
+msgid "Could not retrieve file path."
+msgstr ""
+
+#: common.php:2758 common.php:2769 common.php:2780
+#: ewww-image-optimizer.php:1365 ewww-image-optimizer.php:1636
+#: ewww-image-optimizer.php:1640 ewww-image-optimizer.php:1922
+#: flag-integration.php:405 flag-integration.php:411 flag-integration.php:417
+#: nextcellent-integration.php:201 nextcellent-integration.php:208
+#: nextcellent-integration.php:215 nextgen-integration.php:170
+#: nextgen-integration.php:177 nextgen-integration.php:184
+#: nextgen2-integration.php:174 nextgen2-integration.php:181
+#: nextgen2-integration.php:188
+msgid "%s is missing"
+msgstr ""
+
+#: common.php:2760
+msgid "JPG to PNG"
+msgstr ""
+
+#: common.php:2762
+msgid "WARNING: Removes metadata. Requires GD or ImageMagick. PNG is generally much better than JPG for logos and other images with a limited range of colors."
+msgstr ""
+
+#: common.php:2771
+msgid "PNG to JPG"
+msgstr "PNG sang JPG"
+
+#: common.php:2773
+msgid "WARNING: This is not a lossless conversion and requires GD or ImageMagick. JPG is much better than PNG for photographic use because it compresses the image and discards data. Transparent images will only be converted if a background color has been set."
+msgstr ""
+
+#: common.php:2782
+msgid "GIF to PNG"
+msgstr "GIF sang PNG"
+
+#: common.php:2784
+msgid "PNG is generally better than GIF, but does not support animation. Animated images will not be converted."
+msgstr ""
+
+#: common.php:2789 flag-integration.php:425 nextcellent-integration.php:223
+#: nextgen-integration.php:192 nextgen2-integration.php:196
+msgid "Unsupported file type"
+msgstr "Loại tập tin không được hỗ trợ"
+
+#: common.php:2814 flag-integration.php:435 nextcellent-integration.php:233
+#: nextgen-integration.php:201 nextgen2-integration.php:235
+msgid "Re-optimize"
+msgstr "Tối ưu lại"
+
+#: common.php:2841
+msgid "Restore original"
+msgstr "Phục hồi nguyên gốc"
+
+#: common.php:2861 flag-integration.php:439 nextcellent-integration.php:237
+#: nextgen-integration.php:204 nextgen2-integration.php:209
+msgid "Not processed"
+msgstr "Không được xử lý"
+
+#: common.php:2800 common.php:2866 flag-integration.php:444
+#: nextcellent-integration.php:242 nextgen-integration.php:208
+#: nextgen2-integration.php:239
+msgid "Optimize now!"
+msgstr ""
+
+#: common.php:3059
+msgid "Insertion successful"
+msgstr ""
+
+#: common.php:3061
+msgid "Insertion failed"
+msgstr ""
+
+#: common.php:3127
+msgid "Pngout was successfully installed, check the Plugin Status area for version information."
+msgstr ""
+
+#: common.php:3132
+msgid "Pngout was not installed: %1$s. Make sure this folder is writable: %2$s"
+msgstr ""
+
+#: common.php:3154
+msgid "Plugin Home Page"
+msgstr ""
+
+#: common.php:3155 ewww-image-optimizer.php:410 ewww-image-optimizer.php:536
+msgid "Installation Instructions"
+msgstr ""
+
+#: common.php:3156
+msgid "Plugin Support"
+msgstr "Hỗ trợ Plugin"
+
+#: common.php:3157
+msgid "Cloud Status"
+msgstr "Trạng thái Cloud"
+
+#: common.php:3159
+msgid "Media Library"
+msgstr "Thư viện Media"
+
+#: common.php:3163
+msgid "New images uploaded to the Media Library will be optimized automatically. If you have existing images you would like to optimize, you can use the %s tool."
+msgstr ""
+
+#: common.php:3171
+msgid "Plugin Status"
+msgstr "Trạng thái Plugin"
+
+#: common.php:3172
+msgid "All Clear"
+msgstr ""
+
+#: common.php:3173
+msgid "Requires Attention"
+msgstr ""
+
+#: common.php:3176
+msgid "Total Savings:"
+msgstr ""
+
+#: common.php:3178 common.php:3391
+msgid "Cloud optimization API Key"
+msgstr ""
+
+#: common.php:3181 common.php:3183
+msgid "Verified,"
+msgstr "Đã xác nhận"
+
+#: common.php:3185
+msgid "Not Verified"
+msgstr "Không được xác nhận"
+
+#: common.php:3197
+msgid "If updated versions are available below you may either download the newer versions and install them yourself, or uncheck \"Use System Paths\" and use the bundled tools."
+msgstr ""
+
+#: common.php:3198 common.php:3201
+msgid "Updates are optional, but may contain increased optimization or security patches"
+msgstr ""
+
+#: common.php:3200
+msgid "If updated versions are available below, you may need to enable write permission on the %s folder to use the automatic installs."
+msgstr ""
+
+#: common.php:3211 common.php:3221 common.php:3231 common.php:3241
+#: common.php:3251 common.php:3261 common.php:3285 common.php:3293
+#: common.php:3301 common.php:3309 common.php:3323 common.php:3329
+#: common.php:3337
+msgid "Installed"
+msgstr "Đã cài đặt"
+
+#: common.php:3211 common.php:3221 common.php:3231 common.php:3241
+#: common.php:3251 common.php:3261
+msgid "version"
+msgstr ""
+
+#: common.php:3213 common.php:3223 common.php:3233 common.php:3243
+#: common.php:3253 common.php:3263 common.php:3288 common.php:3296
+#: common.php:3304 common.php:3312 common.php:3326 common.php:3334
+#: common.php:3340
+msgid "Missing"
+msgstr ""
+
+#: common.php:3243
+msgid "Install"
+msgstr ""
+
+#: common.php:3243
+msgid "automatically"
+msgstr ""
+
+#: common.php:3243
+msgid "manually"
+msgstr ""
+
+#: common.php:3243
+msgid "Pngout is free closed-source software that can produce drastically reduced filesizes for PNGs, but can be very time consuming to process images"
+msgstr ""
+
+#: common.php:3269
+msgid "On"
+msgstr ""
+
+#: common.php:3272
+msgid "Off"
+msgstr "Tắt"
+
+#: common.php:3275
+msgid "Disabled"
+msgstr "Đã vô hiệu"
+
+#: common.php:3278
+msgid "Enabled"
+msgstr "Đã bật"
+
+#: common.php:3281
+msgid "%s only need one, used for conversion, not optimization"
+msgstr "%s chỉ cần một, được dùng cho chuyển đổi, không tối ưu"
+
+#: common.php:3281
+msgid "Graphics libraries"
+msgstr "Thư viện đồ họa"
+
+#: common.php:3319
+msgid "Only need one of these:"
+msgstr "Chỉ cần một trong những cái này:"
+
+#: common.php:3344 common.php:3348 common.php:3351
+msgid "command not found on your system"
+msgstr "lệnh không tìm thấy trên hệ thống của bạn"
+
+#: common.php:3348
+msgid "not required"
+msgstr "không yêu cầu"
+
+#: common.php:3351
+msgid "required for automatic pngout installer"
+msgstr "được yêu cầu cho trình cài đặt pngout tự động"
+
+#: common.php:3375
+msgid "Cloud Settings"
+msgstr "Thiết đặt Cloud"
+
+#: common.php:3376
+msgid "Basic Settings"
+msgstr "Thiết đặt Cơ bản"
+
+#: common.php:3377
+msgid "Advanced Settings"
+msgstr "Thiết đặt Nâng cao"
+
+#: common.php:3378
+msgid "Conversion Settings"
+msgstr "Thiết đặt Chuyển đổi"
+
+#: common.php:3389
+msgid "If exec() is disabled for security reasons (and enabling it is not an option), or you would like to offload image optimization to a third-party server, you may purchase an API key for our cloud optimization service. The API key should be entered below, and cloud optimization must be enabled for each image format individually."
+msgstr ""
+
+#: common.php:3389 common.php:3391 common.php:3410 common.php:3413
+msgid "Purchase an API key."
+msgstr "Mua một khóa API"
+
+#: common.php:3391
+msgid "API Key will be validated when you save your settings."
+msgstr ""
+
+#: common.php:3392
+msgid "JPG cloud optimization"
+msgstr ""
+
+#: common.php:3394
+msgid "PNG cloud optimization"
+msgstr ""
+
+#: common.php:3396
+msgid "extra PNG compression (slower)"
+msgstr ""
+
+#: common.php:3398
+msgid "GIF cloud optimization"
+msgstr ""
+
+#: common.php:3405
+msgid "Debugging"
+msgstr ""
+
+#: common.php:3405
+msgid "Use this to provide information for support purposes, or if you feel comfortable digging around in the code to fix a problem you are experiencing."
+msgstr ""
+
+#: common.php:3406
+msgid "Remove metadata"
+msgstr ""
+
+#: common.php:3407
+msgid "This will remove ALL metadata: EXIF and comments."
+msgstr ""
+
+#: common.php:3409
+msgid "Lossy JPG optimization"
+msgstr ""
+
+#: common.php:3409 common.php:3412 common.php:3509 common.php:3515
+#: common.php:3518
+msgid "WARNING:"
+msgstr ""
+
+#: common.php:3409 common.php:3412
+msgid "While most users will not notice a difference in image quality, lossy means there IS a loss in image quality."
+msgstr ""
+
+#: common.php:3412
+msgid "Lossy PNG optimization"
+msgstr ""
+
+#: common.php:3415
+msgid "Bulk Delay"
+msgstr ""
+
+#: common.php:3418
+msgid "Automatic Cloudinary upload"
+msgstr ""
+
+#: common.php:3418
+msgid "When enabled, uploads to the Media Library will be transferred to Cloudinary after optimization. Cloudinary generates resizes, so only the full-size image is uploaded."
+msgstr ""
+
+#: common.php:3428
+msgid "optipng optimization level"
+msgstr "Mức tối ưu optipng"
+
+#: common.php:3430 common.php:3431 common.php:3432 common.php:3433
+#: common.php:3434 common.php:3435 common.php:3436 common.php:3442
+#: common.php:3443 common.php:3444 common.php:3445
+msgid "Level %d"
+msgstr "Mức %d"
+
+#: common.php:3430
+msgid "%d trial"
+msgstr "Thử %d"
+
+#: common.php:3431 common.php:3432 common.php:3433 common.php:3434
+#: common.php:3435 common.php:3436
+msgid "%d trials"
+msgstr "Thử %d"
+
+#: common.php:3437 common.php:3446
+msgid "default"
+msgstr "mặc định"
+
+#: common.php:3438
+msgid "According to the author of optipng, 10 trials should satisfy most people, 30 trials should satisfy everyone."
+msgstr ""
+
+#: common.php:3440
+msgid "pngout optimization level"
+msgstr ""
+
+#: common.php:3442
+msgid "Xtreme! (Slowest)"
+msgstr ""
+
+#: common.php:3443
+msgid "Intense (Slow)"
+msgstr ""
+
+#: common.php:3444
+msgid "Longest Match (Fast)"
+msgstr ""
+
+#: common.php:3445
+msgid "Huffman Only (Faster)"
+msgstr ""
+
+#: common.php:3447
+msgid "If you have CPU cycles to spare, go with level %d"
+msgstr ""
+
+#: common.php:3450
+msgid "Scheduled optimization"
+msgstr ""
+
+#: common.php:3450
+msgid "This will enable scheduled optimization of unoptimized images for your theme, buddypress, and any additional folders you have configured below. Runs hourly: wp_cron only runs when your site is visited, so it may be even longer between optimizations."
+msgstr ""
+
+#: common.php:3452
+msgid "Folders to optimize"
+msgstr ""
+
+#: common.php:3452
+msgid "One path per line, must be within %s. Use full paths, not relative paths."
+msgstr ""
+
+#: common.php:3483
+msgid "Skip Small Images"
+msgstr ""
+
+#: common.php:3483
+msgid "Do not optimize images smaller than this (in bytes)"
+msgstr ""
+
+#: common.php:3485
+msgid "Skip Large PNG Images"
+msgstr ""
+
+#: common.php:3485
+msgid "Do not optimize PNG images larger than this (in bytes)"
+msgstr ""
+
+#: common.php:3487
+msgid "Exclude full-size images from lossy optimization"
+msgstr ""
+
+#: common.php:3491 ewww-image-optimizer.php:410
+msgid "Use System Paths"
+msgstr ""
+
+#: common.php:3491
+msgid "If you have already installed the utilities in a system location, such as %s or %s, use this to force the plugin to use those versions and skip the auto-installers."
+msgstr ""
+
+#: common.php:3493 common.php:3495 common.php:3497 common.php:3499
+msgid "disable"
+msgstr ""
+
+#: common.php:3503
+msgid "Conversion is only available for images in the Media Library (except WebP). By default, all images have a link available in the Media Library for one-time conversion. Turning on individual conversion operations below will enable conversion filters any time an image is uploaded or modified."
+msgstr ""
+
+#: common.php:3504
+msgid "NOTE:"
+msgstr ""
+
+#: common.php:3504
+msgid "The plugin will attempt to update image locations for any posts that contain the images. You may still need to manually update locations/urls for converted images."
+msgstr ""
+
+#: common.php:3507
+msgid "Hide Conversion Links"
+msgstr ""
+
+#: common.php:3507
+msgid "Site or Network admins can use this to prevent other users from using the conversion links in the Media Library which bypass the settings below."
+msgstr ""
+
+#: common.php:3508
+msgid "Delete originals"
+msgstr ""
+
+#: common.php:3508
+msgid "This will remove the original image from the server after a successful conversion."
+msgstr ""
+
+#: common.php:3509
+msgid "JPG/PNG to WebP"
+msgstr ""
+
+#: common.php:3509
+msgid "JPG to WebP conversion is lossy, but quality loss is minimal. PNG to WebP conversion is lossless."
+msgstr ""
+
+#: common.php:3510
+msgid "Originals are never deleted, and WebP images should only be served to supported browsers."
+msgstr ""
+
+#: common.php:3510
+msgid "You can use the rewrite rules below to serve WebP images with Apache."
+msgstr ""
+
+#: common.php:3515 common.php:3518 common.php:3525
+msgid "enable %s to %s conversion"
+msgstr ""
+
+#: common.php:3515
+msgid "Removes metadata and increases cpu usage dramatically."
+msgstr ""
+
+#: common.php:3516
+msgid "PNG is generally much better than JPG for logos and other images with a limited range of colors. Checking this option will slow down JPG processing significantly, and you may want to enable it only temporarily."
+msgstr ""
+
+#: common.php:3518
+msgid "This is not a lossless conversion."
+msgstr ""
+
+#: common.php:3519
+msgid "JPG is generally much better than PNG for photographic use because it compresses the image and discards data. PNGs with transparency are not converted by default."
+msgstr ""
+
+#: common.php:3520
+msgid "JPG background color:"
+msgstr ""
+
+#: common.php:3520
+msgid "HEX format (#123def)"
+msgstr ""
+
+#: common.php:3521
+msgid "Background color is used only if the PNG has transparency. Leave this value blank to skip PNGs with transparency."
+msgstr ""
+
+#: common.php:3522
+msgid "JPG quality level:"
+msgstr ""
+
+#: common.php:3522
+msgid "Valid values are 1-100."
+msgstr ""
+
+#: common.php:3523
+msgid "If JPG quality is blank, the plugin will attempt to set the optimal quality level or default to 92. Remember, this is a lossy conversion, so you are losing pixels, and it is not recommended to actually set the level here unless you want noticable loss of image quality."
+msgstr ""
+
+#: common.php:3525
+msgid "No warnings here, just do it."
+msgstr ""
+
+#: common.php:3526
+msgid "PNG is generally better than GIF, but animated images cannot be converted."
+msgstr ""
+
+#: common.php:3529
+msgid "Save Changes"
+msgstr ""
+
+#: common.php:3533
+msgid "There are many ways to serve WebP images to visitors with supported browsers. You may choose any you wish, but it is recommended to serve them with an .htaccess file using mod_rewrite and mod_headers. The plugin can insert the rules for you if the file is writable, or you can edit .htaccess yourself."
+msgstr ""
+
+#: common.php:3536
+msgid "Rules verified successfully"
+msgstr ""
+
+#: common.php:3552
+msgid "The image to the right will display a WebP image with WEBP in white text, if your site is serving WebP images and your browser supports WebP."
+msgstr ""
+
+#: common.php:3553
+msgid "Insert Rewrite Rules"
+msgstr ""
+
+#: ewww-image-optimizer.php:146
+msgid "EWWW Image Optimizer is supported on Linux, FreeBSD, Mac OSX, and Windows"
+msgstr ""
+
+#: ewww-image-optimizer.php:146
+msgid "Unfortunately, the EWWW Image Optimizer plugin does not work with %s"
+msgstr ""
+
+#: ewww-image-optimizer.php:248
+msgid "EWWW Image Optimizer could not create the tool folder"
+msgstr ""
+
+#: ewww-image-optimizer.php:248
+msgid "Please adjust permissions or create the folder"
+msgstr ""
+
+#: ewww-image-optimizer.php:410
+msgid "EWWW Image Optimizer could not install tools in %s"
+msgstr ""
+
+#: ewww-image-optimizer.php:410
+msgid "Please adjust permissions or create the folder. If you have installed the tools elsewhere on your system, check the option to %s."
+msgstr ""
+
+#: ewww-image-optimizer.php:410
+msgid "For more details, visit the %1$s or the %2$s."
+msgstr ""
+
+#: ewww-image-optimizer.php:410 ewww-image-optimizer.php:536
+msgid "Settings Page"
+msgstr ""
+
+#: ewww-image-optimizer.php:422
+msgid "EWWW Image Optimizer requires exec(). Your system administrator has disabled this function."
+msgstr ""
+
+#: ewww-image-optimizer.php:430
+msgid "Safe Mode is turned on for PHP. This plugin cannot operate in Safe Mode."
+msgstr ""
+
+#: ewww-image-optimizer.php:536
+msgid "EWWW Image Optimizer uses %1$s, %2$s, %3$s, %4$s, %5$s, and %6$s. You are missing: %7$s. Please install via the %8$s or the %9$s."
+msgstr ""
+
+#: ewww-image-optimizer.php:1170 ewww-image-optimizer.php:1295
+#: ewww-image-optimizer.php:1302
+msgid "Optimization skipped"
+msgstr ""
+
+#: ewww-image-optimizer.php:1210
+msgid "Missing finfo_file(), getimagesize() and mime_content_type() PHP functions"
+msgstr ""
+
+#: ewww-image-optimizer.php:1361 ewww-image-optimizer.php:1918
+msgid "%s is disabled"
+msgstr ""
+
+#: ewww-image-optimizer.php:1404
+msgid "Unable to write file"
+msgstr ""
+
+#: ewww-image-optimizer.php:1407
+msgid "Optimization failed"
+msgstr ""
+
+#: ewww-image-optimizer.php:1632
+msgid "png tools are disabled"
+msgstr ""
+
+#: ewww-image-optimizer.php:2077
+msgid "You don't have permission to install image optimizer utilities."
+msgstr ""
+
+#: ewww-image-optimizer.php:2083
+msgid "tar command not found"
+msgstr ""
+
+#: ewww-image-optimizer.php:2102 ewww-image-optimizer.php:2121
+#: ewww-image-optimizer.php:2139
+msgid "could not move pngout"
+msgstr ""
+
+#: ewww-image-optimizer.php:2105 ewww-image-optimizer.php:2124
+msgid "could not set permissions"
+msgstr ""
+
+#: flag-integration.php:96 iocli.php:75 iocli.php:83 iocli.php:125
+#: iocli.php:147 nextgen2-integration.php:295
+msgid "%1$d images have been selected (%2$d unoptimized), with %3$d resizes (%4$d unoptimized)."
+msgstr ""
+
+#: flag-integration.php:335 iocli.php:437
+msgid "Optimized size – %s"
+msgstr ""
+
+#: flag-integration.php:342 iocli.php:444 nextcellent-integration.php:120
+#: nextgen-integration.php:97
+msgid "Thumbnail – %s"
+msgstr ""
+
+#: flag-integration.php:368 iocli.php:251 iocli.php:400 iocli.php:462
+#: iocli.php:541 iocli.php:605 nextcellent-integration.php:493
+#: nextgen-integration.php:433 nextgen2-integration.php:504
+msgid "Finished Optimization!"
+msgstr ""
+
+#: mwebp.php:6
+msgid "The migration is split into two parts. First, the plugin needs to scan all folders for webp images. Once it has obtained the list of images to rename, it will proceed with the renaming"
+msgstr ""
+
+#: mwebp.php:7
+msgid "Start Migration"
+msgstr ""
+
+#: mwebp.php:93
+msgid "Scanning"
+msgstr ""
+
+#: mwebp.php:114
+msgid "%d Webp images left to rename."
+msgstr ""
+
+#: mwebp.php:200
+msgid "Skipped:"
+msgstr ""
+
+#: nextcellent-integration.php:38 nextcellent-integration.php:97
+#: nextgen-integration.php:34 nextgen-integration.php:74
+#: nextgen2-integration.php:38
+msgid "Bulk Thumbnail Optimize"
+msgstr ""
+
+#: nextcellent-integration.php:86 nextgen-integration.php:60
+msgid "The thumbnails for your new images have not been optimized."
+msgstr ""
+
+#: nextcellent-integration.php:86 nextgen-integration.php:64
+msgid "Optimize Thumbs"
+msgstr ""
+
+#: nextcellent-integration.php:110 nextgen-integration.php:87
+msgid "Processing"
+msgstr ""
+
+#: common.php:2928 iocli.php:78 iocli.php:131 nextcellent-integration.php:287
+#: nextgen-integration.php:249
+msgid "We have %d images to optimize."
+msgstr ""
+
+#: nextcellent-integration.php:318
+msgid "Galleries"
+msgstr ""
+
+#: iocli.php:516 iocli.php:583 nextcellent-integration.php:467
+#: nextgen-integration.php:404 nextgen2-integration.php:472
+msgid "Full size - %s"
+msgstr ""
+
+#: iocli.php:519 iocli.php:589 nextcellent-integration.php:469
+#: nextgen-integration.php:410 nextgen2-integration.php:475
+msgid "Thumbnail - %s"
+msgstr ""
