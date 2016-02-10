@@ -1,0 +1,70 @@
+.tb-header
+  background: #303030
+  height: 80px
+  .container
+    height: inherit
+    padding: 0 20px
+    position: relative
+
+.tb-logo
+  @extend %center-vertical
+
+  a
+    @extend %image-replace
+    background-image: url(images/logo.png)
+    height: 38px
+    width: 200px
+
+.tb-sandwich
+  @extend %image-replace
+  @extend %center-vertical
+  background-image: url(images/sandwich.png)
+  width: 30px
+  height: 22px
+  right: 20px
+
+.tb-search-btn,
+.tb-menu
+  display: none
+
+.tb-search-btn
+  @extend %image-replace
+
+@media #{$desktop}
+  .tb-sandwich
+    display: none
+
+  .tb-logo a
+    height: 42px
+    width: 299px
+
+  .tb-search-btn
+    display: block
+    background-image: url(images/search-header.png)
+    float: right
+    cursor: pointer
+    width: 24px
+    height: 24px
+    margin: 25px 15px 0
+
+  .tb-menu
+    display: block
+    list-style: none
+    float: right
+    padding: 25px 0 0
+
+    li
+      display: inline-block
+      margin: 0 30px
+
+    a
+      color: white
+      text-decoration: none
+      text-transform: uppercase
+      font: 16px $font-regular
+      display: inline-block
+      padding: 5px
+      transition: border-bottom linear .15s
+
+      &:hover
+        border-bottom: 3px solid #FF5252

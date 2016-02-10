@@ -8,7 +8,6 @@ readme.html
 wp-content/cache/.htaccess
 wp-content/uploads
 wp-config.php
-wp-content/plugins-bkp/
 .htaccess
 wp-content/wp-cache-config.php
 wp-content/ewww/

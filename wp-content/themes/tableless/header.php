@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta charset="utf-8">
   <meta name="description" content="<?php if( $post->post_excerpt ) { ?><?php echo get_the_excerpt(); ?><?php } ?>">
-
+<!--
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -43,16 +43,18 @@
       googletag.pubads().collapseEmptyDivs();
       googletag.enableServices();
     });
-  </script>
+  </script> -->
 
   <?php wp_head();?>
 </head>
 <body>
 
 <header class="tb-header">
-  <h1 class="tb-logo"><a href="<?php bloginfo('url');?>" title="<?php bloginfo('description');?>"><?php bloginfo('name');?></a></h1>
-  <a href="#" class="tb-sandwich" aria-label="Clique para abrir o menu" icon-menu="&#9776;">Menu</a>
-  <span class="tb-search-btn">Busca</span>
-  <?php get_template_part('partials/social-links');?>
-</header>
+  <div class="container">
+    <h1 class="tb-logo"><a href="<?php bloginfo('url');?>" title="<?php bloginfo('description');?>"><?php bloginfo('name');?></a></h1>
+    <span class="tb-search-btn">Busca</span>
+    <?php wp_nav_menu(array('menu' => 'Menu Principal', 'container' => 'nav', 'menu_class' => 'tb-menu', 'depth' => 2)); ?>
 
+    <a href="#" class="tb-sandwich" aria-label="Clique para abrir o menu" icon-menu="&#9776;">Menu</a>
+  </div>
+</header>
