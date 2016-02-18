@@ -2,6 +2,92 @@
   margin: 0
   padding: 0
 
-.container
-  max-width: 1440px
+body
+  padding-top: ($header-height - 1px)
+  font-family: Arial, Tahoma, Helvetica, Sans-serif
+
+.tb-container
+  max-width: 1500px
   margin: 0 auto
+
+/////
+// FEATURED POSTS IN HOME
+/////
+.tb-featured-posts
+  position: relative
+  max-height: 250px
+  margin: 0 auto
+
+  .tb-container
+    position: relative
+
+.tb-featured-post
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 250px
+  overflow: hidden
+  background-repeat: no-repeat
+  background-size: cover
+  background-color: rgba(50, 50, 50, .35)
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%)
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%)
+  background-blend-mode: color-burn
+
+  img
+    @extend %center-horizontal
+    top: 0
+    z-index: -1
+    width: 100%
+    height: auto
+
+  &:nth-child(1)
+    z-index: 1
+
+  a
+    color: #fff
+    text-decoration: none
+    width: 100%
+    text-align: center
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+
+  h1
+    @extend %center-vertical
+    margin-top: -5%
+    width: 100%
+    font-family:  "PT Serif Caption"
+    font-size: 12px
+    letter-spacing: 2px
+    text-align: center
+    text-transform: uppercase
+    text-shadow: 0 0 17px rgba(0, 0, 0, .3)
+
+    strong
+      display: block
+      font-size: 27px
+      font-family: $font-bold
+
+@media #{$desktop}
+  .tb-featured-posts
+    max-height: inherit
+
+  .tb-featured-post
+    height: 750px
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%)
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%)
+
+    img
+      max-width: 100%
+      min-height: 725px
+
+    h1
+      font-size: 25px
+      letter-spacing: 8px
+
+      strong
+        font-size: 99px

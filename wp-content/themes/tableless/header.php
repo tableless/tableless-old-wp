@@ -3,6 +3,7 @@
 <head>
   <title><?php wp_title( '|', true, 'right' ); ?></title>
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url'); ?>">
+  <link href='https://fonts.googleapis.com/css?family=PT+Serif+Caption' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
   <meta name="apple-mobile-web-app-capable" content="yes">
