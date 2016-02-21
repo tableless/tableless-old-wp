@@ -1,0 +1,300 @@
+
+/////
+// FEATURED POSTS IN HOME
+/////
+.tb-featured-posts
+  @extend %clearfix
+  position: relative
+  margin: 0 auto
+  background: #f7f9fb
+
+  .tb-container
+    position: relative
+
+  .tb-featured-inner
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
+    height: 250px
+
+  .tb-box-title
+    @extend .tb-box
+
+.tb-featured-post
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 250px
+  background-repeat: no-repeat
+  background-size: cover
+  background-color: rgba(50, 50, 50, .2)
+  background-blend-mode: color-burn
+
+  
+  &:nth-child(1)
+    z-index: 1
+
+  .tb-lnk-featured
+    display: none
+    color: #fff
+    text-decoration: none
+    text-align: center
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+    overflow: hidden
+
+    &:first-child
+      display: block
+
+  h1
+    @extend %center-vertical
+    margin-top: -5%
+    width: 100%
+    font-family:  "PT Serif Caption"
+    font-size: 12px
+    letter-spacing: 2px
+    text-align: center
+    text-transform: uppercase
+    text-shadow: 0 0 17px rgba(0, 0, 0, .3)
+
+    strong
+      display: block
+      font-size: 27px
+      font-family: $font-bold
+
+.tb-thumb-list
+  margin-top: -200px
+  text-align: center
+  display: none
+  margin-bottom: 200px
+
+.tb-thumb-box
+  z-index: 1
+  width: 200px
+  height: 200px
+  border: 10px solid #fff
+  // background-image: linear-gradient(90deg, #0288D1 0%, #FF5252 88%)
+  display: inline-block
+  position: relative
+  overflow: hidden
+  margin-left: 20px
+  background: #F3F3F3
+  box-shadow: 0px 30px 30px 0px rgba(139,152,190,0.20)
+
+  img
+    @extend %center
+    height: 200px
+    width: auto
+
+.tb-choose-category
+  padding: 0 10px
+  @extend .tb-container
+  text-align: center
+
+.tb-category-list
+  @extend .tb-box
+  border: 1px solid #E0E0E0
+  border-bottom: 0
+  max-width: 980px
+  margin: 0 auto
+  display: flex
+  flex-wrap: wrap
+
+  li
+    list-style: none
+    border: 1px solid #E0E0E0
+    border-top: 0
+    border-right: 0
+    flex: 1 0 170px
+    text-align: center
+
+    a
+      padding: 10px 0 20px
+      display: block
+      text-decoration: none
+      color: #9C9C9C
+      font: 20px $font-regular
+      position: relative
+      transition: all linear .3
+
+      &:hover
+        background-color: #FF5252
+        border-color: #FF5252
+        color: #fff
+
+        &:after
+          background: rgba(0, 0, 0, .1)
+          margin: 0 -7% 5%
+
+      &:before
+        content: ""
+        display: block
+        background: url(images/icons-category.png) no-repeat
+        width: 100px
+        height: 100px
+        margin: 0 auto
+        position: relative
+        z-index: 1
+
+      &:after
+        @extend %center
+        top: 50px
+        content: ""
+        background: rgba(139,152,190, .20)
+        display: inline-block
+        border-radius: 100%
+        width: 80px
+        height: 80px
+        z-index: 0
+
+      &.tb-icon-ux
+        &:after
+          margin-left: 10px
+        &:before
+          background-position: 18px 10px
+        &:hover:before
+          background-position: 18px 110%
+
+      &.tb-icon-html
+        &:after
+          left: 115px
+          top: 75px
+        &:before
+          background-position: -102px 10px
+        &:hover:before
+          background-position: -102px 110%
+
+      &.tb-icon-css
+        &:after
+          left: 105px
+          top: 50px
+        &:before
+          background-position: -219px 10px
+        &:hover:before
+          background-position: -219px 115%
+
+      &.tb-icon-responsive
+        &:after
+          left: 105px
+          top: 70px
+        &:before
+          background-position: -336px 10px
+        &:hover:before
+          background-position: -336px 110%
+
+      &.tb-icon-backend
+        &:after
+          left: 90px
+          top: 50px
+        &:before
+          background-position: -456px 10px
+        &:hover:before
+          background-position: -456px 110%
+
+      &.tb-icon-wordpress
+        &:before
+          background-position: -576px 10px
+        &:hover:before
+          background-position: -576px 110%
+
+      &.tb-icon-design
+        &:after
+          left: 95px
+          top: 65px
+        &:before
+          background-position: -702px 10px
+        &:hover:before
+          background-position: -702px 110%
+
+      &.tb-icon-desenvolvimento
+        &:before
+          background-position: -823px 10px
+        &:hover:before
+          background-position: -823px 110%
+
+      &.tb-icon-seo
+        &:before
+          background-position: -939px 10px
+        &:hover:before
+          background-position: -939px 110%
+
+      &.tb-icon-iniciantes
+        &:before
+          background-position: -1060px 10px
+        &:hover:before
+          background-position: -1060px 110%
+
+
+
+@media #{$desktop}
+  .tb-thumb-list
+    display: block
+
+    .tb-thumb-box
+      margin-top: 100px
+      position: relative
+
+      &:nth-child(2)
+        display: none
+
+      &:nth-child(4),
+      &:nth-child(6)
+        top: 50px
+
+  .tb-featured-posts
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%)
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%)
+    padding-bottom: 300px
+
+    .tb-box-title
+      float: left
+      padding: 35px 25px
+      width: 400px
+
+      &:before
+        content: ""
+        background: url(images/img_divider.png) no-repeat center
+        background-size: contain
+        width: 99px
+        height: 18px
+        display: block
+        margin-bottom: 35px
+
+      h3
+        font: 100px/85px $font-bold
+        color: #4E4E4E
+        letter-spacing: 0.5px
+        text-transform: uppercase
+        width: 100%
+        -webkit-hyphens: auto
+        -moz-hyphens: auto
+        -ms-hyphens: auto
+        hyphens: auto
+        margin-bottom: 35px
+
+      p
+        font: 26px "PT Serif Caption"
+        color: #4E4E4E
+
+    .tb-featured-inner
+      height: 750px
+
+    .tb-read-more
+      display: block
+
+  .tb-featured-post
+    height: inherit
+
+    a.tb-lnk-featured
+      display: block
+
+    h1
+      font-size: 25px
+      letter-spacing: 8px
+
+      strong
+        font-size: 99px
+

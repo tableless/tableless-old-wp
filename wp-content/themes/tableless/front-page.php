@@ -37,7 +37,7 @@
 
     <div class="tb-container tb-thumb-list">
       
-      <div class="tb-box">
+      <div class="tb-box-title">
         <h3>Destaques</h3>
         <p>Você precisa ler!</p>
       </div>
@@ -66,17 +66,46 @@
 
     </div>
 
-    <h1 class="tb-title-1">Encontre um assunto</h1>
-    <ul>
-      <li>
-        <a href="#">UX</a>
-        <a href="#">HTML</a>
-        <a href="#">CSS/SASS</a>
-        <a href="#">Responsive</a>
-        <a href="#">Back-end</a>
-        <a href="#">Wordpress</a>
-      </li>
-    </ul>
+    <div class="tb-choose-category">
+        
+      <h1 class="tb-title-section">Encontre um assunto</h1>
+      <p>Filtre pelo assunto do seu interesse</p>
+      
+      <ul class="tb-category-list">
+        <li>
+          <a href="#" class="tb-icon-ux">
+            UX
+          </a>
+        </li>
+        <li>
+          <a href="#" class="tb-icon-html">HTML</a>
+        </li>
+        <li>
+          <a href="#" class="tb-icon-css">CSS/SASS</a>
+        </li>
+        <li>
+          <a href="#" class="tb-icon-responsive">Responsive</a>
+        </li>
+        <li>
+          <a href="#" class="tb-icon-backend">Back-end</a>
+        </li>
+        <li>
+          <a href="#" class="tb-icon-wordpress">Wordpress</a>
+        </li>
+        <li>
+          <a href="#" class="tb-icon-design">Design</a>
+        </li>
+        <li>
+          <a href="#" class="tb-icon-desenvolvimento">Desenvolvimento</a>
+        </li>
+        <li>
+          <a href="#" class="tb-icon-seo">SEO</a>
+        </li>
+        <li>
+          <a href="#" class="tb-icon-iniciantes">Iniciantes</a>
+        </li>
+      </ul>
+    </div>
 
 
 </section>
