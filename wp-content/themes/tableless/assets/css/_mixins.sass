@@ -1,0 +1,17 @@
+
+////
+// Mixin for breakpoint
+////
+@mixin break($breakpoint)
+  @if $breakpoint == "mobile"
+    @media (max-width: 767px)
+      @content
+
+  @else if $breakpoint == "tablet"
+    @media (max-width: 992px)
+      @content
+
+  @else if $breakpoint == "desk"
+    @media (min-width: 992px)
+      @content
+  

@@ -36,6 +36,13 @@ $header-height: 80px
     height: 0
     width: 0
 
+%clip-section
+  @media screen and (max-width: 1200px)
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
+  @media screen and (max-width: 1200px)
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%)
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%)
 
 ////
 // Boxes
@@ -60,3 +67,8 @@ $header-height: 80px
 ////
 $font-regular: proximanova-regular, arial, helvetica, verdana, tahoma, sans-serif
 $font-bold: proximanova-bold, arial, helvetica, verdana, tahoma, sans-serif
+
+////
+// Colors
+////
+$red: #FF5252

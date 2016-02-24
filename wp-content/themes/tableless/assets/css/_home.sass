@@ -7,14 +7,23 @@
   position: relative
   margin: 0 auto
   background: #f7f9fb
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 95%)
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 95%)
+  padding-bottom: 70px
+  @include break(desk)
+    padding-bottom: 300px
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%)
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%)
 
   .tb-container
     position: relative
 
   .tb-featured-inner
+    height: 250px
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
-    height: 250px
+    @include break(desk)
+      height: 750px
 
   .tb-box-title
     @extend .tb-box
@@ -29,7 +38,6 @@
   background-size: cover
   background-color: rgba(50, 50, 50, .2)
   background-blend-mode: color-burn
-
   
   &:nth-child(1)
     z-index: 1
@@ -76,7 +84,6 @@
   width: 200px
   height: 200px
   border: 10px solid #fff
-  // background-image: linear-gradient(90deg, #0288D1 0%, #FF5252 88%)
   display: inline-block
   position: relative
   overflow: hidden
@@ -90,8 +97,8 @@
     width: auto
 
 .tb-choose-category
-  padding: 0 10px
   @extend .tb-container
+  padding: 0 10px
   text-align: center
 
 .tb-category-list
@@ -99,9 +106,11 @@
   border: 1px solid #E0E0E0
   border-bottom: 0
   max-width: 980px
-  margin: 0 auto
+  margin: 0 auto 70px
   display: flex
   flex-wrap: wrap
+  @include break(desk)
+    margin-bottom: 0
 
   li
     list-style: none
@@ -227,7 +236,67 @@
         &:hover:before
           background-position: -1060px 110%
 
+////
+// latest posts
+////
+.tb-latest-posts
+  text-align: center
 
+  .tb-container
+    display: flex
+    flex-wrap: wrap
+
+  .tb-post-box
+    @extend .tb-box
+    flex: 1 0 300px
+    padding: 20px
+    margin: 0 20px 25px
+    border: 1px solid #F5F5F5;
+    font: 20px/24px $font-bold
+    color: #4E4E4E
+    letter-spacing: 0.45px
+    text-decoration: none
+    @include break(desk)
+      margin: 0 20px 40px
+
+    h2
+      font: 20px/24px $font-bold
+
+    figure
+      overflow: hidden
+      position: relative
+      display: block
+      width: 100%
+      height: 200px
+      margin-bottom: 17px
+
+      &:before
+        content: ""
+        display: block
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        -webkit-box-shadow: inset 0px 0px 41px -12px rgba(0,0,0,0.75)
+        -moz-box-shadow: inset 0px 0px 41px -12px rgba(0,0,0,0.75)
+        box-shadow: inset 0px 0px 41px -12px rgba(0,0,0,0.75)
+        z-index: 1
+
+      img
+        @extend %center
+        height: 100%
+        width: auto
+        position: relative
+        z-index: 0
+
+    .tb-post-time
+      display: block
+      text-transform: uppercase
+      font: 14px/16px $font-regular
+      text-align: center
+      color: #BDBDBD
+      margin-bottom: 10px
 
 @media #{$desktop}
   .tb-thumb-list
@@ -245,9 +314,6 @@
         top: 50px
 
   .tb-featured-posts
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%)
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%)
-    padding-bottom: 300px
 
     .tb-box-title
       float: left
@@ -279,9 +345,6 @@
         font: 26px "PT Serif Caption"
         color: #4E4E4E
 
-    .tb-featured-inner
-      height: 750px
-
     .tb-read-more
       display: block
 
@@ -297,4 +360,3 @@
 
       strong
         font-size: 99px
-

@@ -67,7 +67,7 @@
     </div>
 
     <div class="tb-choose-category">
-        
+
       <h1 class="tb-title-section">Encontre um assunto</h1>
       <p>Filtre pelo assunto do seu interesse</p>
       
@@ -108,6 +108,41 @@
     </div>
 
 
+</section>
+
+<section class="tb-latest-posts">
+  <h1 class="tb-title-section">Últimos posts</h1>
+  <p>Os melhores textos, pelos melhores autores.</p>
+
+  <?php wp_nav_menu(array('menu' => 'Menu Categorias', 'container' => 'nav', 'container_class' => 'tb-categ-menu','menu_class' => 'tb-categ-list', 'depth' => 2)); ?>
+
+  <div class="tb-container">
+
+    <?php
+      $latestPostsargs = array(
+        'posts_per_page' => 8, // Quantidade de posts
+        'order'=> 'DESC',
+        'meta_query' => array(
+          array(
+           'key' => '_thumbnail_id',
+           'compare' => 'EXISTS'
+          )
+        ),
+      );
+      $latestPosts = get_posts( $latestPostsargs );
+      foreach ( $latestPosts as $post ) : setup_postdata( $post ); ?>
+
+        <a href="<?php the_permalink();?>" class="tb-post-box">
+          <?php if(has_post_thumbnail()) :?>
+            <figure><?php echo get_the_post_thumbnail( $post_id, 'medium' ); ?></figure>
+          <?php endif;?>
+          <time class="tb-post-time" datetime="<?php the_time('Y-m-d g:i') ?>"> <?php the_time('j') ?> <?php the_time('M') ?> <?php the_time('Y') ?></time>
+          <h2><?php the_title();?></h2>
+        </a>
+
+      <?php endforeach; wp_reset_postdata(); ?>
+
+  </div>
 </section>
 
 <?php get_footer();?>

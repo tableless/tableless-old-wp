@@ -19,3 +19,35 @@ body
 
   & + p
     @extend .tb-lead-paragraph
+
+////
+// Categ Menu in Home
+////
+.tb-categ-menu
+  @extend .tb-container
+  background: #FFFFFF
+  border: 1px solid rgba(139,152,190,0.20)
+  box-shadow: 0px 5px 5px 0px rgba(139,152,190,0.20)
+  border-radius: 100px
+  margin: 50px auto
+
+.tb-categ-list
+  width: 100%
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+
+  li
+    flex: 1
+    list-style: none
+
+  a
+    padding: 15px 0
+    display: block
+    font: 16px/19px $font-regular
+    color: #9C9C9C
+    letter-spacing: .8px
+    text-decoration: none
+    text-transform: uppercase
+    &:hover
+      color: $red
