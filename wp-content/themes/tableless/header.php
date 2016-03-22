@@ -3,7 +3,7 @@
 <head>
   <title><?php wp_title( '|', true, 'right' ); ?></title>
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url'); ?>">
-  <link href='https://fonts.googleapis.com/css?family=PT+Serif+Caption' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=PT+Serif+Caption|Lora:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -51,7 +51,7 @@
 <body>
 
 <header class="tb-header">
-  <div class="container">
+  <div class="tb-container">
     <h1 class="tb-logo"><a href="<?php bloginfo('url');?>" title="<?php bloginfo('description');?>"><?php bloginfo('name');?></a></h1>
     <span class="tb-search-btn">Busca</span>
     <?php wp_nav_menu(array('menu' => 'Menu Principal', 'container' => 'nav', 'menu_class' => 'tb-menu', 'depth' => 2)); ?>
