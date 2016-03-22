@@ -1,0 +1,93 @@
+.tb-footer
+  background: #282B2F url(images/bg-footer.png) no-repeat center
+  background-size: cover
+  position: relative
+  padding: 70px 20px
+  clear: both
+  margin-top: 50px
+
+  @include break(desk)
+    margin-top: 0
+    padding: 200px 20px 30px
+    -webkit-clip-path: polygon(0 0, 100% 30%, 100% 100%, 0% 100%)
+    clip-path: polygon(0 0, 100% 30%, 100% 100%, 0% 100%)
+
+  nav
+    font: 20px $font-regular
+    display: block
+    text-align: center
+    padding-bottom: 35px
+    vertical-align: top
+
+    @include break(desk)
+      text-align: left
+      padding-right: 100px
+      display: inline-block
+
+    li
+      list-style: none
+
+    a
+      color: #fff
+      text-decoration: none
+      display: inline-block
+      padding: 15px 0 0
+
+      &:hover
+        color: $red
+
+    h6
+      color: $red
+      font: 20px $font-bold
+      text-transform: uppercase
+
+.tb-done-community
+  text-align: center
+  color: #9B9B9B
+  margin: 30px 0 0
+  font: 14px Helvetica Neue, Helvetica, Arial, Verdana, sans-serif
+  
+  @include break(desk)
+    margin: 100px 0 0
+  
+  a
+    color: #9B9B9B
+  
+    &:hover
+      color: $red
+
+  .tb-love
+    color: $red
+    font-size: 20px
+    display: block
+    padding: 15px 0
+
+.tb-footer-post
+  width: 100%
+  text-align: center
+
+  @include break(desk)
+    text-align: left
+    float: right
+    width: 500px
+
+  a
+    display: block
+    text-decoration: none
+    font: 18px/23px "PT Serif Caption"
+    color: #9C9C9C;
+    letter-spacing: .5px
+    padding: 0 20px 50px
+    margin: 10px 0
+
+    @include break(desk)
+      padding-bottom: 0
+      margin-left: -20px
+      border-left: 2px solid $red
+  
+    &:hover
+      color: #fff
+
+  h5
+    font: 25px $font-regular
+    color: #fff

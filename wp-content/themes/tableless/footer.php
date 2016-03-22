@@ -1,5 +1,46 @@
 <footer class="tb-footer">
-  <p>Feito pela e para a comunidade web brasileira. <a href="<?php bloginfo('url'); ?>/seja-um-autor?utm_source=footer&utm_medium=link&utm_campaign=linkAjudeFooter">Ajude</a>. <span class="love">♥</span></p>
+  <div class="tb-container">
+
+  <div class="tb-footer-post"> 
+    <h5>Leia também:</h5>
+    <?php $posts = get_posts('orderby=rand&numberposts=1'); foreach($posts as $post) { ?>
+        <a href="<?php the_permalink();?>">
+          <!-- <h1 class="tb-big-title"><?php the_title(); ?></h1> -->
+          <p class="tb-lead-text"><?php echo get_the_excerpt(); ?></p>
+        </a>
+        <!--a href="<?php bloginfo('url'); ?>/?author=<?php the_author_ID(); ?>" rel="author" class="tb-author">Por <?php the_author(); ?></a-->
+  <?php } ?>
+  </div>
+
+    <nav>
+      <h6>Sobre</h6>
+      <ul>
+        <li><a href="http://tableless.com.br/contato">Contato</a></li>
+        <li><a href="http://tableless.com.br/anuncie">Anuncie no site</a></li>
+        <li><a href="http://tableless.com.br/seja-um-autor">Seja um Autor</a></li>
+        <li><a href="http://tableless.com.br/sobre">Sobre</a></li>
+      </ul>
+    </nav>
+    <nav>
+      <h6>Interaja</h6>
+      <ul>
+        <li><a href="http://forum.tableless.com.br/">Fórum</a></li>
+        <li><a href="http://tableless.com.br/feed">Feed</a></li>
+        <li><a href="http://twitter.com/tableless">Twitter</a></li>
+        <li><a href="http://facebook.com/tablelessbr">Facebook</a></li>
+      </ul>
+    </nav>
+    <nav>
+      <h6>Comunidade</h6>
+      <ul>
+        <li><a href="https://sp.femug.com">femugSP</a></li>
+        <li><a href="http://www.meetup.com/pt-BR/CSS-SP/">MeetupCSS SP</a></li>
+        <li><a href="http://zofe.com.br">Zofe</a></li>
+        <li><a href="http://www.meetup.com/pt-BR/FrontUX/">FrontUX</a></li>
+      </ul>
+    </nav>
+    <p class="tb-done-community">Feito pela e para a comunidade web brasileira. <a href="<?php bloginfo('url'); ?>/seja-um-autor?utm_source=footer&utm_medium=link&utm_campaign=linkAjudeFooter">Ajude</a>. <span class="tb-love">♥</span></p>
+  </div>
 </footer>
 <!-- 
 <script type="text/javascript">
