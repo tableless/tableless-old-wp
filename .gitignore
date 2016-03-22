@@ -3,6 +3,7 @@
 robots.txt
 license.txt
 readme.html
+wp-content/themes/tableless/style.css
 
 .DS_Store
 wp-content/cache/.htaccess
@@ -11,16 +12,9 @@ wp-config.php
 .htaccess
 wp-content/wp-cache-config.php
 wp-content/ewww/
-campus/
-clientes/
 convertidos/
 html5/
-iniciantes/
-photo.jpg
-podcast/
-servicos-old/
 servicos/
-survey/
 tablelessconf/
 topbar/
 wp-content/cache/
