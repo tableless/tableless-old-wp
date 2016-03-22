@@ -1,6 +1,22 @@
 $desktop: "screen and (min-width: 1200px)"
 $header-height: 80px
 
+
+////
+// Fonts
+////
+$font-regular: proximanova-regular, arial, helvetica, verdana, tahoma, sans-serif
+$font-bold: proximanova-bold, arial, helvetica, verdana, tahoma, sans-serif
+$font-light: proximanova-light, arial, helvetica, verdana, tahoma, sans-serif
+
+////
+// Colors
+////
+$red: #FF5252
+$bg-color-default: #f7f9fb
+$border-diagonal-color: rgba(140, 153, 191, .20)
+$border-color-default: $border-diagonal-color
+
 ////
 // Image Replacement
 ////
@@ -44,6 +60,51 @@ $header-height: 80px
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%)
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%)
 
+///  Direction: bottom to top
+%divider-diagonal-bt
+  padding-bottom: 200px
+  margin-bottom: 50px
+  &:after 
+    content: ""
+    height: 135px
+    width: 113%
+    display: block
+    border-top: 1px solid rgba(140, 153, 191, .30)
+    border-bottom: 1px solid $border-diagonal-color
+    box-shadow: inset 0px 50px 70px 0px $border-diagonal-color
+    transform: rotate(-5deg)
+    position: absolute
+    bottom: 0
+    left: -5%
+
+///  Direction: top to bottom
+%divider-diagonal-tb
+  position: relative
+  padding-bottom: 200px
+  margin-bottom: 50px
+  &:after 
+    content: ""
+    height: 135px
+    width: 113%
+    display: block
+    border-top: 1px solid rgba(140, 153, 191, .30)
+    border-bottom: 1px solid $border-diagonal-color
+    box-shadow: inset 0px 50px 70px 0px $border-diagonal-color
+    transform: rotate(5deg)
+    position: absolute
+    bottom: 0
+    left: -5%
+
+.tb-divider
+  &:after
+    content: ""
+    display: block
+    background: url(images/img_divider.png) no-repeat center center
+    background-size: 98px
+    height: 20px
+    margin-top: 10px
+
+
 ////
 // Boxes
 ////
@@ -57,18 +118,17 @@ $header-height: 80px
 .tb-lead-paragraph
   font: 20px/27px "PT Serif Caption"
   color: #4E4E4E
-  background: url(images/img_divider.png) no-repeat center bottom
-  background-size: 98px
   padding-bottom: 35px
   margin-bottom: 60px
 
-////
-// Fonts
-////
-$font-regular: proximanova-regular, arial, helvetica, verdana, tahoma, sans-serif
-$font-bold: proximanova-bold, arial, helvetica, verdana, tahoma, sans-serif
+  // &:after
+  //   @extend .tb-divider
+  //   margin-top: 15px
 
 ////
-// Colors
+// Titles
 ////
-$red: #FF5252
+.tb-title-1
+  font: 100px $font-bold
+  color: #4E4E4E
+  text-transform: uppercase

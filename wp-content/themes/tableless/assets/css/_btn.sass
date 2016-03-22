@@ -1,0 +1,28 @@
+.tb-btn
+  background: $red
+  border-radius: 100px
+  font: 20px $font-regular
+  color: #FFF
+  letter-spacing: 1px
+  display: inline-block
+  text-decoration: none
+  text-transform: uppercase
+  padding: 10px 20px
+
+  &:hover
+    background: rgba(255, 82, 82, .85)
+
+.tb-btn-big
+  @extend .tb-btn
+  padding: 20px 50px
+
+
+.tb-btn-wired
+  @extend .tb-btn
+  color: $red
+  background: transparent
+  border: 2px solid 
+  font-size: 15px
+  
+  &:hover
+    color: #fff
