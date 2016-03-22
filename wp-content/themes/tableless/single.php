@@ -57,19 +57,17 @@
 
       <div class="tb-social-links">
         <ul>
-          <li><a href="#" class="tb-social-twitter">Twitter</a></li>
-          <li><a href="#" class="tb-social-facebook">Facebook</a></li>
-          <li><a href="#" class="tb-social-google">Google+</a></li>
+          <li> <a href="https://twitter.com/share" class="tb-social-twitter" data-via="tableless" data-related="tableless" data-hashtags="soudev">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
+          <li><a class="tb-social-facebook" href="http://www.facebook.com/sharer/sharer.php?u=<?php the_permalink();?>" rel="nofollow" onclick="window.open(this.href, 'tb-face-popup', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,left=980,top=370,width=400,height=200'); return false;">Facebook</a></li>
+          <li><a href="https://plus.google.com/+tableless" class="tb-social-google">Google+</a></li>
         </ul>
       </div>
 
       <div class="tb-post-author">
-        <a href="<?php bloginfo('url'); ?>/?author=<?php the_author_ID(); ?>">
-            <?php echo get_avatar( get_the_author_id() , 150 ); ?>
-            <h3><?php the_author(); ?></h3>
-            <p><?php the_author_meta('description'); ?></p>
-            <p>Veja mais artigos deste autor</p>
-        </a>
+        <?php echo get_avatar( get_the_author_id() , 120 ); ?>
+        <h3><?php the_author(); ?></h3>
+        <p><?php the_author_meta('description'); ?></p>
+        <p><a href="<?php bloginfo('url'); ?>/?author=<?php the_author_ID(); ?>">Veja mais artigos deste autor</a></p>
       </div>
 
       <section class="tb-related-posts">
