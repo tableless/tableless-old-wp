@@ -62,14 +62,17 @@
             </a>
         <?php endwhile; wp_reset_postdata(); ?>
 
-      <a href="#" class="tb-read-more">Ver todos</a>
+      <!-- <a href="#" class="tb-read-more">Ver todos</a> -->
 
     </div>
+
+
+</section>
 
     <div class="tb-choose-category">
 
       <h1 class="tb-title-section">Encontre um assunto</h1>
-      <p>Filtre pelo assunto do seu interesse</p>
+      <p class="tb-lead-paragraph tb-divider">Filtre pelo assunto do seu interesse</p>
       
       <ul class="tb-category-list">
         <li>
@@ -107,12 +110,9 @@
       </ul>
     </div>
 
-
-</section>
-
 <section class="tb-latest-posts">
   <h1 class="tb-title-section">Últimos posts</h1>
-  <p>Os melhores textos, pelos melhores autores.</p>
+  <p class="tb-lead-paragraph tb-divider">Os melhores textos, pelos melhores autores.</p>
 
   <?php wp_nav_menu(array('menu' => 'Menu Categorias', 'container' => 'nav', 'container_class' => 'tb-categ-menu','menu_class' => 'tb-categ-list', 'depth' => 2)); ?>
 
@@ -142,7 +142,25 @@
 
       <?php endforeach; wp_reset_postdata(); ?>
 
+
   </div>
+      <a href="#" class="tb-btn-big">Mais artigos</a>
+</section>
+
+<section class="tb-section tb-forum-call">
+<div class="tb-container">
+
+  <div class="tb-text-call">
+    <h1 class="tb-title-1">Fórum</h1>
+    <p class="tb-lead-paragraph">Cadastre-se no nosso fórum e compartilhe seu conhecimento com outros centenas entusiastas de desenvolvimento.</p>
+
+    <a href="http://forum.tableless.com.br/" class="tb-btn-wired">Confira!</a>
+  </div>
+
+  <figure>
+    <img src="<?php bloginfo('template_url');?>/images/img-forum.jpg">
+  </figure>
+</div>
 </section>
 
 <?php get_footer();?>
