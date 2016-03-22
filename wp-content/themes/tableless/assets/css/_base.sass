@@ -65,3 +65,61 @@ body
   
   @include break(desk)
     padding: 130px 0 100px
+
+
+.tb-post-box
+  @extend .tb-box
+  flex: 1 0 300px
+  padding: 20px
+  margin: 0 20px 25px
+  border: 1px solid #F5F5F5;
+  font: 20px/24px $font-bold
+  color: #4E4E4E
+  letter-spacing: 0.45px
+  text-decoration: none
+
+  a
+    color: #4E4E4E
+    text-decoration: none
+
+  @include break(desk)
+    margin: 0 20px 40px
+
+  h2
+    font: 20px/24px $font-bold
+
+  figure
+    overflow: hidden
+    position: relative
+    display: block
+    width: 100%
+    height: 200px
+    margin-bottom: 17px
+
+    &:before
+      content: ""
+      display: block
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      -webkit-box-shadow: inset 0px 0px 41px -12px rgba(0, 0, 0, .75)
+      -moz-box-shadow: inset 0px 0px 41px -12px rgba(0, 0, 0, .75)
+      box-shadow: inset 0px 0px 41px -12px rgba(0, 0, 0, .75)
+      z-index: 1
+
+    img
+      @extend %center
+      height: 100%
+      width: auto
+      position: relative
+      z-index: 0
+
+  .tb-post-time
+    display: block
+    text-transform: uppercase
+    font: 14px/16px $font-regular
+    text-align: center
+    color: #BDBDBD
+    margin-bottom: 10px
