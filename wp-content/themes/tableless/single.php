@@ -49,7 +49,7 @@
         </p>
 
         <footer>
-            <time class="tb-post-time" datetime="<?php the_time('Y-m-d g:i') ?>"> <?php the_time('j') ?> de <?php the_time('F') ?> de <?php the_time('Y') ?></time>
+            <span class="tb-post-time">Publicado no dia <time datetime="<?php the_time('Y-m-d g:i') ?>"> <?php the_time('j') ?> de <?php the_time('F') ?> de <?php the_time('Y') ?></time></span>
         </footer>
 
       </article>
@@ -57,9 +57,9 @@
 
       <div class="tb-social-links">
         <ul>
-          <li><a href="#">Twitter</a></li>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">Google+</a></li>
+          <li><a href="#" class="tb-social-twitter">Twitter</a></li>
+          <li><a href="#" class="tb-social-facebook">Facebook</a></li>
+          <li><a href="#" class="tb-social-google">Google+</a></li>
         </ul>
       </div>
 

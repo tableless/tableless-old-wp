@@ -46,7 +46,7 @@
   font: 400 19px/1.5 Lora
 
   @include break(desk)
-    padding: 50px
+    padding: 50px 50px 25px
     border-right: 1px solid $border-color-default
     border-left: 1px solid $border-color-default
 
@@ -66,11 +66,14 @@
 
   ol, ul
     margin-bottom: 35px
-    list-style-position: inside;
+    list-style-position: inside
   li
     color: #4A4A4A
 
 
+  ////
+  // Header of Article
+  ////
   header
     padding-bottom: 65px
 
@@ -100,6 +103,7 @@
         margin-top: 30px
 
       a
+        box-shadow: none
         color: #9C9C9C
         text-decoration: none
 
@@ -117,3 +121,58 @@
           width: 50px
           height: 50px
           margin-right: 20px
+
+  ////
+  // Footer of Article
+  ////
+  footer
+    border-top: 1px solid #F0F0F0
+    margin-top: 50px
+    font-style: italic
+    font-size: 18px
+    color: #ACACAC
+    line-height: 23px
+    padding-top: 20px
+
+////
+// Social Links Buttons
+////
+.tb-social-links
+  ul
+    display: flex
+    text-align: center
+    height: 70px
+
+  li
+    flex: 1
+
+  a
+    @extend %image-replace
+    display: block
+    height: 70px
+    width: 100%
+    background-position: center
+    background-repeat: no-repeat
+    background-size: 13%
+    transition: background .15s linear
+
+    &:hover
+      background-size: 15%
+
+.tb-social-twitter
+  background-color: rgba(85, 172, 238, 1)
+  background-image: url(images/twitter-icon.png)
+  &:hover
+    background-color: rgba(85, 172, 238, .85)
+
+.tb-social-facebook
+  background-color: rgba(58, 91, 162, 1)
+  background-image: url(images/facebook-icon.png)
+  &:hover
+    background-color: rgba(58, 91, 162, .85)
+
+.tb-social-google
+  background-color: rgba(221, 75, 57, 1)
+  background-image: url(images/plus-icon.png)
+  &:hover
+    background-color: rgba(221, 75, 57, .85)
