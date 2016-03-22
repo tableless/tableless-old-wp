@@ -1,3 +1,53 @@
 .tb-sidebar
-  flex: 1 0 $sidebar-width
-  margin-left: 70px
+  flex: 1
+  padding: 20px
+
+  @include break(desk)
+    padding: 0 0 0 70px
+  
+.tb-sidebar-inner
+  @extend %box-white
+  padding: 30px
+
+.tb-widget
+  padding-bottom: 30px
+  margin-bottom: 30px
+  border-bottom: 2px solid #F0F0F0
+  li
+    margin-bottom: 15px
+    list-style: none
+    a
+      text-decoration: none
+      font: 20px/24px $font-bold
+      color: #4E4E4E
+
+      &:hover
+        color: $red
+
+  select
+    display: block
+
+.tb-widget-title
+  font: 30px/36px $font-bold
+  color: #4A4A4A
+  display: inline-block
+  position: relative
+  margin-bottom: 15px
+  padding-bottom: 5px
+  
+  & + label
+    display: none
+
+  &:after
+    content: ""
+    height: 4px
+    width: 100%
+    background-image: linear-gradient(-90deg, #FF5252 0%, #0288D1 100%)
+    display: inline-block
+    position: absolute
+    bottom: 0
+    left: 0
+
+.tb-banner-top
+  text-align: center
+  padding: 20px 0

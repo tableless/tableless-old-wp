@@ -10,42 +10,52 @@
 .tb-post-content
   margin-top: 220px
   position: relative
+  background: #f7f9fb
   z-index: 2
+
   @include break(desk)
     margin-top: 0
     display: flex
+    flex-wrap: wrap
 
 .tb-featured-image
-    height: 220px
+  height: 220px
+  width: 100%
+  overflow: hidden
+  position: fixed
+  top: $header-height
+  left: 0
+  z-index: 0
+
+  @include break(desk)
+    position: relative
+    top: 0
+    height: 520px
+
+  img
     width: 100%
-    overflow: hidden
-    position: fixed
-    top: $header-height
-    left: 0
-    z-index: 1
+    height: auto
+    min-height: 440px
+    @extend %center
 
-    @include break(desk)
-      position: relative
-      top: 0
-      height: 520px
-
-    img
-      width: 100%
-      height: auto
-      @extend %center
 
 ////
 // Post texta area
 ////
 .tb-post-area
-  flex: 1 0 calc(100% - $sidebar-width)
+  flex: 1 0 40%
 
 .tb-post-text
-  background: #fff
+  @extend %box-white
+  border: none
   padding: 25px
-  font: 400 19px/1.5 Lora
+  font-weight: 400
+  font-size: 16px
+  font-family: Lora, Arial, Tahoma, Sans-serif
+  line-height: 1.5
 
   @include break(desk)
+    font-size: 19px
     padding: 50px 50px 25px
     border-right: 1px solid $border-color-default
     border-left: 1px solid $border-color-default
@@ -74,7 +84,9 @@
   & > p
     color: #4A4A4A
     letter-spacing: .5
-    margin-bottom: 35px
+    margin-bottom: 20px
+    @include break(desk)
+      margin-bottom: 35px
 
   ol, ul
     margin-bottom: 35px
@@ -152,13 +164,25 @@
 // Social Links Buttons
 ////
 .tb-social-links
+  position: fixed
+  bottom: 0
+  left: 0
+  width: 100%
+  height: 70px
+  z-index: 3
+
+  @include break(desk)
+    position: static
+
   ul
     display: flex
     text-align: center
-    height: 70px
+    height: inherit
+    flex-wrap: wrap
 
   li
     flex: 1
+    list-style: none
 
   a
     @extend %image-replace
@@ -167,8 +191,12 @@
     width: 100%
     background-position: center
     background-repeat: no-repeat
-    background-size: 13%
+    background-size: 25%
     transition: background-size .10s linear
+
+    @include break(desk)
+      background-size: 13%
+
 
     &:hover
       background-size: 15%
@@ -196,10 +224,8 @@
 // Post Author Bio
 ////
 .tb-post-author
+  @extend %box-white
   margin-top: 75px
-  background: #FFF
-  border: 1px solid $border-color-default
-  border-radius: 1px
   padding: 30px
   position: relative
 
@@ -223,7 +249,10 @@
     line-height: 24px
     padding-bottom: 15px
     overflow: hidden
-    margin-left: 145px
+    margin-left: 80px
+    
+    @include break(desk)
+      margin-left: 145px
 
     a
       color: $red
@@ -238,30 +267,39 @@
     border-radius: 100%
     margin-right: 22px
     float: left
+    width: 60px
+    height: 60px
+
+    @include break(desk)
+      width: auto
+      height: auto
+
 
 .tb-related-posts
   padding: 70px 0
   text-align: center
+  background: #f7f9fb
 
   .tb-lead-paragraph
     margin-bottom: 30px
 
   .tb-related-group
     display: flex
+    flex-wrap: wrap
 
     .tb-post-box
-      flex: 1
-
-
+      @include break(desk)
+        flex: 1
 
 ////
 // Comments
 ////
 .tb-comments
-  background: #fff
-  padding: 100px
-  border: 1px solid $border-color-default
-  border-radius: 1px
+  @extend %box-white
+  padding: 25px
+
+  @include break(desk)
+    padding: 100px
 
 #disqus_thread
   #dsq-app5

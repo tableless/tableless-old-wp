@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta charset="utf-8">
   <meta name="description" content="<?php if( $post->post_excerpt ) { ?><?php echo get_the_excerpt(); ?><?php } ?>">
-<!--
+
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -44,7 +44,7 @@
       googletag.pubads().collapseEmptyDivs();
       googletag.enableServices();
     });
-  </script> -->
+  </script> 
 
   <?php wp_head();?>
 </head>

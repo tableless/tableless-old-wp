@@ -1,6 +1,6 @@
 $desktop: "screen and (min-width: 1200px)"
 $header-height: 80px
-$sidebar-width: 30%
+$sidebar-width: 370px
 
 ////
 // Fonts
@@ -59,6 +59,11 @@ $border-color-default: $border-diagonal-color
   @media screen and (max-width: 1200px)
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%)
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%)
+
+%box-white
+  background: #fff
+  border: 1px solid $border-color-default
+  border-radius: 1px
 
 ///  Direction: bottom to top
 %divider-diagonal-bt
