@@ -1,0 +1,88 @@
+.single-post
+  background: #f7f9fb
+
+.tb-post-page
+  @extend .tb-container
+
+  @include break(desk)
+    padding-top: 0
+
+.tb-post-content
+  @include break(desk)
+    display: flex
+
+.tb-featured-image
+    position: relative
+    height: 320px
+    overflow: hidden
+
+    @include break(desk)
+      height: 520px
+
+    img
+      height: 320px
+      width: auto
+
+      @include break(desk)
+        @extend %center
+        height: auto
+        width: 100%
+
+////
+// Post texta area
+////
+.tb-post-text
+  background: #fff
+  padding: 25px
+
+  @include break(desk)
+    padding: 50px
+    border-right: 1px solid $border-color-default
+    border-left: 1px solid $border-color-default
+
+  header
+    padding-bottom: 65px
+
+    h1
+      font-size: 30px 
+      font-family: Lora
+      font-weight: 700
+      line-height: 1.2
+      color: #4A4A4A
+      padding-bottom: 30px
+      cursor: default
+
+      @include break(desk)
+        font-size: 60px
+
+    .tb-author-info
+      @extend .tb-divider
+      display: block
+      color: #9C9C9C
+      font: 13px/24px $font-light
+  
+      @include break(desk)
+        font: 20px/24px $font-light
+
+      &:after
+        background-position: bottom left
+        margin-top: 30px
+
+      a
+        color: #9C9C9C
+        text-decoration: none
+
+        &:hover
+          color: #000
+
+      img
+        width: 35px
+        height: 35px
+        border-radius: 100%
+        margin-right: 10px
+        vertical-align: middle
+
+        @include break(desk)
+          width: 50px
+          height: 50px
+          margin-right: 20px
