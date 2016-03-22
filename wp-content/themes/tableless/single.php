@@ -47,8 +47,10 @@
       </div>
 
       <section class="tb-related-posts">
-        <h2>Leia também:</h2>
-        <p>Aproveite para ler estes posts também:</p>
+        <h2 class="tb-title-section">Leia também</h2>
+        <p class="tb-lead-paragraph tb-divider">Aproveite para ler estes posts também:</p>
+
+        <div class="tb-related-group">
         <?php
           $latestPostsargs = array(
             'posts_per_page' => 3, // Quantidade de posts
@@ -63,16 +65,16 @@
           $latestPosts = get_posts( $latestPostsargs );
           foreach ( $latestPosts as $post ) : setup_postdata( $post ); ?>
 
-            <a href="<?php the_permalink();?>" class="tb-post-box">
-              <?php if(has_post_thumbnail()) :?>
-                <figure><?php echo get_the_post_thumbnail( $post_id, 'medium' ); ?></figure>
-              <?php endif;?>
-              <time class="tb-post-time" datetime="<?php the_time('Y-m-d g:i') ?>"> <?php the_time('j') ?> <?php the_time('M') ?> <?php the_time('Y') ?></time>
-              <h2><?php the_title();?></h2>
-            </a>
+          <a href="<?php the_permalink();?>" class="tb-post-box">
+            <?php if(has_post_thumbnail()) :?>
+              <figure><?php echo get_the_post_thumbnail( $post_id, 'medium' ); ?></figure>
+            <?php endif;?>
+            <time class="tb-post-time" datetime="<?php the_time('Y-m-d g:i') ?>"> <?php the_time('j') ?> <?php the_time('M') ?> <?php the_time('Y') ?></time>
+            <h2><?php the_title();?></h2>
+          </a>
 
           <?php endforeach; wp_reset_postdata(); ?>
-
+        </div>
       </section>
 
 

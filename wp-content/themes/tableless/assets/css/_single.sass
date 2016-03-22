@@ -50,6 +50,18 @@
     border-right: 1px solid $border-color-default
     border-left: 1px solid $border-color-default
 
+  code
+    padding: 2px 4px
+    color: #c7254e
+    background-color: #f9f2f4
+    white-space: nowrap
+    border-radius: 4px
+    font-size: 17px
+
+  img
+    max-width: 100%
+    height: auto
+
   a
     color: $red
     text-decoration: none
@@ -69,6 +81,7 @@
     list-style-position: inside
   li
     color: #4A4A4A
+    margin-bottom: 5px
 
 
   ////
@@ -132,7 +145,8 @@
     font-size: 18px
     color: #ACACAC
     line-height: 23px
-    padding-top: 20px
+    padding: 25px 5px 0
+    letter-spacing: 1px
 
 ////
 // Social Links Buttons
@@ -177,12 +191,27 @@
   &:hover
     background-color: rgba(221, 75, 57, .85)
 
+
+////
+// Post Author Bio
+////
 .tb-post-author
   margin-top: 75px
   background: #FFF
   border: 1px solid $border-color-default
   border-radius: 1px
   padding: 30px
+  position: relative
+
+  &:after
+    content: ""
+    margin-top: 30px
+    height: 8px
+    width: 100%
+    position: absolute
+    bottom: 0
+    left: 0
+    background-image: linear-gradient(-90deg, #FF5252 0%, #0288D1 100%)
 
   a
     text-decoration: none
@@ -209,3 +238,31 @@
     border-radius: 100%
     margin-right: 22px
     float: left
+
+.tb-related-posts
+  padding: 70px 0
+  text-align: center
+
+  .tb-lead-paragraph
+    margin-bottom: 30px
+
+  .tb-related-group
+    display: flex
+
+    .tb-post-box
+      flex: 1
+
+
+
+////
+// Comments
+////
+.tb-comments
+  background: #fff
+  padding: 100px
+  border: 1px solid $border-color-default
+  border-radius: 1px
+
+#disqus_thread
+  #dsq-app5
+    display: none
