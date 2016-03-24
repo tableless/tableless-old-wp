@@ -76,36 +76,34 @@
       
       <ul class="tb-category-list">
         <li>
-          <a href="#" class="tb-icon-ux">
-            UX
-          </a>
+          <a href="<?php echo get_category_link( 258 ); ?>" class="tb-icon-html">HTML</a>
         </li>
         <li>
-          <a href="#" class="tb-icon-html">HTML</a>
+          <a href="<?php echo get_category_link( 172 ); ?>" class="tb-icon-js">JavaScript</a>
         </li>
         <li>
-          <a href="#" class="tb-icon-css">CSS/SASS</a>
+          <a href="<?php echo get_category_link( 40 ); ?>" class="tb-icon-css">CSS/SASS</a>
         </li>
         <li>
-          <a href="#" class="tb-icon-responsive">Responsive</a>
+          <a href="<?php echo get_category_link( 21 ); ?>" class="tb-icon-responsive">Mobile</a>
         </li>
         <li>
-          <a href="#" class="tb-icon-backend">Back-end</a>
+          <a href="<?php echo get_category_link( 403 ); ?>" class="tb-icon-ux">UX</a>
         </li>
         <li>
-          <a href="#" class="tb-icon-wordpress">Wordpress</a>
+          <a href="<?php echo get_category_link( 753 ); ?>" class="tb-icon-backend">Back-end</a>
+        </li>
+        <li>
+          <a href="<?php echo get_category_link( 54 ); ?>" class="tb-icon-wordpress">Wordpress</a>
         </li>
         <li>
           <a href="#" class="tb-icon-design">Design</a>
         </li>
         <li>
-          <a href="#" class="tb-icon-desenvolvimento">Desenvolvimento</a>
+          <a href="<?php echo get_category_link( 106 ); ?>" class="tb-icon-seo">SEO</a>
         </li>
         <li>
-          <a href="#" class="tb-icon-seo">SEO</a>
-        </li>
-        <li>
-          <a href="#" class="tb-icon-iniciantes">Iniciantes</a>
+          <a href="http://tableless.github.io/iniciantes/" class="tb-icon-iniciantes">Iniciantes</a>
         </li>
       </ul>
     </div>
