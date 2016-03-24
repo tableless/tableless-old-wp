@@ -17,7 +17,7 @@
 
   // Remove the Shortcut link of header.
   remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-
+  remove_filter('term_description','wpautop');
   // Upgrade without FTP
   define('FS_METHOD','direct');
 
