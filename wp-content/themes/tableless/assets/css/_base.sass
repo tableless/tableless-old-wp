@@ -70,12 +70,22 @@ body
 .tb-post-box
   @extend .tb-box
   flex: 1 0 300px
-  padding: 20px
-  margin: 0 20px 25px
-  border: 1px solid #F5F5F5;
   font: 20px/24px $font-bold
-  color: #4E4E4E
   letter-spacing: 0.45px
-  text-decoration: none
+
+////
+// Page Nav buttons
+////
+.tb-pagination
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+  padding: 100px 30px
+  clear: both
+  a
+    @extend .tb-btn
+    max-width: 250px
+    flex: 1 0 250px
+    text-align: center
 
 
