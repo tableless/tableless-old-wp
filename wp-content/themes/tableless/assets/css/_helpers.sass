@@ -120,9 +120,56 @@ $border-color-default: $border-diagonal-color
   border-radius: 1px
   border: 1px solid rgba(139, 152, 190, .20)
   transition: box-shadow .15s linear
+  color: #4E4E4E
+  text-decoration: none
 
   &:hover
     box-shadow: 0 5px 10px 2px rgba(139, 152, 190, .55)
+
+  figure
+    overflow: hidden
+    position: relative
+    display: block
+    width: 100%
+    height: 200px
+    margin-bottom: 17px
+
+    &:before
+      content: ""
+      display: block
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      -webkit-box-shadow: inset 0px 0px 41px -12px rgba(0, 0, 0, .75)
+      -moz-box-shadow: inset 0px 0px 41px -12px rgba(0, 0, 0, .75)
+      box-shadow: inset 0px 0px 41px -12px rgba(0, 0, 0, .75)
+      z-index: 1
+
+    img
+      @extend %center
+      height: 100%
+      width: auto
+      position: relative
+      z-index: 0
+
+  a
+    color: #4E4E4E
+    text-decoration: none
+
+    @include break(desk)
+      margin: 0 20px 40px
+
+  h2
+    font: 20px/24px $font-bold
+    
+  .tb-post-time
+    display: block
+    text-transform: uppercase
+    font: 14px/16px $font-regular
+    color: #BDBDBD
+    margin-bottom: 10px
 
 .tb-lead-paragraph
   font: 20px/27px "PT Serif Caption"

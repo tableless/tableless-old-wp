@@ -49,10 +49,12 @@
   a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0000/6090.js?"+Math.floor(new Date().getTime()/3600000);
   a.async=false;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
 </script>
+<script   src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
 
 <?php wp_footer();?>
 
 <script type="text/javascript">(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}id=id+'_';if(!gi.call(d,id)){qs=ce.call(d,'link');qs.rel='stylesheet';qs.id=id;qs.href=b+'share-button.css';s=gt.call(d,'head')[0];s.appendChild(qs,s)}})();</script>
+
 
 </body>
 </html>

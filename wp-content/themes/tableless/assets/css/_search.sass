@@ -1,0 +1,97 @@
+.tb-search-box
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  min-height: 100%
+  z-index: 3
+  background: $bg-color-default
+  display: none
+  outline: 1px solid red
+
+  &.tb-is-active
+    display: block
+
+  .tb-container
+    position: relative
+    padding-top: 200px
+
+  .tb-close-search
+    @extend %image-replace
+    background-image: url(images/close-search.png)
+    width: 40px
+    height: 40px
+    position: absolute
+    top: $header-height + 30
+    right: 0
+    cursor: pointer
+
+  form
+    position: relative
+
+    label
+      display: none
+
+    #searchsubmit
+      @extend %image-replace
+      background: url(images/search-button.png) no-repeat center
+      background-size: contain
+      width: 60px
+      height: 85px
+      border: none
+      float: right
+      margin: 20px 20px 0 0
+      cursor: pointer
+       
+
+    #s
+      font: 100px/1.21 $font-bold
+      color: rgba(156,156,156, .30)
+      letter-spacing: 4px
+      background: transparent
+      border: none
+      width: 90%
+      outline: none
+
+      &::-webkit-input-placeholder
+        color: rgba(156,156,156, .30)
+        font-style: italic
+
+      &:-moz-placeholder
+        color: rgba(156,156,156, .30)
+        font-style: italic
+
+      &:-ms-input-placeholder
+        color: rgba(156,156,156, .30)
+        font-style: italic
+
+      &:input-placeholder
+        color: rgba(156,156,156, .30)
+        font-style: italic
+
+    &:after
+      content: ""
+      height: 4px
+      width: 100%
+      background-image: linear-gradient(-90deg, #FF5252 0%, #0288D1 100%)
+      display: inline-block
+      position: absolute
+      bottom: 0
+      left: 0
+
+.tb-seartch-title
+  display: none
+
+.tb-search-results-list
+  padding: 50px 0
+  overflow: auto
+  max-height: 1100px
+
+.tb-search-results
+  display: flex
+  flex-wrap: wrap
+
+  .tb-box
+    flex: 1 0 300px
+    margin: 0 20px 40px
+    padding: 20px

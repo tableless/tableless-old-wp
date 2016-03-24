@@ -3,6 +3,8 @@ var tableless = (function() {
 
   function init(){
     prettyPrintHighlight();
+    openCloseSearch();
+    searchAjax();
   }
 
   //
@@ -22,6 +24,32 @@ var tableless = (function() {
     for (var i = 0; i < $pre.length; i++) {
       $pre[i].classList.add('prettyprint', 'linenums');
     }
+  }
+
+  ///
+  /// Open Search Box
+  ///
+  function openCloseSearch() {
+    $('.tb-search-btn, .tb-close-search').on('click', function(){
+      $('.tb-search-box').toggleClass('tb-is-active');
+      $('#s').focus();
+    });
+  }
+
+  function searchAjax(){
+    $('#searchsubmit').on('click', function(e){
+      e.preventDefault();
+      var searchTerm = $('#s').val();
+      $.ajax({
+        url: "http://localhost/tableless/?s=" + searchTerm,
+        type : 'get',
+        success: function( data ) {
+          var dataContent = $('<div class="tb-data-box">').html(data).find('.tb-search-content').html();
+          $('.tb-search-results-list').html( dataContent );
+        }
+      });
+
+    });
   }
 
   return {
