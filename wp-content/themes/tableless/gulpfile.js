@@ -5,7 +5,7 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('sass', function () {
-  gulp.src('./style.sass')
+  gulp.src('./**/*.sass')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(sass({outputStyle: 'compressed'}))
