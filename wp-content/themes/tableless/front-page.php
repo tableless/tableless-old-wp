@@ -85,7 +85,7 @@
           <a href="<?php echo get_category_link( 40 ); ?>" class="tb-icon-css">CSS/SASS</a>
         </li>
         <li>
-          <a href="<?php echo get_category_link( 21 ); ?>" class="tb-icon-responsive">Mobile</a>
+          <a href="<?php echo get_category_link( 21 ); ?>" class="tb-icon-mobile">Mobile</a>
         </li>
         <li>
           <a href="<?php echo get_category_link( 403 ); ?>" class="tb-icon-ux">UX</a>
@@ -97,7 +97,7 @@
           <a href="<?php echo get_category_link( 54 ); ?>" class="tb-icon-wordpress">Wordpress</a>
         </li>
         <li>
-          <a href="#" class="tb-icon-design">Design</a>
+          <a href="<?php echo get_category_link( 403 ); ?>" class="tb-icon-design">Design</a>
         </li>
         <li>
           <a href="<?php echo get_category_link( 106 ); ?>" class="tb-icon-seo">SEO</a>

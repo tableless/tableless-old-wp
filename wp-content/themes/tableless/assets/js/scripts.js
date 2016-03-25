@@ -36,6 +36,9 @@ var tableless = (function() {
     });
   }
 
+  ///
+  // Ajax call to show search results
+  ///
   function searchAjax(){
     $('#searchsubmit').on('click', function(e){
       e.preventDefault();
