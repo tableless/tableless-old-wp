@@ -31,7 +31,8 @@ var tableless = (function() {
   /// Open Search Box
   ///
   function openCloseSearch() {
-    $('.tb-search-btn, .tb-close-search').on('click', function(){
+    $('.tb-search-btn, .tb-close-search').on('click', function(e){
+      e.preventDefault();
       $('.tb-search-box').toggleClass('tb-is-active');
       $('#s').focus();
     });
