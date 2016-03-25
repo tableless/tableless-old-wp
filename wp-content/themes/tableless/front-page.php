@@ -62,7 +62,7 @@
             </a>
         <?php endwhile; wp_reset_postdata(); ?>
 
-      <!-- <a href="#" class="tb-read-more">Ver todos</a> -->
+  <a href="<?php echo get_page_link(42486); ?>" class="tb-read-more">Ver últimos posts</a>
 
     </div>
 
@@ -137,7 +137,8 @@
 
 
   </div>
-      <a href="#" class="tb-btn-big">Mais artigos</a>
+      <a href="<?php echo get_page_link(42486); ?>" class="tb-btn-big">Mais artigos</a>
+
 </section>
 
 <section class="tb-section tb-forum-call">

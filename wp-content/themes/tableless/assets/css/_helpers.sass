@@ -1,4 +1,4 @@
-$desktop: "screen and (min-width: 1200px)"
+$desktop: "screen and (min-width: 1000px)"
 $header-height: 80px
 $sidebar-width: 370px
 
@@ -70,7 +70,7 @@ $border-color-default: $border-diagonal-color
 
 ///  Direction: bottom to top
 %divider-diagonal-bt
-  padding-bottom: 200px
+  padding-bottom: 250px
   margin-bottom: 50px
   &:after 
     content: ""
@@ -82,13 +82,13 @@ $border-color-default: $border-diagonal-color
     box-shadow: inset 0px 50px 70px 0px $border-diagonal-color
     transform: rotate(-5deg)
     position: absolute
-    bottom: 0
+    bottom: 80px
     left: -5%
 
 ///  Direction: top to bottom
 %divider-diagonal-tb
   position: relative
-  padding-bottom: 200px
+  padding-bottom: 250px
   margin-bottom: 50px
   &:after 
     content: ""
@@ -100,7 +100,7 @@ $border-color-default: $border-diagonal-color
     box-shadow: inset 0px 50px 70px 0px $border-diagonal-color
     transform: rotate(5deg)
     position: absolute
-    bottom: 0
+    bottom: 80px
     left: -5%
 
 .tb-divider
@@ -120,6 +120,10 @@ $border-color-default: $border-diagonal-color
 
 .tb-align-left
   text-align: left
+
+.tb-flex-box
+  display: flex
+  flex-wrap: wrap
 
 ////
 // Boxes
