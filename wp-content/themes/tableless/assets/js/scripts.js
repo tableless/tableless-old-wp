@@ -2,6 +2,7 @@ var tableless = (function() {
   'use strict';
 
   function init(){
+    showFeaturedPosts();
     prettyPrintHighlight();
     openCloseSearch();
     searchAjax();
@@ -54,6 +55,24 @@ var tableless = (function() {
 
     });
   }
+
+
+  ///
+  // Featured posts in Home
+  ///
+  function showFeaturedPosts() {
+    $('.tb-featured-post:first').addClass('tb-is-active');
+
+    $('.tb-thumb-box').on('click', function(e){
+      e.preventDefault();
+
+      var $targetPost = $('#' + $(this).data('target'));
+      $('.tb-featured-post').removeClass('tb-is-active');
+      $targetPost.addClass('tb-is-active');
+      console.log($targetPost);
+    });
+  }
+
 
   return {
     init: init,
