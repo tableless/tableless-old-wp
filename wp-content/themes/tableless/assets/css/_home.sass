@@ -41,6 +41,7 @@
 
   &.tb-is-active
     opacity: 1
+    z-index: 1
 
   .tb-lnk-featured
     display: none
@@ -79,6 +80,8 @@
   text-align: center
   display: none
   margin-bottom: 100px
+  position: relative
+  z-index: 2
 
 .tb-thumb-box
   @extend .tb-box
@@ -97,15 +100,27 @@
 
 .tb-choose-category
   padding: 0 10px 50px
-  margin-bottom: 50px
   text-align: center
   background: $bg-color-default
   position: relative
   
   @include break(desk)
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%)
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%)
+    // -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%)
+    // clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%)
     padding-bottom: 300px
+    &:after
+      content: ""
+      display: block
+      position: absolute
+      bottom: 0
+      left: 0
+      height: 200px
+      width: 100%
+      background: -moz-linear-gradient(5deg,  #ffffff 0%, #ffffff 51%, #cccccc 51%, $bg-color-default 51.3%, $bg-color-default 100%)
+      background: -webkit-linear-gradient(5deg,  #ffffff 0%,#ffffff 51%,#cccccc 51%,$bg-color-default 51.3%,$bg-color-default 100%)
+      background: linear-gradient(5deg,  #ffffff 0%,#ffffff 51%,#cccccc 51%,$bg-color-default 51.3%,$bg-color-default 100%)
+
+
 
 .tb-category-list
   background: #fff
