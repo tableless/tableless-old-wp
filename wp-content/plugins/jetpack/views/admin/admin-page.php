@@ -3,7 +3,14 @@
 <div class="page-content landing">
 	<?php Jetpack::init()->load_view( 'admin/network-activated-notice.php' ); ?>
 
-	<?php do_action( 'jetpack_notices' ) ?>
+	<?php
+		/**
+		 * Fires when a notice is displayed in the Jetpack menu.
+		 *
+		 * @since 3.0.0
+		 */
+		do_action( 'jetpack_notices' );
+	?>
 
 	<?php if ( $data['is_connected'] ) : ?>
 
@@ -14,9 +21,17 @@
 				<h1 title="<?php esc_attr_e( 'Jump Start your site by activating these components', 'jetpack' ); ?>" class="jstart"><?php _e( 'Jump Start your site', 'jetpack' ); ?></h1>
 				<div class="jumpstart-desc j-col j-sm-12 j-md-12">
 					<div class="jumpstart-message">
-						<p id="jumpstart-paragraph-before"><?php echo sprintf( __( 'To quickly boost performance, security, and engagement we recommend activating <strong>%s</strong>. Click <strong>Jump Start</strong> to activate these features or ', 'jetpack' ), $data['jumpstart_list'] ); ?>
-							<a class="pointer jp-config-list-btn"><?php _e( 'learn more.', 'jetpack' ); ?></a>
-						</p>
+						<p id="jumpstart-paragraph-before"><?php
+							if ( count( $data['jumpstart_list'] ) > 1 ) {
+								$last_item = array_pop( $data['jumpstart_list'] );
+								/* translators: %1$s is a comma-separated list of module names or a single module name, %2$s is the last item in the module list */
+								echo sprintf( __( 'To quickly boost performance, security, and engagement we recommend activating <strong>%1$s and %2$s</strong>. Click <strong>Jump Start</strong> to activate these features or <a class="pointer jp-config-list-btn">learn more</a>', 'jetpack' ), implode( $data['jumpstart_list'], ', ' ), $last_item );
+
+							} else {
+								/* translators: %s is a module name */
+								echo sprintf( __( 'To quickly boost performance, security, and engagement we recommend activating <strong>%s</strong>. Click <strong>Jump Start</strong> to activate this feature or <a class="pointer jp-config-list-btn">learn more</a>', 'jetpack' ), $data['jumpstart_list'][0] );
+							}
+						?></p>
 					</div><!-- /.jumpstart-message -->
 				</div>
 				<div class="jumpstart-message hide">
@@ -162,14 +177,13 @@
 
 	</div><?php // j-row ?>
 
-		<p><?php _e( 'Jetpack includes many other features that you can use to customize how your site looks and functions. These include Contact Forms, Tiled Photo Galleries, Custom CSS, Image Carousel, and a lot more.', 'jetpack' ); ?></p>
-
 		<?php if ( current_user_can( 'jetpack_manage_modules' ) ) : ?>
+			<p><?php _e( 'Jetpack includes many other features that you can use to customize how your site looks and functions. These include Contact Forms, Tiled Photo Galleries, Custom CSS, Image Carousel, and a lot more.', 'jetpack' ); ?></p>
 			<p><a href="<?php echo admin_url( 'admin.php?page=jetpack_modules' ); ?>" class="button full-features-btn" ><?php echo sprintf( __( 'See the other %s Jetpack features', 'jetpack' ), count( Jetpack::get_available_modules() ) - count( $data['recommended_list'] ) ); ?></a></p>
 		<?php endif; ?>
 
 		<div class="nux-foot j-row">
-			<div class="j-col j-lrg-9 j-md-9 j-sm-12">
+			<div class="j-col j-lrg-8 j-md-8 j-sm-12">
 			<?php
 				// Get a list of Jetpack Happiness Engineers.
 				$jetpack_hes = array(
@@ -185,7 +199,7 @@
 					'190cf13c9cd358521085af13615382d5',
 				);
 
-				// Get a fallack profile image.
+				// Get a fallback profile image.
 				$default_he_img = plugins_url( 'images/jetpack-icon.jpg', JETPACK__PLUGIN_FILE );
 
 				printf(
@@ -194,44 +208,20 @@
 					urlencode( $default_he_img )
 				);
 			?>
-			<p><?php _e( 'Need help? The Jetpack team is here for you!', 'jetpack' ); ?></p>
-			<p><?php _e( 'We offer free, full support to all of our Jetpack users. Our support team is always around to help you.', 'jetpack' );
-				echo ' ';
-				printf(
-					__(
-						'<a href="%1$s" target="_blank">View our support page</a>, <a href="%2$s" target="_blank">check the forums for answers</a>, or <a href="%3$s" target="_blank">contact us directly</a>',
-						'jetpack'
-					),
-					'http://jetpack.me/support/',
-					'https://wordpress.org/support/plugin/jetpack',
-					'http://jetpack.me/contact-support/'
-				);
-			?></p>
-			</div>
-			<div class="j-col j-lrg-3 j-md-3 j-sm-12">
-			<p><?php _e( 'Enjoying Jetpack? Got Feedback?', 'jetpack' ); ?></p>
-			<ul>
-				<li><?php _e( '- ', 'jetpack'); ?><a href="https://wordpress.org/support/view/plugin-reviews/jetpack" target="_blank" title="<?php esc_attr_e( 'Leave Jetpack a review', 'jetpack' ); ?>"><?php _e( 'Leave us a review', 'jetpack' ); ?></a></li>
-				<li><?php
-					$jetpack_twitter_url = sprintf(
-						'<a href="http://twitter.com/jetpack" target="_blank" title="%1$s">%2$s</a>',
-						esc_attr__( 'Jetpack on Twitter', 'jetpack' ),
-						__( 'Twitter', 'jetpack' )
-					);
-
-					$jetpack_facebook_url = sprintf(
-						'<a href="https://www.facebook.com/jetpackme" target="_blank" title="%1$s">%2$s</a>',
-						esc_attr__( 'Jetpack on Facebook', 'jetpack' ),
-						__( 'Facebook', 'jetpack' )
-					);
-
-					printf(
-						_x( '- Follow us on %1$s or %2$s', '1: Twitter; 2: Facebook', 'jetpack' ),
-						$jetpack_twitter_url,
-						$jetpack_facebook_url
-					);
-				?></li>
+			<p><?php _e( 'Help and Support', 'jetpack' ); ?></p>
+			<p><?php _e( 'We offer free, full support to all Jetpack users. Our support team is always around to help you.', 'jetpack' ); ?></p>
+			<ul class="actions">
+				<li><a href="http://jetpack.me/support/" target="_blank" class="button"><?php esc_html_e( 'Visit support site', 'jetpack' ); ?></a></li>
+				<li><a href="https://wordpress.org/support/plugin/jetpack" target="_blank"><?php esc_html_e( 'Browse forums', 'jetpack' ); ?></a></li>
+				<li><a href="http://jetpack.me/contact-support/" target="_blank"><?php esc_html_e( 'Contact us directly', 'jetpack' ); ?></a></li>
 			</ul>
+			</div>
+			<div class="j-col j-lrg-4 j-md-4 j-sm-12">
+				<p><?php _e( 'Premium Add-ons', 'jetpack' ); ?></p>
+				<p><?php esc_html_e( 'Business site? Safeguard it with real-time backups, security scans, and anti-spam.', 'jetpack' ); ?></p>
+				<p>&nbsp;</p>
+				<?php $normalized_site_url = Jetpack::build_raw_urls( get_home_url() ); ?>
+				<div class="actions jptracks" data-jptracks-name="nudge_click" data-jptracks-prop="nux-addons"><a href="<?php echo esc_url( 'https://wordpress.com/plans/' . $normalized_site_url ); ?>" target="_blank" class="button"><?php esc_html_e( 'Compare Options', 'jetpack' ); ?></a></div>
 			</div>
 		</div><?php // nux-foot ?>
 
@@ -252,20 +242,6 @@
 			</div>
 		</div>
 	<?php endif; ?>
-	<div id="miguels" class="flyby">
-		<svg class="miguel" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="87px" viewBox="0 0 80 87" enable-background="new 0 0 80 87" xml:space="preserve">
-			<polygon class="eye" fill="#518d2a" points="41.187,17.081 46.769,11.292 50.984,15.306"/>
-			<path class="body" fill="#518d2a" d="M38.032,47.3l4.973-5.157l7.597,1.996l0.878-0.91l0.761-0.789l-0.688-2.838l-0.972-0.926l-1.858,1.926 l-2.206-2.1l3.803-3.944l0.09-3.872L80,0L61.201,10.382L60.2,15.976l-5.674,1.145l-8.09-7.702L34.282,22.024l8.828-1.109 l2.068,2.929l-4.996,0.655l-3.467,3.595l0.166-4.469l-4.486,0.355L21.248,35.539l-0.441,4.206l-2.282,2.366l-2.04,6.961 L27.69,37.453l4.693,1.442l-2.223,2.306l-4.912,0.095l-7.39,22.292l-8.06,3.848l-2.408,9.811l-3.343-0.739L0,86.739l30.601-31.733 l8.867,2.507l-7.782,8.07l-1.496-0.616l-0.317-2.623l-7.197,7.463l11.445-2.604l16.413-7.999L38.032,47.3z M42.774,16.143 l3.774-3.914l2.85,2.713L42.774,16.143z"/>
-		</svg>
-		<svg class="miguel" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="87px" viewBox="0 0 80 87" enable-background="new 0 0 80 87" xml:space="preserve">
-			<polygon class="eye" fill="#518d2a" points="41.187,17.081 46.769,11.292 50.984,15.306   "/>
-			<path class="body" fill="#518d2a" d="M38.032,47.3l4.973-5.157l7.597,1.996l0.878-0.91l0.761-0.789l-0.688-2.838l-0.972-0.926l-1.858,1.926 l-2.206-2.1l3.803-3.944l0.09-3.872L80,0L61.201,10.382L60.2,15.976l-5.674,1.145l-8.09-7.702L34.282,22.024l8.828-1.109 l2.068,2.929l-4.996,0.655l-3.467,3.595l0.166-4.469l-4.486,0.355L21.248,35.539l-0.441,4.206l-2.282,2.366l-2.04,6.961 L27.69,37.453l4.693,1.442l-2.223,2.306l-4.912,0.095l-7.39,22.292l-8.06,3.848l-2.408,9.811l-3.343-0.739L0,86.739l30.601-31.733 l8.867,2.507l-7.782,8.07l-1.496-0.616l-0.317-2.623l-7.197,7.463l11.445-2.604l16.413-7.999L38.032,47.3z M42.774,16.143 l3.774-3.914l2.85,2.713L42.774,16.143z"/>
-		</svg>
-		<svg class="miguel" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="87px" viewBox="0 0 80 87" enable-background="new 0 0 80 87" xml:space="preserve">
-			<polygon class="eye" fill="#518d2a" points="41.187,17.081 46.769,11.292 50.984,15.306   "/>
-			<path class="body" fill="#518d2a" d="M38.032,47.3l4.973-5.157l7.597,1.996l0.878-0.91l0.761-0.789l-0.688-2.838l-0.972-0.926l-1.858,1.926 l-2.206-2.1l3.803-3.944l0.09-3.872L80,0L61.201,10.382L60.2,15.976l-5.674,1.145l-8.09-7.702L34.282,22.024l8.828-1.109 l2.068,2.929l-4.996,0.655l-3.467,3.595l0.166-4.469l-4.486,0.355L21.248,35.539l-0.441,4.206l-2.282,2.366l-2.04,6.961 L27.69,37.453l4.693,1.442l-2.223,2.306l-4.912,0.095l-7.39,22.292l-8.06,3.848l-2.408,9.811l-3.343-0.739L0,86.739l30.601-31.733 l8.867,2.507l-7.782,8.07l-1.496-0.616l-0.317-2.623l-7.197,7.463l11.445-2.604l16.413-7.999L38.032,47.3z M42.774,16.143 l3.774-3.914l2.85,2.713L42.774,16.143z"/>
-		</svg>
-	</div>
 <div id="deactivate-success"></div>
 <?php if ( Jetpack::is_development_version() ) { ?>
 	<a id="jump-start-deactivate" style="cursor:pointer; display: block; text-align: center; margin-top: 25px;"><?php esc_html_e( 'RESET EVERYTHING (during testing only) - will reset modules to default as well', 'jetpack' ); ?></a>

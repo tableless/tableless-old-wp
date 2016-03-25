@@ -15,6 +15,8 @@ function jetpack_photon_url( $image_url, $args = array(), $scheme = null ) {
 	/**
 	 * Allow specific image URls to avoid going through Photon.
 	 *
+	 * @module photon
+	 *
 	 * @since 3.2.0
 	 *
 	 * @param bool false Should the image be returned as is, without going through Photon. Default to false.
@@ -29,23 +31,27 @@ function jetpack_photon_url( $image_url, $args = array(), $scheme = null ) {
 	/**
 	 * Filter the original image URL before it goes through Photon.
 	 *
+	 * @module photon
+	 *
 	 * @since 1.9.0
 	 *
 	 * @param string $image_url Image URL.
 	 * @param array|string $args Array of Photon arguments.
 	 * @param string|null $scheme Image scheme. Default to null.
 	 */
-	$image_url = apply_filters( 'jetpack_photon_pre_image_url', $image_url, $args,      $scheme );
+	$image_url = apply_filters( 'jetpack_photon_pre_image_url', $image_url, $args, $scheme );
 	/**
 	 * Filter the original Photon image parameters before Photon is applied to an image.
 	 *
+	 * @module photon
+	 *
 	 * @since 1.9.0
 	 *
 	 * @param array|string $args Array of Photon arguments.
 	 * @param string $image_url Image URL.
 	 * @param string|null $scheme Image scheme. Default to null.
 	 */
-	$args      = apply_filters( 'jetpack_photon_pre_args',      $args,      $image_url, $scheme );
+	$args = apply_filters( 'jetpack_photon_pre_args', $args, $image_url, $scheme );
 
 	if ( empty( $image_url ) )
 		return $image_url;
@@ -55,6 +61,10 @@ function jetpack_photon_url( $image_url, $args = array(), $scheme = null ) {
 	// Unable to parse
 	if ( ! is_array( $image_url_parts ) || empty( $image_url_parts['host'] ) || empty( $image_url_parts['path'] ) )
 		return $image_url;
+
+	if ( isset( $image_url_parts['scheme'] ) && 'https' == $image_url_parts['scheme'] ) {
+		$args['ssl'] = '1';
+	}
 
 	if ( is_array( $args ) ){
 		// Convert values that are arrays into strings
@@ -88,6 +98,8 @@ function jetpack_photon_url( $image_url, $args = array(), $scheme = null ) {
 	 * By default, Photon doesn't support query strings so we ignore them and look only at the path.
 	 * This setting is Photon Server dependent.
 	 *
+	 * @module photon
+	 *
 	 * @since 1.9.0
 	 *
 	 * @param bool false Should images using query strings go through Photon. Default is false.
@@ -112,6 +124,8 @@ function jetpack_photon_url( $image_url, $args = array(), $scheme = null ) {
 	/**
 	 * Filters the domain used by the Photon module.
 	 *
+	 * @module photon
+	 *
 	 * @since 3.4.2
 	 *
 	 * @param string http://i{$subdomain}.wp.com Domain used by Photon. $subdomain is a random number between 0 and 2.
@@ -125,6 +139,8 @@ function jetpack_photon_url( $image_url, $args = array(), $scheme = null ) {
 	 * Add query strings to Photon URL.
 	 * By default, Photon doesn't support query strings so we ignore them.
 	 * This setting is Photon Server dependent.
+	 *
+	 * @module photon
 	 *
 	 * @since 1.9.0
 	 *

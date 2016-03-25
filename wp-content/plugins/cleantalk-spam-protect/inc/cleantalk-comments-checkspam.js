@@ -183,6 +183,7 @@ jQuery("#ct_check_spam_button").click(function(){
 	jQuery('#ct_check_comments_table').hide();
 	jQuery('#ct_delete_all').hide();
 	jQuery('#ct_delete_checked').hide();
+	jQuery('#ct_preloader').show();
 	working=true;
 	ct_show_info();
 });

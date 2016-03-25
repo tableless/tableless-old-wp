@@ -10,6 +10,7 @@
  * Auto Activate: No
  * Module Tags: Appearance, Mobile, Recommended
  * Feature: Recommended
+ * Additional Search Queries: mobile, theme, minileven
  */
 
 function jetpack_load_minileven() {
@@ -99,8 +100,8 @@ function minileven_configuration_screen() {
 	</form>
 	<h3><?php _e( 'Mobile Apps', 'jetpack' ); ?></h3>
 	<p><?php _e( 'Take WordPress with you.', 'jetpack' ); ?></p>
-	<a href="http://wordpress.org/extend/mobile/"><img src="<?php echo plugin_dir_url( __FILE__ ); ?>/minileven/images/wp-app-devices.png" width="332" height="73" /></a>
-	<p><?php printf( __( 'We have apps for <a href="%s">iOS (iPhone, iPad, iPod Touch)</a>, <a href="%s">Android</a>, <a href="%s">BlackBerry</a>, and <a href="%s">more</a>!', 'jetpack' ), 'http://ios.wordpress.org/', 'http://android.wordpress.org/', 'http://blackberry.wordpress.org/', 'http://wordpress.org/mobile/' ); ?></p>
+	<a href="https://wordpress.org/mobile/"><img src="<?php echo plugin_dir_url( __FILE__ ); ?>/minileven/images/wp-app-devices.png" width="332" height="73" /></a>
+	<p><?php printf( __( 'We have apps for <a href="%s">iOS (iPhone, iPad, iPod Touch) and Android</a>!', 'jetpack' ), 'https://apps.wordpress.org/' ); ?></p>
 	<?php
 }
 

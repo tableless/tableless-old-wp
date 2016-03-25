@@ -17,6 +17,7 @@ function ct_show_checkspam_page()
 		<h2><?php _e("Anti-spam by CleanTalk", 'cleantalk'); ?></h2><br />
 		
 		<h3 id="ct_checking_status" style="text-align:center;width:90%;"></h3>
+		<div style="text-align:center;width:100%;display:none;" id="ct_preloader"><img border=0 src="<?php print plugin_dir_url(__FILE__); ?>images/preloader.gif" /></div>
 		<?php
 			$args_spam = array(
 				'meta_query' => array(
@@ -277,6 +278,7 @@ function ct_ajax_check_comments()
 	
 	$u=get_comments($args_unchecked);
 	$u=array_slice($u,0,500);
+	$u=array_values($u);
 	if(sizeof($u)>0)
 	{
 		//print_r($u);
@@ -299,7 +301,6 @@ function ct_ajax_check_comments()
 		);
 		
 		$context = stream_context_create($opts);
-		
 		$result = @file_get_contents("https://api.cleantalk.org/?method_name=spam_check&auth_key=".$ct_options['apikey'], 0, $context);
 		$result=json_decode($result);
 		if(isset($result->error_message))
@@ -315,7 +316,7 @@ function ct_ajax_check_comments()
 				if(empty($uip))continue;
 				$uim=$u[$i]->comment_author_email;
 				if(empty($uim))continue;
-				if($result->data->$uip->appears==1||$result->data->$uim->appears==1)
+				if(isset($result->data->$uip) && $result->data->$uip->appears==1 || isset($result->data->$uim) && $result->data->$uim->appears==1)
 				{
 					add_comment_meta($u[$i]->comment_ID,'ct_marked_as_spam','1',true);
 				}

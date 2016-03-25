@@ -14,7 +14,10 @@ function jetpack_og_tags() {
 	/**
 	 * Allow Jetpack to output Open Graph Meta Tags.
 	 *
-	 * @since 2.0.3
+	 * @module sharedaddy, publicize
+	 *
+	 * @since 2.0.0
+	 * @deprecated 2.0.3 Duplicative filter. Use `jetpack_enable_open_graph`.
 	 *
 	 * @param bool true Should Jetpack's Open Graph Meta Tags be enabled. Default to true.
 	 */
@@ -32,6 +35,8 @@ function jetpack_og_tags() {
 	/**
 	 * Filter the minimum width of the images used in Jetpack Open Graph Meta Tags.
 	 *
+	 * @module sharedaddy, publicize
+	 *
 	 * @since 2.0.0
 	 *
 	 * @param int 200 Minimum image width used in Jetpack Open Graph Meta Tags.
@@ -39,6 +44,8 @@ function jetpack_og_tags() {
 	$image_width        = absint( apply_filters( 'jetpack_open_graph_image_width', 200 ) );
 	/**
 	 * Filter the minimum height of the images used in Jetpack Open Graph Meta Tags.
+	 *
+	 * @module sharedaddy, publicize
 	 *
 	 * @since 2.0.0
 	 *
@@ -88,7 +95,7 @@ function jetpack_og_tags() {
 			$tags['og:title'] = ' ';
 		} else {
 			/** This filter is documented in core/src/wp-includes/post-template.php */
-			$tags['og:title'] = wp_kses( apply_filters( 'the_title', $data->post_title ), array() );
+			$tags['og:title'] = wp_kses( apply_filters( 'the_title', $data->post_title, $data->ID ), array() );
 		}
 
 		$tags['og:url']         = get_permalink( $data->ID );
@@ -101,10 +108,20 @@ function jetpack_og_tags() {
 			}
 		}
 		if ( empty( $tags['og:description'] ) ) {
-			$tags['og:description'] = __('Visit the post for more.', 'jetpack');
+				/**
+				 * Filter the fallback `og:description` used when no excerpt information is provided.
+				 *
+				 * @module sharedaddy, publicize
+				 *
+				 * @since 3.9.0
+				 *
+				 * @param string $var  Fallback og:description. Default is translated `Visit the post for more'.
+				 * @param object $data Post object for the current post.
+				 */
+			$tags['og:description'] = apply_filters( 'jetpack_open_graph_fallback_description', __( 'Visit the post for more.', 'jetpack' ), $data );
 		} else {
-			/** This filter is documented in src/wp-includes/post-template.php */
-			$tags['og:description'] = wp_kses( trim( apply_filters( 'the_excerpt', $tags['og:description'] ) ), array() );
+			// Intentionally not using a filter to prevent pollution. @see https://github.com/Automattic/jetpack/pull/2899#issuecomment-151957382
+			$tags['og:description'] = wp_kses( trim( convert_chars( wptexturize( $tags['og:description'] ) ) ), array() );
 		}
 
 		$tags['article:published_time'] = date( 'c', strtotime( $data->post_date_gmt ) );
@@ -120,6 +137,8 @@ function jetpack_og_tags() {
 	/**
 	 * Allow plugins to inject additional template-specific Open Graph tags.
 	 *
+	 * @module sharedaddy, publicize
+	 *
 	 * @since 3.0.0
 	 *
 	 * @param array $tags Array of Open Graph Meta tags.
@@ -133,6 +152,8 @@ function jetpack_og_tags() {
 
 	/**
 	 * Do not return any Open Graph Meta tags if we don't have any info about a post.
+	 *
+	 * @module sharedaddy, publicize
 	 *
 	 * @since 3.0.0
 	 *
@@ -170,7 +191,7 @@ function jetpack_og_tags() {
 		require_once JETPACK__GLOTPRESS_LOCALES_PATH;
 		$_locale = get_locale();
 
-		// We have to account for WP.org vs WP.com locale divergence
+		// We have to account for w.org vs WP.com locale divergence
 		if ( defined( 'IS_WPCOM' ) && IS_WPCOM ) {
 			$gp_locale = GP_Locales::by_field( 'slug', $_locale );
 		} else {
@@ -184,6 +205,8 @@ function jetpack_og_tags() {
 
 	/**
 	 * Allow the addition of additional Open Graph Meta tags, or modify the existing tags.
+	 *
+	 * @module sharedaddy, publicize
 	 *
 	 * @since 2.0.0
 	 *
@@ -208,6 +231,8 @@ function jetpack_og_tags() {
 			$og_tag = sprintf( '<meta property="%s" content="%s" />', esc_attr( $tag_property ), esc_attr( $tag_content_single ) );
 			/**
 			 * Filter the HTML Output of each Open Graph Meta tag.
+			 *
+			 * @module sharedaddy, publicize
 			 *
 			 * @since 2.0.0
 			 *
@@ -242,8 +267,13 @@ function jetpack_og_get_image( $width = 200, $height = 200, $max_images = 4 ) { 
 		global $post;
 		$image = '';
 
+		// Grab obvious image if $post is an attachment page for an image
+		if ( is_attachment( $post->ID ) && 'image' == substr( $post->post_mime_type, 0, 5 ) ) {
+			$image = wp_get_attachment_url( $post->ID );
+		}
+
 		// Attempt to find something good for this post using our generalized PostImages code
-		if ( class_exists( 'Jetpack_PostImages' ) ) {
+		if ( ! $image && class_exists( 'Jetpack_PostImages' ) ) {
 			$post_images = Jetpack_PostImages::get_images( $post->ID, array( 'width' => $width, 'height' => $height ) );
 			if ( $post_images && ! is_wp_error( $post_images ) ) {
 				$image = array();
@@ -307,16 +337,11 @@ function jetpack_og_get_image( $width = 200, $height = 200, $max_images = 4 ) { 
 		}
 	}
 
-	// Third fall back, Site Icon
-	if ( empty( $image ) && ( function_exists( 'jetpack_has_site_icon' ) && jetpack_has_site_icon() ) ) {
-		$image['src']     = jetpack_site_icon_url( null, '512' );
+	// Third fall back, Core Site Icon. Added in WP 4.3.
+	if ( empty( $image ) && ( function_exists( 'has_site_icon') && has_site_icon() ) ) {
+		$image['src']     = get_site_icon_url( 512 );
 		$image['width']   = '512';
 		$image['height']  = '512';
-	}
-
-	// Fourth fall back, Core Site Icon. Added in WP 4.3.
-	if ( empty( $image ) && ( function_exists( 'has_site_icon') && has_site_icon() ) ) {
-		$image['src'] = get_site_icon_url( null, '512' );
 	}
 
 	// Finally fall back, blank image

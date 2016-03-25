@@ -25,7 +25,10 @@ jQuery(document).ready(function(){
 		banner_html="<div id='ct_stats_banner'>"+cleantalk_blocked_message;
 		banner_html+=cleantalk_statistics_link+'</div>';
 		jQuery('.form-table').first().before(banner_html);
-		jQuery('.form-table').first().before("<br /><a href='#' style='font-size:10pt;' id='cleantalk_access_key_link'>Show the access key</a>");
+		if(!cleantalk_wpmu)
+		{
+			jQuery('.form-table').first().before("<br /><a href='#' style='font-size:10pt;' id='cleantalk_access_key_link'>Show the access key</a>");
+		}
 	}
 	
 	jQuery('#cleantalk_access_key_link').click(function(){
@@ -38,10 +41,6 @@ jQuery(document).ready(function(){
 			jQuery('.form-table').first().show();
 		}
 	});
-	
-	/*jQuery('#cleantalk_registrations_test1').parent().parent().hide();
-	jQuery('#cleantalk_comments_test1').parent().parent().hide();
-	jQuery('#cleantalk_contact_forms_test1').parent().parent().hide();*/
 	
 	ct_adv_settings=jQuery('#cleantalk_registrations_test1').parent().parent().parent().parent();
 	ct_adv_settings.hide();

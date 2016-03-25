@@ -25,7 +25,6 @@ class WPSEO_Option_Titles extends WPSEO_Option {
 		'forcerewritetitle'      => false,
 		'separator'              => 'sc-dash',
 		'noodp'                  => false,
-		'noydir'                 => false,
 		'usemetakeywords'        => false,
 		'title-home-wpseo'       => '%%sitename%% %%page%% %%sep%% %%sitedesc%%', // Text field.
 		'title-author-wpseo'     => '', // Text field.
@@ -133,7 +132,6 @@ class WPSEO_Option_Titles extends WPSEO_Option {
 	public function end_of_init() {
 		do_action( 'wpseo_double_clean_titles' );
 	}
-
 
 	/**
 	 * Get the singleton instance of this class

@@ -16,12 +16,29 @@ class WPSEO_Admin_User_Profile {
 		add_action( 'edit_user_profile', array( $this, 'user_profile' ) );
 		add_action( 'personal_options_update', array( $this, 'process_user_option_update' ) );
 		add_action( 'edit_user_profile_update', array( $this, 'process_user_option_update' ) );
+
+		add_action( 'update_user_meta', array( $this, 'clear_author_sitemap_cache' ), 10, 3 );
+	}
+
+	/**
+	 * Clear author sitemap cache when settings are changed
+	 *
+	 * @since 3.1
+	 *
+	 * @param int    $meta_id The ID of the meta option changed.
+	 * @param int    $object_id The ID of the user.
+	 * @param string $meta_key The key of the meta field changed.
+	 */
+	public function clear_author_sitemap_cache( $meta_id, $object_id, $meta_key ) {
+		if ( '_yoast_wpseo_profile_updated' === $meta_key ) {
+			WPSEO_Utils::clear_sitemap_cache( array( 'author' ) );
+		}
 	}
 
 	/**
 	 * Filter POST variables.
 	 *
-	 * @param string $var_name
+	 * @param string $var_name Name of the variable to filter.
 	 *
 	 * @return mixed
 	 */
@@ -41,6 +58,12 @@ class WPSEO_Admin_User_Profile {
 	public function process_user_option_update( $user_id ) {
 		update_user_meta( $user_id, '_yoast_wpseo_profile_updated', time() );
 
+		$nonce_value = $this->filter_input_post( 'wpseo_nonce' );
+
+		if ( empty( $nonce_value ) ) { // Submit from alternate forms.
+			return;
+		}
+
 		check_admin_referer( 'wpseo_user_profile_update', 'wpseo_nonce' );
 
 		update_user_meta( $user_id, 'wpseo_title', $this->filter_input_post( 'wpseo_author_title' ) );
@@ -52,14 +75,13 @@ class WPSEO_Admin_User_Profile {
 	/**
 	 * Add the inputs needed for SEO values to the User Profile page
 	 *
-	 * @param    object $user
+	 * @param WP_User $user User instance to output for.
 	 */
 	public function user_profile( $user ) {
-		$options = WPSEO_Options::get_all();
+		$options = WPSEO_Options::get_option( 'wpseo_titles' );
 
 		wp_nonce_field( 'wpseo_user_profile_update', 'wpseo_nonce' );
 
 		require_once( 'views/user-profile.php' );
 	}
-
 }

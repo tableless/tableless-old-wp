@@ -103,7 +103,7 @@ class WPSEO_Sitemaps {
 		// Default stylesheet.
 		$this->stylesheet = '<?xml-stylesheet type="text/xsl" href="' . preg_replace( '/(^http[s]?:)/', '', esc_url( home_url( 'main-sitemap.xsl' ) ) ) . '"?>';
 
-		$this->options     = WPSEO_Options::get_all();
+		$this->options     = WPSEO_Options::get_options( array( 'wpseo_xml', 'wpseo_titles', 'wpseo_permalinks' ) );
 		$this->max_entries = $this->options['entries-per-page'];
 		$this->home_url    = home_url();
 		$this->charset     = get_bloginfo( 'charset' );
@@ -132,9 +132,11 @@ class WPSEO_Sitemaps {
 	/**
 	 * This query invalidates the main query on purpose so it returns nice and quickly
 	 *
-	 * @param string $where
+	 * @param string $where SQL strong for WHERE part.
 	 *
 	 * @deprecated The relevant sitemap code now hijacks main query before this filter can act on it.
+	 *
+	 * @todo Should be safe to drop now. R.
 	 *
 	 * @return string
 	 */
@@ -235,7 +237,7 @@ class WPSEO_Sitemaps {
 	/**
 	 * Hijack requests for potential sitemaps and XSL files.
 	 *
-	 * @param \WP_Query $query
+	 * @param \WP_Query $query Main query instance.
 	 */
 	function redirect( $query ) {
 
@@ -265,13 +267,15 @@ class WPSEO_Sitemaps {
 
 		if ( $caching ) {
 			do_action( 'wpseo_sitemap_stylesheet_cache_' . $type, $this );
-			$this->sitemap = get_transient( 'wpseo_sitemap_cache_' . $type . '_' . $this->n );
+
+			$sitemap_cache_key = WPSEO_Utils::get_sitemap_cache_key( $type, $this->n );
+			$this->sitemap = get_transient( $sitemap_cache_key );
 		}
 
 		if ( ! $this->sitemap || '' == $this->sitemap ) {
 			$this->build_sitemap( $type );
 
-			// 404 for invalid or emtpy sitemaps.
+			// 404 for invalid or empty sitemaps.
 			if ( $this->bad_sitemap ) {
 				$GLOBALS['wp_query']->set_404();
 				status_header( 404 );
@@ -280,7 +284,15 @@ class WPSEO_Sitemaps {
 			}
 
 			if ( $caching ) {
-				set_transient( 'wpseo_sitemap_cache_' . $type . '_' . $this->n, $this->sitemap, DAY_IN_SECONDS );
+				/**
+				 * We need to set a timeout, otherwise the transient is loaded every request!
+				 *
+				 * See: https://codex.wordpress.org/Function_Reference/set_transient
+				 * NB: transients that never expire are autoloaded, whereas transients with an expiration time
+				 * are not autoloaded. Consider this when adding transients that may not be needed on every
+				 * page, and thus do not need to be autoloaded, impacting page performance.
+				 */
+				set_transient( $sitemap_cache_key, $this->sitemap, DAY_IN_SECONDS );
 			}
 		}
 		else {
@@ -353,7 +365,7 @@ class WPSEO_Sitemaps {
 				$query = $wpdb->prepare( "SELECT COUNT(ID) FROM $wpdb->posts {$join_filter} WHERE post_status IN ('publish','inherit') AND post_password = '' AND post_date != '0000-00-00 00:00:00' AND post_type = %s " . $where_filter, $post_type );
 
 				$count = $wpdb->get_var( $query );
-				if ( $count == 0  ) {
+				if ( $count == 0 ) {
 					continue;
 				}
 
@@ -693,7 +705,7 @@ class WPSEO_Sitemaps {
 
 			// Optimized query per this thread: http://wordpress.org/support/topic/plugin-wordpress-seo-by-yoast-performance-suggestion.
 			// Also see http://explainextended.com/2009/10/23/mysql-order-by-limit-performance-late-row-lookups/.
-			$query = $wpdb->prepare( "SELECT l.ID, post_title, post_content, post_name, post_parent, post_modified_gmt, post_date, post_date_gmt FROM ( SELECT ID FROM $wpdb->posts {$join_filter} WHERE post_status = '%s' AND post_password = '' AND post_type = '%s' AND post_date != '0000-00-00 00:00:00' {$where_filter} ORDER BY post_modified ASC LIMIT %d OFFSET %d ) o JOIN $wpdb->posts l ON l.ID = o.ID ORDER BY l.ID",
+			$query = $wpdb->prepare( "SELECT l.ID, post_title, post_content, post_name, post_parent, post_author, post_modified_gmt, post_date, post_date_gmt FROM ( SELECT ID FROM $wpdb->posts {$join_filter} WHERE post_status = '%s' AND post_password = '' AND post_type = '%s' AND post_date != '0000-00-00 00:00:00' {$where_filter} ORDER BY post_modified ASC LIMIT %d OFFSET %d ) o JOIN $wpdb->posts l ON l.ID = o.ID ORDER BY l.ID",
 				$status, $post_type, $steps, $offset
 			);
 
@@ -850,10 +862,10 @@ class WPSEO_Sitemaps {
 	/**
 	 * Parsing the matched images
 	 *
-	 * @param array  $matches
-	 * @param object $p
-	 * @param string $scheme
-	 * @param string $host
+	 * @param array  $matches Set of matches.
+	 * @param object $p       Post object.
+	 * @param string $scheme  URL scheme.
+	 * @param string $host    URL host.
 	 *
 	 * @return array
 	 */
@@ -1131,7 +1143,7 @@ class WPSEO_Sitemaps {
 	/**
 	 * Spits out the XSL for the XML sitemap.
 	 *
-	 * @param string $type
+	 * @param string $type Type to output.
 	 *
 	 * @since 1.4.13
 	 */
@@ -1336,7 +1348,7 @@ class WPSEO_Sitemaps {
 	 *
 	 * Also filtering users that should be exclude by excluded role.
 	 *
-	 * @param array $users
+	 * @param array $users Set of users to filter.
 	 *
 	 * @return array all the user that aren't excluded from the sitemap
 	 */
@@ -1348,22 +1360,36 @@ class WPSEO_Sitemaps {
 			foreach ( $users as $user_key => $user ) {
 				$exclude_user = false;
 
-				$is_exclude_on = get_the_author_meta( 'wpseo_excludeauthorsitemap', $user->ID );
-				if ( $is_exclude_on === 'on' ) {
-					$exclude_user = true;
+				/**
+				 * Cheapest condition first; we have all information already.
+				 */
+				if ( ! $exclude_user ) {
+					$user_role    = $user->roles[0];
+					$target_key   = "user_role-{$user_role}-not_in_sitemap";
+					$exclude_user = isset( $options[ $target_key ] ) && true === $options[ $target_key ];
+					unset( $user_role, $target_key );
 				}
-				elseif ( $options['disable_author_noposts'] === true ) {
+
+				/**
+				 * If the author has been excluded by preference on profile.
+				 */
+				if ( ! $exclude_user ) {
+					$is_exclude_on = get_the_author_meta( 'wpseo_excludeauthorsitemap', $user->ID );
+					$exclude_user = ( $is_exclude_on === 'on' );
+				}
+
+				/**
+				 * If the author has been excluded by general settings because there are no posts.
+				 */
+				if ( ! $exclude_user && $options['disable_author_noposts'] === true ) {
 					$count_posts  = count_user_posts( $user->ID );
 					$exclude_user = ( $count_posts == 0 );
 					unset( $count_posts );
 				}
-				else {
-					$user_role    = $user->roles[0];
-					$target_key   = "user_role-{$user_role}-not_in_sitemap";
-					$exclude_user = $options[ $target_key ];
-					unset( $user_rol, $target_key );
-				}
 
+				/**
+				 * Remove the user from the list if excluded.
+				 */
 				if ( $exclude_user === true ) {
 					unset( $users[ $user_key ] );
 				}
@@ -1376,7 +1402,7 @@ class WPSEO_Sitemaps {
 	/**
 	 * Get attached image URL - Adapted from core for speed
 	 *
-	 * @param int $post_id
+	 * @param int $post_id ID of the post.
 	 *
 	 * @return string
 	 */
@@ -1415,7 +1441,7 @@ class WPSEO_Sitemaps {
 	/**
 	 * Getting the attachments from database
 	 *
-	 * @param string $post_ids
+	 * @param string $post_ids Set of post IDs.
 	 *
 	 * @return mixed
 	 */
@@ -1431,7 +1457,7 @@ class WPSEO_Sitemaps {
 	/**
 	 * Getting thumbnails
 	 *
-	 * @param array $post_ids
+	 * @param array $post_ids Set of post IDs.
 	 *
 	 * @return mixed
 	 */
@@ -1451,8 +1477,8 @@ class WPSEO_Sitemaps {
 	 * Function will pluck ID from attachments and meta_value from thumbnails and marge them into one array. This
 	 * array will be used to do the caching
 	 *
-	 * @param array $attachments
-	 * @param array $thumbnails
+	 * @param array $attachments Set of attachments data.
+	 * @param array $thumbnails  Set of thumbnail IDs.
 	 */
 	private function do_attachment_ids_caching( $attachments, $thumbnails ) {
 		$attachment_ids = wp_list_pluck( $attachments, 'ID' );
@@ -1467,8 +1493,8 @@ class WPSEO_Sitemaps {
 	/**
 	 * Parses the given attachments
 	 *
-	 * @param array     $attachments
-	 * @param stdobject $post
+	 * @param array   $attachments Set of attachments.
+	 * @param WP_Post $post        Post object.
 	 *
 	 * @return array
 	 */
@@ -1505,7 +1531,7 @@ class WPSEO_Sitemaps {
 	/**
 	 * Calculate the priority of the post
 	 *
-	 * @param stdobject $post
+	 * @param WP_Post $post Post object.
 	 *
 	 * @return float|mixed
 	 */
@@ -1535,5 +1561,4 @@ class WPSEO_Sitemaps {
 
 		return $return;
 	}
-
 } /* End of class */

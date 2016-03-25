@@ -212,6 +212,7 @@ jQuery("#ct_check_users_button").click(function(){
 	jQuery('#ct_check_users_table').hide();
 	jQuery('#ct_delete_all_users').hide();
 	jQuery('#ct_delete_checked_users').hide();
+	jQuery('#ct_preloader').show();
 	working=true;
 	ct_show_users_info();
 });

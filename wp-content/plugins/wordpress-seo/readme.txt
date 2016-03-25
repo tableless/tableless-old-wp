@@ -3,10 +3,10 @@ Contributors: joostdevalk
 Donate link: https://yoast.com/
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
-Tags: seo, SEO, Yoast SEO, google, meta, meta description, search engine optimization, xml sitemap, xml sitemaps, google sitemap, sitemap, sitemaps, robots meta, rss, rss footer, yahoo, bing, news sitemaps, XML News Sitemaps, WordPress SEO, WordPress SEO by Yoast, yoast, multisite, canonical, nofollow, noindex, keywords, meta keywords, description, webmaster tools, google webmaster tools, seo pack
-Requires at least: 4.0
-Tested up to: 4.3
-Stable tag: 2.3.5
+Tags: SEO, Google, xml sitemap, google search console, google webmaster tools, canonical, meta description, meta title, noindex, snippet preview, redirects, focus keyword, seo copywriting, content marketing
+Requires at least: 4.2
+Tested up to: 4.5
+Stable tag: 3.1.2
 
 Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using Yoast SEO plugin.
 
@@ -15,14 +15,10 @@ Improve your WordPress SEO: Write better content and have a fully optimized Word
 WordPress out of the box is already technically quite a good platform for SEO, this was true when Joost wrote his original [WordPress SEO](https://yoast.com/articles/wordpress-seo/) article in 2008 (and updated every few months) and it's still true today, but that doesn't mean you can't improve it further! This plugin is written from the ground up by Joost de Valk and his team at [Yoast](https://yoast.com/) to improve your site's SEO on *all* needed aspects. While this [Yoast SEO plugin](https://yoast.com/wordpress/plugins/seo/) goes the extra mile to take care of all the technical optimization, more on that below, it first and foremost helps you write better content.  Yoast SEO forces you to choose a focus keyword when you're writing your articles, and then makes sure you use that focus keyword everywhere.
 
 > <strong>Premium Support</strong><br>
-> The Yoast team does not provide support for the Yoast SEO plugin on the WordPress.org forums. One on one email support is available to people who bought the [Premium Yoast SEO plugin](https://yoast.com/wordpress/plugins/seo-premium/) only.
-> Note that the Premium SEO plugin has several extra features too so it might be well worth your investment!
+> The Yoast team does not always provide active support for the Yoast SEO plugin on the WordPress.org forums. One on one email support is available to people who bought the [Premium Yoast SEO plugin](https://yoast.com/wordpress/plugins/seo-premium/) only.
+> Note that the Premium SEO plugin has several extra features too so it might be well worth your investment, including the option to have multiple focus keywords and a redirect manager!
 >
-> You should also check out the [Local SEO](https://yoast.com/wordpress/plugins/local-seo/), [News SEO](https://yoast.com/wordpress/plugins/news-seo/) and [Video SEO](https://yoast.com/wordpress/plugins/video-seo/) extensions to Yoast SEO, these of course come with support too.
-
-Take a look at the explanation of the General tab in Yoast SEO, this is one of the 13 tutorial videos included in the [Premium version of Yoast SEO](https://yoast.com/wordpress/plugins/seo-premium/):
-
-https://www.youtube.com/watch?v=co5TjUwqWIQ&w=532&rel=0
+> You should also check out the [Yoast Local SEO](https://yoast.com/wordpress/plugins/local-seo/), [Yoast News SEO](https://yoast.com/wordpress/plugins/news-seo/) and [Yoast Video SEO](https://yoast.com/wordpress/plugins/video-seo/) extensions to Yoast SEO, these of course come with support too.
 
 > <strong>Bug Reports</strong><br>
 > Bug reports for Yoast SEO are [welcomed on GitHub](https://github.com/Yoast/wordpress-seo). Please note GitHub is _not_ a support forum and issues that aren't properly qualified as bugs will be closed.
@@ -119,6 +115,195 @@ You'll find the [FAQ on Yoast.com](https://yoast.com/wordpress/plugins/seo/faq/)
 7. The advanced section of the Yoast SEO meta box.
 
 == Changelog ==
+
+= 3.1.2 =
+
+Release Date: March 23rd, 2016
+
+* Enhancements:
+	* Makes sure the permalink on the frontend als makes use of the primary category if one has been selected.
+
+* Bugfixes:
+	* Fixes a compatibility issue with the upcoming WordPress 4.5, where the Yoast SEO metabox and columns were no longer shown on taxonomy and term edit pages.
+	* Fixes a bug where the default category that was shown in the breadcrumbs was no longer the most deeply nested one.
+	* Fixes a bug where the file editor could be accessed by non admin users. Thanks [Jörn Lund](https://github.com/mcguffin) for the patch!
+	* Fixes a JS error on the post edit page that was caused when the WP slugeditor wasn't present.
+	* Fixes an issue where our indexability check would fail on installs with WordFence that have the "block fake Google crawlers" setting enabled.
+
+= 3.1.1 =
+
+Release Date: March 8th, 2016
+
+* Bugfixes:
+	* Fixes a bug where part of the Yoast SEO metabox was no longer translated.
+	* Fixes a bug where the post slug would be overwritten with the post ID in case a post was autosaved and did not have a title yet.
+
+= 3.1 =
+
+Release Date: March 1st, 2016
+
+* Features:
+	* Added an interface to select a primary category for a post, which are used in the post's breadcrumbs and have a few other nice SEO advantages.
+	* Added SEO score column to the taxonomy overviews.
+
+* Enhancements:
+	* Replaces all checkboxes and radio buttons on settings pages with styled toggles.
+	* Adds a new interface for the snippet preview which addresses most of the known UX issues:
+		* To clarify how the snippet preview can be edited, we've added an 'edit' button.
+		* Many users were looking for the "SEO title" and "Meta description" input fields. Those have been reintroduced and can be edited by clicking the edit button.
+		* We've gotten rid of the horribly inaccessible contenteditable elements and moved back to labeled input elements.
+		* The progress indicator for both SEO title and meta description has returned in the form of progress bars underneath the input elements.
+		* We've made a clear distinction between the snippet preview and the snippet editor and have tried to clearly signify which input fields affect which parts of the snippet preview.
+		* We've made sure both preview and snippet editor handle "%%" variables well. In the editor we show the variables and in the preview we render them.
+		* We've made sure templates that are set under "Titles & Metas" are well reflected in the snippet preview and editor. When they are set, they are shown as placeholder text in the input fields.
+		* The progress bars also take into account templates and "%%" variables, giving clearer indication if anything should still be added to the SEO title or meta description.
+		* We've reintroduced behavior where a (generated) example meta description is made grey in the snippet preview to indicate that it's not been set.
+	* Adds og:image:width and og:image:height metatags to ensure an image is properly rendered for a user the first time a page is shared on Facebook.
+	* Includes a few minor performance improvements for the content analysis.
+	* Slightly optimizes the way options are handled. We now only fetch the options we need.
+	* Makes sure SEO scores for taxonomies are also taken into account when recalculating the SEO scores.
+	* Updated the list of locales supported by Facebook.
+	* Makes sure the notification to see the latest changes only pops up on major and minor version and is dismissible even if JavaScript is broken.
+	* Corrected priority of gallery images in Twitter cards.
+	* Added filters to allow filtering term and post content before it is sent to the recalculation tool for analysis.
+	* Improved the way sitemaps are invalidated.
+	* Duplicate content prevention / Crawl budget improvement: We now hide XML sitemaps for internal WP taxonomies like link category, nav menu and post format.
+	* Removed all functionality related to Yahoo! directory, since it no longer exists...
+	* Makes sure the post type archive link for the "Post" post type is not shown in the breadcrumbs.
+	* Temporarily disabled all non-vital notifications until we come up with a more user-friendly way of dealing with them.
+
+
+* Bugfixes:
+	* Fixes a bug where the date was no longer shown in the snippet preview even when the option to show it was selected under "Titles & Metas".
+	* Fixes a reported "property of non-object" notice that occured when no valid screen object was available. Thanks [Chris Jean](https://github.com/chrisbliss18) for the fix.
+	* Fixes a bug where Google Search Console would display last_crawled and last_received dates in the wrong format.
+	* Fixes a bug where the `wpseo_canonical` filter could still be overridden by an admin setting. This is no longer the case.
+	* Fixes shorthand date formats for Open Graph tags.
+	* Fixes a bug where calls to translate.yoast.com would fail because of issues with HTTPS.
+	* Fixes a bug where the content analysis would not work properly anymore when switching multiple times between "text" and "visual" in tinyMCE.
+	* Fixes a bug where the Yoast SEO metabox was no longer loaded on the Media edit page.
+	* Fixes an "invalid argument warning" in the options. Thanks [Melvin Tercan](https://github.com/melvinmt) for fixing.
+	* Fixes a bug where we were causing JS errors by hooking to erroneously on AjaxComplete. This solves multiple compatibility issues including the ones with "Advanced Custom Fields".
+	* Fixes a bug where saving a nav menu item would cause unnecessary pings to search engines, also resulting in timeouts and long load times for saving menu's. Thanks [Ben Constable](https://github.com/BenConstable) for providing a fix.
+	* Fixes memory issues caused by doing post counts with WP_Query. Thanks [Emre Erkan](https://github.com/karalamalar) for fixing.
+	* Fixes a bug where sitemap caches were not properly cleared for sites that use external object caching.
+	* Fixes a bug where stopwords were no longer stripped from the slug that was generated by WordPress.
+
+= 3.0.7 =
+
+Release Date: December 23rd, 2015
+
+* Enhancements:
+	* Removes email notifications for OnPage.org indexability check. It caused more issues than it solved.
+	* Adds several UX improvements to the snippet editor, making it more clear it is editable.
+
+= 3.0.6 =
+
+Release Date: December 1st, 2015
+
+* Bugfixes:
+	* Fixes the recalculate tool that was broken with the Localized Flesch Reading ease change...
+
+= 3.0.5 =
+
+Release Date: December 1st, 2015
+
+* Enhancements:
+	* Made it possible to opt out from the OnPage.org indexability check.
+	* Contains a few small performance enhancements in the Content Analysis.
+	* Only includes Flesch Reading ease test when site language is set to English, since it doesn't really add value in other languages yet.
+
+* Bugfixes:
+	* Fixes a lot of issues with dismissible notices. Thanks [Craig Pearson](https://github.com/craigpearson) for writing the patch!
+	* Fixes several issues with keyword recognition for keywords which contain punctuation.
+	* Fixes an issue where keywords containing diacritics were not recognized in alt tags.
+
+= 3.0.4 =
+
+Release Date: November 25th, 2015
+
+* Enhancement: Made the "Analyze entire site" button have better color contrast and resemble JetPack. Thanks [WPExplorer](https://github.com/wpexplorer) for the contribution.
+
+* Bugfixes:
+	* Fixes JS errors in combination with Give plugin, CMB2 Framework, ACF layout builder and any other plugin that replaces the editor with something else. Thanks a lot [Daniel Seripap](https://github.com/seripap) for fixing.
+	* Fixes JavaScript error on post types without 'editor' capability. Thanks [Aaron Hipple](https://github.com/aaronhipple) for the fix and [Zvonko Biškup](https://github.com/codeforest) for testing.
+	* Fixes a lot of text analysis issues for languages with non-latin scripts, including the "0% keyword density" issues.
+	* Fixes an issue where html tags were not stripped properly from taxonomy descriptions for custom taxonomies.
+	* Fixes possible "URI too long" errors when parsing shortcodes in the content before it is analyzed.
+
+
+= 3.0.3 =
+
+Release Date: November 19th, 2015
+
+* Bugfixes:
+	* Fixes a bug where the snippet preview was broken.
+
+= 3.0.2 =
+
+Release Date: November 19th, 2015
+
+* Bugfixes:
+	* Fixes a bug where disabling the visual editor caused our content analysis to break.
+	* Fixes a bug where the content analysis would break on installs that replace tinyMCE with ckEditor. Currently only supports the html editor.
+	* Fixes a bug where slug changes were not properly synchronized in the snippet preview.
+	* Fixes a bug where long slugs could be broken by wrongful synchronization with the snippet preview.
+	* Fixes a bug where digits were not analyzed well in the content, causing focus keywords or keyphrases with digits to no longer be matched.
+	* Fixes a bug where the url in the snippet preview was not in line with permalink settings. Fixed for permalinks containing the post name.
+	* Fixes a bug where focus keyphrases of more than two words would not be recognized properly in the content.
+	* Fixes a bug where the translation files were corrupted causing the translations to no longer work.
+
+* Enhancements:
+	* Fixes caching problems. We've versioned file names for assets that have changed to circumvent caching strategies that consider preventing regular cache busting a good idea...
+
+= 3.0.1 =
+
+Release Date: November 18th, 2015
+
+* Bugfixes:
+	* Fixes a bug where users where getting error notifications about how their site was not indexable when in fact no check had been performed yet.
+	* Fixes a few broken links to help docs about the OnPage.org integration.
+	* Fixes an edgecase where the indexability check would go wrong for sites that filter the home url.
+	* Fixes a bug where the admin email that was sent to report the current indexability status was not rendered as HTML.
+
+= 3.0 =
+
+Release Date: November 18th, 2015
+
+* Features:
+	* Adds realtime content analysis to the Yoast SEO metabox for all post types and taxonomies.
+	* Adds a tool to recalculate all SEO scores using the new client side analysis.
+	* Adds a content analysis plugin for parsing shortcodes before the content is analyzed. This means the snippet preview will now take the rendered content of shortcodes into account.
+	* Adds a content analysis plugin for parsing replace vars before the content is analyzed, allowing templates set in the Yoast SEO admin to work everywhere.
+	* Adds a weekly check if the homepage is indexable (in collaboration with [OnPage.org](https://en.onpage.org/lp/yoast/)).
+	* Adds possibility to import titles, metas and settings from the WPSEO.de plugin.
+	* Adds possibility to set Facebook (Opengraph), Twitter and Google+ metadata for taxonomies.
+
+* Enhancements:
+	* We've completely revised the UX of the Yoast SEO metabox. We've introduced multiple sections which in turn can contain one or more tabs.
+	* Makes the Yoast SEO metabox on the taxonomy edit page the same as on the post edit page.
+	* Makes sure the capability for the General Settings menu is also `wpseo_manage_options_capability`.
+	* Adds a fix to the tour allowing for multiple plugins to use WP pointers at the same time.
+	* Makes sure all Yoast SEO settings pages are also accessible through the WP admin bar.
+
+* Bugfixes:
+	* Fixes a bug where the `og:image` would not be set, even when a default image was available.
+	* Fixes a bug where the links in the sitemap would 'randomly' change from https to http or the other way around (in very rare circumstances).
+	* Fixes a bug where it was not possible to upload different images for different social media in the post metabox.
+	* Fixes a bug where users would see the after-update notice, but were not allowed to visit the about page.
+	* Fixes a bug where we were not properly splitting taxonomy metadata when a shared taxonomy term got split through a Cron job, props [Daniel Homer](https://github.com/danielhomer).
+
+* Other notable changes:
+	* Adds a JavaScript API for registering data modifications that is quite similar to `add_filter`/`apply_filters` in WordPress. Allows for filtering data before it is analyzed. See [YoastSEO.js](https://github.com/Yoast/YoastSEO.js).
+    * Adds a JavaScript API for adding content analysis tests, see [YoastSEO.js](https://github.com/Yoast/YoastSEO.js).
+
+* Because we moved the entire content analysis to JavaScript, we had to remove the following PHP filters:
+	* `wpseo_pre_analysis_post_content`. Alternative: [Modifications API](https://github.com/Yoast/YoastSEO.js).
+	* `wpseo_metadesc_length`. Functionality removed.
+	* `wpseo_metadesc_length_reason`. Functionality removed.
+	* `wpseo_body_length_score`. Alternative: [Content Checks API](https://github.com/Yoast/YoastSEO.js).
+	* `wpseo_linkdex_results`. Alternative: [Content Checks API](https://github.com/Yoast/YoastSEO.js).
+	* `wpseo_snippet`. Functionality removed.
 
 = 2.3.5 =
 

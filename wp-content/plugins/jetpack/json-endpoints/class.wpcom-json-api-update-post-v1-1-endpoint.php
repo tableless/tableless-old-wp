@@ -125,8 +125,11 @@ class WPCOM_JSON_API_Update_Post_v1_1_Endpoint extends WPCOM_JSON_API_Post_v1_1_
 			}
 		}
 
-		// Fix for https://iorequests.wordpress.com/2014/08/13/scheduled-posts-made-in-the/
-		// See: https://a8c.slack.com/archives/io/p1408047082000273
+		if ( function_exists( 'wpcom_switch_to_locale' ) ) {
+			// fixes calypso-pre-oss #12476: respect blog locale when creating the post slug
+			wpcom_switch_to_locale( get_blog_lang_code( $blog_id ) );
+		}
+
 		// If date was set, $this->input will set date_gmt, date still needs to be adjusted for the blog's offset
 		if ( isset( $input['date_gmt'] ) ) {
 			$gmt_offset = get_option( 'gmt_offset' );
@@ -171,6 +174,7 @@ class WPCOM_JSON_API_Update_Post_v1_1_Endpoint extends WPCOM_JSON_API_Post_v1_1_
 				 * Consequence: To add a category/tag whose name is '123', the client must
 				 * first look up its ID.
 				 */
+				$term = (string) $term; // ctype_digit compat
 				if ( ctype_digit( $term ) ) {
 					$term = (int) $term;
 				}
@@ -184,7 +188,11 @@ class WPCOM_JSON_API_Update_Post_v1_1_Endpoint extends WPCOM_JSON_API_Post_v1_1_
 					}
 					// only add a new tag/cat if the user has access to
 					$tax = get_taxonomy( $taxonomy );
-					if ( !current_user_can( $tax->cap->edit_terms ) ) {
+
+					// see https://core.trac.wordpress.org/ticket/26409
+					if ( 'category' === $taxonomy && ! current_user_can( $tax->cap->edit_terms ) ) {
+						continue;
+					} else if ( ! current_user_can( $tax->cap->assign_terms ) ) {
 						continue;
 					}
 
@@ -415,6 +423,7 @@ class WPCOM_JSON_API_Update_Post_v1_1_Endpoint extends WPCOM_JSON_API_Post_v1_1_
 					&& 'publish' == $new_status
 				)
 			) {
+				/** This action is documented in modules/widgets/social-media-icons.php */
 				do_action( 'jetpack_bump_stats_extras', 'api-insights-posts', $this->api->token_details['client_id'] );
 				update_post_meta( $post_id, '_rest_api_published', 1 );
 				update_post_meta( $post_id, '_rest_api_client_id', $this->api->token_details['client_id'] );
@@ -700,6 +709,7 @@ class WPCOM_JSON_API_Update_Post_v1_1_Endpoint extends WPCOM_JSON_API_Post_v1_1_
 		if ( empty( $author ) || ! post_type_supports( $post_type, 'author' ) )
 			return get_current_user_id();
 
+		$author = (string) $author;
 		if ( ctype_digit( $author ) ) {
 			$_user = get_user_by( 'id', $author );
 			if ( ! $_user || is_wp_error( $_user ) )

@@ -7,6 +7,7 @@
  * Requires Connection: Yes
  * Auto Activate: No
  * Module Tags: Social
+ * Additional Search Queries: like, likes, wordpress.com
  */
 
 Jetpack::dns_prefetch( array(
@@ -18,7 +19,7 @@ Jetpack::dns_prefetch( array(
 ) );
 
 class Jetpack_Likes {
-	public $version = '20141028';
+	public $version = '20151215';
 
 	public static function init() {
 		static $instance = NULL;
@@ -173,10 +174,31 @@ class Jetpack_Likes {
 	 * Adds a metabox to the post screen if the sharing one doesn't currently exist.
 	 */
 	function add_meta_box() {
-		if ( apply_filters( 'post_flair_disable', false ) )
+		if (
+			/**
+			 * Allow disabling of the Likes metabox on the post editor screen.
+			 *
+			 * @module likes
+			 *
+			 * @since 2.2.0
+			 *
+			 * @param bool false Should the Likes metabox be disabled? Default to false.
+			 */
+			apply_filters( 'post_flair_disable', false )
+		) {
 			return;
+		}
 
 		$post_types = get_post_types( array( 'public' => true ) );
+		/**
+		 * Filters the Likes metabox title.
+		 *
+		 * @module likes
+		 *
+		 * @since 2.2.0
+		 *
+		 * @param string Likes metabox title. Default to "Likes".
+		 */
 		$title = apply_filters( 'likes_meta_box_title', __( 'Likes', 'jetpack' ) );
 		foreach( $post_types as $post_type ) {
 			add_meta_box( 'likes_meta', $title, array( $this, 'meta_box_content' ), $post_type, 'advanced', 'high' );
@@ -234,6 +256,8 @@ class Jetpack_Likes {
 		/**
 		 * Fires before the Likes meta box content in the post editor.
 		 *
+		 * @module likes
+		 *
 		 * @since 2.2.0
 		 *
 		 * @param WP_Post|array|null $post Post data.
@@ -250,6 +274,8 @@ class Jetpack_Likes {
 		</p> <?php
 		/**
 		 * Fires after the Likes meta box content in the post editor.
+		 *
+		 * @module likes
 		 *
 		 * @since 2.2.0
 		 *
@@ -562,7 +588,7 @@ class Jetpack_Likes {
 		$this->updated_message(); ?>
 		<div class="wrap">
 			<div class="icon32" id="icon-options-general"><br /></div>
-			<h2><?php esc_html_e( 'Sharing Settings', 'jetpack' ); ?></h2>
+			<h1><?php esc_html_e( 'Sharing Settings', 'jetpack' ); ?></h1>
 			<?php
 				/** This action is documented in modules/sharedaddy/sharing.php */
 				do_action( 'pre_admin_screen_sharing' );
@@ -583,7 +609,7 @@ class Jetpack_Likes {
 	 * Returns just the "sharing buttons" w/ like option block, so it can be inserted into different sharing page contexts
 	 */
 	function sharing_block() { ?>
-		<h3><?php esc_html_e( 'Sharing Buttons', 'jetpack' ); ?></h3>
+		<h2><?php esc_html_e( 'Sharing Buttons', 'jetpack' ); ?></h2>
 		<form method="post" action="">
 		<table class="form-table">
 		<tbody>
@@ -913,7 +939,7 @@ class Jetpack_Likes {
 
 		$_locale = get_locale();
 
-		// We have to account for WP.org vs WP.com locale divergence
+		// We have to account for w.org vs WP.com locale divergence
 		if ( $this->in_jetpack ) {
 			if ( ! defined( 'JETPACK__GLOTPRESS_LOCALES_PATH' ) || ! file_exists( JETPACK__GLOTPRESS_LOCALES_PATH ) ) {
 				return false;
@@ -976,6 +1002,8 @@ class Jetpack_Likes {
 		/**
 		 * Filters where the Likes are displayed.
 		 *
+		 * @module likes
+		 *
 		 * @since 2.2.0
 		 *
 		 * @param array $setting Array of Likes display settings.
@@ -994,9 +1022,16 @@ class Jetpack_Likes {
 	function is_likes_visible() {
 
 		global $post, $wp_current_filter;              // Used to apply 'sharing_show' filter
+		// @todo: Remove this block when 4.5 is the minimum
+		global $wp_version;
+		$comment_popup = false;
+		if ( version_compare( $wp_version, '4.5-alpha', '<=' ) ) {
+			$comment_popup = is_comments_popup();
+		}
+		// End 4.5 conditional block.
 
 		// Never show on feeds or previews
-		if ( is_feed() || is_preview() || is_comments_popup() ) {
+		if ( is_feed() || is_preview() || $comment_popup ) { // @todo: Remove $comment_popup when 4.5 is minimum.
 			$enabled = false;
 
 		// Not a feed or preview, so what is it?
@@ -1063,6 +1098,8 @@ class Jetpack_Likes {
 		 * Filters whether the Likes should be visible or not.
 		 * Allows overwriting the options set in Settings > Sharing.
 		 *
+		 * @module likes
+		 *
 		 * @since 2.2.0
 		 *
 		 * @param bool $enabled Should the Likes be visible?
@@ -1078,6 +1115,8 @@ class Jetpack_Likes {
 		/**
 		 * Filters whether Likes are enabled by default on all posts.
 		 * true if enabled sitewide, false if not.
+		 *
+		 * @module likes
 		 *
 		 * @since 2.2.0
 		 *
@@ -1095,6 +1134,8 @@ class Jetpack_Likes {
 		 * Filters whether Reblogs are enabled by default on all posts.
 		 * true if enabled sitewide, false if not.
 		 *
+		 * @module likes
+		 *
 		 * @since 3.0.0
 		 *
 		 * @param bool $option Are Reblogs enabled sitewide.
@@ -1111,6 +1152,8 @@ class Jetpack_Likes {
 		/**
 		 * Filters whether Comment Likes are enabled.
 		 * true if enabled, false if not.
+		 *
+		 * @module likes
 		 *
 		 * @since 2.2.0
 		 *
@@ -1136,6 +1179,8 @@ class Jetpack_Likes {
 
 		/**
 		 * Filters whether the Like button is enabled in the admin bar.
+		 *
+		 * @module likes
 		 *
 		 * @since 2.2.0
 		 *
@@ -1177,6 +1222,8 @@ class Jetpack_Likes {
 		/**
 		 * Filters whether Likes should be enabled on archive/front/search pages.
 		 *
+		 * @module likes
+		 *
 		 * @since 2.2.0
 		 *
 		 * @param bool $enabled Are Post Likes enabled on archive/front/search pages?
@@ -1195,7 +1242,10 @@ class Jetpack_Likes {
 		return (bool) apply_filters(
 			/**
 			 * Filters whether Likes should be enabled on single posts.
+			 *
 			 * The dynamic part of the filter, {$post_type}, allows you to specific the post type where Likes should be enabled.
+			 *
+			 * @module likes
 			 *
 			 * @since 2.2.0
 			 *
@@ -1216,6 +1266,8 @@ class Jetpack_Likes {
 		/**
 		 * Filters whether Likes should be enabled on single pages.
 		 *
+		 * @module likes
+		 *
 		 * @since 2.2.0
 		 *
 		 * @param bool $enabled Are Post Likes enabled on single pages?
@@ -1232,6 +1284,8 @@ class Jetpack_Likes {
 		$options = $this->get_options();
 		/**
 		 * Filters whether Likes should be enabled on attachment pages.
+		 *
+		 * @module likes
 		 *
 		 * @since 2.2.0
 		 *

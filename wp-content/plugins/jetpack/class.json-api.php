@@ -141,6 +141,13 @@ class WPCOM_JSON_API {
 
 		$this->exit = (bool) $exit;
 
+		// This was causing problems with Jetpack, but is necessary for wpcom
+		// @see https://github.com/Automattic/jetpack/pull/2603
+		// @see r124548-wpcom
+		if ( defined( 'IS_WPCOM' ) && IS_WPCOM ) {
+			add_filter( 'home_url', array( $this, 'ensure_http_scheme_of_home_url' ), 10, 3 );
+		}
+
 		add_filter( 'user_can_richedit', '__return_true' );
 
 		add_filter( 'comment_edit_pre', array( $this, 'comment_edit_pre' ) );
@@ -150,6 +157,8 @@ class WPCOM_JSON_API {
 			/**
 			 * Fires before the page output.
 			 * Can be used to specify custom header options.
+			 *
+			 * @module json-api
 			 *
 			 * @since 3.1.0
 			 */
@@ -329,7 +338,9 @@ class WPCOM_JSON_API {
 		else
 			$this->output( $status_code, $response, $content_type );
 		$this->exit = $exit;
-		$this->finish_request();
+		if ( ! defined( 'XMLRPC_REQUEST' ) || ! XMLRPC_REQUEST ) {
+			$this->finish_request();
+		}
 	}
 
 	function set_output_status_code( $code = 200 ) {
@@ -497,6 +508,14 @@ class WPCOM_JSON_API {
 		return $response;
 	}
 
+	function ensure_http_scheme_of_home_url( $url, $path, $original_scheme ) {
+		if ( $original_scheme ) {
+			return $url;
+		}
+
+		return preg_replace( '#^https:#', 'http:', $url );
+	}
+
 	function comment_edit_pre( $comment_content ) {
 		return htmlspecialchars_decode( $comment_content, ENT_QUOTES );
 	}
@@ -535,6 +554,8 @@ class WPCOM_JSON_API {
 	function is_restricted_blog( $blog_id ) {
 		/**
 		 * Filters all REST API access and return a 403 unauthorized response for all Restricted blog IDs.
+		 *
+		 * @module json-api
 		 *
 		 * @since 3.4.0
 		 *

@@ -86,6 +86,9 @@ class Jetpack_Testimonial {
 
 			// Add to Dotcom XML sitemaps
 			add_filter( 'wpcom_sitemap_post_types',                                    array( $this, 'add_to_sitemap' ) );
+		} else {
+			// Add to Jetpack XML sitemap
+			add_filter( 'jetpack_sitemap_post_types',                                  array( $this, 'add_to_sitemap' ) );
 		}
 
 		// Adjust CPT archive and custom taxonomies to obey CPT reading setting
@@ -193,6 +196,7 @@ class Jetpack_Testimonial {
 	 * Bump Testimonial > New Activation stat
 	 */
 	function new_activation_stat_bump() {
+		/** This action is documented in modules/widgets/social-media-icons.php */
 		do_action( 'jetpack_bump_stats_extras', 'testimonials', 'new-activation' );
 	}
 
@@ -201,10 +205,12 @@ class Jetpack_Testimonial {
 	 */
 	function update_option_stat_bump( $old, $new ) {
 		if ( empty( $old ) && ! empty( $new ) ) {
+			/** This action is documented in modules/widgets/social-media-icons.php */
 			do_action( 'jetpack_bump_stats_extras', 'testimonials', 'option-on' );
 		}
 
 		if ( ! empty( $old ) && empty( $new ) ) {
+			/** This action is documented in modules/widgets/social-media-icons.php */
 			do_action( 'jetpack_bump_stats_extras', 'testimonials', 'option-off' );
 		}
 	}
@@ -213,6 +219,7 @@ class Jetpack_Testimonial {
 	 * Bump Testimonial > Published Testimonials stat when testimonials are published
 	 */
 	function new_testimonial_stat_bump() {
+		/** This action is documented in modules/widgets/social-media-icons.php */
 		do_action ( 'jetpack_bump_stats_extras', 'testimonials', 'published-testimonials' );
 	}
 
@@ -284,18 +291,21 @@ class Jetpack_Testimonial {
 		register_post_type( self::CUSTOM_POST_TYPE, array(
 			'description' => __( 'Customer Testimonials', 'jetpack' ),
 			'labels' => array(
-				'name'               => esc_html__( 'Testimonials',                   'jetpack' ),
-				'singular_name'      => esc_html__( 'Testimonial',                    'jetpack' ),
-				'menu_name'          => esc_html__( 'Testimonials',                   'jetpack' ),
-				'all_items'          => esc_html__( 'All Testimonials',               'jetpack' ),
-				'add_new'            => esc_html__( 'Add New',                        'jetpack' ),
-				'add_new_item'       => esc_html__( 'Add New Testimonial',            'jetpack' ),
-				'edit_item'          => esc_html__( 'Edit Testimonial',               'jetpack' ),
-				'new_item'           => esc_html__( 'New Testimonial',                'jetpack' ),
-				'view_item'          => esc_html__( 'View Testimonial',               'jetpack' ),
-				'search_items'       => esc_html__( 'Search Testimonials',            'jetpack' ),
-				'not_found'          => esc_html__( 'No Testimonials found',          'jetpack' ),
-				'not_found_in_trash' => esc_html__( 'No Testimonials found in Trash', 'jetpack' ),
+				'name'                  => esc_html__( 'Testimonials',                   'jetpack' ),
+				'singular_name'         => esc_html__( 'Testimonial',                    'jetpack' ),
+				'menu_name'             => esc_html__( 'Testimonials',                   'jetpack' ),
+				'all_items'             => esc_html__( 'All Testimonials',               'jetpack' ),
+				'add_new'               => esc_html__( 'Add New',                        'jetpack' ),
+				'add_new_item'          => esc_html__( 'Add New Testimonial',            'jetpack' ),
+				'edit_item'             => esc_html__( 'Edit Testimonial',               'jetpack' ),
+				'new_item'              => esc_html__( 'New Testimonial',                'jetpack' ),
+				'view_item'             => esc_html__( 'View Testimonial',               'jetpack' ),
+				'search_items'          => esc_html__( 'Search Testimonials',            'jetpack' ),
+				'not_found'             => esc_html__( 'No Testimonials found',          'jetpack' ),
+				'not_found_in_trash'    => esc_html__( 'No Testimonials found in Trash', 'jetpack' ),
+				'filter_items_list'     => esc_html__( 'Filter Testimonials list',       'jetpack' ),
+				'items_list_navigation' => esc_html__( 'Testimonial list navigation',    'jetpack' ),
+				'items_list'            => esc_html__( 'Testimonials list',              'jetpack' ),
 			),
 			'supports' => array(
 				'title',
@@ -317,6 +327,7 @@ class Jetpack_Testimonial {
 			'map_meta_cap'    => true,
 			'has_archive'     => true,
 			'query_var'       => 'testimonial',
+			'show_in_rest'    => true,
 		) );
 	}
 
@@ -509,7 +520,7 @@ class Jetpack_Testimonial {
 		), $atts, 'testimonial' );
 
 		// A little sanitization
-		if ( $atts['display_content'] && 'true' != $atts['display_content'] ) {
+		if ( $atts['display_content'] && 'true' != $atts['display_content'] && 'full' != $atts['display_content'] ) {
 			$atts['display_content'] = false;
 		}
 
@@ -520,7 +531,6 @@ class Jetpack_Testimonial {
 		$atts['columns'] = absint( $atts['columns'] );
 
 		$atts['showposts'] = intval( $atts['showposts'] );
-
 
 		if ( $atts['order'] ) {
 			$atts['order'] = urldecode( $atts['order'] );
@@ -592,10 +602,18 @@ class Jetpack_Testimonial {
 					<div class="testimonial-entry <?php echo esc_attr( self::get_testimonial_class( $testimonial_index_number, $atts['columns'] ) ); ?>">
 						<?php
 						// The content
-						if ( false !== $atts['display_content'] ): ?>
-							<div class="testimonial-entry-content"><?php the_excerpt(); ?></div>
-						<?php endif; ?>
-
+						if ( false !== $atts['display_content'] ) {
+							if ( 'full' === $atts['display_content'] ) {
+							?>
+								<div class="testimonial-entry-content"><?php the_content(); ?></div>
+							<?php
+							} else {
+							?>
+								<div class="testimonial-entry-content"><?php the_excerpt(); ?></div>
+							<?php
+							}
+						}
+						?>
 						<span class="testimonial-entry-title">&#8213; <a href="<?php echo esc_url( get_permalink() ); ?>" title="<?php echo esc_attr( the_title_attribute( ) ); ?>"><?php the_title(); ?></a></span>
 						<?php
 						// Featured image
@@ -651,6 +669,8 @@ class Jetpack_Testimonial {
 		/**
 		 * Filter the class applied to testimonial div in the testimonial
 		 *
+		 * @module custom-content-types
+		 *
 		 * @since 3.4.0
 		 *
 		 * @param string $class class name of the div.
@@ -670,6 +690,8 @@ class Jetpack_Testimonial {
 		if ( has_post_thumbnail( $post_id ) ) {
 			/**
 			 * Change the thumbnail size for the Testimonial CPT.
+			 *
+			 * @module custom-content-types
 			 *
 			 * @since 3.4.0
 			 *

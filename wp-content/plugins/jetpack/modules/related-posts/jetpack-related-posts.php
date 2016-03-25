@@ -123,7 +123,7 @@ class Jetpack_RelatedPosts {
 
 			$this->_action_frontend_init_ajax( $excludes );
 		} else {
-			if ( isset( $_GET['relatedposts_hit'] ) ) {
+			if ( isset( $_GET['relatedposts_hit'], $_GET['relatedposts_origin'], $_GET['relatedposts_position'] ) ) {
 				$this->_log_click( $_GET['relatedposts_origin'], get_the_ID(), $_GET['relatedposts_position'] );
 				$this->_previous_post_id = (int) $_GET['relatedposts_origin'];
 			}
@@ -183,6 +183,8 @@ class Jetpack_RelatedPosts {
 		/**
 		 * Filter the Related Posts headline.
 		 *
+		 * @module related-posts
+		 *
 		 * @since 3.0.0
 		 *
 		 * @param string $headline Related Posts heading.
@@ -239,6 +241,8 @@ EOT;
 
 			/**
 			 * Filter Related Posts basic options.
+			 *
+			 * @module related-posts
 			 *
 			 * @since 2.8.0
 			 *
@@ -512,6 +516,8 @@ EOT;
 		/**
 		 * Filter the arguments used to retrieve a list of Related Posts.
 		 *
+		 * @module related-posts
+		 *
 		 * @since 2.8.0
 		 *
 		 * @param array $args Array of options to retrieve Related Posts.
@@ -523,6 +529,8 @@ EOT;
 		/**
 		 * Filter ElasticSearch options used to calculate Related Posts.
 		 *
+		 * @module related-posts
+		 *
 		 * @since 2.8.0
 		 *
 		 * @param array $filters Array of ElasticSearch filters based on the post_id and args.
@@ -533,6 +541,8 @@ EOT;
 		$results = $this->_get_related_posts( $post_id, $args['size'], $filters );
 		/**
 		 * Filter the array of related posts matched by ElasticSearch.
+		 *
+		 * @module related-posts
 		 *
 		 * @since 2.8.0
 		 *
@@ -562,6 +572,8 @@ EOT;
 		/**
 		 * Filter the terms used to search for Related Posts.
 		 *
+		 * @module related-posts
+		 *
 		 * @since 2.8.0
 		 *
 		 * @param array $args['has_terms'] Array of terms associated to the Related Posts.
@@ -590,6 +602,8 @@ EOT;
 		/**
 		 * Filter the Post Types where we search Related Posts.
 		 *
+		 * @module related-posts
+		 *
 		 * @since 2.8.0
 		 *
 		 * @param array $args['post_type'] Array of Post Types.
@@ -612,6 +626,8 @@ EOT;
 		/**
 		 * Filter the Post Formats where we search Related Posts.
 		 *
+		 * @module related-posts
+		 *
 		 * @since 3.3.0
 		 *
 		 * @param array $args['post_formats'] Array of Post Formats.
@@ -632,6 +648,8 @@ EOT;
 		/**
 		 * Filter the date range used to search Related Posts.
 		 *
+		 * @module related-posts
+		 *
 		 * @since 2.8.0
 		 *
 		 * @param array $args['date_range'] Array of a month interval where we search Related Posts.
@@ -651,6 +669,8 @@ EOT;
 
 		/**
 		 * Filter the Post IDs excluded from appearing in Related Posts.
+		 *
+		 * @module related-posts
 		 *
 		 * @since 2.9.0
 		 *
@@ -752,8 +772,11 @@ EOT;
 			'title' => $this->_to_utf8( $this->_get_title( $post->post_title, $post->post_content ) ),
 			'date' => get_the_date( '', $post->ID ),
 			'format' => get_post_format( $post->ID ),
+			'excerpt' => html_entity_decode( $this->_to_utf8( $this->_get_excerpt( $post->post_excerpt, $post->post_content ) ), ENT_QUOTES, 'UTF-8' ),
 			/**
 			 * Filters the rel attribute for the Related Posts' links.
+			 *
+			 * @module related-posts
 			 *
 			 * @since 3.7.0
 			 *
@@ -761,9 +784,10 @@ EOT;
 			 * @param int $post->ID Post ID.
 			 */
 			'rel' => apply_filters( 'jetpack_relatedposts_filter_post_link_rel', 'nofollow', $post->ID ),
-			'excerpt' => html_entity_decode( $this->_to_utf8( $this->_get_excerpt( $post->post_excerpt, $post->post_content ) ), ENT_QUOTES, 'UTF-8' ),
 			/**
 			 * Filter the context displayed below each Related Post.
+			 *
+			 * @module related-posts
 			 *
 			 * @since 3.0.0
 			 *
@@ -776,6 +800,21 @@ EOT;
 				$post->ID
 			),
 			'img' => $this->_generate_related_post_image_params( $post->ID ),
+			/**
+			 * Filter the post css classes added on HTML markup.
+			 *
+			 * @module related-posts
+			 *
+			 * @since 3.8.0
+			 *
+			 * @param array array() CSS classes added on post HTML markup.
+			 * @param string $post_id Post ID.
+			 */
+			'classes' => apply_filters(
+				'jetpack_relatedposts_filter_post_css_classes',
+				array(),
+				$post->ID
+			),
 		);
 	}
 
@@ -839,6 +878,8 @@ EOT;
 
 		/**
 		 * Filter the size of the Related Posts images.
+		 *
+		 * @module related-posts
 		 *
 		 * @since 2.8.0
 		 *
@@ -927,6 +968,8 @@ EOT;
 
 		/**
 		 * Filter the Related Posts matched by ElasticSearch.
+		 *
+		 * @module related-posts
 		 *
 		 * @since 2.9.0
 		 *
@@ -1067,6 +1110,8 @@ EOT;
 					/**
 					 * Filter the "In Category" line displayed in the post context below each Related Post.
 					 *
+					 * @module related-posts
+					 *
 					 * @since 3.2.0
 					 *
 					 * @param string $post_cat_context "In Category" line displayed in the post context below each Related Post.
@@ -1087,6 +1132,8 @@ EOT;
 					);
 					/**
 					 * Filter the "In Tag" line displayed in the post context below each Related Post.
+					 *
+					 * @module related-posts
 					 *
 					 * @since 3.2.0
 					 *
@@ -1147,6 +1194,8 @@ EOT;
 		/**
 		 * Filter the Enabled value to allow related posts to be shown on pages as well.
 		 *
+		 * @module related-posts
+		 *
 		 * @since 3.3.0
 		 *
 		 * @param bool $enabled Should Related Posts be enabled on the current page.
@@ -1174,8 +1223,20 @@ EOT;
 	 * @return null
 	 */
 	protected function _enqueue_assets( $script, $style ) {
-		if ( $script )
+		if ( $script ) {
 			wp_enqueue_script( 'jetpack_related-posts', plugins_url( 'related-posts.js', __FILE__ ), array( 'jquery' ), self::VERSION );
+			$related_posts_js_options = array(
+				/**
+				 * Filter each Related Post Heading structure.
+				 *
+				 * @since 4.0.0
+				 *
+				 * @param string $str Related Post Heading structure. Default to h4.
+				 */
+				'post_heading' => apply_filters( 'jetpack_relatedposts_filter_post_heading', esc_attr( 'h4' ) ),
+			);
+			wp_localize_script( 'jetpack_related-posts', 'related_posts_js_options', $related_posts_js_options );
+		}
 		if ( $style ){
 			if( is_rtl() ) {
 				wp_enqueue_style( 'jetpack_related-posts', plugins_url( 'rtl/related-posts-rtl.css', __FILE__ ), array(), self::VERSION );
@@ -1201,6 +1262,8 @@ EOT;
 		if ( null === $this->_allow_feature_toggle ) {
 			/**
 			 * Filter the display of the Related Posts toggle in Settings > Reading.
+			 *
+			 * @module related-posts
 			 *
 			 * @since 2.8.0
 			 *
@@ -1260,6 +1323,7 @@ class Jetpack_RelatedPosts_Raw extends Jetpack_RelatedPosts {
 			)
 		);
 
+		/** This filter is already documented in modules/related-posts/related-posts.php */
 		$hits = apply_filters( 'jetpack_relatedposts_filter_hits', $hits, $post_id );
 
 		return $hits;

@@ -14,12 +14,12 @@ if ( ! defined( 'WPSEO_VERSION' ) ) {
  */
 
 /**
- * Convenience function to JSON encode and echo resuls and then die
+ * Convenience function to JSON encode and echo results and then die
  *
- * @param array $results
+ * @param array $results Results array for encoding.
  */
 function wpseo_ajax_json_echo_die( $results ) {
-	echo json_encode( $results );
+	echo WPSEO_Utils::json_encode( $results );
 	die();
 }
 
@@ -64,23 +64,6 @@ function wpseo_set_ignore() {
 }
 
 add_action( 'wp_ajax_wpseo_set_ignore', 'wpseo_set_ignore' );
-
-/**
- * Hides the after-update notification until the next update for a specific user.
- */
-function wpseo_dismiss_about() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		die( '-1' );
-	}
-
-	check_ajax_referer( 'wpseo-dismiss-about' );
-
-	update_user_meta( get_current_user_id(), 'wpseo_seen_about_version' , WPSEO_VERSION );
-
-	die( '1' );
-}
-
-add_action( 'wp_ajax_wpseo_dismiss_about', 'wpseo_dismiss_about' );
 
 /**
  * Hides the default tagline notice for a specific user.
@@ -141,6 +124,9 @@ function wpseo_ajax_replace_vars() {
 	check_ajax_referer( 'wpseo-replace-vars' );
 
 	$post = get_post( intval( filter_input( INPUT_POST, 'post_id' ) ) );
+	global $wp_query;
+	$wp_query->queried_object = $post;
+	$wp_query->queried_object_id = $post->ID;
 	$omit = array( 'excerpt', 'excerpt_only', 'title' );
 	echo wpseo_replace_vars( stripslashes( filter_input( INPUT_POST, 'string' ) ), $post, $omit );
 	die;
@@ -169,7 +155,7 @@ add_action( 'wp_ajax_wpseo_save_metadesc', 'wpseo_save_description' );
 /**
  * Save titles & descriptions
  *
- * @param string $what
+ * @param string $what Type of item to save (title, description).
  */
 function wpseo_save_what( $what ) {
 	check_ajax_referer( 'wpseo-bulk-editor' );
@@ -187,11 +173,11 @@ function wpseo_save_what( $what ) {
  * Helper function to update a post's meta data, returning relevant information
  * about the information updated and the results or the meta update.
  *
- * @param int    $post_id
- * @param string $new_meta_value
- * @param string $orig_meta_value
- * @param string $meta_key
- * @param string $return_key
+ * @param int    $post_id         Post ID.
+ * @param string $new_meta_value  New meta value to record.
+ * @param string $orig_meta_value Original meta value.
+ * @param string $meta_key        Meta key string.
+ * @param string $return_key      Return key string to use in results.
  *
  * @return string
  */
@@ -279,7 +265,7 @@ add_action( 'wp_ajax_wpseo_save_all_descriptions', 'wpseo_save_all_descriptions'
 /**
  * Utility function to save values
  *
- * @param string $what
+ * @param string $what Type of item so save.
  */
 function wpseo_save_all( $what ) {
 	check_ajax_referer( 'wpseo-bulk-editor' );
@@ -302,10 +288,10 @@ function wpseo_save_all( $what ) {
 /**
  * Insert a new value
  *
- * @param string $what
- * @param int    $post_id
- * @param string $new
- * @param string $original
+ * @param string $what     Item type (such as title).
+ * @param int    $post_id  Post ID.
+ * @param string $new      New value to record.
+ * @param string $original Original value.
  *
  * @return string
  */
@@ -345,4 +331,82 @@ function wpseo_add_fb_admin() {
 
 add_action( 'wp_ajax_wpseo_add_fb_admin', 'wpseo_add_fb_admin' );
 
+/**
+ * Retrieves the keyword for the keyword doubles.
+ */
+function ajax_get_keyword_usage() {
+	$post_id = filter_input( INPUT_POST, 'post_id' );
+	$keyword = filter_input( INPUT_POST, 'keyword' );
+
+	wp_die(
+		WPSEO_Utils::json_encode( WPSEO_Meta::keyword_usage( $keyword, $post_id ) )
+	);
+}
+
+add_action( 'wp_ajax_get_focus_keyword_usage',  'ajax_get_keyword_usage' );
+
+/**
+ * Retrieves the keyword for the keyword doubles of the termpages.
+ */
+function ajax_get_term_keyword_usage() {
+	$post_id = filter_input( INPUT_POST, 'post_id' );
+	$keyword = filter_input( INPUT_POST, 'keyword' );
+	$taxonomy = filter_input( INPUT_POST, 'taxonomy' );
+
+	wp_die(
+		WPSEO_Utils::json_encode( WPSEO_Taxonomy_Meta::get_keyword_usage( $keyword, $post_id, $taxonomy ) )
+	);
+}
+
+add_action( 'wp_ajax_get_term_keyword_usage',  'ajax_get_term_keyword_usage' );
+
+/**
+ * Removes stopword from the sample permalink that is generated in an AJAX request
+ *
+ * @param array  $permalink The permalink generated for this post by WordPress.
+ * @param int    $post_ID The ID of the post.
+ * @param string $title The title for the post that the user used.
+ * @param string $name The name for the post that the user used.
+ *
+ * @return array
+ */
+function wpseo_remove_stopwords_sample_permalink( $permalink, $post_ID, $title, $name ) {
+	WPSEO_Options::get_instance();
+	$options = WPSEO_Options::get_options( array( 'wpseo_permalinks' ) );
+	if ( $options['cleanslugs'] !== true ) {
+		return $permalink;
+	}
+
+	/*
+	 * If the name is empty and the title is not, WordPress will generate a slug. In that case we want to remove stop
+	 * words from the slug.
+	 */
+	if ( empty( $name ) && ! empty( $title ) ) {
+		$stop_words = new WPSEO_Admin_Stop_Words();
+
+		// The second element is the slug.
+		$permalink[1] = $stop_words->remove_in( $permalink[1] );
+	}
+
+	return $permalink;
+}
+
+add_action( 'get_sample_permalink', 'wpseo_remove_stopwords_sample_permalink', 10, 4 );
+
+// Crawl Issue Manager AJAX hooks.
+new WPSEO_GSC_Ajax;
+
+// SEO Score Recalculations.
+new WPSEO_Recalculate_Scores_Ajax;
+
 new Yoast_Dashboard_Widget();
+
+new Yoast_OnPage_Ajax();
+
+new WPSEO_Shortcode_Filter();
+
+new WPSEO_Taxonomy_Columns();
+
+
+// Setting the notice for the recalculate the posts.
+new Yoast_Dismissable_Notice_Ajax( 'recalculate', Yoast_Dismissable_Notice_Ajax::FOR_SITE );

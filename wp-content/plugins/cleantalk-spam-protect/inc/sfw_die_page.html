@@ -56,6 +56,7 @@ function get_current_url() {
         document.getElementById('js_info').style.display = 'none';
         document.getElementById('js_passed').style.display = 'block';
         set_spamFireWallCookie('ct_sfw_pass_key','{SFW_COOKIE}');
+        set_spamFireWallCookie('ct_sfw_passed','1');
         setTimeout(function(){
             window.location.reload(1);
         }, reload_timeout);

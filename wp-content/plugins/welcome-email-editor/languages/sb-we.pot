@@ -1,0 +1,316 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: SB Welcome Email Editor\n"
+"POT-Creation-Date: 2015-11-12 10:18+0100\n"
+"PO-Revision-Date: 2015-11-11 11:13+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: sb_welcome_email_editor.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: sb_welcome_email_editor.php:70
+msgid "Visit [reset_pass] to set your password"
+msgstr ""
+
+#: sb_welcome_email_editor.php:90
+msgid ""
+"can not function because another plugin is conflicting. Please disable other "
+"plugins until this message disappears to fix the problem."
+msgstr ""
+
+#: sb_welcome_email_editor.php:188
+msgid "[[blog_name]] Your username and password"
+msgstr ""
+
+#: sb_welcome_email_editor.php:189
+msgid "Username: [user_login]<br />Password: [user_password]<br />[login_url]"
+msgstr ""
+
+#: sb_welcome_email_editor.php:190
+msgid "[[blog_name]] New User Registration"
+msgstr ""
+
+#: sb_welcome_email_editor.php:191
+msgid ""
+"New user registration on your blog [blog_name]<br /><br />Username: "
+"[user_login]<br />Email: [user_email]"
+msgstr ""
+
+#: sb_welcome_email_editor.php:200
+msgid "[[blog_name]] Forgot Password"
+msgstr ""
+
+#: sb_welcome_email_editor.php:201
+msgid ""
+"Someone requested that the password be reset for the following account.<br /><br /"
+">[site_url]<br /><br />Username: [user_login]<br /><br />If this was a mistake, "
+"just ignore this email and nothing will happen.<br /><br />To reset your password, "
+"visit the following address: [reset_url]"
+msgstr ""
+
+#: sb_welcome_email_editor.php:439
+msgid "Click to set"
+msgstr ""
+
+#: sb_welcome_email_editor.php:514
+msgid "Settings have been successfully saved"
+msgstr ""
+
+#: sb_welcome_email_editor.php:545
+msgid "Test email sent to"
+msgstr ""
+
+#: sb_welcome_email_editor.php:553
+msgid "General Settings"
+msgstr ""
+
+#: sb_welcome_email_editor.php:556
+msgid ""
+"These settings effect all of this plugin and, in some cases, all of your site."
+msgstr ""
+
+#: sb_welcome_email_editor.php:559
+msgid "From Email Address"
+msgstr ""
+
+#: sb_welcome_email_editor.php:562
+msgid "Global option change the from email address for all site emails"
+msgstr ""
+
+#: sb_welcome_email_editor.php:565
+msgid "From Name"
+msgstr ""
+
+#: sb_welcome_email_editor.php:568
+msgid "Global option change the from name for all site emails"
+msgstr ""
+
+#: sb_welcome_email_editor.php:571
+msgid "Send Email As"
+msgstr ""
+
+#: sb_welcome_email_editor.php:575
+msgid "TEXT"
+msgstr ""
+
+#: sb_welcome_email_editor.php:576
+msgid "HTML"
+msgstr ""
+
+#: sb_welcome_email_editor.php:578
+msgid "Send email as Text or HTML (Remember to remove html from text emails)."
+msgstr ""
+
+#: sb_welcome_email_editor.php:581
+msgid "Set Global Email Headers"
+msgstr ""
+
+#: sb_welcome_email_editor.php:584
+msgid ""
+"This is one of those \"hit it with a hammer\" type functions to set to yes when "
+"you might be having issues with the from name and address setting. Or setting it "
+"to no as and when another plugin is being effected by Welcome Email Editor's "
+"existence."
+msgstr ""
+
+#: sb_welcome_email_editor.php:587
+msgid "Welcome Email Settings"
+msgstr ""
+
+#: sb_welcome_email_editor.php:590
+msgid "These settings are for the email sent to the new user on their signup."
+msgstr ""
+
+#: sb_welcome_email_editor.php:593
+msgid "User Email Subject"
+msgstr ""
+
+#: sb_welcome_email_editor.php:596
+msgid "Subject line for the welcome email sent to the user."
+msgstr ""
+
+#: sb_welcome_email_editor.php:599
+msgid "User Email Body"
+msgstr ""
+
+#: sb_welcome_email_editor.php:602
+msgid "Body content for the welcome email sent to the user."
+msgstr ""
+
+#: sb_welcome_email_editor.php:605
+msgid "Attachment URL"
+msgstr ""
+
+#: sb_welcome_email_editor.php:608
+msgid ""
+"If you want the welcome email to have an attachment then put the URL here. The "
+"file MUST be on THIS server in a web servable directory. If you don't understand "
+"this then use the WordPress media uploader and paste the FULL URL into this box "
+"and it will do the rest."
+msgstr ""
+
+#: sb_welcome_email_editor.php:611
+msgid "Additional Email Headers"
+msgstr ""
+
+#: sb_welcome_email_editor.php:614
+msgid ""
+"Optional field for advanced users to add more headers. Dont't forget to separate "
+"headers with \\r\\n."
+msgstr ""
+
+#: sb_welcome_email_editor.php:617
+msgid "Reply To Email Address"
+msgstr ""
+
+#: sb_welcome_email_editor.php:620
+msgid ""
+"Optional Header sent to change the reply to address for new user notification."
+msgstr ""
+
+#: sb_welcome_email_editor.php:623
+msgid "Welcome Email Admin Notification Settings"
+msgstr ""
+
+#: sb_welcome_email_editor.php:626
+msgid "These settings are for the email sent to the admin on a new user signup."
+msgstr ""
+
+#: sb_welcome_email_editor.php:629
+msgid "Admin Email Subject"
+msgstr ""
+
+#: sb_welcome_email_editor.php:632
+msgid "Subject Line for the email sent to the admin user(s)."
+msgstr ""
+
+#: sb_welcome_email_editor.php:635
+msgid "Admin Email Body"
+msgstr ""
+
+#: sb_welcome_email_editor.php:638
+msgid "Body content for the email sent to the admin user(s)."
+msgstr ""
+
+#: sb_welcome_email_editor.php:641
+msgid "Send Admin Email To..."
+msgstr ""
+
+#: sb_welcome_email_editor.php:644
+msgid ""
+"This allows you to type in the User IDs of the people who you want the admin "
+"notification to be sent to. 1 is admin normally but just add more separating by "
+"commas (eg: 1,2,3,4)."
+msgstr ""
+
+#: sb_welcome_email_editor.php:647
+msgid "User Forgot Password Email Settings"
+msgstr ""
+
+#: sb_welcome_email_editor.php:650
+msgid ""
+"These settings are for the email sent to the user when they use the inbuilt "
+"Wordpress forgot password functionality."
+msgstr ""
+
+#: sb_welcome_email_editor.php:653
+msgid "Forgot Password Email Subject"
+msgstr ""
+
+#: sb_welcome_email_editor.php:656
+msgid ""
+"Subject line for the forgot password email that a user can send to themselves "
+"using the login screen. Use [blog_name] where appropriate."
+msgstr ""
+
+#: sb_welcome_email_editor.php:659
+msgid "Forgot Password Message"
+msgstr ""
+
+#: sb_welcome_email_editor.php:662
+msgid ""
+"Content for the forgot password email that the user can send to themselves via the "
+"login screen. Use [blog_name], [site_url], [reset_url] and [user_login] where "
+"appropriate. Note to use HTML in this box only if you have set the send mode to "
+"HTML. If not text will be used and any HTML ignored."
+msgstr ""
+
+#: sb_welcome_email_editor.php:667
+msgid "Update Settings"
+msgstr ""
+
+#: sb_welcome_email_editor.php:672
+msgid "Test Emails (Save first, will send to current user)"
+msgstr ""
+
+#: sb_welcome_email_editor.php:678
+msgid ""
+"This page allows you to update the Wordpress welcome email and add headers to make "
+"it less likely to fall into spam. You can edit the templates for both the admin "
+"and user emails and assign admin members to receive the notifications. Use the "
+"following hooks in any of the boxes below: [site_url], [login_url], "
+"[reset_pass_url], [user_email], [user_login], [blog_name], [admin_email], "
+"[user_id], [custom_fields], [first_name], [last_name], [date], [time], "
+"[bp_custom_fields] (buddypress custom fields .. admin only), [post_data] (admin "
+"only. Sends $_REQUEST)"
+msgstr ""
+
+#: sb_welcome_email_editor.php:679
+msgid "Settings"
+msgstr ""
+
+#: sb_welcome_email_editor.php:685
+msgid ""
+"IMPORTANT: As of WP 4.3, a plain text password is no longer passed to the Welcome "
+"Email functionality. If you start to receive emails with a password value of "
+"\"admin\" or \"both\" then you will need to update your message below. The new "
+"system doesn't include a password to give the user and, instead, asks for the user "
+"to click a link to set their password directly using the WordPress login pages. "
+"Whilst this is less convenient than it was before we do have no control over "
+"things so we need to follow the WordPress model. Provision has been made though "
+"for a password to be included where it is set on the previous and included in the "
+"page data. See the settings below for more information."
+msgstr ""
+
+#: sb_welcome_email_editor.php:685
+msgid "Thanks, I've read this! Don't show again"
+msgstr ""
+
+#: sb_welcome_email_editor.php:809
+msgid "Yes"
+msgstr ""
+
+#: sb_welcome_email_editor.php:810
+msgid "No"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "SB Welcome Email Editor"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "http://www.sean-barton.co.uk"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Allows you to change the content, layout and even add an attachment for many of "
+"the inbuilt Wordpress emails. Simple!"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Sean Barton"
+msgstr ""

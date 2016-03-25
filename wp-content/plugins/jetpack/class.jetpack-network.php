@@ -356,9 +356,9 @@ class Jetpack_Network {
 
 	public function show_jetpack_notice() {
 		if ( isset( $_GET['action'] ) && 'connected' == $_GET['action'] ) {
-			$notice = 'Blog successfully connected';
+			$notice = __( 'Site successfully connected.', 'jetpack' );
 		} else if ( isset( $_GET['action'] ) && 'connection_failed' == $_GET['action'] ) {
-			$notice = 'Blog connection <strong>failed</strong>';
+			$notice = __( 'Site connection <strong>failed</strong>', 'jetpack' );
 		}
 
 		Jetpack::init()->load_view( 'admin/network-admin-alert.php', array( 'notice' => $notice ) );
@@ -389,6 +389,10 @@ class Jetpack_Network {
 	 */
 	public function do_subsiteregister( $site_id = null ) {
 		if ( ! current_user_can( 'jetpack_disconnect' ) ) {
+			return;
+		}
+
+		if ( Jetpack::is_development_mode() ) {
 			return;
 		}
 
@@ -765,23 +769,23 @@ class Jetpack_Network {
 		}
 
 		if ( isset( $args['public'] ) ) {
-			$query .= $wpdb->prepare( "AND public = %s ", $args['public'] );
+			$query .= $wpdb->prepare( "AND public = %d ", $args['public'] );
 		}
 
 		if ( isset( $args['archived'] ) ) {
-			$query .= $wpdb->prepare( "AND archived = %s ", $args['archived'] );
+			$query .= $wpdb->prepare( "AND archived = %d ", $args['archived'] );
 		}
 
 		if ( isset( $args['mature'] ) ) {
-			$query .= $wpdb->prepare( "AND mature = %s ", $args['mature'] );
+			$query .= $wpdb->prepare( "AND mature = %d ", $args['mature'] );
 		}
 
 		if ( isset( $args['spam'] ) ) {
-			$query .= $wpdb->prepare( "AND spam = %s ", $args['spam'] );
+			$query .= $wpdb->prepare( "AND spam = %d ", $args['spam'] );
 		}
 
 		if ( isset( $args['deleted'] ) ) {
-			$query .= $wpdb->prepare( "AND deleted = %s ", $args['deleted'] );
+			$query .= $wpdb->prepare( "AND deleted = %d ", $args['deleted'] );
 		}
 
 		if ( isset( $args['exclude_blogs'] ) ) {

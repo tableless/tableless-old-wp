@@ -45,6 +45,9 @@ function grunion_display_form_view() {
 add_action( 'admin_print_styles', 'grunion_admin_css' );
 function grunion_admin_css() {
 	global $current_screen;
+	if ( is_null( $current_screen ) ) {
+		return;
+	}
 	if ( ! in_array( $current_screen->id, array( 'edit-feedback', 'jetpack_page_omnisearch', 'dashboard_page_omnisearch' ) ) ) {
 		return;
 	}
@@ -106,6 +109,10 @@ function grunion_add_bulk_edit_option() {
 
 	$screen = get_current_screen();
 
+	if ( is_null( $screen ) ) {
+		return;
+	}
+
 	if ( 'edit-feedback' != $screen->id ) {
 		return;
 	}
@@ -142,6 +149,10 @@ function grunion_add_bulk_edit_option() {
 add_action( 'admin_head', 'grunion_add_empty_spam_button' );
 function grunion_add_empty_spam_button() {
 	$screen = get_current_screen();
+
+	if ( is_null( $screen ) ) {
+		return;
+	}
 
 	// Only add to feedback, only to spam view
 	if ( 'edit-feedback' != $screen->id
@@ -205,14 +216,17 @@ function grunion_handle_bulk_spam() {
 		wp_update_post( $post );
 
 		/**
-		 * Fires after a comment has been marked by Akismet. Typically this
-		 * means the comment is spam.
+		 * Fires after a comment has been marked by Akismet.
 		 *
-		 * @duplicate yes
-		 * @since ?
-		 * @param string $comment_status Usually 'spam'
+		 * Typically this means the comment is spam.
+		 *
+		 * @module contact-form
+		 *
+		 * @since 2.2.0
+		 *
+		 * @param string $comment_status Usually is 'spam', otherwise 'ham'.
 		 * @param array $akismet_values From '_feedback_akismet_values' in comment meta
-		 **/
+		 */
 		do_action( 'contact_form_akismet', 'spam', $akismet_values );
 	}
 
@@ -284,10 +298,10 @@ function grunion_manage_post_columns( $col, $post_id ) {
 
 	switch ( $col ) {
 		case 'feedback_from':
-			$author_name  = $content_fields['_feedback_author'];
-			$author_email = $content_fields['_feedback_author_email'];
-			$author_url   = $content_fields['_feedback_author_url'];
-			$author_ip    = $content_fields['_feedback_ip'];
+			$author_name  = isset( $content_fields['_feedback_author'] ) ? $content_fields['_feedback_author'] : '';
+			$author_email = isset( $content_fields['_feedback_author_email'] ) ? $content_fields['_feedback_author_email'] : '';
+			$author_url   = isset( $content_fields['_feedback_author_url'] ) ? $content_fields['_feedback_author_url'] : '';
+			$author_ip    = isset( $content_fields['_feedback_ip'] ) ? $content_fields['_feedback_ip'] : '';
 			$form_url     = isset( $post->post_parent ) ? get_permalink( $post->post_parent ) : null;
 
 			$author_name_line = '';
@@ -320,9 +334,12 @@ function grunion_manage_post_columns( $col, $post_id ) {
 
 		case 'feedback_message':
 			$post_type_object = get_post_type_object( $post->post_type );
-			echo '<strong>';
-			echo esc_html( $content_fields['_feedback_subject'] );
-			echo '</strong><br />';
+			if ( isset( $content_fields['_feedback_subject'] ) ) {
+				echo '<strong>';
+				echo esc_html( $content_fields['_feedback_subject'] );
+				echo '</strong>';
+				echo '<br />';
+			}
 			echo sanitize_text_field( get_the_content( '' ) );
 			echo '<br />';
 
@@ -635,25 +652,15 @@ function grunion_ajax_spam() {
 		$status = wp_insert_post( $post );
 		wp_transition_post_status( 'spam', 'publish', $post );
 
-		/**
-		 * @duplicate yes
-		 * @since ?
-		 * @param string $comment_status Usually 'spam'
-		 * @param array $akismet_values From '_feedback_akismet_values' in comment meta
-		 **/
+		/** This action is already documented in modules/contact-form/admin.php */
 		do_action( 'contact_form_akismet', 'spam', $akismet_values );
 	} elseif ( $_POST['make_it'] == 'ham' ) {
 		$post->post_status = 'publish';
 		$status = wp_insert_post( $post );
 		wp_transition_post_status( 'publish', 'spam', $post );
 
-		/**
-		 * @duplicate yes
-		 * @since ?
-		 * @param string $comment_status Usually 'spam'
-		 * @param array $akismet_values From '_feedback_akismet_values' in comment meta
-		 **/
-		do_action( 'contact_form_akismet', 'spam', $akismet_values );
+		/** This action is already documented in modules/contact-form/admin.php */
+		do_action( 'contact_form_akismet', 'ham', $akismet_values );
 
 		$comment_author_email = $reply_to_addr = $message = $to = $headers = false;
 		$blog_url = parse_url( site_url() );
@@ -695,6 +702,16 @@ function grunion_ajax_spam() {
 				$headers .= "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"";
 			}
 
+			/**
+			 * Filters the subject of the email sent after a contact form submission.
+			 *
+			 * @module contact-form
+			 *
+			 * @since 3.0.0
+			 *
+			 * @param string $content_fields['_feedback_subject'] Feedback's subject line.
+			 * @param array $content_fields['_feedback_all_fields'] Feedback's data from old fields.
+			 */
 			$subject = apply_filters( 'contact_form_subject', $content_fields['_feedback_subject'], $content_fields['_feedback_all_fields'] );
 
 			wp_mail( $to, $subject, $message, $headers );
@@ -849,10 +866,21 @@ function grunion_recheck_queue() {
 	foreach ( $approved_feedbacks as $feedback ) {
 		$meta = get_post_meta( $feedback->ID, '_feedback_akismet_values', true );
 
+		/**
+		 * Filter whether the submitted feedback is considered as spam.
+		 *
+		 * @module contact-form
+		 *
+		 * @since 3.4.0
+		 *
+		 * @param bool false Is the submitted feedback spam? Default to false.
+		 * @param array $meta Feedack values returned by the Akismet plugin.
+		 */
 		$is_spam = apply_filters( 'jetpack_contact_form_is_spam', false, $meta );
 
 		if ( $is_spam ) {
 			wp_update_post( array( 'ID' => $feedback->ID, 'post_status' => 'spam' ) );
+			/** This action is already documented in modules/contact-form/admin.php */
 			do_action( 'contact_form_akismet', 'spam', $akismet_values );
 		}
 	}

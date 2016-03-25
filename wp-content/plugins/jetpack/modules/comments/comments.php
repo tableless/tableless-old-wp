@@ -57,6 +57,8 @@ class Jetpack_Comments extends Highlander_Comments_Base {
 		/**
 		 * Fires after the Jetpack_Comments object has been instantiated
 		 *
+		 * @module comments
+		 *
 		 * @since 1.4.0
 		 *
 		 * @param array $jetpack_comments_loaded First element in array of type Jetpack_Comments
@@ -173,6 +175,20 @@ class Jetpack_Comments extends Highlander_Comments_Base {
 	 * @since JetpackComments (1.4)
 	 */
 	public function comment_form_before() {
+		/**
+		 * Filters the setting that determines if Jetpagk comments should be enabled for
+		 * the current post type.
+		 *
+		 * @module comments
+		 *
+		 * @since 3.8.1
+		 *
+		 * @param boolean $return Should comments be enabled?
+		 */
+		if ( ! apply_filters( 'jetpack_comment_form_enabled_for_' . get_post_type(), true ) ) {
+			return;
+		}
+
 		// Add some JS to the footer
 		add_action( 'wp_footer', array( $this, 'watch_comment_parent' ), 100 );
 
@@ -186,6 +202,10 @@ class Jetpack_Comments extends Highlander_Comments_Base {
 	 * @since JetpackComments (1.4)
 	 */
 	public function comment_form_after() {
+		/** This filter is documented in modules/comments/comments.php */
+		if ( ! apply_filters( 'jetpack_comment_form_enabled_for_' . get_post_type(), true ) ) {
+			return;
+		}
 
 		// Throw it all out and drop in our replacement
 		ob_end_clean();
@@ -194,6 +214,8 @@ class Jetpack_Comments extends Highlander_Comments_Base {
 		if ( get_option( 'comment_registration' ) && !is_user_logged_in() ) {
 			/**
 			 * Changes the log in to comment prompt.
+			 *
+			 * @module comments
 			 *
 			 * @since 1.4.0
 			 *
@@ -227,6 +249,8 @@ class Jetpack_Comments extends Highlander_Comments_Base {
 			/**
 			 * Changes the comment form prompt.
 			 *
+			 * @module comments
+			 *
 			 * @since 2.3.0
 			 *
 			 * @param string $var Default is "Leave a Reply to %s."
@@ -255,8 +279,7 @@ class Jetpack_Comments extends Highlander_Comments_Base {
 		}
 
 		$params['sig']    = $signature;
-		$url_origin       = set_url_scheme( 'http://jetpack.wordpress.com' );
-		$url              = "{$url_origin}/jetpack-comment/?" . http_build_query( $params );
+		$url              = "https://jetpack.wordpress.com/jetpack-comment/?" . http_build_query( $params );
 		$url              = "{$url}#parent=" . urlencode( set_url_scheme( 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ) );
 		$this->signed_url = $url;
 		$height           = $params['comment_registration'] || is_user_logged_in() ? '315' : '430'; // Iframe can be shorter if we're not allowing guest commenting
@@ -271,9 +294,9 @@ class Jetpack_Comments extends Highlander_Comments_Base {
 
 		<div id="respond" class="comment-respond">
 			<h3 id="reply-title" class="comment-reply-title"><?php comment_form_title( esc_html( $params['greeting'] ), esc_html( $params['greeting_reply'] ) ); ?> <small><?php cancel_comment_reply_link( esc_html__( 'Cancel reply' , 'jetpack') ); ?></small></h3>
-			<div id="commentform" class="comment-form">
-				<iframe src="<?php echo esc_url( $url ); ?>" allowtransparency="<?php echo $transparent; ?>" style="width:100%; height: <?php echo $height; ?>px;border:0px;" frameBorder="0" scrolling="no" name="jetpack_remote_comment" id="jetpack_remote_comment"></iframe>
-			</div>
+			<form id="commentform" class="comment-form">
+				<iframe src="<?php echo esc_url( $url ); ?>" allowtransparency="<?php echo $transparent; ?>" style="width:100%; height: <?php echo $height; ?>px;border:0;" frameBorder="0" scrolling="no" name="jetpack_remote_comment" id="jetpack_remote_comment"></iframe>
+			</form>
 		</div>
 
 		<?php // Below is required for comment reply JS to work ?>
@@ -289,7 +312,7 @@ class Jetpack_Comments extends Highlander_Comments_Base {
 	 * @since JetpackComments (1.4)
 	 */
 	public function watch_comment_parent() {
-		$url_origin = set_url_scheme( 'http://jetpack.wordpress.com' );
+		$url_origin = 'https://jetpack.wordpress.com';
 	?>
 
 		<!--[if IE]>
@@ -407,6 +430,14 @@ class Jetpack_Comments extends Highlander_Comments_Base {
 		// Bail if token is expired or not valid
 		if ( $check !== $post_array['sig'] )
 			wp_die( __( 'Invalid security token.', 'jetpack' ) );
+
+		/** This filter is documented in modules/comments/comments.php */
+		if ( ! apply_filters( 'jetpack_comment_form_enabled_for_' . get_post_type( $post_array['comment_post_ID'] ), true ) ) {
+			// In case the comment POST is legit, but the comments are
+			// now disabled, we don't allow the comment
+
+			wp_die( __( 'Comments are not allowed.', 'jetpack' ) );
+		}
 	}
 
 	/** Capabilities **********************************************************/

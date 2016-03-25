@@ -192,7 +192,6 @@ h6 {
 
 a {
   color: #0d72b2;
-  -webkit-transition: color .2s;
   transition: color .2s;
   text-decoration: none;
 }
@@ -334,7 +333,6 @@ img {
 }
 .button,
 .download-jetpack {
-  -webkit-transition: all .1s ease-in-out;
   transition: all .1s ease-in-out;
 }
 
@@ -718,7 +716,6 @@ ul#adminmenu a.toplevel_page_jetpack:after {
   text-align: center;
   z-index: 1;
   background-color: #81a844;
-  background-image: -webkit-linear-gradient(top, #81a844, #8eb74e);
   background-image: linear-gradient(top, #81a844, #8eb74e);
 }
 .masthead.hasbutton .flyer {
@@ -773,17 +770,6 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 .jetpack-connected .masthead h1 {
   margin-bottom: 33px;
   max-width: 600px;
-}
-
-.flyby {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-@media (max-width: 900px) {
-  .flyby {
-    display: none;
-  }
 }
 
 .flyer {
@@ -877,8 +863,6 @@ ul#adminmenu a.toplevel_page_jetpack:after {
   text-align: center;
   z-index: 1;
   background-color: #81a844;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#81a844), to(#89b348));
-  background-image: -webkit-linear-gradient(top, #81a844, #89b348);
   background-image: linear-gradient(top, #81a844, #89b348);
 }
 .clouds-sm:after {
@@ -956,7 +940,6 @@ ul#adminmenu a.toplevel_page_jetpack:after {
   float: left;
   margin: 0 5px 10px;
   width: 310px;
-  -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
 @media (max-width: 1147px) {
@@ -964,7 +947,6 @@ ul#adminmenu a.toplevel_page_jetpack:after {
   .module {
     margin: .75% 0 .75% 1.5%;
     width: 32.333333%;
-    -webkit-transition: none;
     transition: none;
   }
   .feature:nth-child(3n + 1),
@@ -1004,7 +986,6 @@ ul#adminmenu a.toplevel_page_jetpack:after {
   z-index: -1;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
 .feature:hover {
@@ -1176,7 +1157,6 @@ ul#adminmenu a.toplevel_page_jetpack:after {
   text-indent: -9999px;
   pointer-events: none;
   border-radius: 3px;
-  -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
 #jetpack-search + label:after {
@@ -1223,7 +1203,6 @@ ul#adminmenu a.toplevel_page_jetpack:after {
   border: 1px solid #dae0e2;
   background: #fff;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.03);
-  -webkit-transition: opacity 2s ease-in;
   transition: opacity 2s ease-in;
 }
 .module:hover {
@@ -1828,7 +1807,10 @@ ul#adminmenu a.toplevel_page_jetpack:after {
   margin-top: 15px;
   display: none;
 }
-.jetpack-message h4 {
+.jetpack-message .squeezer h2 {
+  font-size: 1em;
+}
+.jetpack-message h2 {
   color: #fff;
   margin: 0;
 }
@@ -2092,6 +2074,10 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 
 .jetpack-modules #site-icon-deprecated .info:before {
   content: '\f475';
+}
+
+.jetpack-modules #sitemaps .info a:before {
+  content: '\f507';
 }
 
 @media (max-width: 782px) {
@@ -2890,6 +2876,44 @@ a.what-is-primary {
     max-width: 100px;
   }
 }
+.manage__icon {
+  width: 155px;
+  height: 155px;
+  margin: 20px auto;
+}
+
+.manage-page .manage__description {
+  max-width: 600px;
+  text-align: center;
+  font-size: 22px;
+  color: #999;
+  margin: 20px auto;
+}
+.manage-page .manage__button {
+  font-size: 16px;
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.manage__title .genericon {
+  font-size: 38px;
+  color: #81A944;
+}
+
+.manage__link {
+  font-size: 16px;
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+  font-weight: normal;
+}
+.manage__link .genericon {
+  font-size: 28px;
+  vertical-align: middle;
+  margin-top: -6px;
+}
+
 .jp-content .hide {
   display: none;
 }
@@ -3051,57 +3075,6 @@ a.what-is-primary {
   display: inline-block;
 }
 
-.miguel {
-  display: none;
-  position: fixed;
-  opacity: .35;
-  bottom: -200px;
-  left: 0;
-  z-index: 1;
-  -webkit-animation: miguel 3.4s 0s ease-in-out;
-  animation: miguel 3.4s 0s ease-in-out;
-}
-
-.miguel:nth-child(2) {
-  left: 49%;
-  width: 120px;
-  height: 131px;
-  -webkit-animation-duration: 2.4s;
-  animation-duration: 2.4s;
-  -webkit-animation-delay: 0s;
-  animation-delay: 0s;
-}
-
-.miguel:nth-child(3) {
-  left: 23%;
-  width: 60px;
-  height: 66px;
-  -webkit-animation-duration: 4.5s;
-  animation-duration: 4.5s;
-  -webkit-animation-delay: 0s;
-  animation-delay: 0s;
-}
-
-@-webkit-keyframes "miguel" {
-  0% {
-    -webkit-transform: translate3d(0px, 0px, 0px);
-    transform: translate3d(0px, 0px, 0px);
-  }
-  100% {
-    -webkit-transform: translate3d(900px, -900px, 0px);
-    transform: translate3d(900px, -900px, 0px);
-  }
-}
-@keyframes "miguel" {
-  0% {
-    -webkit-transform: translate3d(0px, 0px, 0px);
-    transform: translate3d(0px, 0px, 0px);
-  }
-  100% {
-    -webkit-transform: translate3d(900px, -900px, 0px);
-    transform: translate3d(900px, -900px, 0px);
-  }
-}
 .nux-intro h3 {
   background: #81a844;
   color: #fff;
@@ -3118,7 +3091,6 @@ a.what-is-primary {
   line-height: 175%;
 }
 .nux-intro a {
-  -webkit-transition: all .4s ease;
   transition: all .4s ease;
 }
 .nux-intro .j-col {
@@ -3266,7 +3238,8 @@ a.what-is-primary {
   white-space: normal;
   max-width: 200px;
   margin-bottom: 0;
-  padding-top: 2px;
+  padding-top: 4px;
+  padding-bottom: 5px;
 }
 .nux-intro .wpcom .goto .feat {
   position: absolute;
@@ -3302,9 +3275,15 @@ a.what-is-primary {
     border-top: 1px #f9f9f9 solid;
   }
 }
+.nux-foot .actions {
+  margin-top: 1em;
+}
+.nux-foot a {
+  text-decoration: underline;
+}
 .nux-foot img {
-  float: left;
-  margin-right: 1em;
+  float: right;
+  margin-left: 1em;
   width: 75px;
   border-radius: 4px;
 }
@@ -3323,8 +3302,11 @@ a.what-is-primary {
   margin-bottom: 0;
 }
 .nux-foot ul li {
+  margin-right: .875em;
   margin-bottom: 0;
   line-height: 175%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .form-toggle[type="checkbox"] {
@@ -3345,7 +3327,6 @@ a.what-is-primary {
   vertical-align: middle;
   outline: 0;
   cursor: pointer;
-  -webkit-transition: all .4s ease;
   transition: all .4s ease;
 }
 .form-toggle__switch:before, .form-toggle__switch:after {
@@ -3359,7 +3340,6 @@ a.what-is-primary {
   left: 0;
   border-radius: 50%;
   background: #fff;
-  -webkit-transition: all .2s ease;
   transition: all .2s ease;
 }
 .form-toggle__switch:before {
@@ -3469,11 +3449,6 @@ a.what-is-primary {
 
   .nux-foot .j-col {
     border: none;
-  }
-  .nux-foot img {
-    float: right;
-    margin-right: 0;
-    margin-left: 1em;
   }
 }
 @media (max-width: 900px) {

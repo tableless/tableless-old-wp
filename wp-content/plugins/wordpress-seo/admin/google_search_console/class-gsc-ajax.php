@@ -22,7 +22,7 @@ class WPSEO_GSC_Ajax {
 	 *
 	 * First it will do a request to the Google API
 	 */
-	public function ajax_mark_as_fixed( ) {
+	public function ajax_mark_as_fixed() {
 		if ( $this->valid_nonce() ) {
 			$marker = new WPSEO_GSC_Marker( filter_input( INPUT_POST, 'url' ) );
 
@@ -36,13 +36,15 @@ class WPSEO_GSC_Ajax {
 	 * Handling the request to create a new redirect from the issued URL
 	 */
 	public function ajax_create_redirect() {
-		if ( $this->valid_nonce() && class_exists( 'WPSEO_URL_Redirect_Manager' ) && defined( 'WPSEO_PREMIUM_PATH' ) ) {
-			$redirect_manager = new WPSEO_URL_Redirect_Manager();
+		if ( $this->valid_nonce() && class_exists( 'WPSEO_Redirect_Manager' ) && defined( 'WPSEO_PREMIUM_PATH' ) ) {
+			$redirect_manager = new WPSEO_Redirect_Manager();
 
 			$old_url = filter_input( INPUT_POST, 'old_url' );
 
 			// Creates the redirect.
-			if ( $redirect_manager->create_redirect( $old_url, filter_input( INPUT_POST, 'new_url' ), filter_input( INPUT_POST, 'type' ) ) ) {
+			$redirect = new WPSEO_Redirect( $old_url, filter_input( INPUT_POST, 'new_url' ), filter_input( INPUT_POST, 'type' ) );
+
+			if ( $redirect_manager->create_redirect( $redirect ) ) {
 				if ( filter_input( INPUT_POST, 'mark_as_fixed' ) === 'true' ) {
 					new WPSEO_GSC_Marker( $old_url );
 				}
@@ -73,5 +75,4 @@ class WPSEO_GSC_Ajax {
 	private function valid_nonce() {
 		return wp_verify_nonce( filter_input( INPUT_POST, 'ajax_nonce' ), 'wpseo-gsc-ajax-security' );
 	}
-
 }

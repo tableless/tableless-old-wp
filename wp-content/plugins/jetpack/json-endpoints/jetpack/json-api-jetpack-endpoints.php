@@ -578,3 +578,96 @@ new Jetpack_JSON_API_Sync_Endpoint( array(
 	),
 	'example_request' => 'https://public-api.wordpress.com/rest/v1.1/sites/example.wordpress.org/sync'
 ) );
+
+require_once( $json_jetpack_endpoints_dir . 'class.jetpack-json-api-log-endpoint.php' );
+
+new Jetpack_JSON_API_Jetpack_Log_Endpoint( array(
+	'description'     => 'Get the Jetpack log',
+	'method'          => 'GET',
+	'path'            => '/sites/%s/jetpack-log',
+	'stat'            => 'log',
+	'path_labels' => array(
+		'$site' => '(int|string) The site ID, The site domain'
+	),
+	'request_format' => array(
+		'event'   => '(string) The event to filter by, by default all entries are returned',
+		'num'   => '(int) The number of entries to get, by default all entries are returned'
+	),
+	'response_format' => array(
+		'log' => '(array) An array of jetpack log entries'
+	),
+	'example_request' => 'https://public-api.wordpress.com/rest/v1.1/sites/example.wordpress.org/jetpack-log'
+) );
+
+require_once( $json_jetpack_endpoints_dir . 'class.jetpack-json-api-maybe-auto-update-endpoint.php' );
+
+new Jetpack_JSON_API_Maybe_Auto_Update_Endpoint( array(
+	'description'     => 'Maybe Auto Update Core, Plugins, Themes and Languages',
+	'method'          => 'POST',
+	'path'            => '/sites/%s/maybe-auto-update',
+	'stat'            => 'maybe-auto-update',
+	'path_labels' => array(
+		'$site' => '(int|string) The site ID, The site domain'
+	),
+	'response_format' => array(
+		'log' => '(array) Results of running the update job'
+	),
+	'example_request' => 'https://public-api.wordpress.com/rest/v1.1/sites/example.wordpress.org/maybe-auto-update'
+
+) );
+
+// Options
+require_once( $json_jetpack_endpoints_dir . 'class.wpcom-json-api-get-option-endpoint.php' );
+
+new WPCOM_JSON_API_Get_Option_Endpoint( array (
+	'method' => 'GET',
+	'description' => 'Fetches an option.',
+	'group' => '__do_not_document',
+	'stat' => 'option',
+	'path' => '/sites/%s/option',
+	'path_labels' => array(
+		'$site' => '(int|string) Site ID or domain',
+	),
+	'query_parameters' => array(
+		'option_name' => '(string) The name of the option to fetch.',
+		'site_option' => '(bool=false) True if the option is a site option.',
+	),
+	'response_format' => array(
+		'option_value' => '(string|object) The value of the option.',
+	),
+	'example_request' => 'https://public-api.wordpress.com/rest/v1.1/sites/82974409/option?option_name=blogname',
+	'example_request_data' => array(
+		'headers' => array( 'authorization' => 'Bearer YOUR_API_TOKEN' ),
+	),
+) );
+
+require_once( $json_jetpack_endpoints_dir . 'class.wpcom-json-api-update-option-endpoint.php' );
+
+new WPCOM_JSON_API_Update_Option_Endpoint( array (
+	'method' => 'POST',
+	'description' => 'Updates an option.',
+	'group' => '__do_not_document',
+	'stat' => 'option:update',
+	'path' => '/sites/%s/option',
+	'path_labels' => array(
+		'$site' => '(int|string) Site ID or domain',
+	),
+	'query_parameters' => array(
+		'option_name' => '(string) The name of the option to fetch.',
+		'site_option' => '(bool=false) True if the option is a site option.',
+		'is_array' => '(bool=false) True if the value should be converted to an array before saving.',
+	),
+	'request_format' => array(
+		'option_value' => '(string|object) The new value of the option.',
+	),
+	'response_format' => array(
+		'option_value' => '(string|object) The value of the updated option.',
+	),
+	'example_request' => 'https://public-api.wordpress.com/rest/v1.1/sites/82974409/option',
+	'example_request_data' => array(
+		'headers' => array( 'authorization' => 'Bearer YOUR_API_TOKEN' ),
+		'body' => array(
+			'option_value' => 'My new blog name'
+		),
+	),
+) );

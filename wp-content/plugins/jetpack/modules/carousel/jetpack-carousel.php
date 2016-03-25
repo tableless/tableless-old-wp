@@ -55,6 +55,8 @@ class Jetpack_Carousel {
 			/**
 			 * Filter the array of default prebuilt widths used in Carousel.
 			 *
+			 * @module carousel
+			 *
 			 * @since 1.6.0
 			 *
 			 * @param array $this->prebuilt_widths Array of default widths.
@@ -76,6 +78,8 @@ class Jetpack_Carousel {
 		/**
 		 * Allow third-party plugins or themes to disable Carousel.
 		 *
+		 * @module carousel
+		 *
 		 * @since 1.6.0
 		 *
 		 * @param bool false Should Carousel be disabled? Default to fase.
@@ -91,6 +95,8 @@ class Jetpack_Carousel {
 	function asset_version( $version ) {
 		/**
 		 * Filter the version string used when enqueuing Carousel assets.
+		 *
+		 * @module carousel
 		 *
 		 * @since 1.6.0
 		 *
@@ -115,6 +121,8 @@ class Jetpack_Carousel {
 			/**
 			 * Allow third-party plugins or themes to force-enable Carousel.
 			 *
+			 * @module carousel
+			 *
 			 * @since 1.9.0
 			 *
 			 * @param bool false Should we force enable Carousel? Default to false.
@@ -124,8 +132,11 @@ class Jetpack_Carousel {
 			// Bail because someone is overriding the [gallery] shortcode.
 			remove_filter( 'gallery_style', array( $this, 'add_data_to_container' ) );
 			remove_filter( 'wp_get_attachment_image_attributes', array( $this, 'add_data_to_images' ) );
-			// Display message that carousel has bailed, if user is super_admin
-			if ( is_super_admin() ) {
+			// Display message that carousel has bailed, if user is super_admin, and if we're not on WordPress.com.
+			if (
+				is_super_admin() &&
+				! ( defined( 'IS_WPCOM' ) && IS_WPCOM )
+			) {
 				add_filter( 'post_gallery', array( $this, 'display_bail_message' ) );
 			}
 			return $output;
@@ -133,6 +144,8 @@ class Jetpack_Carousel {
 
 		/**
 		 * Fires when thumbnails are shown in Carousel.
+		 *
+		 * @module carousel
 		 *
 		 * @since 1.6.0
 		 **/
@@ -201,6 +214,8 @@ class Jetpack_Carousel {
 			/**
 			 * Filter the strings passed to the Carousel's js file.
 			 *
+			 * @module carousel
+			 *
 			 * @since 1.6.0
 			 *
 			 * @param array $localize_strings Array of strings passed to the Jetpack js file.
@@ -220,6 +235,8 @@ class Jetpack_Carousel {
 			/**
 			 * Fires after carousel assets are enqueued for the first time.
 			 * Allows for adding additional assets to the carousel page.
+			 *
+			 * @module carousel
 			 *
 			 * @since 1.6.0
 			 *
@@ -330,6 +347,8 @@ class Jetpack_Carousel {
 			/**
 			 * Filter the data added to the Gallery container.
 			 *
+			 * @module carousel
+			 *
 			 * @since 1.6.0
 			 *
 			 * @param array $extra_data Array of data about the site and the post.
@@ -351,6 +370,8 @@ class Jetpack_Carousel {
 		 * Allows for the checking of privileges of the blog user before comments
 		 * are packaged as JSON and sent back from the get_attachment_comments
 		 * AJAX endpoint
+		 *
+		 * @module carousel
 		 *
 		 * @since 1.6.0
 		 */
@@ -473,6 +494,8 @@ class Jetpack_Carousel {
 
 		/**
 		 * Fires before adding a new comment to the database via the get_attachment_comments ajax endpoint.
+		 *
+		 * @module carousel
 		 *
 		 * @since 1.6.0
 		 */

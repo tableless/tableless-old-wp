@@ -23,7 +23,7 @@ class WPSEO_Customizer {
 	/**
 	 * Function to support WordPress Customizer
 	 *
-	 * @param WP_Customize_Manager $wp_customize
+	 * @param WP_Customize_Manager $wp_customize Manager class instance.
 	 */
 	public function wpseo_customize_register( $wp_customize ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
@@ -63,7 +63,7 @@ class WPSEO_Customizer {
 	 * @return bool
 	 */
 	public function breadcrumbs_active_callback() {
-		$options = WPSEO_Options::get_all();
+		$options = WPSEO_Options::get_option( 'wpseo_internallinks' );
 
 		return true === ( current_theme_supports( 'yoast-seo-breadcrumbs' ) || $options['breadcrumbs-enable'] );
 	}

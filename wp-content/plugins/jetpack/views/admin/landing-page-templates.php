@@ -8,7 +8,7 @@
 			$target = '_self';
 		}
 	} else {
-		$vp_link = add_query_arg( array( 'from' => 'jpnux', 'url' => Jetpack::build_raw_urls( get_home_url() ) ), 'https://vaultpress.com/jetpack' );
+		$vp_link = esc_url( 'https://wordpress.com/plans/' . Jetpack::build_raw_urls( get_home_url() ) );
 		$target = '_blank';
 	}
 	$modules = 	array('Appearance', 'Developers', 'Mobile', 'Other', 'Photos and Videos', 'Social', 'Site Stats', 'Writing' );
@@ -83,9 +83,9 @@
 
 					<# if ( 'vaultpress' == data.module ) { #>
 						<?php if ( is_plugin_active( 'vaultpress/vaultpress.php' ) ) : ?>
-							<a href="<?php echo esc_url( $vp_link ); ?>" class="dashicons dashicons-external" title="<?php esc_attr_e( 'Configure', 'jetpack' ); ?>" target="<?php echo $target; ?>"></a>
+							<a href="<?php echo esc_url( $vp_link ); ?>" class="dashicons dashicons-external jptracks" data-jptracks-name="nudge_click" data-jptracks-prop="nux-vaultpress-configure" title="<?php esc_attr_e( 'Configure', 'jetpack' ); ?>" target="<?php echo $target; ?>"></a>
 						<?php else : ?>
-							<a href="<?php echo esc_url( $vp_link ); ?>" class="lmore" title="<?php esc_attr_e( 'Learn More', 'jetpack' ); ?>" target="<?php echo $target; ?>"><?php _e( 'Learn More', 'jetpack' ); ?></a>
+							<a href="<?php echo esc_url( $vp_link ); ?>" class="lmore jptracks" data-jptracks-name="nudge_click" data-jptracks-prop="nux-vaultpress-learnmore" title="<?php esc_attr_e( 'Learn More', 'jetpack' ); ?>" target="<?php echo $target; ?>"><?php _e( 'Learn More', 'jetpack' ); ?></a>
 						<?php endif; ?>
 					<# } else { #>
 						<span class="form-toggle__switch"></span>

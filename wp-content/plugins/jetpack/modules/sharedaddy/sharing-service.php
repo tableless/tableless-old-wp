@@ -55,6 +55,7 @@ class Sharing_Service {
 			'tumblr'        => 'Share_Tumblr',
 			'pinterest'     => 'Share_Pinterest',
 			'pocket'        => 'Share_Pocket',
+			'skype'         => 'Share_Skype',
 		);
 
 		if ( $include_custom ) {
@@ -67,6 +68,8 @@ class Sharing_Service {
 
 		/**
 		 * Filters the list of available Sharing Services.
+		 *
+		 * @module sharedaddy
 		 *
 		 * @since 1.1.0
 		 *
@@ -135,6 +138,8 @@ class Sharing_Service {
 		/**
 		 * Control the state of the list of sharing services.
 		 *
+		 * @module sharedaddy
+		 *
 		 * @since 1.1.0
 		 *
 		 * @param array $args {
@@ -178,6 +183,8 @@ class Sharing_Service {
 			/**
 			 * Filters the list of default Sharing Services.
 			 *
+			 * @module sharedaddy
+			 *
 			 * @since 1.1.0
 			 *
 			 * @param array $enabled Array of default Sharing Services.
@@ -202,6 +209,8 @@ class Sharing_Service {
 
 		/**
 		 * Filters the list of enabled Sharing Services.
+		 *
+		 * @module sharedaddy
 		 *
 		 * @since 1.1.0
 		 *
@@ -248,6 +257,8 @@ class Sharing_Service {
 
 		/**
 		 * Filters global sharing settings.
+		 *
+		 * @module sharedaddy
 		 *
 		 * @since 1.1.0
 		 *
@@ -340,6 +351,8 @@ class Sharing_Service {
 
 		/**
 		 * Get the state of a sharing button.
+		 *
+		 * @module sharedaddy
 		 *
 		 * @since 1.1.0
 		 *
@@ -474,6 +487,8 @@ function sharing_maybe_enqueue_scripts() {
 	/**
 	 * Filter to decide when sharing scripts should be enqueued.
 	 *
+	 * @module sharedaddy
+	 *
 	 * @since 3.2.0
 	 *
 	 * @param bool $enqueue Decide if the sharing scripts should be enqueued.
@@ -485,16 +500,20 @@ function sharing_add_footer() {
 	global $jetpack_sharing_counts;
 
 	/**
-	 * Filter all Javascript output by the sharing module.
+	 * Filter all JavaScript output by the sharing module.
+	 *
+	 * @module sharedaddy
 	 *
 	 * @since 1.1.0
 	 *
-	 * @param bool true Control whether the sharing module should add any Javascript to the site. Default to true.
+	 * @param bool true Control whether the sharing module should add any JavaScript to the site. Default to true.
 	 */
 	if ( apply_filters( 'sharing_js', true ) && sharing_maybe_enqueue_scripts() ) {
 
 		/**
 		 * Filter the display of sharing counts next to the sharing buttons.
+		 *
+		 * @module sharedaddy
 		 *
 		 * @since 3.2.0
 		 *
@@ -613,9 +632,11 @@ function sharing_display( $text = '', $echo = false ) {
 	/**
 	 * Filter to decide if sharing buttons should be displayed.
 	 *
+	 * @module sharedaddy
+	 *
 	 * @since 1.1.0
 	 *
-	 * @param
+	 * @param bool $show Should the sharing buttons be displayed.
 	 * @param WP_Post $post The post to share.
 	 */
 	$show = apply_filters( 'sharing_show', $show, $post );
@@ -642,6 +663,8 @@ function sharing_display( $text = '', $echo = false ) {
 	if ( $show ) {
 		/**
 		 * Filters the list of enabled Sharing Services.
+		 *
+		 * @module sharedaddy
 		 *
 		 * @since 2.2.3
 		 *
@@ -726,10 +749,21 @@ function sharing_display( $text = '', $echo = false ) {
 		}
 	}
 
+	/**
+	 * Filters the content markup of the Jetpack sharing links
+	 *
+	 * @module sharedaddy
+	 *
+	 * @since 3.8.0
+	 *
+	 * @param string $sharing_content Content markup of the Jetpack sharing links
+	 */
+	$sharing_markup = apply_filters( 'jetpack_sharing_display_markup', $sharing_content );
+
 	if ( $echo )
-		echo $text.$sharing_content;
+		echo $text . $sharing_markup;
 	else
-		return $text.$sharing_content;
+		return $text . $sharing_markup;
 }
 
 add_filter( 'the_content', 'sharing_display', 19 );

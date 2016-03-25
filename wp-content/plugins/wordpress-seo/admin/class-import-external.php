@@ -25,9 +25,9 @@ class WPSEO_Import_External {
 	public $msg = '';
 
 	/**
-	 * Class constructor
+	 * Import class constructor.
 	 *
-	 * @param boolean $replace
+	 * @param boolean $replace Boolean replace switch.
 	 */
 	public function __construct( $replace = false ) {
 		$this->replace = $replace;
@@ -38,7 +38,7 @@ class WPSEO_Import_External {
 	/**
 	 * Convenience function to set import message
 	 *
-	 * @param string $msg
+	 * @param string $msg Message string.
 	 */
 	protected function set_msg( $msg ) {
 		if ( ! empty( $this->msg ) ) {
@@ -50,7 +50,7 @@ class WPSEO_Import_External {
 	/**
 	 * Deletes an option depending on the class replace state
 	 *
-	 * @param string $option
+	 * @param string $option Option key.
 	 */
 	protected function perhaps_delete( $option ) {
 		if ( $this->replace ) {
@@ -90,15 +90,13 @@ class WPSEO_Import_External {
 				if ( isset( $custom['_headspace_noodp'] ) ) {
 					$robotsmeta_adv .= 'noodp,';
 				}
-				if ( isset( $custom['_headspace_noydir'] ) ) {
-					$robotsmeta_adv .= 'noydir';
-				}
 				$robotsmeta_adv = preg_replace( '`,$`', '', $robotsmeta_adv );
 				WPSEO_Meta::set_value( 'meta-robots-adv', $robotsmeta_adv, $post->ID );
 			}
 		}
 
 		if ( $this->replace ) {
+			// We no longer use noydir, but we remove the meta key as it's unneeded.
 			$hs_meta = array( 'noarchive', 'noodp', 'noydir' );
 			foreach ( $hs_meta as $meta ) {
 				delete_post_meta_by_key( '_headspace_' . $meta );

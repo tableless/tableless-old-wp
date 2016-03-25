@@ -1,5 +1,4 @@
 <?php
-
 add_action('admin_menu', 'ct_add_users_menu');
 
 function ct_add_users_menu()
@@ -16,7 +15,7 @@ function ct_show_users_page()
 	<div class="wrap">
 		<h2><?php _e("Anti-spam by CleanTalk", 'cleantalk'); ?></h2><br />
 		<?php
-		$args_unchecked = array(
+		/*$args_unchecked = array(
 			'meta_query' => array(
 				'relation' => 'AND',
 				Array(
@@ -30,28 +29,25 @@ function ct_show_users_page()
 					'compare' => 'NOT EXISTS'
 				)
 			)
-		);
-		$cnt_unchecked=sizeof(get_users($args_unchecked));
-		$args_spam = array(
+		);*/
+		global $wpdb;
+		$r=$wpdb->get_results("select distinct count($wpdb->users.ID) as cnt from $wpdb->users inner join $wpdb->usermeta on $wpdb->users.ID=$wpdb->usermeta.user_id where $wpdb->usermeta.meta_key='ct_checked' or $wpdb->usermeta.meta_key='ct_hash';");
+		$cnt_checked=$r[0]->cnt;
+		$r=$wpdb->get_results("select count(ID) as cnt from $wpdb->users;");
+		$cnt_all=$r[0]->cnt;
+		
+		$cnt_unchecked=$cnt_all-$cnt_checked;
+		/*$args_spam = array(
 			'meta_query' => array(
 				Array(
 					'key' => 'ct_marked_as_spam',
 					'compare' => 'EXISTS'
 				)
 			)
-		);
-		$cnt_spam=sizeof(get_users($args_spam));
-		//if($cnt_unchecked>0)
-		{
-		?>
-			</div>
-		<?php
-		}
-		?>
-<?php
-		//print '<button class="button" id="ct_insert_users">Insert users</button><br />';
+		);*/
+		$r=$wpdb->get_results("select distinct count($wpdb->users.ID) as cnt from $wpdb->users inner join $wpdb->usermeta on $wpdb->users.ID=$wpdb->usermeta.user_id where $wpdb->usermeta.meta_key='ct_marked_as_spam';", ARRAY_A);
+$cnt_spam1=$r[0]['cnt'];
 ?>
-
 		<div id="ct_working_message" style="margin:auto;padding:3px;width:70%;border:2px dotted gray;display:none;background:#ffff99;">
 			<?php _e("Please wait for a while. CleanTalk is checking all users via blacklist database at cleantalk.org. You will have option to delete found spam users after plugin finish.", 'cleantalk'); ?>
 		</div>
@@ -63,18 +59,8 @@ function ct_show_users_page()
 			?>
 		</div>
 		<h3 id="ct_checking_users_status" style="text-align:center;width:90%;"></h3>
+		<div style="text-align:center;width:100%;display:none;" id="ct_preloader"><img border=0 src="<?php print plugin_dir_url(__FILE__); ?>images/preloader.gif" /></div>
 		<?php
-			$args_spam = array(
-				'meta_query' => array(
-					Array(
-						'key' => 'ct_marked_as_spam',
-						'compare' => 'EXISTS'
-					)
-				)
-			);
-			$cnt_spam=sizeof(get_users($args_spam));
-			
-			
 			$page=1;
 			if(isset($_GET['spam_page']))
 			{
@@ -93,7 +79,7 @@ function ct_show_users_page()
 			);
 			
 			$c_spam=get_users($args_spam);
-			if($cnt_spam>0)
+			if($cnt_spam1>0)
 			{
 		?>
 		<table class="widefat fixed comments" id="ct_check_users_table">
@@ -168,25 +154,14 @@ function ct_show_users_page()
 						</tr>
 						<?php
 					}
-					$args_spam = array(
-						'meta_query' => array(
-							Array(
-								'key' => 'ct_marked_as_spam',
-								'value' => '1',
-								'compare' => 'NUMERIC'
-							)
-							
-						)
-					);
-					$cnt_spam=sizeof(get_users($args_spam));
-					if($cnt_spam>30)
+					if($cnt_spam1>30)
 					{
 				?>
 				<tr class="comment even thread-even depth-1 approved">
 					<td colspan="4"> 
 						<?php
 							
-							$pages=ceil(intval($cnt_spam)/30);
+							$pages=ceil(intval($cnt_spam1)/30);
 							for($i=1;$i<=$pages;$i++)
 							{
 								if($i==$page)
@@ -214,7 +189,7 @@ function ct_show_users_page()
 		<br /><br />
 		<div id="ct_info_message"><?php _e("Anti-spam by CleanTalk will check all users against blacklists database and show you senders that have spam activity on other websites. Just click 'Find spam users' to start.", 'cleantalk'); ?>
 		<?php
-			if($cnt_spam>0)
+			if($cnt_spam1>0)
 			{
 				print "<br />
 		There is some differencies between blacklists database and our API mechanisms. Blacklists shows all history of spam activity, but our API (that used in spam checking) used another parameters, too: last day of activity, number of spam attacks during last days etc. This mechanisms help us to reduce number of false positivitie. So, there is nothing strange, if some emails/IPs will be not found by this checking.<br /><br />";
@@ -295,7 +270,7 @@ function ct_ajax_check_users()
 			}
 			else
 			{
-				$data[]='127.0.0.1';
+				$data[]='8.8.8.8';
 			}
 			$data[]=$u[$i]->data->user_email;
 		}
@@ -336,12 +311,12 @@ function ct_ajax_check_users()
 				{
 					$uip='127.0.0.1';
 				}
-				//if($uip=='127.0.0.1')continue;
+				if($uip=='127.0.0.1')continue;
 				$uim=$u[$i]->data->user_email;
 				if(empty($uim))continue;
 				
 				//print "uip: $uip, uim: $uim\n";
-				if($result->data->$uip->appears==1||$result->data->$uim->appears==1)
+				if(isset($result->data->$uip) && $result->data->$uip->appears==1 || isset($result->data->$uim) && $result->data->$uim->appears==1)
 				{
 					update_user_meta($u[$i]->ID,'ct_marked_as_spam','1',true);
 				}
@@ -361,42 +336,18 @@ add_action( 'wp_ajax_ajax_info_users', 'ct_ajax_info_users' );
 function ct_ajax_info_users()
 {
 	check_ajax_referer( 'ct_secret_nonce', 'security' );
-	$cnt=sizeof(get_users());
+global $wpdb;
+		$r=$wpdb->get_results("select distinct count($wpdb->users.ID) as cnt from $wpdb->users inner join $wpdb->usermeta on $wpdb->users.ID=$wpdb->usermeta.user_id where $wpdb->usermeta.meta_key='ct_checked' or $wpdb->usermeta.meta_key='ct_hash';");
+		$cnt_checked=$r[0]->cnt;
+		$r=$wpdb->get_results("select count(ID) as cnt from $wpdb->users;");
+		$cnt=$r[0]->cnt;
+		
+		$cnt_unchecked=$cnt_all-$cnt_checked;
+
+		$r=$wpdb->get_results("select distinct count($wpdb->users.ID) as cnt from $wpdb->users inner join $wpdb->usermeta on $wpdb->users.ID=$wpdb->usermeta.user_id where $wpdb->usermeta.meta_key='ct_marked_as_spam';", ARRAY_A);
+$cnt_spam1=$r[0]['cnt'];
 	
-	$args_spam = array(
-		'meta_query' => array(
-			Array(
-				'key' => 'ct_marked_as_spam',
-				//'value' => '1',
-				'compare' => 'NUMERIC'
-			)
-		)
-	);
-	
-	$cnt_spam=sizeof(get_users($args_spam));
-	
-	$args_checked1=array(
-		'meta_query' => array(
-			Array(
-				'key' => 'ct_hash',
-				'compare' => 'EXISTS'
-			)
-		)
-	);
-	$args_checked2=array(
-		'meta_query' => array(
-			Array(
-				'key' => 'ct_checked',
-				'compare' => 'EXISTS'
-			)
-		)
-	);
-	
-	$cnt_checked1=sizeof(get_users($args_checked1));
-	$cnt_checked2=sizeof(get_users($args_checked2));
-	$cnt_checked=$cnt_checked1+$cnt_checked2;
-	
-	printf (__("Total users %s, checked %s, found %s spam users.", 'cleantalk'), $cnt, $cnt_checked, $cnt_spam);
+	printf (__("Total users %s, checked %s, found %s spam users.", 'cleantalk'), $cnt, $cnt_checked, $cnt_spam1);
 	die();
 }
 

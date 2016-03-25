@@ -31,7 +31,7 @@ class WPSEO_JSON_LD {
 	 * Class constructor
 	 */
 	public function __construct() {
-		$this->options = WPSEO_Options::get_all();
+		$this->options = WPSEO_Options::get_options( array( 'wpseo', 'wpseo_social' ) );
 
 		add_action( 'wpseo_head', array( $this, 'json_ld' ), 90 );
 		add_action( 'wpseo_json_ld', array( $this, 'website' ), 10 );
@@ -109,14 +109,9 @@ class WPSEO_JSON_LD {
 		 */
 		$this->data = apply_filters( 'wpseo_json_ld_output', $this->data, $context );
 
-		if ( function_exists( 'wp_json_encode' ) ) {
-			$json_data = wp_json_encode( $this->data );  // Function wp_json_encode() was introduced in WP 4.1.
-		}
-		else {
-			$json_data = json_encode( $this->data );
-		}
-
 		if ( is_array( $this->data ) && ! empty( $this->data ) ) {
+			$json_data = WPSEO_Utils::json_encode( $this->data );
+
 			echo "<script type='application/ld+json'>", $json_data, '</script>', "\n";
 		}
 
