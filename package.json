@@ -1,0 +1,28 @@
+{
+  "name": "tableless",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tableless/tableless.git"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "js"
+  ],
+  "author": "Tableless.com.br",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tableless/tableless/issues"
+  },
+  "homepage": "https://github.com/tableless/tableless#readme",
+  "devDependencies": {
+    "gulp-cli": "^1.2.1",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0"
+  }
+}
