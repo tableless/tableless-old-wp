@@ -35,21 +35,39 @@
   background-color: rgba(50, 50, 50, .2)
   background-blend-mode: color-burn
   opacity: 0
-  transition: opacity .15s linear
+  transition: opacity .25s linear
 
   @include break(desk)
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
     height: inherit
 
+
     a.tb-lnk-featured
       display: block
 
-    h1
+
+  h1
+    @extend %center-vertical
+    color: #FFF
+    margin-top: -5%
+    width: 100%
+    font-family:  "PT Serif Caption"
+    font-size: 12px
+    letter-spacing: 2px
+    text-align: center
+    text-transform: uppercase
+    text-shadow: 0 0 17px rgba(0, 0, 0, .3)
+    @include break(desk)
       font-size: 25px
       letter-spacing: 8px
 
-      strong
+    strong
+      display: block
+      font-size: 27px
+      font-family: $font-bold
+
+      @include break(desk)
         font-size: 99px
 
   &.tb-is-active
@@ -71,22 +89,6 @@
     &:first-child
       display: block
 
-  h1
-    @extend %center-vertical
-    color: #FFF
-    margin-top: -5%
-    width: 100%
-    font-family:  "PT Serif Caption"
-    font-size: 12px
-    letter-spacing: 2px
-    text-align: center
-    text-transform: uppercase
-    text-shadow: 0 0 17px rgba(0, 0, 0, .3)
-
-    strong
-      display: block
-      font-size: 27px
-      font-family: $font-bold
 
 .tb-thumb-list
   margin-top: -250px
