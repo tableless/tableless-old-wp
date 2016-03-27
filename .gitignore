@@ -18,3 +18,4 @@ servicos/
 tablelessconf/
 topbar/
 wp-content/cache/
+node_modules/
