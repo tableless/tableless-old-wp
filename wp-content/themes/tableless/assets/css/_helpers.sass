@@ -193,10 +193,15 @@ $border-color-default: $border-diagonal-color
     margin-bottom: 10px
 
 .tb-lead-paragraph
-  font: 20px/27px "PT Serif Caption"
+  font-size: 15px
+  font-family: "PT Serif Caption"
+  line-height: 1.5
   color: #4E4E4E
   padding-bottom: 35px
   margin-bottom: 60px
+ 
+  @include break(desk)
+    font-size: 20px
 
   // &:after
   //   @extend .tb-divider

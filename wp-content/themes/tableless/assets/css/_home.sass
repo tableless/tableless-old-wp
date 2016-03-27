@@ -35,9 +35,22 @@
   background-color: rgba(50, 50, 50, .2)
   background-blend-mode: color-burn
   opacity: 0
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
   transition: opacity .15s linear
+
+  @include break(desk)
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
+    height: inherit
+
+    a.tb-lnk-featured
+      display: block
+
+    h1
+      font-size: 25px
+      letter-spacing: 8px
+
+      strong
+        font-size: 99px
 
   &.tb-is-active
     opacity: 1
@@ -106,6 +119,7 @@
   
   @include break(desk)
     padding: 0 0 300px
+
     &:after
       content: ""
       display: block
@@ -140,8 +154,11 @@
     border: 1px solid #E0E0E0
     border-top: 0
     border-right: 0
-    flex: 1 0 170px
+    flex: 1 0 120px
     text-align: center
+    
+    @include break(desk)
+      flex: 1 0 200px
 
     a
       padding: 10px 0 20px
@@ -171,16 +188,21 @@
         position: relative
         z-index: 1
 
+
       &:after
         @extend %center
         top: 50px
         content: ""
         background: rgba(139,152,190, .20)
-        display: inline-block
         border-radius: 100%
         width: 80px
         height: 80px
         z-index: 0
+        display: none
+        
+        @include break(desk)
+          display: inline-block
+
 
       &.tb-icon-ux
         &:after
@@ -286,7 +308,6 @@
 .tb-forum-call
   overflow: hidden
   text-align: center
-
   @include break(desk)
     text-align: left
     padding-bottom: 100px
@@ -297,7 +318,6 @@
   .tb-text-call
     width: 100%
     display: block
-
     @include break(desk)
       width: 420px
       display: inline-block
@@ -310,7 +330,6 @@
     float: right
     border: none
     display: none
-
     @include break(desk)
       display: block
 
@@ -319,6 +338,7 @@
 
 .tb-latest-posts-list
   @extend .tb-flex-box
+
 
 @media #{$desktop}
   .tb-thumb-list
@@ -366,16 +386,3 @@
       p
         font: 26px "PT Serif Caption"
         color: #4E4E4E
-
-  .tb-featured-post
-    height: inherit
-
-    a.tb-lnk-featured
-      display: block
-
-    h1
-      font-size: 25px
-      letter-spacing: 8px
-
-      strong
-        font-size: 99px

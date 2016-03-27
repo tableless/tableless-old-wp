@@ -12,10 +12,16 @@ body
   margin: 0 auto
 
 .tb-title-section
-  font: 50px/1.1 $font-bold
+  font-size: 25px
+  line-height: 1.1
+  font-family: $font-bold
   color: #4E4E4E
   letter-spacing: 2px
   text-transform: uppercase
+  margin-bottom: 10px
+
+  @include break(desk)
+    font-size: 50px
 
 .tb-read-more
   color: $red
@@ -46,6 +52,10 @@ body
   box-shadow: 0px 5px 5px 0px rgba(139,152,190,0.20)
   border-radius: 100px
   margin: 50px auto
+  display: none !important
+  outline: 1px solid red
+  @include break(desk)
+    display: block !important
 
 .tb-categ-list
   width: 100%
