@@ -27,13 +27,6 @@
   // add the "organize_gallery" capability
   // $obj_existing_role->add_cap( 'edit_published_posts' );
 
-  // Adding new image formats
-  // add_action( 'after_setup_theme', 'tb_theme_setup' );
-  // function tb_theme_setup() {
-  //   add_image_size( 'medium-img', 300 );
-  //   add_image_size( 'small-img', 100, 80, true );
-  // }
-
   // Insert featured image in Feeds.
   add_filter('the_content_feed', 'rss_post_thumbnail');
   function rss_post_thumbnail($content) {
