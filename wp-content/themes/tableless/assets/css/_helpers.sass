@@ -154,6 +154,8 @@ $border-color-default: $border-diagonal-color
     width: 100%
     height: 200px
     margin-bottom: 17px
+    @include break(desk)
+      max-width: 398px
 
     &:before
       content: ""
