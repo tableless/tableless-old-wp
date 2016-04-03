@@ -1,9 +1,14 @@
+@import 'mixins'
+@import 'helpers'
+@import 'sidebar'
+
 .single-post,
 .page
   background: #f7f9fb
 
 .tb-post-page
-  @extend .tb-container
+  max-width: 1440px
+  margin: 0 auto
 
   @include break(desk)
     padding-top: 0
@@ -207,19 +212,19 @@
 
 .tb-social-twitter
   background-color: rgba(85, 172, 238, 1)
-  background-image: url(images/twitter-icon.png)
+  background-image: url(../../images/twitter-icon.png)
   &:hover
     background-color: rgba(85, 172, 238, .85)
 
 .tb-social-facebook
   background-color: rgba(58, 91, 162, 1)
-  background-image: url(images/facebook-icon.png)
+  background-image: url(../../images/facebook-icon.png)
   &:hover
     background-color: rgba(58, 91, 162, .85)
 
 .tb-social-google
   background-color: rgba(221, 75, 57, 1)
-  background-image: url(images/plus-icon.png)
+  background-image: url(../../images/plus-icon.png)
   &:hover
     background-color: rgba(221, 75, 57, .85)
 

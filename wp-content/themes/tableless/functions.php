@@ -67,7 +67,7 @@
     wp_deregister_style('subscriptions');
 
     // wp_register_style( 'home', get_template_directory_uri() . '/assets/css/home.css', '1.0' );
-    // wp_register_style( 'single', get_template_directory_uri() . '/assets/css/single.css', '1.0' );
+    wp_register_style( 'single', get_template_directory_uri() . '/assets/css/single.css', '1.0' );
     // wp_register_style( 'prettify', get_template_directory_uri() . '/assets/css/prettify.css', '1.0' );
     // wp_register_style( 'category', get_template_directory_uri() . '/assets/css/category.css', '1.0' );
 
