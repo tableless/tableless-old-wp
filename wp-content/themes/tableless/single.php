@@ -16,6 +16,9 @@
           <h1>
             <?php the_title();?>
           </h1>
+      
+          <a href="<?php the_permalink(); ?>#disqus_thread" class="tb-comment-count">Seja o primeiro a comentar</a>
+
           <span class="tb-author-info">
             <?php echo get_avatar( get_the_author_id() , 100 ); ?>
             por <?php the_author_posts_link(); ?>
