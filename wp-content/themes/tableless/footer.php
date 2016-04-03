@@ -50,6 +50,7 @@
   a.async=false;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
 </script>
 <script   src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+<script id="dsq-count-scr" src="//tableless.disqus.com/count.js" async></script>
 
 <?php wp_footer();?>
 
