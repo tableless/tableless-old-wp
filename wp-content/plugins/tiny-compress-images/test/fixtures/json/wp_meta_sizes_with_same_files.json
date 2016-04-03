@@ -1,0 +1,21 @@
+{
+  "width": 1080,
+  "height": 720,
+  "file": "2015/09/panda.png",
+  "sizes": {
+    "custom-size": {
+      "file": "panda-150x150.png",
+      "width": 150,
+      "height": 150,
+      "mime-type": "image/png"
+    },
+    "custom-size-2": {
+      "file": "panda-150x150.png",
+      "width": 150,
+      "height": 150,
+      "mime-type": "image/png"
+    }
+  },
+  "image_meta": {
+  }
+}

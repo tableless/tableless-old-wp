@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -e
+
+display_usage() {
+  echo -e "Usage:\n\t$0 <version> \n\nExample:\n\t$0 41"
+}
+
+if [ $# -ne 1 ]
+then
+  display_usage
+  exit 1
+fi
+
+version="$1"
+dockerfile="Dockerfile-wordpress-$version"
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+source $DIR/docker-functions
+
+if [ ! -e "$DIR/../config/$dockerfile" ]
+then
+  echo -e "No Dockerfile for version $version can be found."
+  exit 1
+fi
+
+composer --working-dir="$DIR/.." install
+run_mysql
+build_mock_tinypng_webservice_image
+run_mock_tinypng_webservice
+build_wordpress_image
+run_wordpress

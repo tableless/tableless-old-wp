@@ -1,0 +1,69 @@
+#!/bin/bash
+
+build_wordpress_image() {
+  docker build -t "wordpress-$version" - < "$DIR/../config/$dockerfile"
+}
+
+build_phantomjs_image() {
+  docker build -t phantomjs - < $DIR/../config/Dockerfile-phantomjs
+}
+
+build_mock_tinypng_webservice_image() {
+  docker build -t mock-tinypng-webservice - < $DIR/../config/Dockerfile-mock-tinypng-webservice
+}
+
+run_phantomjs() {
+  if docker ps -a | grep -q phantomjs
+  then
+    docker rm -f phantomjs
+  fi
+
+  echo "Starting PhantomJS container..."
+  docker run --name phantomjs \
+    --link "wordpress$version":wordpress \
+    --detach=false phantomjs
+}
+
+run_wordpress() {
+  if docker ps --filter status=running | grep -q "wordpress$version"
+  then
+    docker stop "wordpress$version"
+  fi
+
+  if docker ps -a | grep -q "wordpress$version"
+  then
+    docker rm "wordpress$version"
+  fi
+
+  docker run --name "wordpress$version" \
+    --volume="$DIR/../":/var/www/html/wp-content/plugins/tinypng-image-compression \
+    --link mysql-wordpress:mysql \
+    --link mock-tinypng-webservice:webservice \
+    -d -p "80$version":80 -e WORDPRESS_DB_NAME="wordpress_$version" "wordpress-$version"
+}
+
+run_mysql() {
+  if ! docker ps --filter status=running | grep -q mysql-wordpress
+  then
+    echo "Starting MySQL container..."
+    if docker ps -a | grep -q "mysql-wordpress"
+    then
+      docker start "mysql-wordpress"
+    else
+      docker run --name mysql-wordpress -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mysql:5.5
+    fi
+  fi
+}
+
+run_mock_tinypng_webservice() {
+  if docker ps -a | grep -q mock-tinypng-webservice
+  then
+    docker rm -f mock-tinypng-webservice
+  fi
+
+  echo "Starting mock TinyPNG webservice container..."
+  docker run --name mock-tinypng-webservice \
+    --volume="$DIR/../test/mock-tinypng-webservice":/var/www/html \
+    -p 8080:80 \
+    -d mock-tinypng-webservice
+}
