@@ -47,7 +47,7 @@
 
     wp_register_script('disqus', get_template_directory_uri().'/assets/js/vendor/disqus.js', array(), '1.0', true );
     wp_register_script('prettify', get_template_directory_uri().'/assets/js/vendor/prettify/src/prettify.js', array(), '1.0', true );
-    wp_register_script('scripts', get_template_directory_uri().'/assets/js/scripts.js', array(), '1.0', true );
+    wp_register_script('scripts', get_template_directory_uri().'/assets/js/scripts.min.js', array(), '1.0', true );
 
     if (is_single()) {
       wp_enqueue_script('prettify');

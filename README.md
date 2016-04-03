@@ -22,6 +22,6 @@ Existem uma série de issues que podem ser feitas cadastradas aqui no GitHub. Se
 ## GULP
 Usamos o Gulp como task runner e praticamente serve para processar o SASS e minificar JS. Por isso, assim que clonar o projeto, rode `npm install` direto do **raiz** do projeto.
 
-O CSS está baseado em SASS. Eu sei que é muito popular por aí usar a sintaxe SCSS, mas no projeto estamos usando a sintaxe SASS mesmo. Para rodar, na **raiz** do projeto rode `gulp watch`. O Gulp vai ficar observando as mudanças que ocorrerem no CSS do tema, que está todo aqui **wp-content/themes/tableless/assets/css/**.
+Depois basta rodar `gulp` para que o Gulp fique vigiando os arquivos SASS e o `scripts.js`.
 
-O Gulp vai compilar tudo no **style.css** que fica no diretório do tema.
+O CSS está baseado em SASS. Eu sei que é muito popular por aí usar a sintaxe SCSS, mas no projeto estamos usando a sintaxe SASS mesmo.

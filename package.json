@@ -22,6 +22,8 @@
   "homepage": "https://github.com/tableless/tableless#readme",
   "devDependencies": {
     "gulp-cli": "^1.2.1",
+    "gulp-jsmin": "^0.1.5",
+    "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0"
   }
