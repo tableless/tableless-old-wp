@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Twenty Fifteen 1.1\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/theme/twentyfifteen\n"
-"POT-Creation-Date: 2015-04-23 15:11:26+00:00\n"
+"Project-Id-Version: Twenty Fifteen 1.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/twentyfifteen\n"
+"POT-Creation-Date: 2015-12-08 15:14:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,7 +53,7 @@ msgid "Comments are closed."
 msgstr ""
 
 #. translators: %s: Name of current post
-#: content-link.php:31 content.php:33 inc/template-tags.php:237
+#: content-link.php:31 content.php:33 inc/template-tags.php:238
 msgid "Continue reading %s"
 msgstr ""
 
@@ -87,7 +87,7 @@ msgid ""
 "searching can help."
 msgstr ""
 
-#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.1)  #-#-#-#-#
+#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.4)  #-#-#-#-#
 #. Author URI of the plugin/theme
 #: footer.php:25
 msgid "https://wordpress.org/"
@@ -198,27 +198,27 @@ msgstr ""
 msgid "Header and Sidebar Background Color"
 msgstr ""
 
-#: inc/customizer.php:92
+#: inc/customizer.php:113
 msgid "Default"
 msgstr ""
 
-#: inc/customizer.php:103
+#: inc/customizer.php:124
 msgid "Dark"
 msgstr ""
 
-#: inc/customizer.php:114
+#: inc/customizer.php:135
 msgid "Yellow"
 msgstr ""
 
-#: inc/customizer.php:125
+#: inc/customizer.php:146
 msgid "Pink"
 msgstr ""
 
-#: inc/customizer.php:136
+#: inc/customizer.php:157
 msgid "Purple"
 msgstr ""
 
-#: inc/customizer.php:147
+#: inc/customizer.php:168
 msgid "Blue"
 msgstr ""
 
@@ -273,16 +273,9 @@ msgctxt "Used before full size attachment link."
 msgid "Full size"
 msgstr ""
 
-#: inc/template-tags.php:122
-msgid "Leave a comment"
-msgstr ""
-
-#: inc/template-tags.php:122
-msgid "1 Comment"
-msgstr ""
-
-#: inc/template-tags.php:122
-msgid "% Comments"
+#. translators: %s: post title
+#: inc/template-tags.php:123
+msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
 msgstr ""
 
 #: search.php:18
