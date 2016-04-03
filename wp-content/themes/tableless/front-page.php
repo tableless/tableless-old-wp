@@ -38,7 +38,7 @@
     <div class="tb-container tb-thumb-list">
       
       <div class="tb-box-title">
-        <h3>Destaques</h3>
+        <h3>Desta-<br>ques</h3>
         <p>Você precisa ler!</p>
       </div>
 
