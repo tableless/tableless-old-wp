@@ -6,11 +6,13 @@ Para tanto, disponibilizamos o código do site Tableless.com.br para que a comun
 Se você quer contribuir, faça um fork deste projeto e submeta as suas mudanças via Pull Request. Alguns detalhes seguem abaixo:
 
 ## Wordpress e Banco de Dados
-O site é baseado em Wordpress. Nós versionamos não apenas o tema do site, mas todo  o Wordpress. Por isso, basta clonar o projeto.
+O site é baseado em Wordpress. Nós versionamos não apenas o tema do site, mas todo o Wordpress. Por isso, basta clonar o projeto.
 
 Para que o projeto funcione, você vai precisar instalar o banco de dados onde contém os posts do site. Para tanto, [baixe o banco deste link](https://www.dropbox.com/s/z9gjeht841ns6bp/tablelessBancoDemo.sql?dl=0).
 
 O link base do site no Banco é **http://localhost/tableless/**. Você pode mudar isso direto no banco, configurar seu hosts, sei lá. Aqui estou usando o Apache padrão do Mac, com meu **localhost** configurado para o diretório **Sites**.
+
+Para que os posts apareçam com suas respectivas imagens, [baixe a pasta **uploads**](https://www.dropbox.com/s/19oqay8faqw6p08/uploads.tar.gz?dl=0) e descompactar dentro da pasta **wp-content**.
 
 ## Issues e o tema
 O tema fica dentro da pasta **wp-content/themes/tableless**. 
