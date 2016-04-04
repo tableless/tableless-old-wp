@@ -18,11 +18,40 @@
 
   a.tb-read-more
     margin-top: 0
+    max-width 1440px
 
   .tb-box-title
     @extend .tb-box
     box-shadow: 0px 30px 30px 0px rgba(139,152,190, .2)
     cursor: default
+    @include break(desk)
+      flex: 1 0 340px      
+      padding: 35px 25px
+
+      &:before
+        content: ""
+        background: url(images/img_divider.png) no-repeat center
+        background-size: contain
+        width: 99px
+        height: 18px
+        display: block
+        margin-bottom: 35px
+
+      h3
+        font: 100px/85px $font-bold
+        color: #4E4E4E
+        letter-spacing: 0.5px
+        text-transform: uppercase
+        width: 100%
+        -webkit-hyphens: auto
+        -moz-hyphens: auto
+        -ms-hyphens: auto
+        hyphens: auto
+        margin-bottom: 35px
+
+      p
+        font: 26px "PT Serif Caption"
+        color: #4E4E4E
     
     &:hover
       box-shadow: 0px 30px 30px 0px rgba(139,152,190, .2)
@@ -355,36 +384,3 @@
   @extend .tb-flex-box
 
 
-@media #{$desktop}
-
-  .tb-featured-posts
-
-    .tb-box-title
-      float: left
-      padding: 35px 25px
-      width: 400px
-
-      &:before
-        content: ""
-        background: url(images/img_divider.png) no-repeat center
-        background-size: contain
-        width: 99px
-        height: 18px
-        display: block
-        margin-bottom: 35px
-
-      h3
-        font: 100px/85px $font-bold
-        color: #4E4E4E
-        letter-spacing: 0.5px
-        text-transform: uppercase
-        width: 100%
-        -webkit-hyphens: auto
-        -moz-hyphens: auto
-        -ms-hyphens: auto
-        hyphens: auto
-        margin-bottom: 35px
-
-      p
-        font: 26px "PT Serif Caption"
-        color: #4E4E4E
