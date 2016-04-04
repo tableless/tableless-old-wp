@@ -1,22 +1,22 @@
 <?php get_header(); ?>
 
 <div class="tb-post-page">
-  
+
   <?php if(has_post_thumbnail()) :?>
-    <figure class="tb-featured-image"><?php echo get_the_post_thumbnail( $post_id, 'full' ); ?></figure>
+    <figure class="tb-featured-image"><?php echo get_the_post_thumbnail( $post_id, 'medium' ); ?></figure>
   <?php endif;?>
-  
+
   <div class="tb-post-content">
-    
+
     <section class="tb-post-area">
 
       <article class="tb-post-text">
         <header>
-         
+
           <h1>
             <?php the_title();?>
           </h1>
-      
+
           <a href="<?php the_permalink(); ?>#disqus_thread" class="tb-comment-count">Seja o primeiro a comentar</a>
 
           <span class="tb-author-info">
@@ -24,7 +24,7 @@
             por <?php the_author_posts_link(); ?>
           </span>
         </header>
-        
+
         <?php the_content();?>
 
         <footer>
