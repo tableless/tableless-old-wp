@@ -62,10 +62,10 @@
             </a>
         <?php endwhile; wp_reset_postdata(); ?>
 
-  <a href="<?php echo get_page_link(42486); ?>" class="tb-read-more">Ver últimos posts</a>
 
     </div>
 
+  <a href="<?php echo get_page_link(42486); ?>" class="tb-read-more">Ver últimos posts</a>
 
 </section>
 
