@@ -1,7 +1,7 @@
 <?php get_header();?>
 
 <section class="tb-featured-posts">
-  
+
   <div class="tb-featured-inner">
 <?php
   $featuredPostsArgs = array(
@@ -26,7 +26,7 @@
     <div class="tb-featured-post" id="<?php echo $post->ID; ?>">
     <?php endif;?>
       <a href="<?php the_permalink();?>" class="tb-lnk-featured">
-        
+
         <h1 class="tb-title-1"><?php $tituloPersonalizado = get_post_meta($post->ID, 'titulo_personalizado', true); echo $tituloPersonalizado; ?></h1>
 
       </a>
@@ -36,7 +36,7 @@
   </div>
 
     <div class="tb-container tb-thumb-list">
-      
+
       <div class="tb-box-title">
         <h3>Desta-<br>ques</h3>
         <p>Você precisa ler!</p>
@@ -73,7 +73,7 @@
 
       <h1 class="tb-title-section">Encontre um assunto</h1>
       <p class="tb-lead-paragraph tb-divider">Filtre pelo assunto do seu interesse</p>
-      
+
       <ul class="tb-category-list">
         <li>
           <a href="<?php echo get_category_link( 258 ); ?>" class="tb-icon-html">HTML</a>
@@ -120,12 +120,6 @@
       $latestPostsargs = array(
         'posts_per_page' => 8, // Quantidade de posts
         'order'=> 'DESC',
-        'meta_query' => array(
-          array(
-           'key' => '_thumbnail_id',
-           'compare' => 'EXISTS'
-          )
-        ),
       );
       $latestPosts = get_posts( $latestPostsargs );
       foreach ( $latestPosts as $post ) : setup_postdata( $post ); ?>
