@@ -96,17 +96,28 @@
   margin-bottom: 100px
   position: relative
   z-index: 2
+  @include break(desk)
+    display: flex
 
 .tb-thumb-box
   @extend .tb-box
   z-index: 1
-  width: 200px
   height: 200px
   border: 10px solid #fff
   display: inline-block
   position: relative
   overflow: hidden
+  @include break(desk)
+    flex: 1 0 150px
+    margin-top: 100px
+    position: relative
 
+    &:nth-child(2)
+      display: none
+
+    &:nth-child(4),
+    &:nth-child(6)
+      top: 50px
   img
     @extend %center
     height: 200px
@@ -342,19 +353,6 @@
 
 
 @media #{$desktop}
-  .tb-thumb-list
-    display: block
-
-    .tb-thumb-box
-      margin-top: 100px
-      position: relative
-
-      &:nth-child(2)
-        display: none
-
-      &:nth-child(4),
-      &:nth-child(6)
-        top: 50px
 
   .tb-featured-posts
 
