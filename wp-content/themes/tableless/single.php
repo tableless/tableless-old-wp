@@ -51,7 +51,7 @@
 
       <section class="tb-related-posts">
         <h2 class="tb-title-section">Leia também</h2>
-        <p class="tb-lead-paragraph tb-divider">Aproveite para ler estes posts também:</p>
+        <p class="tb-lead-paragraph">Aproveite para ler estes posts também:</p>
 
         <div class="tb-related-group">
         <?php
