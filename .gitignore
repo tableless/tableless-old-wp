@@ -20,3 +20,4 @@ topbar/
 wp-content/cache/
 node_modules/
 npm-debug.log
+wp-content/themes/tableless/assets/css/single.css
