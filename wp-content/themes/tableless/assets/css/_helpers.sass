@@ -128,6 +128,10 @@ $border-color-default: $border-diagonal-color
 ////
 // Boxes
 ////
+.tb-box-list
+  display: flex
+  flex-wrap: wrap
+
 .tb-box
   background: #fff
   box-shadow: 0px 30px 30px 0px rgba(139, 152, 190, .20)
@@ -155,7 +159,15 @@ $border-color-default: $border-diagonal-color
     height: 200px
     margin-bottom: 17px
     @include break(desk)
-      max-width: 398px
+      max-width: 278px
+      height: 200px
+    
+    img
+        @extend %center
+        width: 150%
+        height: auto
+        position: relative
+        z-index: 0
 
     &:before
       content: ""
@@ -169,13 +181,6 @@ $border-color-default: $border-diagonal-color
       -moz-box-shadow: inset 0px 0px 41px -12px rgba(0, 0, 0, .75)
       box-shadow: inset 0px 0px 41px -12px rgba(0, 0, 0, .75)
       z-index: 1
-
-    img
-      @extend %center
-      height: 100%
-      width: auto
-      position: relative
-      z-index: 0
 
   a
     color: #4E4E4E
