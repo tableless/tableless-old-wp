@@ -1,6 +1,6 @@
     <a href="<?php the_permalink();?>" class="tb-box">
       <?php if(has_post_thumbnail()) :?>
-        <figure><?php echo get_the_post_thumbnail( $post_id, 'medium' ); ?></figure>
+        <figure><?php echo get_the_post_thumbnail( $post_id, 'thumb' ); ?></figure>
       <?php else : ?>
         <figure><img src="<?php bloginfo('template_url');?>/images/missing-img.png"></figure>
       <?php endif; ?>
