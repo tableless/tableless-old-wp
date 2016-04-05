@@ -17,8 +17,28 @@
       height: 800px
 
   a.tb-read-more
-    margin: 0 auto
-    max-width: 1440px
+    @extend .tb-btn
+    margin: 30px auto 0
+    display: block
+    max-width: 300px
+    text-align: center
+
+    @include break(desk)
+      color: $red
+      text-decoration: none
+      font: 25px/29px $font-regular
+      display: block
+      padding-right: 50px
+      text-align: right
+      background: url(images/arrow-right.png) no-repeat right center
+      background-size: 35px
+      max-width: 1440px
+      text-transform: lowercase
+      &:hover
+        background: url(images/arrow-right.png) no-repeat right center
+        background-size: 35px
+        background-color: transparent
+
 
   .tb-box-title
     @extend .tb-box

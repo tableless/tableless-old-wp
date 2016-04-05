@@ -205,14 +205,14 @@ $border-color-default: $border-diagonal-color
   line-height: 1.5
   color: #4E4E4E
   padding-bottom: 55px
-  margin-bottom: 60px
+  
+  @include break(desk)
+    font-size: 20px
+    margin-bottom: 60px
 
   &:after
     margin-top: 20px
  
-  @include break(desk)
-    font-size: 20px
-
   // &:after
   //   @extend .tb-divider
   //   margin-top: 15px
