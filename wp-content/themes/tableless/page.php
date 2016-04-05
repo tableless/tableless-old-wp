@@ -1,27 +1,27 @@
 <?php get_header(); ?>
 
 <div class="tb-post-page">
-  
+
   <?php if(has_post_thumbnail()) :?>
     <figure class="tb-featured-image"><?php echo get_the_post_thumbnail( $post_id, 'full' ); ?></figure>
   <?php endif;?>
-  
+
   <div class="tb-post-content">
-    
+
     <section class="tb-post-area">
 
       <article class="tb-post-text">
         <header>
-         
+
           <h1>
             <?php the_title();?>
           </h1>
           <span class="tb-author-info">
-            <?php echo get_avatar( get_the_author_id() , 100 ); ?>
+            <?php echo get_avatar( get_the_author_meta('ID') , 100 ); ?>
             por <?php the_author_posts_link(); ?>
           </span>
         </header>
-        
+
         <?php the_content();?>
 
         <footer>
@@ -40,10 +40,10 @@
       </div>
 
       <div class="tb-post-author">
-        <?php echo get_avatar( get_the_author_id() , 120 ); ?>
+        <?php echo get_avatar( get_the_author_meta('ID') , 120 ); ?>
         <h3><?php the_author(); ?></h3>
         <p><?php the_author_meta('description'); ?></p>
-        <p><a href="<?php bloginfo('url'); ?>/?author=<?php the_author_ID(); ?>">Veja mais artigos deste autor</a></p>
+        <p><a href="<?php bloginfo('url'); ?>/?author=<?php the_author_meta('ID'); ?>">Veja mais artigos deste autor</a></p>
       </div>
 
       <section class="tb-related-posts">
