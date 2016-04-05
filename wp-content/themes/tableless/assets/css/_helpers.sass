@@ -204,8 +204,11 @@ $border-color-default: $border-diagonal-color
   font-family: "PT Serif Caption"
   line-height: 1.5
   color: #4E4E4E
-  padding-bottom: 35px
+  padding-bottom: 55px
   margin-bottom: 60px
+
+  &:after
+    margin-top: 20px
  
   @include break(desk)
     font-size: 20px
@@ -219,5 +222,10 @@ $border-color-default: $border-diagonal-color
 ////
 .tb-title-1
   font: 100px $font-bold
+  color: #4E4E4E
+  text-transform: uppercase
+
+.tb-title-3
+  font: 60px $font-bold
   color: #4E4E4E
   text-transform: uppercase
