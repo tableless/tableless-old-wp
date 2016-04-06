@@ -401,3 +401,10 @@
 
 .tb-latest-posts-list
   @extend .tb-flex-box
+  
+.no-divider
+  padding: 0
+  @include break(desk)
+    margin-top: -90px
+  &:after
+    display: none
