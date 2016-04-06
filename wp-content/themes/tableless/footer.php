@@ -1,14 +1,14 @@
 <footer class="tb-footer">
   <div class="tb-container">
 
-  <div class="tb-footer-post"> 
+  <div class="tb-footer-post">
     <h5>Leia também:</h5>
     <?php $posts = get_posts('orderby=rand&numberposts=1'); foreach($posts as $post) { ?>
         <a href="<?php the_permalink();?>">
           <!-- <h1 class="tb-big-title"><?php the_title(); ?></h1> -->
           <p class="tb-lead-text"><?php echo get_the_excerpt(); ?></p>
         </a>
-        <!--a href="<?php bloginfo('url'); ?>/?author=<?php the_author_ID(); ?>" rel="author" class="tb-author">Por <?php the_author(); ?></a-->
+        <!--a href="<?php bloginfo('url'); ?>/?author=<?php the_author_meta('ID'); ?>" rel="author" class="tb-author">Por <?php the_author(); ?></a-->
   <?php } ?>
   </div>
 

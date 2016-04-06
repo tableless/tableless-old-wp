@@ -1,10 +1,10 @@
 <?php get_header();?>
- 
+
 <section class="tb-author-page">
 <div class="tb-container">
-  
+
   <div class="tb-post-author">
-    <?php echo get_avatar( get_the_author_id() , 600 ); ?>
+    <?php echo get_avatar( get_the_author_meta('ID') , 600 ); ?>
     <h3 class="tb-title-section"><?php the_author(); ?></h3>
     <p class="tb-lead-paragraph tb-divider"><?php the_author_meta('description'); ?></p>
   </div>
@@ -26,5 +26,5 @@
 
 
 </div>
-</section>  
+</section>
 <?php get_footer();?>
