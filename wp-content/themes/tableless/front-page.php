@@ -57,7 +57,7 @@
           );
           $featurePost = new WP_Query($featuredPostsArgs);
           while($featurePost->have_posts()) : $featurePost->the_post();?>
-            <a href="<?php the_permalink(); ?>" class="tb-thumb-box" data-target="<?php echo $post->ID; ?>">
+            <a href="<?php the_permalink(); ?>" class="tb-thumb-box" data-target="<?php echo $post->ID; ?>" title="<?php echo $post->post_title  ?>">
               <?php echo get_the_post_thumbnail( $post_id, 'medium' ); ?>
             </a>
         <?php endwhile; wp_reset_postdata(); ?>
