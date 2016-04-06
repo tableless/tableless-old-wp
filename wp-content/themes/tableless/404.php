@@ -1,15 +1,16 @@
 <?php get_header();?>
  
 <section class="tb-section">
-<div class="tb-container">
-
-
+  
+  <div class="tb-container">
     <h2 class="tb-title-section tb-align-center">
-      Desculpe, a página que você está procurando não existe
+      Ixi! Não encontramos a página
     </h2>
-   <p class="tb-lead-paragraph tb-divider tb-align-center">Veja abaixo alguns posts que você pode gostar</p>
-    
+    <p class="tb-lead-paragraph tb-divider tb-align-center">Mas confira alguns outros posts incríveis que você pode gostar</p>
+  </div>
+  
 </section>
+
 <section class="tb-latest-posts no-divider">
   
     <div class="tb-container">
@@ -29,9 +30,9 @@
   
   
     </div>
-        <a href="<?php echo get_page_link(42486); ?>" class="tb-btn-big">Mais artigos</a>
+    <a href="<?php echo get_page_link(42486); ?>" class="tb-btn-big">Mais artigos</a>
   
-  </section>
+</section>
 
 
 
