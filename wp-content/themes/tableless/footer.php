@@ -33,9 +33,10 @@
     <nav>
       <h6>Comunidade</h6>
       <ul>
-        <li><a href="https://sp.femug.com">femugSP</a></li>
+        <li><a href="http://femug.github.io/femug/">Femug</a></li>
         <li><a href="http://www.meetup.com/pt-BR/CSS-SP/">MeetupCSS SP</a></li>
         <li><a href="http://zofe.com.br">Zofe</a></li>
+        <li><a href="https://braziljs.org">BrazilJS</a></li>
         <li><a href="http://www.meetup.com/pt-BR/FrontUX/">FrontUX</a></li>
       </ul>
     </nav>
