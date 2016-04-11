@@ -1,37 +1,39 @@
-var tableless = (function() {
-  'use strict';
+class Tableless {
 
-  function init(){
-    showFeaturedPosts();
-    prettyPrintHighlight();
-    openCloseSearch();
-    searchAjax();
+  //
+  // Initialize
+  //
+  init() {
+    this.showFeaturedPosts();
+    this.prettyPrintHighlight();
+    this.openCloseSearch();
+    this.searchAjax();
   }
 
   //
   // Start PrettyPrint
   //
-  function prettyPrintHighlight(){
-    var $root = document.querySelector('html');
-    if ($root.classList.contains('single')) {
-      preHighlight();
-      prettyPrint();
+  preHighlight() {
+    let $pre = document.querySelectorAll('pre');
+
+    for (let i = 0; i < $pre.length; i++) {
+      $pre[i].classList.add('prettyprint', 'linenums');
     }
   }
 
-  function preHighlight() {
-    var $pre = document.querySelectorAll('pre');
-
-    for (var i = 0; i < $pre.length; i++) {
-      $pre[i].classList.add('prettyprint', 'linenums');
+  prettyPrintHighlight() {
+    let $root = document.querySelector('html');
+    if ($root.classList.contains('single')) {
+      this.preHighlight();
+      prettyPrint();
     }
   }
 
   ///
   /// Open Search Box
   ///
-  function openCloseSearch() {
-    $('.tb-search-btn, .tb-close-search').on('click', function(e){
+  openCloseSearch() {
+    $('.tb-search-btn, .tb-close-search').on('click', (e) => {
       e.preventDefault();
       $('.tb-search-box').toggleClass('tb-is-active');
       $('#s').focus();
@@ -41,15 +43,17 @@ var tableless = (function() {
   ///
   // Ajax call to show search results
   ///
-  function searchAjax(){
-    $('#searchsubmit').on('click', function(e){
+  searchAjax() {
+    $('#searchsubmit').on('click', (e) => {
       e.preventDefault();
-      var searchTerm = $('#s').val();
+      let searchTerm = $('#s').val();
       $.ajax({
-        url: "http://tableless.com.br/?s=" + searchTerm,
+        url: `http://tableless.com.br/?s=${searchTerm}`,
         type : 'get',
-        success: function( data ) {
-          var dataContent = $('<div class="tb-data-box">').html(data).find('.tb-search-content').html();
+        success: (data) => {
+          let dataContent = $('<div class="tb-data-box">').html(data);
+          dataContent = dataContent.find('.tb-search-content').html();
+
           $('.tb-search-results-list').html( dataContent );
         }
       });
@@ -57,31 +61,22 @@ var tableless = (function() {
     });
   }
 
-
   ///
   // Featured posts in Home
   ///
-  function showFeaturedPosts() {
+  showFeaturedPosts() {
     $('.tb-featured-post:first').addClass('tb-is-active');
 
-    $('.tb-thumb-box').on('click', function(e){
+    $('.tb-thumb-box').on('click', (e) => {
       e.preventDefault();
-
-      var $targetPost = $('#' + $(this).data('target'));
+      let $target = $(this).data('target');
+      let $targetPost = $(`#${$target}`);
       $('.tb-featured-post').removeClass('tb-is-active');
       $targetPost.addClass('tb-is-active');
       console.log($targetPost);
     });
   }
+}
 
-
-  return {
-    init: init,
-    preHighlight: preHighlight
-  }
-
-}());
-
-(function(){
-  tableless.init();
-}());
+const tableless = new Tableless();
+tableless.init();

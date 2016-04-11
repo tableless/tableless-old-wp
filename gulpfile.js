@@ -1,14 +1,17 @@
 'use strict';
 
-var themeTableless = "./wp-content/themes/tableless/"
-var jsFolder = "./wp-content/themes/tableless/assets/js/"
-var cssFolder = "./wp-content/themes/tableless/assets/css/"
+var themeTableless = "./wp-content/themes/tableless/",
+    jsFolder       = "./wp-content/themes/tableless/assets/js/",
+    cssFolder      = "./wp-content/themes/tableless/assets/css/";
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
-var jsmin = require('gulp-jsmin');
-var rename = require('gulp-rename');
+var gulp       = require('gulp'),
+    sass       = require('gulp-sass'),
+    sourcemaps = require('gulp-sourcemaps'),
+    jsmin      = require('gulp-jsmin'),
+    jshint     = require('gulp-jshint'),
+    babel      = require('gulp-babel'),
+    rename     = require('gulp-rename'),
+    stylish    = require('jshint-stylish');
  
 gulp.task('sass', function () {
   gulp.src(themeTableless + '**/*.sass')
@@ -19,8 +22,11 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./wp-content/themes/tableless/'))
 });
 
-gulp.task('jsmin', function() {
+gulp.task('babel', function() {
   gulp.src(jsFolder + 'scripts.js')
+  .pipe(jshint())
+  .pipe(jshint.reporter(stylish))
+  .pipe(babel())
   .pipe(jsmin())
   .pipe(rename({suffix: '.min'}))
   .pipe(gulp.dest(jsFolder));
@@ -28,7 +34,7 @@ gulp.task('jsmin', function() {
 
 gulp.task('watch', function () {
   gulp.watch(themeTableless + '**/*.sass', ['sass']);
-  gulp.watch(jsFolder + 'scripts.js', ['jsmin']);
+  gulp.watch(jsFolder + 'scripts.js', ['babel']);
 });
 
 gulp.task('default', ['watch'])
