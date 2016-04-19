@@ -202,7 +202,7 @@
   overflow: hidden
   text-align: center
   position: relative
-  height: 150px
+  height: 170px
   display: block
 
   a
@@ -211,8 +211,8 @@
     height: 100%
 
   img
+    @extend %center
     height: 100%
-
 
   @include break(desk)
     height: auto
@@ -221,6 +221,8 @@
     img
       width: 100%
       height: auto
+      position: static
+      transform: none
 
 .tb-category-list
   background: #fff

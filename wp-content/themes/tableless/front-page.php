@@ -116,7 +116,7 @@
   </script>
   </div> -->
   <a href="http://bit.ly/18elw-recife" title="Um dos melhores eventos sobre desenvolvimento web do Brasil."><img src="http://eventos.locaweb.com.br/files/2016/03/AdCast_1920x480_RE.jpg"></a>
-  <?php/*<a href="http://bit.ly/18elw-poa" title="Um dos melhores eventos sobre desenvolvimento web do Brasil."><img src="http://eventos.locaweb.com.br/files/2016/03/AdCast_1920x480_PA.jpg"></a>*/?>
+  <!--<a href="http://bit.ly/18elw-poa" title="Um dos melhores eventos sobre desenvolvimento web do Brasil."><img src="http://eventos.locaweb.com.br/files/2016/03/AdCast_1920x480_PA.jpg"></a>-->
 </div>
 
 
