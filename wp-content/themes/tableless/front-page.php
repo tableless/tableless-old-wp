@@ -69,44 +69,56 @@
 
 </section>
 
-    <div class="tb-choose-category">
+<div class="tb-choose-category">
 
-      <h1 class="tb-title-section">Encontre um assunto</h1>
-      <p class="tb-lead-paragraph tb-divider">Filtre pelo assunto do seu interesse</p>
+  <h1 class="tb-title-section">Encontre um assunto</h1>
+  <p class="tb-lead-paragraph tb-divider">Filtre pelo assunto do seu interesse</p>
 
-      <ul class="tb-category-list">
-        <li>
-          <a href="<?php echo get_category_link( 258 ); ?>" class="tb-icon-html">HTML</a>
-        </li>
-        <li>
-          <a href="<?php echo get_category_link( 172 ); ?>" class="tb-icon-js">JavaScript</a>
-        </li>
-        <li>
-          <a href="<?php echo get_category_link( 40 ); ?>" class="tb-icon-css">CSS/SASS</a>
-        </li>
-        <li>
-          <a href="<?php echo get_category_link( 21 ); ?>" class="tb-icon-mobile">Mobile</a>
-        </li>
-        <li>
-          <a href="<?php echo get_category_link( 403 ); ?>" class="tb-icon-ux">UX</a>
-        </li>
-        <li>
-          <a href="<?php echo get_category_link( 753 ); ?>" class="tb-icon-backend">Back-end</a>
-        </li>
-        <li>
-          <a href="<?php echo get_category_link( 54 ); ?>" class="tb-icon-wordpress">Wordpress</a>
-        </li>
-        <li>
-          <a href="<?php echo get_category_link( 403 ); ?>" class="tb-icon-design">Design</a>
-        </li>
-        <li>
-          <a href="<?php echo get_category_link( 106 ); ?>" class="tb-icon-seo">SEO</a>
-        </li>
-        <li>
-          <a href="http://tableless.github.io/iniciantes/" class="tb-icon-iniciantes">Iniciantes</a>
-        </li>
-      </ul>
-    </div>
+  <ul class="tb-category-list">
+    <li>
+      <a href="<?php echo get_category_link( 258 ); ?>" class="tb-icon-html">HTML</a>
+    </li>
+    <li>
+      <a href="<?php echo get_category_link( 172 ); ?>" class="tb-icon-js">JavaScript</a>
+    </li>
+    <li>
+      <a href="<?php echo get_category_link( 40 ); ?>" class="tb-icon-css">CSS/SASS</a>
+    </li>
+    <li>
+      <a href="<?php echo get_category_link( 21 ); ?>" class="tb-icon-mobile">Mobile</a>
+    </li>
+    <li>
+      <a href="<?php echo get_category_link( 403 ); ?>" class="tb-icon-ux">UX</a>
+    </li>
+    <li>
+      <a href="<?php echo get_category_link( 753 ); ?>" class="tb-icon-backend">Back-end</a>
+    </li>
+    <li>
+      <a href="<?php echo get_category_link( 54 ); ?>" class="tb-icon-wordpress">Wordpress</a>
+    </li>
+    <li>
+      <a href="<?php echo get_category_link( 403 ); ?>" class="tb-icon-design">Design</a>
+    </li>
+    <li>
+      <a href="<?php echo get_category_link( 106 ); ?>" class="tb-icon-seo">SEO</a>
+    </li>
+    <li>
+      <a href="http://tableless.github.io/iniciantes/" class="tb-icon-iniciantes">Iniciantes</a>
+    </li>
+  </ul>
+</div>
+
+<div class="tb-ultra-banner">
+  <!-- /7969368/BannerHorizontal -->
+  <!-- <div id='div-gpt-ad-1461064765000-1'>
+  <script type='text/javascript'>
+  googletag.cmd.push(function() { googletag.display('div-gpt-ad-1461064765000-1'); });
+  </script>
+  </div> -->
+  <a href="http://bit.ly/18elw-recife" title="Um dos melhores eventos sobre desenvolvimento web do Brasil."><img src="http://eventos.locaweb.com.br/files/2016/03/AdCast_1920x480_RE.jpg"></a>
+  <?php/*<a href="http://bit.ly/18elw-poa" title="Um dos melhores eventos sobre desenvolvimento web do Brasil."><img src="http://eventos.locaweb.com.br/files/2016/03/AdCast_1920x480_PA.jpg"></a>*/?>
+</div>
+
 
 <section class="tb-latest-posts">
   <h1 class="tb-title-section">Últimos posts</h1>

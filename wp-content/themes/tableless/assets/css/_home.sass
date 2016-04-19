@@ -176,25 +176,51 @@
     width: auto
 
 .tb-choose-category
-  padding: 0 40px 50px
+  // padding: 0 40px 50px
+  padding: 0 40px 0px
   text-align: center
   background: $bg-color-default
   position: relative
 
   @include break(desk)
-    padding: 0 0 300px
+    padding: 0 0 150px
 
-    &:after
-      content: ""
-      display: block
-      position: absolute
-      bottom: 0
-      left: 0
-      height: 200px
+    // &:after
+    //   content: ""
+    //   display: block
+    //   position: absolute
+    //   bottom: 0
+    //   left: 0
+    //   height: 200px
+    //   width: 100%
+    //   background: -moz-linear-gradient(5deg,  #ffffff 0%, #ffffff 51%, $border-color-default 51%, $bg-color-default 51.3%, $bg-color-default 100%)
+    //   background: -webkit-linear-gradient(5deg,  #ffffff 0%,#ffffff 51%,$border-color-default 51%,$bg-color-default 51.3%,$bg-color-default 100%)
+    //   background: linear-gradient(5deg,  #ffffff 0%,#ffffff 51%,$border-color-default 51%,$bg-color-default 51.3%,$bg-color-default 100%)
+
+.tb-ultra-banner
+  // margin: 0 0 50px
+  overflow: hidden
+  text-align: center
+  position: relative
+  height: 150px
+  display: block
+
+  a
+    display: block
+    width: 100%
+    height: 100%
+
+  img
+    height: 100%
+
+
+  @include break(desk)
+    height: auto
+    // margin: 0 0 150px
+
+    img
       width: 100%
-      background: -moz-linear-gradient(5deg,  #ffffff 0%, #ffffff 51%, $border-color-default 51%, $bg-color-default 51.3%, $bg-color-default 100%)
-      background: -webkit-linear-gradient(5deg,  #ffffff 0%,#ffffff 51%,$border-color-default 51%,$bg-color-default 51.3%,$bg-color-default 100%)
-      background: linear-gradient(5deg,  #ffffff 0%,#ffffff 51%,$border-color-default 51%,$bg-color-default 51.3%,$bg-color-default 100%)
+      height: auto
 
 .tb-category-list
   background: #fff
@@ -351,7 +377,7 @@
 .tb-latest-posts
   @extend %divider-diagonal-bt
   text-align: center
-  padding-top: 30px
+  padding-top: 100px
   position: relative
   overflow: hidden
 
