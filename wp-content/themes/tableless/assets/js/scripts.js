@@ -6,6 +6,7 @@ var tableless = (function() {
     prettyPrintHighlight();
     openCloseSearch();
     searchAjax();
+    resultsListPosition();
   }
 
   //
@@ -72,6 +73,12 @@ var tableless = (function() {
       $targetPost.addClass('tb-is-active');
       console.log($targetPost);
     });
+  }
+  
+  function resultsListPosition(){
+      $(".tb-search-results-list").css({
+        "max-height" : ( $(window).height() - ( $(".searchform").position().top + $(".searchform").height() ) ) + "px"
+      });
   }
 
 
