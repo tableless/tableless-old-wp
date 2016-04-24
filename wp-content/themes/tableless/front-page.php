@@ -110,13 +110,11 @@
 
 <div class="tb-ultra-banner">
   <!-- /7969368/BannerHorizontal -->
-  <!-- <div id='div-gpt-ad-1461064765000-1'>
+  <div id='div-gpt-ad-1461064765000-1'>
   <script type='text/javascript'>
   googletag.cmd.push(function() { googletag.display('div-gpt-ad-1461064765000-1'); });
   </script>
-  </div> -->
-  <a href="http://bit.ly/18elw-recife" title="Um dos melhores eventos sobre desenvolvimento web do Brasil."><img src="http://eventos.locaweb.com.br/files/2016/03/AdCast_1920x480_RE.jpg"></a>
-  <!--<a href="http://bit.ly/18elw-poa" title="Um dos melhores eventos sobre desenvolvimento web do Brasil."><img src="http://eventos.locaweb.com.br/files/2016/03/AdCast_1920x480_PA.jpg"></a>-->
+  </div>
 </div>
 
 
