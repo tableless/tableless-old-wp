@@ -1,5 +1,8 @@
 <?php get_header();?>
 
+<div class="tb-search-page tb-container">
+      <h3 class="tb-title-3 tb-align-center tb-title-section"><?php printf( __( 'Busca por %s', 'tableless' ), '<span>' . get_search_query() . '</span>' ); ?></h3><br>
+
 <section class="tb-search-content">
   <?php if ( have_posts() ) : ?>
 
@@ -19,16 +22,14 @@
     </header>
   <?php endif; wp_reset_query();?>
 
-  <?php /*
   <div class="tb-pagination">
   <?php if (  $wp_query->max_num_pages > 1 ) : ?>
     <?php next_posts_link( __( '&larr; Posts antigos', 'twentyten' ) ); ?>
     <?php previous_posts_link( __( 'Posts recentes &rarr;', 'twentyten' ) ); ?>
   <?php endif; ?>
   </div>
-  */?>
 
 </section>
 
-
+</div>
 <?php get_footer();?>
