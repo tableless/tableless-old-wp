@@ -46,7 +46,7 @@ var tableless = (function() {
       e.preventDefault();
       var searchTerm = $('#s').val();
       $.ajax({
-        url: "http://localhost/tableless/?s=" + searchTerm,
+        url: "http://tableless.com.br/?s=" + searchTerm,
         type : 'get',
         success: function( data ) {
           var dataContent = $('<div class="tb-data-box">').html(data).find('.tb-search-content').html();

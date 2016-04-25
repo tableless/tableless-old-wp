@@ -25,12 +25,6 @@
 </div>
 </section>
 
-<div class="tb-pagination">
-<?php if (  $wp_query->max_num_pages > 1 ) : ?>
-  <?php next_posts_link( __( '&larr; Posts antigos', 'twentyten' ) ); ?>
-  <?php previous_posts_link( __( 'Posts recentes &rarr;', 'twentyten' ) ); ?>
-<?php endif; ?>
-</div>
 
 
 <?php get_footer();?>
