@@ -146,7 +146,7 @@
 
 </section>
 
-<section class="tb-section tb-forum-call">
+<section class="tb-section-call divider-diagonal-tb">
 <div class="tb-container">
 
   <div class="tb-text-call">
@@ -159,6 +159,23 @@
   <figure>
     <img src="<?php bloginfo('template_url');?>/images/img-forum.jpg">
   </figure>
+</div>
+</section>
+
+<section class="tb-section-call tb-section-call-inverted">
+<div class="tb-container">
+
+  <div class="tb-text-call">
+    <h1 class="tb-title-1">Do PSD ao CSS</h1>
+    <p class="tb-lead-paragraph">Assista a um Live Coding da implementação de um layout, do PSD ao HTML/CSS.</p>
+
+    <a href="http://bit.ly/live-codeing-2" class="tb-btn-wired">Assista agora!</a>
+  </div>
+
+  <a href="http://bit.ly/live-codeing-2"><figure>
+    <img src="<?php bloginfo('template_url');?>/images/img-live-coding.jpg">
+  </figure></a>
+
 </div>
 </section>
 

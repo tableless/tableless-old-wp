@@ -69,7 +69,7 @@ $border-color-default: $border-diagonal-color
   border-radius: 1px
 
 ///  Direction: bottom to top
-%divider-diagonal-bt
+.divider-diagonal-bt
   padding-bottom: 250px
   margin-bottom: 50px
   &:after 
@@ -86,10 +86,9 @@ $border-color-default: $border-diagonal-color
     left: -5%
 
 ///  Direction: top to bottom
-%divider-diagonal-tb
+.divider-diagonal-tb
   position: relative
-  padding-bottom: 250px
-  margin-bottom: 50px
+  padding-bottom: 300px !important
   &:after 
     content: ""
     height: 135px
@@ -124,6 +123,12 @@ $border-color-default: $border-diagonal-color
 .tb-flex-box
   display: flex
   flex-wrap: wrap
+
+.tb-float-left
+  float: left !important
+
+.tb-float-right
+  float: right !important
 
 ////
 // Boxes
@@ -220,7 +225,7 @@ $border-color-default: $border-diagonal-color
 // Titles
 ////
 .tb-title-1
-  font: 100px $font-bold
+  font: 100px/.8 $font-bold
   color: #4E4E4E
   text-transform: uppercase
 
