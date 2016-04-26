@@ -3,27 +3,32 @@
   top: 0
   left: 0
   width: 100%
-  min-height: 100%
+  height: 100%
   z-index: 3
   background: $bg-color-default
-  opacity: .98
+  padding-top: 180px
+  opacity: 0
   visibility: hidden
-  transform: translateX(100%)
-  transition: transform  .2s, visibility 0s  .2s
+  transition: opacity .5s, visibility 0s .5s
 
   &.tb-is-active
+    opacity: .98
     visibility: visible
-    transform: translateX(0%)
-    height: 100%
-    padding-top: 180px
-    transition: transform  .2s
+    transition: opacity .5s
+
+    .tb-container
+      opacity: 1
+      transform: rotateX(0deg)
 
   .tb-container
+    opacity: .4
     position: relative
     top: 0
     display: flex
     flex-direction: column
     height: 95%
+    transform: translateY(-25%) rotateX(35deg)
+    transition: transform .5s, opacity .5s
 
   .tb-close-search
     @extend %image-replace
@@ -39,6 +44,7 @@
     position: relative
     max-height: 120px
     min-height: 120px
+
     label
       display: none
 
@@ -52,7 +58,7 @@
       float: right
       margin: 20px 20px 0 0
       cursor: pointer
-       
+
 
     #s
       font: 100px/1.21 $font-bold
