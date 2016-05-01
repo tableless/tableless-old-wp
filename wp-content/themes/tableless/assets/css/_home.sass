@@ -204,7 +204,9 @@
   text-align: center
   position: relative
   height: 170px
-  display: block
+  display: none
+  @include break(desk)
+    display: block
 
   a
     display: block
