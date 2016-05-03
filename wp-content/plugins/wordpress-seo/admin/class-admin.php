@@ -60,7 +60,7 @@ class WPSEO_Admin {
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'config_page_scripts' ) );
 
-		if ( '0' == get_option( 'blog_public' ) ) {
+		if ( '0' === get_option( 'blog_public' ) ) {
 			add_action( 'admin_footer', array( $this, 'blog_public_warning' ) );
 		}
 
@@ -84,7 +84,7 @@ class WPSEO_Admin {
 		add_action( 'admin_init', array( 'WPSEO_Plugin_Conflict', 'hook_check_for_plugin_conflicts' ), 10, 1 );
 		add_action( 'admin_init', array( $this, 'import_plugin_hooks' ) );
 
-		WPSEO_Utils::register_cache_clear_option( 'wpseo', '' );
+		WPSEO_Sitemaps_Cache::register_clear_on_option_update( 'wpseo' );
 	}
 
 	/**
@@ -95,7 +95,6 @@ class WPSEO_Admin {
 			$plugin_imports = array(
 				'wpSEO'       => new WPSEO_Import_WPSEO_Hooks(),
 				'aioseo'      => new WPSEO_Import_AIOSEO_Hooks(),
-				'robots_meta' => new WPSEO_Import_Robots_Meta_Hooks(),
 			);
 		}
 	}
@@ -146,7 +145,6 @@ class WPSEO_Admin {
 				$manage_options_cap,
 				'wpseo_titles',
 				array( $this, 'load_page' ),
-				array( array( $this, 'title_metas_help_tab' ) ),
 			),
 			array(
 				'wpseo_dashboard',
@@ -204,7 +202,6 @@ class WPSEO_Admin {
 			),
 		);
 
-
 		// Allow submenu pages manipulation.
 		$submenu_pages = apply_filters( 'wpseo_submenu_pages', $submenu_pages );
 
@@ -254,7 +251,7 @@ class WPSEO_Admin {
 
 		$screen->set_help_sidebar( '
 			<p><strong>' . __( 'For more information:', 'wordpress-seo' ) . '</strong></p>
-			<p><a target="_blank" href="https://yoast.com/articles/wordpress-seo/#titles">' . __( 'Title optimization', 'wordpress-seo' ) . '</a></p>
+			<p><a target="_blank" href="https://yoast.com/wordpress-seo/#titles">' . __( 'Title optimization', 'wordpress-seo' ) . '</a></p>
 			<p><a target="_blank" href="https://yoast.com/google-page-title/">' . __( 'Why Google won\'t display the right page title', 'wordpress-seo' ) . '</a></p>'
 		);
 
@@ -345,6 +342,10 @@ class WPSEO_Admin {
 
 			case 'wpseo_files':
 				require_once( WPSEO_PATH . 'admin/views/tool-file-editor.php' );
+				break;
+
+			case 'wpseo_tutorial_videos':
+				require_once( WPSEO_PATH . 'admin/pages/tutorial-videos.php' );
 				break;
 
 			case 'wpseo_dashboard':
@@ -475,8 +476,8 @@ class WPSEO_Admin {
 			array_unshift( $links, $settings_link );
 		}
 
-		if ( class_exists( 'Yoast_Product_WPSEO_Premium' ) ) {
-			$license_manager = new Yoast_Plugin_License_Manager( new Yoast_Product_WPSEO_Premium() );
+		if ( class_exists( 'WPSEO_Product_Premium' ) ) {
+			$license_manager = new Yoast_Plugin_License_Manager( new WPSEO_Product_Premium() );
 			if ( $license_manager->license_is_valid() ) {
 				return $links;
 			}
@@ -498,8 +499,10 @@ class WPSEO_Admin {
 	 */
 	function config_page_scripts() {
 		if ( WPSEO_Utils::grant_access() ) {
-			wp_enqueue_script( 'wpseo-admin-global-script', plugins_url( 'js/wp-seo-admin-global-' . '310' . WPSEO_CSSJS_SUFFIX . '.js', WPSEO_FILE ), array( 'jquery' ), WPSEO_VERSION, true );
-			wp_localize_script( 'wpseo-admin-global-script', 'wpseoAdminGlobalL10n', $this->localize_admin_global_script() );
+			$asset_manager = new WPSEO_Admin_Asset_Manager();
+			$asset_manager->enqueue_script( 'admin-global-script' );
+
+			wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'admin-global-script', 'wpseoAdminGlobalL10n', $this->localize_admin_global_script() );
 		}
 	}
 
@@ -552,6 +555,11 @@ class WPSEO_Admin {
 
 		// When the post title is empty, just return the slug.
 		if ( empty( $post_title ) ) {
+			return $slug;
+		}
+
+		// Don't change the slug if this is a multisite installation and the site has been switched.
+		if ( is_multisite() && ms_is_switched() ) {
 			return $slug;
 		}
 
@@ -729,5 +737,4 @@ class WPSEO_Admin {
 	function options_init() {
 		_deprecated_function( __METHOD__, 'WPSEO 1.5.0', 'WPSEO_Option::register_setting()' );
 	}
-
-} /* End of class */
+}

@@ -21,20 +21,29 @@ class WPSEO_Taxonomy {
 	public function __construct() {
 		$this->taxonomy = $this->get_taxonomy();
 
-		if ( is_admin() && $this->taxonomy !== '' && $this->show_metabox() ) {
-			add_action( sanitize_text_field( $this->taxonomy ) . '_edit_form', array( $this, 'term_metabox' ), 90, 1 );
-		}
-
 		add_action( 'edit_term', array( $this, 'update_term' ), 99, 3 );
-
 		add_action( 'init', array( $this, 'custom_category_descriptions_allow_html' ) );
+		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_filter( 'category_description', array( $this, 'custom_category_descriptions_add_shortcode_support' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 
 		if ( self::is_term_overview( $GLOBALS['pagenow'] ) ) {
 			new WPSEO_Taxonomy_Columns();
 		}
+	}
 
+	/**
+	 * Add hooks late enough for taxonomy object to be available for checks.
+	 */
+	public function admin_init() {
+
+		$taxonomy = get_taxonomy( $this->taxonomy );
+
+		if ( empty( $taxonomy ) || empty( $taxonomy->public ) || ! $this->show_metabox() ) {
+			return;
+		}
+
+		add_action( sanitize_text_field( $this->taxonomy ) . '_edit_form', array( $this, 'term_metabox' ), 90, 1 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 	}
 
 	/**
@@ -48,28 +57,7 @@ class WPSEO_Taxonomy {
 	}
 
 	/**
-	 * Translate options text strings for use in the select fields
-	 *
-	 * @internal IMPORTANT: if you want to add a new string (option) somewhere, make sure you add
-	 * that array key to the main options definition array in the class WPSEO_Taxonomy_Meta() as well!!!!
-	 */
-	public function translate_meta_options() {
-		$this->no_index_options        = WPSEO_Taxonomy_Meta::$no_index_options;
-		$this->sitemap_include_options = WPSEO_Taxonomy_Meta::$sitemap_include_options;
-
-		$this->no_index_options['default'] = __( 'Use %s default (Currently: %s)', 'wordpress-seo' );
-		$this->no_index_options['index']   = __( 'Always index', 'wordpress-seo' );
-		$this->no_index_options['noindex'] = __( 'Always noindex', 'wordpress-seo' );
-
-		$this->sitemap_include_options['-']      = __( 'Auto detect', 'wordpress-seo' );
-		$this->sitemap_include_options['always'] = __( 'Always include', 'wordpress-seo' );
-		$this->sitemap_include_options['never']  = __( 'Never include', 'wordpress-seo' );
-	}
-
-	/**
-	 * Test whether we are on a public taxonomy - no metabox actions needed if we are not
-	 * Unfortunately we have to hook most everything in before the point where all taxonomies are registered and
-	 * we know which taxonomy is being requested, so we need to use this check in nearly every hooked in function.
+	 * Queue assets for taxonomy screens.
 	 *
 	 * @since 1.5.0
 	 */
@@ -80,7 +68,8 @@ class WPSEO_Taxonomy {
 			return;
 		}
 
-		wp_enqueue_style( 'seo_score', plugins_url( 'css/yst_seo_score-' . '310' . WPSEO_CSSJS_SUFFIX . '.css', WPSEO_FILE ), array(), WPSEO_VERSION );
+		$asset_manager = new WPSEO_Admin_Asset_Manager();
+		$asset_manager->enqueue_style( 'scoring' );
 
 		$tag_id = filter_input( INPUT_GET, 'tag_ID' );
 		if (
@@ -89,32 +78,22 @@ class WPSEO_Taxonomy {
 		) {
 			wp_enqueue_media(); // Enqueue files needed for upload functionality.
 
-			wp_enqueue_style( 'yoast-seo', plugins_url( 'css/dist/yoast-seo/yoast-seo-' . '310' . '.min.css', WPSEO_FILE ), array(), WPSEO_VERSION );
-			wp_enqueue_style( 'yoast-metabox-css', plugins_url( 'css/metabox-' . '310' . WPSEO_CSSJS_SUFFIX . '.css', WPSEO_FILE ), array(), WPSEO_VERSION );
-			wp_enqueue_style( 'snippet', plugins_url( 'css/snippet-' . '310' . WPSEO_CSSJS_SUFFIX . '.css', WPSEO_FILE ), array(), WPSEO_VERSION );
-			wp_enqueue_style( 'seo_score', plugins_url( 'css/yst_seo_score-' . '310' . WPSEO_CSSJS_SUFFIX . '.css', WPSEO_FILE ), array(), WPSEO_VERSION );
+			$asset_manager->enqueue_style( 'metabox-css' );
+			$asset_manager->enqueue_style( 'snippet' );
+			$asset_manager->enqueue_style( 'scoring' );
+
 			wp_editor( '', 'description' );
-			wp_enqueue_script( 'wp-seo-metabox', plugins_url( 'js/wp-seo-metabox-' . '302' . WPSEO_CSSJS_SUFFIX . '.js', WPSEO_FILE ), array(
-				'jquery',
-				'jquery-ui-core',
-				'jquery-ui-autocomplete',
-			), WPSEO_VERSION, true );
 
-			wp_enqueue_script( 'yoast-seo', plugins_url( 'js/dist/yoast-seo/yoast-seo-' . '310' . '.min.js', WPSEO_FILE ), null, WPSEO_VERSION, true );
-			wp_enqueue_script( 'wp-seo-term-scraper', plugins_url( 'js/wp-seo-term-scraper-' . '310' . WPSEO_CSSJS_SUFFIX . '.js', WPSEO_FILE ), array( 'yoast-seo' ), WPSEO_VERSION, true );
-			wp_enqueue_script( 'wp-seo-replacevar-plugin', plugins_url( 'js/wp-seo-replacevar-plugin-' . '310' . WPSEO_CSSJS_SUFFIX . '.js', WPSEO_FILE ), array( 'yoast-seo', 'wp-seo-term-scraper' ), WPSEO_VERSION, true );
-			wp_localize_script( 'wp-seo-term-scraper', 'wpseoTermScraperL10n', $this->localize_term_scraper_script() );
-			wp_localize_script( 'wp-seo-replacevar-plugin', 'wpseoReplaceVarsL10n', $this->localize_replace_vars_script() );
+			$asset_manager->enqueue_script( 'metabox' );
+			$asset_manager->enqueue_script( 'term-scraper' );
 
-			// Always enqueue minified as it's not our code.
-			wp_enqueue_style( 'jquery-qtip.js', plugins_url( 'css/jquery.qtip' . WPSEO_CSSJS_SUFFIX . '.css', WPSEO_FILE ), array(), '2.2.1' );
-			wp_enqueue_script( 'jquery-qtip', plugins_url( 'js/jquery.qtip.min.js', WPSEO_FILE ), array( 'jquery' ), '2.2.1', true );
+			wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'term-scraper', 'wpseoTermScraperL10n', $this->localize_term_scraper_script() );
+			wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'replacevar-plugin', 'wpseoReplaceVarsL10n', $this->localize_replace_vars_script() );
+			wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'metabox', 'wpseoSelect2Locale', substr( get_locale(), 0, 2 ) );
 
-			wp_enqueue_script( 'wpseo-admin-media', plugins_url( 'js/wp-seo-admin-media-' . '310' . WPSEO_CSSJS_SUFFIX . '.js', WPSEO_FILE ), array(
-				'jquery',
-				'jquery-ui-core',
-			), WPSEO_VERSION, true );
-			wp_localize_script( 'wpseo-admin-media', 'wpseoMediaL10n', array(
+			$asset_manager->enqueue_script( 'admin-media' );
+
+			wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'admin-media', 'wpseoMediaL10n', array(
 				'choose_image' => __( 'Use Image', 'wordpress-seo' ),
 			) );
 		}
@@ -175,92 +154,20 @@ class WPSEO_Taxonomy {
 	}
 
 	/**
-	 * Check if metabox for current taxonomy should be displayed.
-	 *
-	 * @return bool
-	 */
-	private function show_metabox() {
-		$options    = WPSEO_Options::get_option( 'wpseo_titles' );
-		$option_key = 'hideeditbox-tax-' . $this->taxonomy;
-
-		return ( empty( $options[ $option_key ] ) );
-	}
-
-	/**
-	 * Getting the taxonomy from the URL
-	 *
-	 * @return string
-	 */
-	private function get_taxonomy() {
-		return filter_input( INPUT_GET, 'taxonomy', FILTER_DEFAULT, array( 'options' => array( 'default' => '' ) ) );
-	}
-
-	/**
 	 * Pass variables to js for use with the term-scraper
 	 *
 	 * @return array
 	 */
 	public function localize_term_scraper_script() {
-		$translations = $this->get_scraper_translations();
-
 		$term_id  = filter_input( INPUT_GET, 'tag_ID' );
 		$term     = get_term_by( 'id', $term_id, $this->get_taxonomy() );
-		$focuskw  = WPSEO_Taxonomy_Meta::get_term_meta( $term, $term->taxonomy, 'focuskw' );
 		$taxonomy = get_taxonomy( $term->taxonomy );
-		$options  = WPSEO_Options::get_option( 'wpseo_permalinks' );
 
-		$base_url = home_url( '/', null );
-		if ( ! $options['stripcategorybase'] ) {
-			$base_url = trailingslashit( $base_url . $taxonomy->rewrite['slug'] );
-		}
-
-		return array(
-			'translations'      => $translations,
-			'base_url'          => $base_url,
-			'taxonomy'          => $term->taxonomy,
-			'keyword_usage'     => WPSEO_Taxonomy_Meta::get_keyword_usage( $focuskw, $term->term_id, $term->taxonomy ),
-			// Todo: a column needs to be added on the termpages to add a filter for the keyword, so this can be used in the focus kw doubles.
-			'search_url'        => admin_url( 'edit-tags.php?taxonomy=' . $term->taxonomy . '&seo_kw_filter={keyword}' ),
-			'post_edit_url'     => admin_url( 'term.php?action=edit&taxonomy=' . $term->taxonomy . '&tag_ID={id}' ),
-			'title_template'    => WPSEO_Taxonomy::get_title_template( $term ),
-			'metadesc_template' => WPSEO_Taxonomy::get_metadesc_template( $term ),
-			'contentTab'        => __( 'Content:', 'wordpress-seo' ),
-			'locale'            => get_locale(),
+		$term_formatter = new WPSEO_Metabox_Formatter(
+			new WPSEO_Term_Metabox_Formatter( $taxonomy, $term, WPSEO_Options::get_option( 'wpseo_titles' ) )
 		);
-	}
 
-	/**
-	 * Retrieves the title template.
-	 *
-	 * @param object $term taxonomy term.
-	 *
-	 * @return string
-	 */
-	public static function get_title_template( $term ) {
-		if ( is_object( $term ) && property_exists( $term, 'taxonomy' ) ) {
-			$needed_option = 'title-tax-' . $term->taxonomy;
-
-			return self::get_template( $needed_option );
-		}
-
-		return '';
-	}
-
-	/**
-	 * Retrieves the metadesc template.
-	 *
-	 * @param object $term taxonomy term.
-	 *
-	 * @return string
-	 */
-	public static function get_metadesc_template( $term ) {
-		if ( is_object( $term ) && property_exists( $term, 'taxonomy' ) ) {
-			$template_option_name = 'metadesc-tax-' . $term->taxonomy;
-
-			return self::get_template( $template_option_name );
-		}
-
-		return '';
+		return $term_formatter->get_values();
 	}
 
 	/**
@@ -294,19 +201,24 @@ class WPSEO_Taxonomy {
 
 	/**
 	 * Retrieves a template.
+	 * Check if metabox for current taxonomy should be displayed.
 	 *
-	 * @param String $template_option_name The name of the option in which the template you want to get is saved.
+	 * @return bool
+	 */
+	private function show_metabox() {
+		$options    = WPSEO_Options::get_option( 'wpseo_titles' );
+		$option_key = 'hideeditbox-tax-' . $this->taxonomy;
+
+		return ( empty( $options[ $option_key ] ) );
+	}
+
+	/**
+	 * Getting the taxonomy from the URL
 	 *
 	 * @return string
 	 */
-	private static function get_template( $template_option_name ) {
-		$options  = WPSEO_Options::get_option( 'wpseo_titles' );
-		$template = '';
-		if ( isset( $options[ $template_option_name ] ) && $options[ $template_option_name ] !== '' ) {
-			$template = $options[ $template_option_name ];
-		}
-
-		return $template;
+	private function get_taxonomy() {
+		return filter_input( INPUT_GET, 'taxonomy', FILTER_DEFAULT, array( 'options' => array( 'default' => '' ) ) );
 	}
 
 	/**
@@ -345,18 +257,48 @@ class WPSEO_Taxonomy {
 		return $cached_replacement_vars;
 	}
 
-	/**
-	 * Returns Jed compatible YoastSEO.js translations.
-	 *
-	 * @return array
-	 */
-	private function get_scraper_translations() {
-		$file = plugin_dir_path( WPSEO_FILE ) . 'languages/wordpress-seo-' . get_locale() . '.json';
-		if ( file_exists( $file ) && $file = file_get_contents( $file ) ) {
-			return json_decode( $file, true );
-		}
 
-		return array();
+	/********************** DEPRECATED METHODS **********************/
+
+	/**
+	 * @deprecated 3.2
+	 *
+	 * Retrieves the title template.
+	 *
+	 * @param object $term taxonomy term.
+	 *
+	 * @return string
+	 */
+	public static function get_title_template( $term ) {
+		_deprecated_function( 'WPSEO_Taxonomy::get_title_template', 'WPSEO 3.2', 'WPSEO_Term_Scraper::get_title_template' );
+
+		return '';
 	}
 
-} /* End of class */
+	/**
+	 * @deprecated 3.2
+	 *
+	 * Retrieves the metadesc template.
+	 *
+	 * @param object $term taxonomy term.
+	 *
+	 * @return string
+	 */
+	public static function get_metadesc_template( $term ) {
+		_deprecated_function( 'WPSEO_Taxonomy::get_metadesc_template', 'WPSEO 3.2', 'WPSEO_Term_Scraper::get_metadesc_template' );
+
+		return '';
+	}
+
+	/**
+	 * @deprecated 3.2
+	 *
+	 * Translate options text strings for use in the select fields
+	 *
+	 * @internal IMPORTANT: if you want to add a new string (option) somewhere, make sure you add
+	 * that array key to the main options definition array in the class WPSEO_Taxonomy_Meta() as well!!!!
+	 */
+	public function translate_meta_options() {
+		_deprecated_function( 'WPSEO_Taxonomy::translate_meta_options', 'WPSEO 3.2', 'WPSEO_Taxonomy_Settings_Fields::translate_meta_options' );
+	}
+}

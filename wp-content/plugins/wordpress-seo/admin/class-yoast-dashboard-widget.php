@@ -68,7 +68,8 @@ class Yoast_Dashboard_Widget {
 		$current_screen = get_current_screen();
 
 		if ( $current_screen instanceof WP_Screen && 'dashboard' === $current_screen->id ) {
-			wp_enqueue_style( 'wpseo-wp-dashboard', plugins_url( 'css/dashboard-' . '305' . WPSEO_CSSJS_SUFFIX . '.css', WPSEO_FILE ), array(), WPSEO_VERSION );
+			$asset_manager = new WPSEO_Admin_Asset_Manager();
+			$asset_manager->enqueue_style( 'wp-dashboard' );
 		}
 	}
 
@@ -107,12 +108,12 @@ class Yoast_Dashboard_Widget {
 			$transient = array();
 		}
 
-		$user_id                  = get_current_user_id();
-		$filtered_items[ $user_id ] = array_filter( $this->get_seo_scores_with_post_count(), array( $this, 'filter_items' ) );
+		$user_id               = get_current_user_id();
+		$transient[ $user_id ] = array_filter( $this->get_seo_scores_with_post_count(), array( $this, 'filter_items' ) );
 
-		set_transient( self::CACHE_TRANSIENT_KEY, array_merge( $filtered_items, $transient ), DAY_IN_SECONDS );
+		set_transient( self::CACHE_TRANSIENT_KEY, $transient, DAY_IN_SECONDS );
 
-		return $filtered_items[ $user_id ];
+		return $transient[ $user_id ];
 	}
 
 	/**
