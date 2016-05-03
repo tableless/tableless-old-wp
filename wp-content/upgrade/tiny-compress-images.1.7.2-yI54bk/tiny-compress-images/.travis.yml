@@ -1,0 +1,13 @@
+language: php
+php:
+- 5.3
+- 5.4
+- 5.5
+- 5.6
+- hhvm
+before_script: composer install
+script: bin/unit-tests
+notifications:
+  email: false
+  slack:
+    secure: uttJ78cpkV9czhoKXtAoop8UBWPVtF+fwKlKS47c4EW7ZfVx9jAII2yLb5yZjdLDnM7YAluujUBIqyESvwLY0h7azLsorSIEqNt9GlBi4B7DSGAdo46lFbqsdjrLwM1gOhiP7Fl4hFiQ2+jA9Fsj3W2yZ6rbF7endv7Gx5FMlFg=
