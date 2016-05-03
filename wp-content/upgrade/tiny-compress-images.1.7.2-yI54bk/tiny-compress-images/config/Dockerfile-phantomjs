@@ -1,5 +1,0 @@
-FROM servebox/phantomjs:latest
-
-EXPOSE 8910
-
-CMD ["phantomjs", "--webdriver=8910"]
