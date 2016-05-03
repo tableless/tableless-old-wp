@@ -1,0 +1,57 @@
+#!/bin/bash
+
+set -e
+
+display_usage() {
+  echo -e "Usage:\n\t$0 <version> [IntegrationTestFile.php] \n\nExample:\n\t$0 41"
+}
+
+if [ $# -eq 0 ]
+then
+  display_usage
+  exit 1
+fi
+
+version="$1"
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+source $DIR/docker-functions
+
+if [ $# -ge 2 ]
+then
+  PHPUNIT_ARG="$2"
+else
+  PHPUNIT_ARG="test/integration"
+fi
+
+export WORDPRESS_VERSION=$version
+export WORDPRESS_DATABASE=wordpress_$version
+export MYSQL_ROOT_PASSWORD=root
+
+if hash docker-machine 2>/dev/null; then
+  export HOST_IP=$(docker-machine ip $DOCKER_MACHINE_NAME)
+else
+  export HOST_IP=$(boot2docker ip)
+fi
+if [ -z "$HOST_IP" ]; then
+  echo "Could not find docker machine ip"
+  exit 2
+fi
+
+export HOST_PORT=80$version
+export WORDPRESS_URL=http://$HOST_IP:$HOST_PORT
+
+function prepare_test_config {
+  printf "\nPreparing test config\n\n"
+  mv src/config/tiny-config.php src/config/tiny-config.php.bak
+  cp test/fixtures/tiny-config.php src/config/tiny-config.php
+}
+
+function restore_config {
+  printf "\n\nRestoring config\n\n"
+  mv src/config/tiny-config.php.bak src/config/tiny-config.php
+}
+
+trap 'restore_config' EXIT
+
+prepare_test_config
+vendor/bin/phpunit "$PHPUNIT_ARG"

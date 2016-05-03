@@ -1,0 +1,17 @@
+FROM wordpress:4
+
+RUN docker-php-ext-install mysql
+
+ENV WORDPRESS_VERSION 3.2.1
+ENV WORDPRESS_UPSTREAM_VERSION 3.2.1
+ENV WORDPRESS_SHA1 674bcf0abe80770ac08dfb4c5f21df3303bf771a
+
+# upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
+RUN curl -o wordpress.tar.gz -sSL https://wordpress.org/wordpress-${WORDPRESS_UPSTREAM_VERSION}.tar.gz \
+  && echo "$WORDPRESS_SHA1 *wordpress.tar.gz" | sha1sum -c - \
+  && tar -xzf wordpress.tar.gz -C /usr/src/ \
+  && rm wordpress.tar.gz \
+  && chown -R www-data:www-data /usr/src/wordpress
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["apache2-foreground"]

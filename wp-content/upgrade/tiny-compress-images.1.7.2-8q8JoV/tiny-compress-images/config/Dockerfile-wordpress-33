@@ -1,0 +1,20 @@
+FROM wordpress:4
+
+RUN docker-php-ext-install mysql
+
+ENV WORDPRESS_VERSION 3.3.3
+ENV WORDPRESS_UPSTREAM_VERSION 3.3.3
+ENV WORDPRESS_SHA1 ea7c91903df3090d8e90ef4e26945def46437a37
+
+# upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
+RUN curl -o wordpress.tar.gz -sSL https://wordpress.org/wordpress-${WORDPRESS_UPSTREAM_VERSION}.tar.gz \
+  && echo "$WORDPRESS_SHA1 *wordpress.tar.gz" | sha1sum -c - \
+  && tar -xzf wordpress.tar.gz -C /usr/src/ \
+  && rm wordpress.tar.gz \
+  && chown -R www-data:www-data /usr/src/wordpress
+
+# Fix empty dashboard bug (http://wordpress.stackexchange.com/questions/127427/how-to-fix-empty-dashboard-issue-in-wordpress).
+RUN sed -i '706s/self::$this/$this/' /usr/src/wordpress/wp-admin/includes/screen.php
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["apache2-foreground"]

@@ -1,0 +1,142 @@
+.tiny-compress-images .spinner.hidden {
+    display: none;
+    visibility: hidden;
+    float: none;
+    margin-top: 0;
+}
+
+.tiny-compress-images div.spinner {
+    display: inline-block;
+    visibility: visible;
+    float: right;
+    margin-top: 4px;
+}
+
+.tiny-compress-images span.spinner {
+    visibility: visible;
+    float: none;
+    margin: 0;
+}
+
+.tiny-compress-images .details-container {
+    overflow: auto;
+}
+
+.tiny-compress-images .details-container button {
+    display: block;
+    margin: 5px 0 10px 24px;
+}
+
+.tiny-compress-images .details-container span.icon {
+    position: absolute;
+}
+
+.tiny-compress-images .details-container .message {
+    display: inline-block;
+    margin-left: 24px;
+}
+
+.tiny-compress-images .details-container span.success {
+    color: #0EE00E;
+}
+
+.tiny-compress-images .details-container span.error {
+    color: #D54E21;
+}
+
+.tiny-compress-images .details-container span.alert {
+    color: gray;
+}
+
+#tiny-compress-status .spinner, #tiny-compress-savings .spinner {
+    display: inline;
+    visibility: visible;
+    float: left;
+    margin: 0;
+}
+
+.tiny-compression-details {
+    padding: 10px;
+}
+
+.tiny-compression-details table {
+    border: 1px solid #E5E5E5;
+    border-collapse: collapse;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.tiny-compression-details table tr.even {
+    background-color: #F9F9F9;
+}
+
+.tiny-compression-details table td {
+    padding: 6px 10px;
+}
+
+.tiny-compression-details table th {
+    padding: 8px 10px;
+    border-bottom: 1px solid #E5E5E5;
+    font-size: 14px;
+}
+
+.tiny-compression-details table tfoot {
+    border-top: 1px solid #E5E5E5;
+}
+
+.tiny-compression-details table tfoot td {
+    padding: 8px 10px;
+}
+
+.tiny-compress-images .modal {
+    display: none;
+}
+
+.tiny-compress-images h4 {
+    margin: 0.5em 0;
+}
+
+#tiny-bulk-compress #media-items .bar.failed {
+    background-color: #DD3D36;
+}
+
+#tiny-bulk-compress #media-items .percent.failed {
+    color: #DD3D36;
+}
+
+#tiny-bulk-compress .media-item {
+    box-shadow: 0px 1px 0px #DFDFDF;
+    min-height: 36px;
+    margin-bottom: 1px;
+    position: relative;
+    width: 100%;
+    background: none repeat scroll 0% 0% #FFF;
+}
+
+#tiny-bulk-compress .progress~.percent {
+    float: right;
+    line-height: 36px;
+    margin-right: 20px;
+}
+
+#tiny-progress p, #tiny-status p {
+    font-size: 120%;
+}
+
+#tiny-progress span, #tiny-status span {
+    background: none repeat scroll 0% 0% #FFF;
+    box-shadow: 0px 1px 0px #DFDFDF;
+    padding: 5px;
+}
+
+p.tiny-resize-resolution {
+    margin-left: 24px;
+}
+
+p.tiny-resize-resolution input {
+    margin-right: 6px;
+}
+
+input[type=number][name*="tinypng_resize_original"] {
+    width: 65px;
+}
