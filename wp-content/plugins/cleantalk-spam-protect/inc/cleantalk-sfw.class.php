@@ -102,6 +102,8 @@ class CleanTalkSFW
 		$sfw_die_page=str_replace("{REMOTE_ADDRESS}",$this->blocked_ip,$sfw_die_page);
 		$sfw_die_page=str_replace("{REQUEST_URI}",$_SERVER['REQUEST_URI'],$sfw_die_page);
 		$sfw_die_page=str_replace("{SFW_COOKIE}",md5($this->blocked_ip.$ct_options['apikey']),$sfw_die_page);
+		@header('Cache-Control: no-cache');
+		@header('Expires: 0');
 		@header('HTTP/1.0 403 Forbidden');
 		wp_die( $sfw_die_page, "Blacklisted", Array('response'=>403) );
 	}
