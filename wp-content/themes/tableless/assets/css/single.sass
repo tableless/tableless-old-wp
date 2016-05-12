@@ -239,7 +239,6 @@
   margin-top: 75px
   padding: 30px
   position: relative
-  text-align: left
 
   &:after
     content: ""
@@ -298,7 +297,8 @@
     margin-bottom: 30px
 
   .tb-related-group
-    @extend .tb-box-list
+    display: flex
+    flex-wrap: wrap
 
     .tb-post-box
       @include break(desk)
