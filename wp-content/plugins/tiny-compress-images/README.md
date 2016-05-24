@@ -21,7 +21,6 @@ Got questions or feedback? Let us know! Contact us at support@tinypng.com.
 * Composer (https://getcomposer.org/download/).
 * PhantomJS 2.1 or greater (http://phantomjs.org).
 * MySQL client and admin tools.
-* Java runtime.
 
 ### Running the plugin in WordPress
 1. Run `bin/run-wordpress <version>`. E.g. `bin/run-wordpress 41`.
@@ -31,7 +30,7 @@ Got questions or feedback? Let us know! Contact us at support@tinypng.com.
 1. Run `bin/unit-tests`.
 
 ### Running the integration tests
-1. Start PhantomJS server: `phantomjs --webdriver=127.0.0.1:8910`. Tested with version 2.1.1.
+1. Start PhantomJS server: `phantomjs --wd`. Tested with version 2.1.1.
 2. Run `bin/integration-tests $version [$to_version]` (When $to_version is
 added, all versions between $version and $to_version are tested). E.g.
 `bin/integration-tests 41` or `bin/integration-tests 40 42`.

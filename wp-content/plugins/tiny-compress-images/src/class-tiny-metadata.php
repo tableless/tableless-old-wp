@@ -24,9 +24,11 @@ class Tiny_Metadata {
 
     private $id;
     private $name;
-    private $values;
-    private $filenames;
-    private $urls;
+    private $images = array();
+
+    public static function is_original($size) {
+        return $size === self::ORIGINAL;
+    }
 
     public function __construct($id, $wp_metadata=null) {
         $this->id = $id;
@@ -35,15 +37,20 @@ class Tiny_Metadata {
             $wp_metadata = wp_get_attachment_metadata($id);
         }
         $this->parse_wp_metadata($wp_metadata);
-        $this->values = get_post_meta($this->id, self::META_KEY, true);
-        if (!is_array($this->values)) {
-            $this->values = array();
+
+        $values = get_post_meta($this->id, self::META_KEY, true);
+        if (!is_array($values)) {
+            $values = array();
+        }
+        foreach ($values as $size => $meta) {
+            if (!isset($this->images[$size])) {
+                $this->images[$size] = new Tiny_Metadata_Image();
+            }
+            $this->images[$size]->meta = $meta;
         }
     }
 
     private function parse_wp_metadata($wp_metadata) {
-        $this->filenames = array();
-        $this->urls = array();
         if (!is_array($wp_metadata)) {
             return;
         }
@@ -59,8 +66,9 @@ class Tiny_Metadata {
 
         $this->name = $path_info['basename'];
 
-        $this->filenames[self::ORIGINAL] = "$path_prefix${path_info['basename']}";
-        $this->urls[self::ORIGINAL] = "$url_prefix${path_info['basename']}";
+        $this->images[self::ORIGINAL] = new Tiny_Metadata_Image(
+            "$path_prefix${path_info['basename']}",
+            "$url_prefix${path_info['basename']}");
 
         $unique_sizes = array();
         if (isset($wp_metadata['sizes']) && is_array($wp_metadata['sizes'])) {
@@ -68,44 +76,44 @@ class Tiny_Metadata {
                 $filename = $info['file'];
 
                 if (!isset($unique_sizes[$filename])) {
-                    $this->filenames[$size] = "$path_prefix$filename";
-                    $this->urls[$size] = "$url_prefix$filename";
-                    $unique_sizes[$filename] = true;
+                    $this->images[$size] = new Tiny_Metadata_Image(
+                        "$path_prefix$filename", "$url_prefix$filename");
                 }
             }
         }
     }
 
+    public function get_image($size=self::ORIGINAL, $create=false) {
+        if (isset($this->images[$size]))
+            return $this->images[$size];
+        elseif ($create)
+            return new Tiny_Metadata_Image();
+        else
+            return null;
+    }
+
     public function update_wp_metadata($wp_metadata) {
-        $tiny_metadata = $this->get_value();
-        if (isset($tiny_metadata) && isset($tiny_metadata['output']) && isset($tiny_metadata['output']['width']) && isset($tiny_metadata['output']['height'])) {
-            $wp_metadata['width'] = $tiny_metadata['output']['width'];
-            $wp_metadata['height'] = $tiny_metadata['output']['height'];
+        $original = $this->get_image();
+        if (is_null($original) || !is_array($original->meta)) {
+            return $wp_metadata;
+        }
+
+        $m = $original->meta;
+        if (isset($m['output']) && isset($m['output']['width']) && isset($m['output']['height'])) {
+            $wp_metadata['width'] = $m['output']['width'];
+            $wp_metadata['height'] = $m['output']['height'];
         }
         return $wp_metadata;
     }
 
     public function update() {
-        update_post_meta($this->id, self::META_KEY, $this->values);
-    }
-
-    public function add_request($size=self::ORIGINAL) {
-        $this->values[$size] = array(
-            'start' => time()
-        );
-    }
-
-    public function add_response($response, $size=self::ORIGINAL) {
-        $response['end'] = time();
-        $this->values[$size] = array_merge($this->values[$size], $response);
-    }
-
-    public function add_exception($exception, $size=self::ORIGINAL) {
-        $this->values[$size] = array(
-            'error'   => $exception->get_error(),
-            'message' => $exception->getMessage(),
-            'timestamp' => time()
-        );
+        $values = array();
+        foreach ($this->images as $size => $image) {
+            if (is_array($image->meta)) {
+                $values[$size] = $image->meta;
+            }
+        }
+        update_post_meta($this->id, self::META_KEY, $values);
     }
 
     public function get_id() {
@@ -124,110 +132,65 @@ class Tiny_Metadata {
         return get_post_mime_type($this->id);
     }
 
-    public function get_filename($size=self::ORIGINAL) {
-        return isset($this->filenames[$size]) ? $this->filenames[$size] : null;
-    }
-
-    public function get_url($size=self::ORIGINAL) {
-        return isset($this->urls[$size]) ? $this->urls[$size] : null;
-    }
-
-    public function get_value($size=self::ORIGINAL) {
-        return isset($this->values[$size]) ? $this->values[$size] : null;
-    }
-
-    public function get_end_time($size=self::ORIGINAL) {
-        $value = $this->get_value($size);
-        if (array_key_exists("end", $value)) {
-            return $value["end"];
-        } else if (array_key_exists("timestamp", $value)) {
-            return $value["timestamp"];
+    public function get_images() {
+        $original = isset($this->images[self::ORIGINAL])
+            ? array(self::ORIGINAL => $this->images[self::ORIGINAL])
+            : array();
+        $compressed = array();
+        $uncompressed = array();
+        foreach ($this->images as $size => $image) {
+            if (self::is_original($size)) continue;
+            if ($image->has_been_compressed()) {
+                $compressed[$size] = $image;
+            } else {
+                $uncompressed[$size] = $image;
+            }
         }
+        ksort($compressed);
+        ksort($uncompressed);
+        return $original + $compressed + $uncompressed;
     }
 
-    public function has_been_compressed($size=self::ORIGINAL) {
-        return isset($this->values[$size]) && isset($this->values[$size]['output']);
+    public function filter_images($method, $sizes=null) {
+        $selection = array();
+        if (is_null($sizes)) {
+            $sizes = array_keys($this->images);
+        }
+        foreach ($sizes as $size) {
+            if (!isset($this->images[$size])) continue;
+            $image = $this->images[$size];
+            if ($image->$method()) {
+                $selection[$size] = $image;
+            }
+        }
+        return $selection;
     }
 
-    public function exists($size=self::ORIGINAL) {
-        return file_exists($this->get_filename($size));
-    }
-
-    public function still_exists($size=self::ORIGINAL) {
-        return $this->has_been_compressed($size) && file_exists($this->get_filename($size));
-    }
-
-    public function is_compressed($size=self::ORIGINAL) {
-        return $this->has_been_compressed($size) && $this->still_exists($size)
-            && filesize($this->get_filename($size)) == $this->values[$size]['output']['size'];
-    }
-
-    public function is_compressing($size=self::ORIGINAL) {
-        $meta = $this->values[$size];
-        return isset($meta) && isset($meta['start']) && !isset($meta['output']);
-    }
-
-    public function is_resized($size=self::ORIGINAL) {
-        $meta = $this->values[$size];
-        return isset($meta) && isset($meta['output']) && isset($meta['output']['resized'])
-            && $meta['output']['resized'];
-    }
-
-    public function get_sizes() {
-        return array_keys($this->filenames);
-    }
-
-    public function get_compressed_sizes() {
-        return array_filter(array_keys($this->values), array($this, 'has_been_compressed'));
-    }
-
-    public function get_success_sizes() {
-        return array_filter(array_keys($this->values), array($this, 'is_compressed'));
-    }
-
-    public function get_uncompressed_sizes($active_tinify_sizes) {
-        $sizes = array_intersect($this->get_sizes(), $active_tinify_sizes);
-        $uncompressed = array_diff($sizes, $this->get_success_sizes());
-        return array_filter($uncompressed, array($this, 'exists'));
-    }
-
-    public function get_not_compressed_active_sizes($active_tinify_sizes) {
-        $sizes = array_intersect($this->get_sizes(), $active_tinify_sizes);
-        return array_diff($sizes, $this->get_compressed_sizes());
-    }
-
-    public function get_in_progress_sizes() {
-        return array_filter(array_keys($this->values), array($this, 'is_compressing'));
-    }
-
-    public function get_success_count() {
-        return count($this->get_success_sizes());
-    }
-
-    public function get_in_progress_count() {
-        return count($this->get_in_progress_sizes());
-    }
-
-    public function get_compressed_count() {
-        return count($this->get_compressed_sizes());
-    }
-
-    public function get_missing_count() {
-        return count($this->get_compressed_sizes()) -
-            count(array_filter($this->get_compressed_sizes(), array($this, 'still_exists')));
-    }
-
-    public function get_modified_count() {
-        return count($this->get_compressed_sizes()) - $this->get_success_count() - $this->get_missing_count();
+    public function get_count($methods, $sizes=null) {
+        $stats = array_fill_keys($methods, 0);
+        if (is_null($sizes)) {
+            $sizes = array_keys($this->images);
+        }
+        foreach ($sizes as $size) {
+            if (!isset($this->images[$size])) continue;
+            foreach ($methods as $method) {
+                if ($this->images[$size]->$method()) {
+                    $stats[$method]++;
+                }
+            }
+        }
+        return $stats;
     }
 
     public function get_latest_error() {
         $last_time = null;
         $message = null;
-        foreach ($this->values as $key => $details) {
-            if (isset($details['error']) && isset($details['message']) && ($last_time === null || $last_time < $details['timestamp'])) {
-                $last_time = $details['timestamp'];
-                $message = $details['message'];
+        foreach ($this->images as $size => $image) {
+            if (!is_array($image->meta)) continue;
+            $m = $image->meta;
+            if (isset($m['error']) && isset($m['message']) && ($last_time === null || $last_time < $m['timestamp'])) {
+                $last_time = $m['timestamp'];
+                $message = $m['message'];
             }
         }
         return $message;
@@ -239,17 +202,15 @@ class Tiny_Metadata {
             'output' => 0,
             'count' => 0
         );
-        foreach ($this->values as $key => $details) {
-            if (isset($details['input']) && isset($details['output'])) {
+        foreach ($this->images as $size => $image) {
+            if (!is_array($image->meta)) continue;
+            $m = $image->meta;
+            if (isset($m['input']) && isset($m['output'])) {
                 $result['count']++;
-                $result['input'] += $details['input']['size'];
-                $result['output'] += $details['output']['size'];
+                $result['input'] += $m['input']['size'];
+                $result['output'] += $m['output']['size'];
             }
         }
         return $result;
-    }
-
-    public function is_resizable($size) {
-        return $size === self::ORIGINAL;
     }
 }

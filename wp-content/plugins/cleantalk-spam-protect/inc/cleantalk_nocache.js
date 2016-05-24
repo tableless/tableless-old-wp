@@ -2,6 +2,14 @@ function sendRequest(url,callback,postData) {
     var req = createXMLHTTPObject();
     if (!req) return;
     var method = (postData) ? "POST" : "GET";
+    
+    var protocol = location.protocol;
+    if (protocol === 'https:') {
+        url = url.replace('http:', 'https:');
+    } else {
+        url = url.replace('https:', 'http:');
+    }
+    
     req.open(method,url,true);
     if (postData)
         req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
@@ -119,7 +127,7 @@ if(ct_nocache_executed==undefined)
 		sendRequest(ct_ajaxurl+'?'+Math.random(),ct_callback,'action=ct_get_cookie');
 	}
 	
-	if(ct_info_flag)
+	if(typeof ct_info_flag !== 'undefined' && ct_info_flag)
 	{
 	
 		var cleantalk_user_info={};

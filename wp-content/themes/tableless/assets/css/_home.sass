@@ -204,7 +204,9 @@
   text-align: center
   position: relative
   height: 170px
-  display: block
+  display: none
+  @include break(desk)
+    display: block
 
   a
     display: block
@@ -389,13 +391,6 @@
 
   .tb-container
     @extend .tb-box-list
-
-  .tb-box figure img
-    width: 100%
-    height: auto
-    @include break(desk)
-      width: auto
-      height: inherit
 
 .tb-section-call
   @extend .tb-section

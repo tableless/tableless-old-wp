@@ -3,8 +3,9 @@
 require 'vendor/autoload.php';
 
 use Facebook\WebDriver;
-use Facebook\WebDriver\WebDriverDimension;
 use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\WebDriverDimension;
+use Facebook\WebDriver\WebDriverExpectedCondition;
 use Facebook\WebDriver\Remote;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
@@ -117,22 +118,16 @@ function setup_wordpress_site($driver) {
 
 function login($driver) {
     print "Logging in to WordPress... ";
-    $driver->get(wordpress('/wp-login.php'));
-    $driver->findElement(WebDriverBy::tagName('body'))->click();
-    $driver->findElement(WebDriverBy::name('log'))->clear()->click()->sendKeys('admin');
-    $driver->findElement(WebDriverBy::name('pwd'))->clear()->click()->sendKeys('admin');
-    $driver->findElement(WebDriverBy::tagName('form'))->submit();
 
     try {
-        $dashboardHeading = $driver->findElement(WebDriverBy::xpath("//html/body//div[@class='wrap']/*[self::h1 or self::h2]"));
-        if ($dashboardHeading->getText() == 'Dashboard') {
-            print "success!\n";
-        } else {
-            var_dump($driver->getPageSource());
-            throw new UnexpectedValueException('Login failed.');
-        }
+        $driver->get(wordpress('/wp-login.php'));
+        $driver->executeScript('document.getElementById("user_login").value = "admin"');
+        $driver->executeScript('document.getElementById("user_pass").value = "admin"');
+        $driver->findElement(WebDriverBy::id('loginform'))->submit();
+
+        $xpath = "//html/body//div[@class='wrap']/*[self::h1 or self::h2]";
+        $driver->wait(2)->until(WebDriverExpectedCondition::presenceOfElementLocated(WebDriverBy::xpath($xpath)));
     } catch (Exception $e) {
-        // Fixme: sometimes we get a login error randomly. Perhaps it's caused by one of the tests.
         var_dump($driver->getPageSource());
         throw new UnexpectedValueException('Login failed.');
     }

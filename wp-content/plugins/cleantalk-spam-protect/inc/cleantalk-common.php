@@ -1,6 +1,6 @@
 <?php
 
-$ct_plugin_name = 'Anti-spam by CleanTalk';
+$ct_plugin_name = 'CleanTalk Spam Protect';
 $ct_checkjs_frm = 'ct_checkjs_frm';
 $ct_checkjs_register_form = 'ct_checkjs_register_form';
 $ct_session_request_id_label = 'request_id';
@@ -651,7 +651,7 @@ function ct_get_fields_any(&$email,&$message,&$nickname,&$subject, &$contact,$ar
 	        }
 	        else
 	        {
-	        	@$message.="$value\n";
+	        	$message[$key] = $value;
 	        }
 		}
 		else if(!is_object($value)&&@get_class($value)!='WP_User')

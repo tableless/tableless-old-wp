@@ -138,7 +138,7 @@ class WPSEO_Meta_Columns {
 		foreach ( $ranks as $rank ) {
 			$sel = selected( $current_seo_filter, $rank->get_rank(), false );
 			echo '
-				<option ', $sel, 'value="', $rank->get_rank(), '">', $rank->get_drop_down_label(). '</option>';
+				<option ', $sel, 'value="', $rank->get_rank(), '">', $rank->get_drop_down_label(), '</option>';
 		}
 		echo '
 			</select>';
@@ -270,7 +270,12 @@ class WPSEO_Meta_Columns {
 					$vars,
 					array(
 						'meta_query' => array(
-							'relation' => 'OR',
+							'relation' => 'AND',
+							array(
+								'key'     => WPSEO_Meta::$meta_prefix . 'meta-robots-noindex',
+								'value'   => 'needs-a-value-anyway',
+								'compare' => 'NOT EXISTS',
+							),
 							array(
 								'key'     => WPSEO_Meta::$meta_prefix . 'linkdex',
 								'value'   => 'needs-a-value-anyway',
@@ -426,5 +431,4 @@ class WPSEO_Meta_Columns {
 
 		return wpseo_replace_vars( '%%title%%', $post );
 	}
-
 }

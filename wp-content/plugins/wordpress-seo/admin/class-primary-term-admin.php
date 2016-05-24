@@ -23,6 +23,15 @@ class WPSEO_Primary_Term_Admin {
 	}
 
 	/**
+	 * Get the current post ID.
+	 *
+	 * @return integer The post ID.
+	 */
+	protected function get_current_id() {
+		return filter_input( INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT );
+	}
+
+	/**
 	 * Add primary term templates
 	 */
 	public function wp_footer() {
@@ -52,16 +61,16 @@ class WPSEO_Primary_Term_Admin {
 			return;
 		}
 
-		wp_enqueue_style( 'wpseo-primary-category', plugins_url( 'css/metabox-primary-category' . WPSEO_CSSJS_SUFFIX . '.css', WPSEO_FILE ), array(), WPSEO_VERSION );
-
-		wp_enqueue_script( 'wpseo-primary-category', plugins_url( 'js/wp-seo-metabox-category' . WPSEO_CSSJS_SUFFIX . '.js', WPSEO_FILE ), array( 'jquery', 'wp-util' ), WPSEO_VERSION, true );
+		$asset_manager = new WPSEO_Admin_Asset_Manager();
+		$asset_manager->enqueue_style( 'primary-category' );
+		$asset_manager->enqueue_script( 'primary-category' );
 
 		$taxonomies = array_map( array( $this, 'map_taxonomies_for_js' ), $taxonomies );
 
 		$data = array(
 			'taxonomies' => $taxonomies,
 		);
-		wp_localize_script( 'wpseo-primary-category', 'wpseoPrimaryCategoryL10n', $data );
+		wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'primary-category', 'wpseoPrimaryCategoryL10n', $data );
 	}
 
 	/**
@@ -70,6 +79,11 @@ class WPSEO_Primary_Term_Admin {
 	 * @param int $post_ID Post ID to save primary terms for.
 	 */
 	public function save_primary_terms( $post_ID ) {
+		// Bail if this is a multisite installation and the site has been switched.
+		if ( is_multisite() && ms_is_switched() ) {
+			return;
+		}
+
 		$taxonomies = $this->get_primary_term_taxonomies( $post_ID );
 
 		foreach ( $taxonomies as $taxonomy ) {
@@ -86,7 +100,7 @@ class WPSEO_Primary_Term_Admin {
 	 * @return int primary term id
 	 */
 	protected function get_primary_term( $taxonomy_name ) {
-		$primary_term = new WPSEO_Primary_Term( $taxonomy_name, get_the_ID() );
+		$primary_term = new WPSEO_Primary_Term( $taxonomy_name, $this->get_current_id() );
 
 		return $primary_term->get_primary_term();
 	}
@@ -100,7 +114,7 @@ class WPSEO_Primary_Term_Admin {
 	protected function get_primary_term_taxonomies( $post_ID = null ) {
 
 		if ( null === $post_ID ) {
-			$post_ID = get_the_ID();
+			$post_ID = $this->get_current_id();
 		}
 
 		if ( false !== ( $taxonomies = wp_cache_get( 'primary_term_taxonomies_' . $post_ID, 'wpseo' ) ) ) {
@@ -148,10 +162,9 @@ class WPSEO_Primary_Term_Admin {
 		$post_type      = get_post_type( $post_ID );
 		$all_taxonomies = get_object_taxonomies( $post_type, 'objects' );
 		$all_taxonomies = array_filter( $all_taxonomies, array( $this, 'filter_hierarchical_taxonomies' ) );
-		$taxonomies     = array_filter( $all_taxonomies, array( $this, 'filter_category_taxonomy' ) );
 
 		/**
-		 * Filters which taxonomies for which the user can choose the primary term. Only category is enabled by default.
+		 * Filters which taxonomies for which the user can choose the primary term.
 		 *
 		 * @api array    $taxonomies An array of taxonomy objects that are primary_term enabled.
 		 *
@@ -159,7 +172,7 @@ class WPSEO_Primary_Term_Admin {
 		 * @param array  $all_taxonomies All taxonomies for this post types, even ones that don't have primary term
 		 *                               enabled.
 		 */
-		$taxonomies = (array) apply_filters( 'wpseo_primary_term_taxonomies', $taxonomies, $post_type, $all_taxonomies );
+		$taxonomies = (array) apply_filters( 'wpseo_primary_term_taxonomies', $all_taxonomies, $post_type, $all_taxonomies );
 
 		return $taxonomies;
 	}
@@ -208,17 +221,6 @@ class WPSEO_Primary_Term_Admin {
 	 * @return bool
 	 */
 	private function filter_hierarchical_taxonomies( $taxonomy ) {
-		return true === $taxonomy->hierarchical;
-	}
-
-	/**
-	 * Returns whether or not the taxonomy is the category taxonomy
-	 *
-	 * @param stdClass $taxonomy Taxonomy object.
-	 *
-	 * @return bool
-	 */
-	private function filter_category_taxonomy( $taxonomy ) {
-		return 'category' === $taxonomy->name;
+		return (bool) $taxonomy->hierarchical;
 	}
 }

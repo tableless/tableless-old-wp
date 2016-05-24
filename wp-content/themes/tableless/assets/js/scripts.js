@@ -6,6 +6,7 @@ var tableless = (function() {
     prettyPrintHighlight();
     openCloseSearch();
     searchAjax();
+    showMenu();
   }
 
   //
@@ -74,6 +75,11 @@ var tableless = (function() {
     });
   }
 
+  function showMenu(){
+    $('.tb-sandwich').on('click', function(){
+      $('.tb-menu').toggleClass('tb-is-active');
+    });
+  }
 
   return {
     init: init,

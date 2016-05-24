@@ -6,9 +6,11 @@
 
   function compress_image(event) {
     var element = jQuery(event.target)
+    var container = element.closest('.tiny-ajax-container')
+
     element.attr('disabled', 'disabled')
-    element.closest('td').find('.spinner').removeClass('hidden')
-    element.closest('td').find('span.dashicons').addClass('hidden')
+    container.find('.spinner').removeClass('hidden')
+    container.find('span.dashicons').addClass('hidden')
     jQuery.ajax({
       url: ajaxurl,
       type: "POST",
@@ -18,11 +20,11 @@
         id: element.data('id') || element.attr('data-id')
       },
       success: function(data) {
-        element.closest('td').html(data)
+        container.html(data)
       },
       error: function() {
         element.removeAttr('disabled')
-        element.closest('td').find('.spinner').addClass('hidden')
+        container.find('.spinner').addClass('hidden')
       }
     })
   }
@@ -137,12 +139,52 @@
     bulk_compress_item(items, 0)
   }
 
-  if (typeof adminpage !== "undefined" && adminpage === "upload-php") {
-    if (typeof jQuery.fn.on === "function") {
-      jQuery('table').on('click', 'button.tiny-compress', compress_image)
+  function update_resize_settings() {
+    if (jQuery('#tinypng_sizes_0').prop('checked')) {
+      jQuery('.tiny-resize-available').show()
+      jQuery('.tiny-resize-unavailable').hide()
     } else {
-      jQuery('button.tiny-compress').live('click', compress_image)
+      jQuery('.tiny-resize-available').hide()
+      jQuery('.tiny-resize-unavailable').show()
     }
+
+    var original_enabled = jQuery('#tinypng_resize_original_enabled').prop('checked')
+    jQuery('#tinypng_resize_original_width, #tinypng_resize_original_height').each(function (i, el) {
+      el.disabled = !original_enabled
+    })
+  }
+
+  function update_preserve_settings() {
+    if (jQuery('#tinypng_sizes_0').prop('checked')) {
+      jQuery('.tiny-preserve').show()
+    } else {
+      jQuery('.tiny-preserve').hide()
+      jQuery('#tinypng_preserve_data_creation').attr('checked', false)
+      jQuery('#tinypng_preserve_data_copyright').attr('checked', false)
+      jQuery('#tinypng_preserve_data_location').attr('checked', false)
+    }
+  }
+
+  function update_settings() {
+    update_resize_settings()
+    update_preserve_settings()
+  }
+
+  var adminpage = ""
+  if (typeof window.adminpage !== "undefined") {
+    adminpage = window.adminpage
+  }
+
+  function eventOn(parentSelector, event, eventSelector, callback) {
+    if (typeof jQuery.fn.on === "function") {
+      jQuery(parentSelector).on(event, eventSelector, callback)
+    } else {
+      jQuery(eventSelector).live(event, callback)
+    }
+  }
+
+  if (adminpage === "upload-php") {
+    eventOn('table', 'click', 'button.tiny-compress', compress_image)
 
     if (typeof jQuery.fn.prop === "function") {
       jQuery('button.tiny-compress').prop('disabled', null)
@@ -152,9 +194,9 @@
 
     jQuery('<option>').val('tiny_bulk_compress').text(tinyCompress.L10nBulkAction).appendTo('select[name="action"]')
     jQuery('<option>').val('tiny_bulk_compress').text(tinyCompress.L10nBulkAction).appendTo('select[name="action2"]')
-  }
-
-  if (typeof adminpage !== "undefined" && adminpage === "options-media-php") {
+  } else if (adminpage === "post-php") {
+    eventOn('div.postbox-container div.tiny-compress-images', 'click', 'button.tiny-compress', compress_image)
+  } else if (adminpage === "options-media-php") {
     jQuery('#tiny-compress-status').load(ajaxurl + '?action=tiny_compress_status')
     jQuery('#tiny-compress-savings').load(ajaxurl + '?action=tiny_compress_savings')
 
@@ -168,37 +210,8 @@
       jQuery('#tiny-image-sizes-notice').load(image_count_url)
     })
 
-    function update_resize_settings() {
-      if (jQuery('#tinypng_sizes_0').prop('checked')) {
-        jQuery('.tiny-resize-available').show()
-        jQuery('.tiny-resize-unavailable').hide()
-      } else {
-        jQuery('.tiny-resize-available').hide()
-        jQuery('.tiny-resize-unavailable').show()
-      }
-
-      var elements = jQuery('#tinypng_resize_original_width, #tinypng_resize_original_height')
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].disabled = !jQuery('#tinypng_resize_original_enabled').prop('checked')
-      }
-    }
-
-    function update_preserve_settings() {
-      if (jQuery('#tinypng_sizes_0').prop('checked')) {
-        jQuery('.tiny-preserve').show()
-      } else {
-        jQuery('.tiny-preserve').hide()
-        jQuery('#tinypng_preserve_data_copyright').attr('checked', false)
-      }
-    }
-
-    function update_settings() {
-      update_resize_settings()
-      update_preserve_settings()
-    }
-
-
     jQuery('#tinypng_sizes_0, #tinypng_resize_original_enabled').click(update_settings)
+    update_settings()
   }
 
   jQuery('.tiny-notice a.tiny-dismiss').click(dismiss_notice)

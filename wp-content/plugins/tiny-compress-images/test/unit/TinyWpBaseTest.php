@@ -15,7 +15,8 @@ class Tiny_WP_Base_Test extends TinyTestCase {
     public function testShouldAddInitHooks() {
         $this->assertEquals(array(
                 array('init', array($this->subject, 'init')),
-                array('admin_init', array($this->subject, 'admin_init'))
+                array('admin_init', array($this->subject, 'admin_init')),
+                array('admin_menu', array($this->subject, 'admin_menu'))
             ),
             $this->wp->getCalls('add_action')
         );

@@ -45,6 +45,7 @@ class BulkCompressIntegrationTest extends IntegrationTestCase {
         $this->prepare(1, 2);
 
         self::$driver->get(wordpress('/wp-admin/upload.php?orderby=title&order=asc'));
+
         $checkboxes = self::$driver->findElements(WebDriverBy::cssSelector('tbody input[type="checkbox"]'));
         $checkboxes[0]->click();
 

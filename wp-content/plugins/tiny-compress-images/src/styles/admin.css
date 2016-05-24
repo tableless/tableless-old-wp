@@ -92,6 +92,10 @@
     display: none;
 }
 
+.tiny-compress-images h4 {
+    margin: 0.5em 0;
+}
+
 #tiny-bulk-compress #media-items .bar.failed {
     background-color: #DD3D36;
 }

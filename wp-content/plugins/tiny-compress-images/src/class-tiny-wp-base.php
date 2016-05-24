@@ -68,6 +68,7 @@ abstract class Tiny_WP_Base {
             add_action('init', $this->get_method('xmlrpc_init'));
         } elseif (is_admin()) {
             add_action('admin_init', $this->get_method('admin_init'));
+            add_action('admin_menu', $this->get_method('admin_menu'));
         }
     }
 
@@ -94,5 +95,8 @@ abstract class Tiny_WP_Base {
     }
 
     public function admin_init() {
+    }
+
+    public function admin_menu() {
     }
 }

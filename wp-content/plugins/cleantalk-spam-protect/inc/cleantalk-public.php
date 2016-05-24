@@ -200,13 +200,12 @@ function ct_init_after_all() {
     ct_init_session();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if (is_array($_SESSION) && !array_key_exists($ct_formtime_label, $_SESSION) && session_id() != '') {
+        if (isset($_SESSION) && is_array($_SESSION) && !array_key_exists($ct_formtime_label, $_SESSION) && session_id() != '') {
             $ct_direct_post = 1;
         }
     } else {
         $_SESSION[$ct_formtime_label] = time();
     }
-    
 };
 
 function ct_ajaxurl() {
@@ -374,11 +373,11 @@ function ct_frm_validate_entry ($errors, $values) {
     
     $ct_options = ct_get_options();
     $ct_data = ct_get_data();
-
-    if ($ct_options['contact_forms_test'] == 0) {
+    
+    if ($ct_options['contact_forms_test'] == 0 || ct_is_user_enable() === false || is_user_logged_in()) {
         return false;
     }
-    
+     
     $checkjs = js_test('ct_checkjs', $_COOKIE, true);
     if($checkjs != 1){
         $checkjs = js_test($ct_checkjs_frm, $_POST, true);
@@ -1045,7 +1044,6 @@ function ct_registration_errors($errors, $sanitized_user_login = null, $user_ema
     $ct_options=ct_get_options();
 	$ct_data=ct_get_data();
 
-
     // Go out if a registrered user action
     if (ct_is_user_enable() === false) {
         return $errors;
@@ -1512,27 +1510,24 @@ function ct_si_contact_form_validate($form_errors = array(), $form_id_num = 0) {
     $sender_email = null;
     $sender_nickname = null;
     $subject = '';
-    $message = '';
-    if (isset($_POST['email']))
-        $sender_email = $_POST['email']; 
+    $message = array();
+    $contact_form = null;
+//getting info from custom fields
+	@ct_get_fields_any($sender_email, $message, $sender_nickname, $subject, $contact_form, $_POST);
+//setting fields if they with defaults names
+    if ($subject != '') {
+        $message = array_merge(array('subject' => $subject), $message);
+    }
+    $message = json_encode($message);
 
-    if (isset($_POST['full_name']))
-        $sender_nickname = $_POST['full_name']; 
-
-    if (isset($_POST['subject']))
-        $subject = $_POST['subject'];
-
-    if (isset($_POST['message']))
-        $message = $_POST['message'];
-        
 
     $ct_base_call_result = ct_base_call(array(
-        'message' => $subject . "\n\n" . $message,
+        'message' => $message,
         'example' => null,
         'sender_email' => $sender_email,
         'sender_nickname' => $sender_nickname,
         'post_info' => $post_info,
-	'sender_info' => $sender_info,
+	    'sender_info' => $sender_info,
         'checkjs' => $checkjs
     ));
     $ct = $ct_base_call_result['ct'];
@@ -1862,10 +1857,16 @@ function ct_contact_form_validate () {
     $sender_email = '';
     $sender_nickname = '';
     $subject = '';
-    $message = '';
     $contact_form = true;
-    
+    $message = array();
+
     @ct_get_fields_any($sender_email, $message, $sender_nickname, $subject, $contact_form, $_POST);
+    
+    if ($subject != '') {
+        $message = array_merge(array('subject' => $subject), $message);
+    }
+    $message = json_encode($message);
+
     //@header("CtGetFieldsAny: Passed");
     cleantalk_debug("CtGetFieldsAny", "Passed");
     //@header("CtSenderEmail: $sender_email");
@@ -1900,7 +1901,7 @@ function ct_contact_form_validate () {
 
 
     $ct_base_call_result = ct_base_call(array(
-        'message' => $subject . "\n\n" . $message,
+        'message' => $message,
         'example' => null,
         'sender_email' => $sender_email,
         'sender_nickname' => $sender_nickname,
@@ -2038,9 +2039,9 @@ function ct_contact_form_validate_postdata () {
         $post_info = '';
     }
 
-    $message = '';
-    
     @ct_get_fields_any_postdata($message, $_POST);
+    
+    $message = json_encode($message);
     
     if(strlen(trim($message))<10)
     {

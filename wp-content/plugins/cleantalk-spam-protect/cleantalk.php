@@ -1,15 +1,16 @@
 <?php
 /*
-  Plugin Name: Anti-Spam by CleanTalk
+  Plugin Name: Anti-Spam by CleanTalk 
   Plugin URI: http://cleantalk.org
   Description: Max power, all-in-one, captcha less, premium anti-spam plugin. No comment spam, no registration spam, no contact spam, protects any WordPress forms. 
-  Version: 5.38.1
+  Version: 5.40.1
   Author: СleanTalk <welcome@cleantalk.org>
   Author URI: http://cleantalk.org
  */
-$cleantalk_plugin_version='5.38.1';
-$ct_agent_version = 'wordpress-5381';
+$cleantalk_plugin_version='5.40.1';
+$ct_agent_version = 'wordpress-5401';
 $cleantalk_executed=false;
+$ct_sfw_updated = false;
 
 if(defined('CLEANTALK_AJAX_USE_BUFFER'))
 {
@@ -453,7 +454,7 @@ add_action( 'right_now_content_table_end', 'my_add_counts_to_dashboard' );
 
 function cleantalk_update_sfw()
 {
-	global $wpdb;
+	global $wpdb, $ct_sfw_updated;
 
 	if(!function_exists('sendRawRequest'))
 	{
@@ -468,14 +469,14 @@ function cleantalk_update_sfw()
     {
     	$value=0;
     }
-    
-    if($value==1)
+
+    if($value==1 && $ct_sfw_updated === false)
     {
 		$data = Array(	'auth_key' => $ct_options['apikey'],
 						'method_name' => '2s_blacklists_db'
 			 	);
 		
-		$result=sendRawRequest('https://api.cleantalk.org/2.1', $data);
+		$result=sendRawRequest('https://api.cleantalk.org', $data);
 		$result=json_decode($result, true);
 		if(isset($result['data']))
 		{
@@ -500,6 +501,7 @@ INDEX (  `network` ,  `mask` )
 				}
 			}
 			$wpdb->query($query);
+            $ct_sfw_updated = true;    
 		}
 	}
 }

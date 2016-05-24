@@ -342,13 +342,14 @@ function ct_ajax_hook()
     //
     // Go out because of not spam data 
     //
-    $gmw_actions = array(
-        'gmaps_display_info_window',
-        'gmw_ps_display_info_window'
+    $skip_post = array(
+        'gmaps_display_info_window',  // Geo My WP pop-up windows.
+        'gmw_ps_display_info_window',  // Geo My WP pop-up windows.
+        'the_champ_user_auth',  // Super Socializer 
     );
 	$checkjs = js_test('ct_checkjs', $_COOKIE, true);
     if ($checkjs && // Spammers usually fail the JS test
-        (isset($_POST['action']) && in_array($_POST['action'], $gmw_actions)) // Geo My WP pop-up windows.
+        (isset($_POST['action']) && in_array($_POST['action'], $skip_post))
         ) {
         return false;
     }

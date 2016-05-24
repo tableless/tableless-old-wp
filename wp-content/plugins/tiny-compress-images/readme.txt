@@ -4,7 +4,7 @@ Donate link: https://tinypng.com/
 Tags: optimize, compress, shrink, resize, faster, fit, scale, improve, images, tinypng, tinyjpg, jpeg, jpg, png, lossy, jpegmini, crunch, minify, smush, save, bandwidth, website, speed, performance, panda, wordpress app
 Requires at least: 3.0.6
 Tested up to: 4.5
-Stable tag: 1.7.1
+Stable tag: 1.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,8 +20,10 @@ Make your website faster by optimizing your JPEG and PNG images. This plugin aut
 * Optimize individual images already in your media library.
 * Easy bulk optimization of your existing media library.
 * Resize large original images by setting a maximum width and/or height.
+* Preserve copyright metadata, creation date and GPS location in the original images.
 * Select which thumbnail sizes of an image may be optimized.
 * Multisite support with a single API key.
+* WooCommerce compatible.
 * See your usage from the media settings and during bulk optimization.
 * Color profiles are automatically translated to the standard RGB color space.
 * Convert CMYK to RGB to save more space and maximize compatibility.
@@ -101,6 +103,10 @@ A: Everything will keep on working, but newly uploaded images will not be optimi
 A: Yes! After installing the plugin, go to *Media > Compress All Images*, and click on the button to optimize all unoptimized images in your media library.
 
 == Changelog ==
+
+= 1.7.2 =
+* Show more information about compressed/uncompressed image sizes in details popup.
+* Add compression details to image overview.
 
 = 1.7.1 =
 * Option to preserve gps location and original creation date and time in your original JPEG images.

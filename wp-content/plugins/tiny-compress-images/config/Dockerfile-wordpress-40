@@ -1,8 +1,8 @@
 FROM wordpress:4
 
-ENV WORDPRESS_VERSION 4.0.8
-ENV WORDPRESS_UPSTREAM_VERSION 4.0.8
-ENV WORDPRESS_SHA1 6a3511025d9b9ccfec45efdad27d67a85ecce595
+ENV WORDPRESS_VERSION 4.0.10
+ENV WORDPRESS_UPSTREAM_VERSION 4.0.10
+ENV WORDPRESS_SHA1 a9e4d8cd92e211d55b40de3afd09efc5068ad483
 
 # upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
 RUN curl -o wordpress.tar.gz -sSL https://wordpress.org/wordpress-${WORDPRESS_UPSTREAM_VERSION}.tar.gz \

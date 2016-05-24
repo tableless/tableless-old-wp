@@ -33,6 +33,11 @@ abstract class TinyTestCase extends PHPUnit_Framework_TestCase {
         $this->assertLessThanOrEqual($upper_bound, $actual, $message);
     }
 
+    protected function assertEqualWithinDelta($expected, $actual, $delta, $message='') {
+        $this->assertGreaterThanOrEqual($expected - $delta, $actual, $message);
+        $this->assertLessThanOrEqual($expected + $delta, $actual, $message);
+    }
+
     protected function json($file_name) {
         return json_decode(file_get_contents(dirname(__FILE__) . "/../fixtures/json/" . $file_name . ".json"), true);
     }

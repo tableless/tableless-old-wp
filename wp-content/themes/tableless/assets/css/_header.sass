@@ -28,15 +28,46 @@
   width: 30px
   height: 22px
   right: 20px
-  display: none
+  display: block
 
-.tb-search-btn,
-.tb-menu
+.tb-search-btn
   display: none
 
 .tb-search-btn
   @extend %image-replace
   cursor: pointer
+
+.tb-menu
+  background: rgba(255, 255, 255, 1)
+  position: fixed
+  top: $header-height
+  right: 0
+  width: 80%
+  height: 100%
+  padding: 20px
+  will-change: transform
+  transform: translateX(100%)
+  transition: all .2s linear
+
+  &.tb-is-active
+    box-shadow: 0 0 30px rgba(0, 0, 0, .6)
+    transform: translateX(0)
+
+    a
+      opacity: 1
+
+  li
+    list-style: none
+
+    a
+      font: 25px $font-regular
+      text-decoration: none
+      color: #303030
+      display: block
+      padding: 0 0 20px
+      opacity: 0
+      transition: all .2s linear .15s
+      text-transform: uppercase
 
 @media #{$desktop}
   .tb-logo a
@@ -52,24 +83,33 @@
     height: 24px
     margin: 25px 15px 0
 
+  .tb-sandwich
+    display: none
+
   .tb-menu
+    position: static
+    width: auto
+    background: transparent
     display: block
     list-style: none
     float: right
+    box-shadow: none
+    transform: translateX(0)
     padding: 25px 0 0
 
     li
       display: inline-block
       margin: 0 25px
 
-    a
-      color: white
-      text-decoration: none
-      text-transform: uppercase
-      font: 16px $font-regular
-      display: inline-block
-      padding: 5px
-      transition: border-bottom linear .15s
+      a
+        color: white
+        opacity: 1
+        left: 0
+        text-decoration: none
+        font: 16px $font-regular
+        display: inline-block
+        padding: 5px
+        transition: border-bottom linear .15s
 
-      &:hover
-        border-bottom: 3px solid #FF5252
+        &:hover
+          border-bottom: 3px solid #FF5252

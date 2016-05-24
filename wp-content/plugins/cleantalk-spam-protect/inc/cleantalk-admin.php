@@ -30,18 +30,6 @@ function cleantalk_custom_glance_items( )
 	}
 }
 
-if(isset($_GET['close_notice']))
-{
-	global $ct_data, $pagenow;
-	$ct_data=ct_get_data();
-	$ct_data['next_notice_show']=time()+86400;
-	$ct_data['next_account_status_check']=time()+86400;
-	$ct_data['show_ct_notice_trial']=0;
-	$ct_data['show_ct_notice_renew']=0;
-	update_option('cleantalk_data', $ct_data);
-	$_SERVER["QUERY_STRING"]=str_replace("close_notice=1","",$_SERVER["QUERY_STRING"]);
-	header("Location: $pagenow?".$_SERVER["QUERY_STRING"]);
-}
 
 // Timeout to get app server
 $ct_server_timeout = 10;
@@ -968,7 +956,10 @@ function ct_input_spam_firewall() {
 	
 	echo "<div id='cleantalk_anchor1' style='display:none'></div><input type=hidden name='cleantalk_settings[spam_firewall]' value='0' />";
 	echo "<input type='checkbox' id='cleantalk_spam_firewall1' name='cleantalk_settings[spam_firewall]' value='1' " . ($value == '1' ? 'checked' : '') . " /><label for='cleantalk_spam_firewall1'> " . __('SpamFireWall') . "</label>";
-	@admin_addDescriptionsFields(sprintf(__("This option allows to filter spam bots before they access website. Also reduces CPU usage on hosting server and accelerates pages load time.", 'cleantalk'),  $ct_options['spam_firewall']));
+	@admin_addDescriptionsFields(sprintf(__("This option allows to filter spam bots before they access website. Also reduces CPU usage on hosting server and accelerates pages load time.", 'cleantalk'),  $ct_options['spam_firewall']) .
+        " " .
+        '<a href="https://cleantalk.org/cleantalk-spam-firewall" style="font-size: 10pt; color: #666 !important" target="_blank">' . __('Learn more') . '</a>.'
+    );
 	echo "<script>
 		jQuery(document).ready(function(){
 			jQuery('#cleantalk_anchor1').parent().parent().children().first().hide();
@@ -1128,18 +1119,8 @@ function cleantalk_admin_notice_message(){
 		$show_ct_notice_trial = 0;
 	}
 	
-	$link=@$_SERVER["QUERY_STRING"];
-	if($link!='')
-	{
-		$link="?".$link."&close_notice=1";
-	}
-	else
-	{
-		$link="?close_notice=1";
-	}
-
 	if ($show_notice && $show_ct_notice_trial ==1 && $value==1 && (is_network_admin() || is_admin()) && $ct_data['moderate_ip'] == 0) {
-		echo '<div class="error"><a href="'.$link.'" style="text-decoration:none;float:right;font-size:16px;margin-top:5px;"><b>X</b></a><h3>' . sprintf(__("%s trial period ends, please upgrade to %s!", 'cleantalk'), "<a href=\"options-general.php?page=cleantalk\">$ct_plugin_name</a>", "<a href=\"http://cleantalk.org/my/bill/recharge?utm_source=wp-backend&utm_medium=cpc&utm_campaign=WP%20backend%20trial$user_token\" target=\"_blank\"><b>premium version</b></a>") . '</h3></div>';
+		echo '<div class="error"><h3>' . sprintf(__("%s trial period ends, please upgrade to %s!", 'cleantalk'), "<a href=\"options-general.php?page=cleantalk\">$ct_plugin_name</a>", "<a href=\"http://cleantalk.org/my/bill/recharge?utm_source=wp-backend&utm_medium=cpc&utm_campaign=WP%20backend%20trial$user_token\" target=\"_blank\"><b>premium version</b></a>") . '</h3></div>';
 		$show_notice = false;
 	}
 	
@@ -1163,7 +1144,7 @@ function cleantalk_admin_notice_message(){
 
 	if ($show_notice && $show_ct_notice_renew == 1 && $value==1 && (is_network_admin() || is_admin()) && $ct_data['moderate_ip'] != 1) {
 	$button_html = "<a href=\"http://cleantalk.org/my/bill/recharge?utm_source=wp-backend&utm_medium=cpc&utm_campaign=WP%20backend%20renew$user_token\" target=\"_blank\">" . '<input type="button" class="button button-primary" value="' . __('RENEW ANTI-SPAM', 'cleantalk') . '"  />' . "</a>";
-		echo '<div class="updated"><a href="'.$link.'" style="text-decoration:none;float:right;font-size:16px;margin-top:5px;"><b>X</b></a><h3>' . sprintf(__("Please renew your anti-spam license for %s.", 'cleantalk'), "<a href=\"http://cleantalk.org/my/bill/recharge?utm_source=wp-backend&utm_medium=cpc&utm_campaign=WP%20backend%20renew$user_token\" target=\"_blank\"><b>" . __('next year', 'cleantalk') ."</b></a>") . '<br /><br />' . $button_html . '</h3></div>';
+		echo '<div class="updated"><h3>' . sprintf(__("Please renew your anti-spam license for %s.", 'cleantalk'), "<a href=\"http://cleantalk.org/my/bill/recharge?utm_source=wp-backend&utm_medium=cpc&utm_campaign=WP%20backend%20renew$user_token\" target=\"_blank\"><b>" . __('next year', 'cleantalk') ."</b></a>") . '<br /><br />' . $button_html . '</h3></div>';
 		$show_notice = false;
 	}
 

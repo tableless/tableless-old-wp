@@ -268,7 +268,7 @@ class Tiny_Settings extends Tiny_WP_Base {
         $id = self::get_prefixed_name("sizes_$size");
         $name = self::get_prefixed_name("sizes[$size]");
         $checked = ( $option['tinify'] ? ' checked="checked"' : '' );
-        if ($size === Tiny_Metadata::ORIGINAL) {
+        if (Tiny_Metadata::is_original($size)) {
             $label = esc_html__('original', 'tiny-compress-images') . ' (' . esc_html__('overwritten by compressed image', 'tiny-compress-images') . ')';
         } else {
             $label = $size . ' - ' . $option['width'] . 'x' . $option['height'];
@@ -322,7 +322,7 @@ class Tiny_Settings extends Tiny_WP_Base {
         $id = self::get_prefixed_name("resize_original_enabled");
         $name = self::get_prefixed_name("resize_original[enabled]");
         $checked = ( $this->get_resize_enabled() ? ' checked="checked"' : '' );
-        $label = esc_html__('Resize and compress the orginal image', 'tiny-compress-images');
+        $label = esc_html__('Resize and compress the original image', 'tiny-compress-images');
 
         echo '<p class="tiny-resize-available">';
         echo '<input  type="checkbox" id="' . $id . '" name="' . $name . '" value="on" '. $checked . '/>';

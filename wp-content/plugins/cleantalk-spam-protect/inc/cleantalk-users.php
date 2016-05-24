@@ -166,11 +166,11 @@ $cnt_spam1=$r[0]['cnt'];
 							{
 								if($i==$page)
 								{
-									print "<a href='edit-comments.php?page=ct_check_spam&spam_page=$i'><b>$i</b></a> ";
+									print "<a href='users.php?page=ct_check_users&spam_page=$i'><b>$i</b></a> ";
 								}
 								else
 								{
-									print "<a href='edit-comments.php?page=ct_check_spam&spam_page=$i'>$i</a> ";
+									print "<a href='users.php?page=ct_check_users&spam_page=$i'>$i</a> ";
 								}								
 							}
 						?>
@@ -185,6 +185,7 @@ $cnt_spam1=$r[0]['cnt'];
 		<button class="button" id="ct_delete_checked_users"><?php _e('Delete selected', 'cleantalk'); ?></button>
 		<?php
 		}
+		if($_SERVER['REMOTE_ADDR']=='127.0.0.1')print '<button class="button" id="ct_insert_users">Insert accounts</button><br />';
 		?>
 		<br /><br />
 		<div id="ct_info_message"><?php _e("Anti-spam by CleanTalk will check all users against blacklists database and show you senders that have spam activity on other websites. Just click 'Find spam users' to start.", 'cleantalk'); ?>
@@ -234,7 +235,7 @@ function ct_ajax_check_users()
 	check_ajax_referer('ct_secret_nonce', 'security');
 	global $ct_options;
 	$ct_options = ct_get_options();
-	
+
 	$args_unchecked = array(
 		'meta_query' => array(
 			'relation' => 'AND',
@@ -286,8 +287,11 @@ function ct_ajax_check_users()
 		);
 		
 		$context = stream_context_create($opts);
-		
-		$result = @file_get_contents("https://api.cleantalk.org/?method_name=spam_check&auth_key=".$ct_options['apikey'], 0, $context);
+	    
+        $url = sprintf("https://api.cleantalk.org/?method_name=spam_check&auth_key=%s",
+            $ct_options['apikey']
+        ); 
+		$result = file_get_contents($url, 0, $context);
 		$result=json_decode($result);
 		if(isset($result->error_message))
 		{
@@ -299,21 +303,18 @@ function ct_ajax_check_users()
 			{
 				update_user_meta($u[$i]->ID,'ct_checked',date("Y-m-d H:m:s"),true);
 				$user_meta=get_user_meta($u[$i]->ID, 'session_tokens', true);
-				if(is_array($user_meta))
+				
+                if(is_array($user_meta))
 				{
 					$user_meta=array_values($user_meta);
 				}
+                $uip = null;
 				if(@isset($user_meta[0]['ip']))
 				{
 					$uip=$user_meta[0]['ip'];
 				}
-				else
-				{
-					$uip='127.0.0.1';
-				}
-				if($uip=='127.0.0.1')continue;
-				$uim=$u[$i]->data->user_email;
-				if(empty($uim))continue;
+			    	
+                $uim=$u[$i]->data->user_email;
 				
 				//print "uip: $uip, uim: $uim\n";
 				if(isset($result->data->$uip) && $result->data->$uip->appears==1 || isset($result->data->$uim) && $result->data->$uim->appears==1)
@@ -362,12 +363,12 @@ function ct_ajax_insert_users()
 		$rnd=mt_rand(1,10000);
 		if($rnd<2000)
 		{
-			$email="stop_email@example.com";
 		}
 		else
 		{
 			$email="stop_email_$rnd@example.com";
 		}
+			$email="stop_email@example.com";
 		$data = array(
 			'user_login'=>"user_$rnd",
 			'user_email'=>$email,
