@@ -50,7 +50,8 @@
   a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0000/6090.js?"+Math.floor(new Date().getTime()/3600000);
   a.async=false;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
 </script>
-<script   src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+<<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" type="text/javascript"></script>
 <script id="dsq-count-scr" src="//tableless.disqus.com/count.js" async></script>
 
 <?php wp_footer();?>

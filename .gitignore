@@ -4,6 +4,7 @@ robots.txt
 license.txt
 readme.html
 wp-content/themes/tableless/style.css
+.phpintel
 
 .DS_Store
 wp-content/cache/.htaccess
@@ -21,3 +22,4 @@ wp-content/cache/
 node_modules/
 npm-debug.log
 wp-content/themes/tableless/assets/css/single.css
+wp-content/themes/tableless/assets/js/scripts.min.js

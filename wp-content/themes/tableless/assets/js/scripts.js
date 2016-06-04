@@ -7,6 +7,36 @@ var tableless = (function() {
     openCloseSearch();
     searchAjax();
     showMenu();
+
+    if(isMobile()){
+      initCarousel();
+    }
+
+  }
+
+  function initCarousel(){
+    $('.tb-featured-post').addClass('tb-is-active');
+    $('.tb-is-active').css('position', 'relative');
+    $('.owl-wrapper-outer').css('height', '100%');
+    $('.tb-featured-inner').owlCarousel({
+      slideSpeed : 300,
+      paginationSpeed : 400,
+      singleItem: true,
+      autoPlay : true,
+      transitionStyle: 'goDown' // fade, backSlide, goDown and scaleUp
+    });
+  }
+
+  function screenWidth(){
+    return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  }
+
+  function screenHeight(){
+    return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  }
+
+  function isMobile(){
+    return (screenWidth() <= 995);
   }
 
   //
