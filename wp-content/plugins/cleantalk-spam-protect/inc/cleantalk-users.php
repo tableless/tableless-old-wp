@@ -11,25 +11,11 @@ function ct_add_users_menu()
 
 function ct_show_users_page()
 {
+    global $ct_plugin_name;
 	?>
 	<div class="wrap">
-		<h2><?php _e("Anti-spam by CleanTalk", 'cleantalk'); ?></h2><br />
+		<h2><?php echo $ct_plugin_name; ?></h2><br />
 		<?php
-		/*$args_unchecked = array(
-			'meta_query' => array(
-				'relation' => 'AND',
-				Array(
-					'key' => 'ct_checked',
-					'value' => '1',
-					'compare' => 'NOT EXISTS'
-				),
-				Array(
-					'key' => 'ct_hash',
-					'value' => '1',
-					'compare' => 'NOT EXISTS'
-				)
-			)
-		);*/
 		global $wpdb;
 		$r=$wpdb->get_results("select distinct count($wpdb->users.ID) as cnt from $wpdb->users inner join $wpdb->usermeta on $wpdb->users.ID=$wpdb->usermeta.user_id where $wpdb->usermeta.meta_key='ct_checked' or $wpdb->usermeta.meta_key='ct_hash';");
 		$cnt_checked=$r[0]->cnt;
@@ -238,24 +224,18 @@ function ct_ajax_check_users()
 
 	$args_unchecked = array(
 		'meta_query' => array(
-			'relation' => 'AND',
 			Array(
 				'key' => 'ct_checked',
 				'value' => '1',
 				'compare' => 'NOT EXISTS'
 			),
-			Array(
-				'key' => 'ct_hash',
-				'value' => '1',
-				'compare' => 'NOT EXISTS'
-			)
 		),
 		'number'=>500
 	);
 	
 	$u=get_users($args_unchecked);
-	//$u=array_slice($u,0,10);
-	if(sizeof($u)>0)
+	
+    if(sizeof($u)>0)
 	{
 		$data=Array();
 		for($i=0;$i<sizeof($u);$i++)

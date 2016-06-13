@@ -292,28 +292,6 @@ function ct_user_register_ajaxlogin($user_id)
 	return $user_id;
 }
 
-function ct_get_fields(&$email,&$message,$arr)
-{
-	foreach($arr as $key=>$value)
-	{
-		if(!is_array($value))
-		{
-			if ($email === null && preg_match("/^\S+@\S+\.\S+$/", $value))
-	    	{
-	            $email = $value;
-	        }
-	        else
-	        {
-	        	$message.="$value\n";
-	        }
-		}
-		else
-		{
-			ct_get_fields($email,$message,$value);
-		}
-	}
-}
-
 function ct_ajax_hook()
 {
 	require_once(CLEANTALK_PLUGIN_DIR . 'inc/cleantalk-public.php');
@@ -324,7 +302,9 @@ function ct_ajax_hook()
 	$sender_email = null;
     $message = '';
     $nickname=null;
-    
+    $contact = true;
+    $subject = '';
+
     //
     // Skip test if Custom contact forms is disabled.
     //
@@ -375,8 +355,12 @@ function ct_ajax_hook()
     	$_POST['target']=1;
     }
     
-    ct_get_fields($sender_email,$message,$_POST);
-    
+	ct_get_fields_any($sender_email, $message, $nickname, $subject, $contact, $_POST);
+    if ($subject != '') {
+        $message = array_merge(array('subject' => $subject), $message);
+    }
+    $message = json_encode($message);
+
     if(isset($_POST['cscf']['confirm-email']))
     {
     	$_POST['cscf']['confirm-email']=$tmp;
@@ -398,6 +382,12 @@ function ct_ajax_hook()
 		{
 			$sender_info= '';
 		}
+        
+        $post_info['comment_type'] = 'feedback_ajax';
+        $post_info = json_encode($post_info);
+        if ($post_info === false)
+            $post_info = '';
+
 		
 		$ct_base_call_result = ct_base_call(array(
 			'message' => $message,
@@ -405,7 +395,7 @@ function ct_ajax_hook()
 			'sender_email' => $sender_email,
 			'sender_nickname' => $nickname,
 			'sender_info' => $sender_info,
-			'post_info'=>null,
+			'post_info'=> $post_info,
 			'checkjs' => $checkjs));
 		
 		$ct = $ct_base_call_result['ct'];

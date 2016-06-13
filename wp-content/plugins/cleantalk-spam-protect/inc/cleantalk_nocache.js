@@ -1,3 +1,14 @@
+/*
+ Assign default values for backend variables.
+*/
+if (typeof ct_set_cookies_flag === 'undefined') {
+    ct_set_cookies_flag = true;
+}
+
+if (typeof ct_ajaxurl === 'undefined') {
+    ct_ajaxurl = '/wp-admin/admin-ajax.php';
+}
+
 function sendRequest(url,callback,postData) {
     var req = createXMLHTTPObject();
     if (!req) return;
@@ -121,7 +132,7 @@ if(ct_nocache_executed==undefined)
 		}
 	}	
 	
-	if(old_timestamp==undefined||new_timestamp-old_timestamp>86400||checkjs_cookie==undefined) //86400 is 24 hours
+	if((old_timestamp==undefined||new_timestamp-old_timestamp>86400||checkjs_cookie==undefined)) //86400 is 24 hours
 	{
 		ct_setCookie('ct_timestamp', new_timestamp);
 		sendRequest(ct_ajaxurl+'?'+Math.random(),ct_callback,'action=ct_get_cookie');

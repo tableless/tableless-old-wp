@@ -1,16 +1,18 @@
 <?php
 /*
-  Plugin Name: Anti-Spam by CleanTalk 
+  Plugin Name: Spam Protection by CleanTalk
   Plugin URI: http://cleantalk.org
-  Description: Max power, all-in-one, captcha less, premium anti-spam plugin. No comment spam, no registration spam, no contact spam, protects any WordPress forms. 
-  Version: 5.40.1
+  Description: Max power, all-in-one, captcha less, premium anti-spam plugin. No comment spam, no registration spam, no contact spam, protects any WordPress forms. Formerly Anti-Spam by CleanTalk. 
+  Version: 5.41
   Author: СleanTalk <welcome@cleantalk.org>
   Author URI: http://cleantalk.org
  */
-$cleantalk_plugin_version='5.40.1';
-$ct_agent_version = 'wordpress-5401';
+$cleantalk_plugin_version='5.41';
+$ct_agent_version = 'wordpress-541';
 $cleantalk_executed=false;
 $ct_sfw_updated = false;
+
+$ct_redirects_label = 'ct_redirects';
 
 if(defined('CLEANTALK_AJAX_USE_BUFFER'))
 {
@@ -160,7 +162,15 @@ if(!defined('CLEANTALK_PLUGIN_DIR')){
     // http://codex.wordpress.org/Function_Reference/register_activation_hook
     register_activation_hook( __FILE__, 'ct_activation' );
     register_deactivation_hook( __FILE__, 'ct_deactivation' );
-    
+
+    // 
+    // Redirect admin to plugin settings.
+    //
+    if(!defined('WP_ALLOW_MULTISITE') || defined('WP_ALLOW_MULTISITE') && WP_ALLOW_MULTISITE == false)
+    {
+    	add_action('admin_init', 'ct_plugin_redirect');
+    }
+        
     // After plugin loaded - to load locale as described in manual
     add_action( 'ct_init', 'ct_plugin_loaded' );
     ct_plugin_loaded();
@@ -301,6 +311,23 @@ if (!function_exists ( 'ct_deactivation')) {
 	@wp_clear_scheduled_hook( 'ct_send_sfw_log' );
 	wp_clear_scheduled_hook( 'cleantalk_update_sfw' );
     }
+}
+
+/**
+ * Redirects admin to plugin settings after activation. 
+ */
+function ct_plugin_redirect()
+{
+    global $ct_redirects_label;
+	if (get_option('ct_plugin_do_activation_redirect', false))
+	{
+		delete_option('ct_plugin_do_activation_redirect');
+		if(!isset($_GET['activate-multi']) && !isset($_COOKIE[$ct_redirects_label]))
+		{
+		    setcookie($ct_redirects_label, 1, null, '/'); 
+			wp_redirect("options-general.php?page=cleantalk");
+		}
+	}
 }
 
 function ct_add_event($event_type)

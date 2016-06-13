@@ -281,12 +281,6 @@ ctSetCookie("%s", "%s", "%s");
 </script>
 ';      
 		$html = sprintf($html, $field_name, $ct_checkjs_key, $ct_checkjs_def);
-		/*!!! IT'S A TEMPORARILY CODE FOR DEBUGGING CF7 !!!*/
-		if($use_ajax==1)
-		{
-			$html='';
-		}
-		/*!!! IT'S A TEMPORARILY CODE FOR DEBUGGING CF7 !!!*/
     } else {
         $ct_input_challenge = sprintf("'%s'", $ct_checkjs_key);
 
@@ -344,24 +338,17 @@ function ct_is_user_enable() {
 * return null;
 */
 function ct_frm_entries_footer_scripts($fields, $form) {
-    global $current_user, $ct_checkjs_frm, $ct_options, $ct_data;
-
+    global $ct_options;
+    
     if ($ct_options['contact_forms_test'] == 0) {
         return false;
     }
-    
-    $ct_checkjs_key = ct_get_checkjs_value();
-    $ct_frm_name = 'form_' . $form->form_key;
-
+    $js_code = ct_add_hidden_fields(true, 'ct_checkjs', true, true);
     ?>
-
-    var input = document.createElement("input");
-    input.setAttribute("type", "hidden");
-    input.setAttribute("name", "<?php echo $ct_checkjs_frm; ?>");
-    input.setAttribute("value", "<?php echo $ct_checkjs_key; ?>");
-    document.getElementById("<?php echo $ct_frm_name; ?>").appendChild(input);
-
+    <?php echo $js_code; ?>
     <?php
+
+    return null;
 }
 
 /**
@@ -379,9 +366,6 @@ function ct_frm_validate_entry ($errors, $values) {
     }
      
     $checkjs = js_test('ct_checkjs', $_COOKIE, true);
-    if($checkjs != 1){
-        $checkjs = js_test($ct_checkjs_frm, $_POST, true);
-    }
 
     $post_info['comment_type'] = 'feedback';
     $post_info = json_encode($post_info);
@@ -390,13 +374,11 @@ function ct_frm_validate_entry ($errors, $values) {
 
     $sender_email = null;
     $message = '';
-    foreach ($values['item_meta'] as $v) {
-        if (isset($v) && is_string($v) && preg_match("/^\S+@\S+\.\S+$/", $v)) { 
-            $sender_email = $v;
-            continue;
-        }
-        $message .= ' ' . $v;
-    }
+    $subject = '';
+    $nickname = '';
+    $contact_form = true;
+    @ct_get_fields_any($sender_email, $message, $subject, $nickname, $contact_form, $values['item_meta']);
+    $message = json_encode($message);
 
     $ct_base_call_result = ct_base_call(array(
         'message' => $message,
@@ -960,7 +942,6 @@ function ct_test_message($nickname, $email, $ip, $text){
  * Check registrations for external plugins
  * @return array with checking result;
  */
-
 function ct_test_registration($nickname, $email, $ip){
     global $ct_checkjs_register_form, $ct_agent_version, $ct_options, $ct_data;
     
@@ -988,7 +969,6 @@ function ct_test_registration($nickname, $email, $ip){
     if ($sender_info === false) {
         $sender_info= '';
     }
-
  
     require_once('cleantalk.class.php');
     $config = get_option('cleantalk_server');
@@ -1012,20 +992,7 @@ function ct_test_registration($nickname, $email, $ip){
     
     $ct_result = $ct->isAllowUser($ct_request);
     
-    if(@intval($ct_result->errno) != 0)
-    {
-    	if($params['checkjs']!=1)
-    	{
-    		$ct_result->allow = 0;
-    		$ct_result->spam = 1;
-    		$ct_result->comment=__( 'Forbidden. Please, enable Javascript.', 'cleantalk' );
-    	}
-    	else
-    	{
-    		$ct_result->allow = 1;
-    		$ct_result->comment=__( 'Allow', 'cleantalk' );
-    	}
-    }
+    $ct_result = ct_change_plugin_resonse($ct_result, $checkjs);
     
     $result=Array(
         'allow' => $ct_result->allow,
@@ -1092,7 +1059,6 @@ function ct_registration_errors($errors, $sanitized_user_login = null, $user_ema
 
     $checkjs = js_test($ct_checkjs_register_form, $_POST, true);
     $sender_info['post_checkjs_passed'] = $checkjs;
-   
     //
     // This hack can be helpfull when plugin uses with untested themes&signups plugins.
     //
@@ -1139,24 +1105,7 @@ function ct_registration_errors($errors, $sanitized_user_login = null, $user_ema
 
     $ct_signup_done = true;
 
-    /*if ($ct_result->errno != 0 && $ct_options['notice_api_errors']) {
-        ct_send_error_notice($ct_result->comment);
-        return $errors;
-    }*/
-    if(@intval($ct_result->errno) != 0)
-    {
-    	if($params['checkjs']!=1)
-    	{
-    		$ct_result->allow = 0;
-    		$ct_result->spam = 1;
-    		$ct_result->comment=__( 'Forbidden. Please, enable Javascript.', 'cleantalk' );
-    	}
-    	else
-    	{
-    		$ct_result->allow = 1;
-    		$ct_result->comment=__( 'Allow', 'cleantalk' );
-    	}
-    }
+    $ct_result = ct_change_plugin_resonse($ct_result, $checkjs);
     
     if ($ct_result->inactive != 0) {
         ct_send_error_notice($ct_result->comment);
@@ -1488,7 +1437,7 @@ function ct_si_contact_display_after_fields($string = '', $style = '', $form_err
  * Test for Fast Secure contact form
  */
 function ct_si_contact_form_validate($form_errors = array(), $form_id_num = 0) {
-    global $ct_options, $ct_data;
+    global $ct_options, $ct_data, $cleantalk_executed;
     
     $ct_options = ct_get_options();
     $ct_data = ct_get_data();
@@ -1498,6 +1447,13 @@ function ct_si_contact_form_validate($form_errors = array(), $form_id_num = 0) {
 
     if ($ct_options['contact_forms_test'] == 0)
 	return $form_errors;
+
+    // Skip processing because data already processed.
+    if ($cleantalk_executed) {
+	    return $form_errors;
+    }
+
+
 	$sender_info='';
 
     $checkjs = js_test('ct_checkjs', $_POST, true);
@@ -1515,6 +1471,7 @@ function ct_si_contact_form_validate($form_errors = array(), $form_id_num = 0) {
 //getting info from custom fields
 	@ct_get_fields_any($sender_email, $message, $sender_nickname, $subject, $contact_form, $_POST);
 //setting fields if they with defaults names
+
     if ($subject != '') {
         $message = array_merge(array('subject' => $subject), $message);
     }
@@ -1532,6 +1489,8 @@ function ct_si_contact_form_validate($form_errors = array(), $form_id_num = 0) {
     ));
     $ct = $ct_base_call_result['ct'];
     $ct_result = $ct_base_call_result['ct_result'];
+    
+    $cleantalk_executed = true;
 
     if ($ct_result->spam == 1) {
         global $ct_comment;
@@ -1761,20 +1720,7 @@ function ct_s2member_registration_test() {
         );
     }
 
-    if(@intval($ct_result->errno) != 0)
-    {
-    	if($params['checkjs']!=1)
-    	{
-    		$ct_result->allow = 0;
-    		$ct_result->spam = 1;
-    		$ct_result->comment=__( 'Forbidden. Please, enable Javascript.', 'cleantalk' );
-    	}
-    	else
-    	{
-    		$ct_result->allow = 1;
-    		$ct_result->comment=__( 'Allow', 'cleantalk' );
-    	}
-    }
+    $ct_result = ct_change_plugin_resonse($ct_result, $checkjs);
     
     // Restart submit form counter for failed requests
     if ($ct_result->allow == 0) {
@@ -1861,7 +1807,7 @@ function ct_contact_form_validate () {
     $message = array();
 
     @ct_get_fields_any($sender_email, $message, $sender_nickname, $subject, $contact_form, $_POST);
-    
+
     if ($subject != '') {
         $message = array_merge(array('subject' => $subject), $message);
     }

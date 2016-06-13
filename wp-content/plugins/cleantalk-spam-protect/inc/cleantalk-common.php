@@ -1,6 +1,6 @@
 <?php
 
-$ct_plugin_name = 'CleanTalk Spam Protect';
+$ct_plugin_name = 'Spam Protection by CleanTalk';
 $ct_checkjs_frm = 'ct_checkjs_frm';
 $ct_checkjs_register_form = 'ct_checkjs_register_form';
 $ct_session_request_id_label = 'request_id';
@@ -51,6 +51,9 @@ $trial_notice_check_timeout = 1;
 
 // Timeout before new check account notice in hours
 $account_notice_check_timeout = 24;
+
+// Timeout before new check account notice in hours
+$renew_notice_check_timeout = 0.5;
 
 // Trial notice show time in minutes
 $trial_notice_showtime = 10;
@@ -114,7 +117,7 @@ function ct_init_session() {
         $result = @session_start();
         if(!$result){
             session_regenerate_id(true); // replace the Session ID, bug report https://bugs.php.net/bug.php?id=68063
-            session_start(); 
+            @session_start(); 
         }    
     }
 
@@ -157,6 +160,7 @@ function ct_base_call($params = array()) {
     $ct = new Cleantalk();
     $ct->work_url = $config['ct_work_url'];
     $ct->server_url = $ct_options['server'];
+    
     $ct->server_ttl = $config['ct_server_ttl'];
     $ct->server_changed = $config['ct_server_changed'];
     $ct->ssl_on = $ct_options['ssl_on'];
@@ -193,20 +197,7 @@ function ct_base_call($params = array()) {
         );
     }
     
-    if(@intval($ct_result->errno) != 0)
-    {
-    	if($params['checkjs']!=1)
-    	{
-    		$ct_result->allow = 0;
-    		$ct_result->spam = 1;
-    		$ct_result->comment=__( 'Forbidden. Please, enable Javascript.', 'cleantalk' );
-    	}
-    	else
-    	{
-    		$ct_result->allow = 1;
-    		$ct_result->comment=__( 'Allow', 'cleantalk' );
-    	}
-    }
+    $ct_result = ct_change_plugin_resonse($ct_result, $params['checkjs']);
      
     // Restart submit form counter for failed requests
     if ($ct_result->allow == 0) {
@@ -420,7 +411,8 @@ function ct_def_options() {
         'relevance_test' => 0, // Test comment for relevance 
         'notice_api_errors' => 0, // Send API error notices to WP admin
         'user_token'=>'', //user token for auto login into spam statistics
-        'set_cookies'=> 1 // Disable cookies generatation to be compatible with Varnish.
+        'set_cookies'=> 1, // Disable cookies generatation to be compatible with Varnish.
+        'collect_details' => 0 // Collect details about browser of the visitor. 
     );
 }
 
@@ -623,6 +615,15 @@ function ct_get_fields_any(&$email,&$message,&$nickname,&$subject, &$contact,$ar
 	    'payment_status', // PayPal payment status
 	    'ccbill_ipn' //CCBill IPN 
     );
+    $obfuscate_params = array(
+        'password',
+        'password0',
+        'password1',
+        'password2',
+        'pass',
+        'pwd',
+        'user_pass'
+    );
    	foreach($skip_params as $key=>$value)
    	{
    		if(@array_key_exists($value,$_GET)||@array_key_exists($value,$_POST))
@@ -637,20 +638,26 @@ function ct_get_fields_any(&$email,&$message,&$nickname,&$subject, &$contact,$ar
 			if (in_array($key, $skip_params) && $key!=0 && $key!='' || preg_match("/^ct_checkjs/", $key)) {
                 $contact = false;
             }
-			if ($email === '' && @preg_match("/^\S+@\S+\.\S+$/", $value))
+			if (!$email && @preg_match("/^\S+@\S+\.\S+$/", $value))
 	    	{
 	            $email = $value;
 	        }
-	        else if ($nickname === '' && ct_get_data_from_submit($value, 'name'))
+	        else if ($nickname === '' && ct_get_data_from_submit($key, 'name'))
 	    	{
 	            $nickname = $value;
 	        }
-	        else if ($subject === '' && ct_get_data_from_submit($value, 'subject'))
+	        else if ($subject === '' && ct_get_data_from_submit($key, 'subject'))
 	    	{
 	            $subject = $value;
 	        }
 	        else
-	        {
+	        {   
+                //
+                // Obfuscate private data
+                //
+                if (in_array($key, $obfuscate_params)) {
+                    $value = ct_obfuscate_param($value); 
+                }
 	        	$message[$key] = $value;
 	        }
 		}
@@ -659,6 +666,31 @@ function ct_get_fields_any(&$email,&$message,&$nickname,&$subject, &$contact,$ar
 			@ct_get_fields_any($email, $message, $nickname, $subject, $contact, $value);
 		}
 	}
+    //
+    // Reset $message if we have a sign-up data
+    //
+    $skip_message_post = array(
+        'edd_action', // Easy Digital Downloads
+    );
+    foreach ($skip_message_post as $v) {
+        if (isset($_POST[$v])) {
+            $message = null;
+            break;
+        }
+    }
+}
+
+/**
+* Masks a value with asterisks (*)
+* @return string
+*/
+function ct_obfuscate_param ($value = null) {
+    if ($value && is_string($value)) {
+        $length = strlen($value);
+        $value = str_repeat('*', $length);
+    }
+
+    return $value;
 }
 
 function ct_get_fields_any_postdata(&$message,$arr)
@@ -775,6 +807,7 @@ function ct_filter_array(&$array)
 	}
 }
 
+
 function cleantalk_debug($key,$value)
 {
 	if(isset($_COOKIE) && isset($_COOKIE['cleantalk_debug']))
@@ -782,4 +815,37 @@ function cleantalk_debug($key,$value)
 		@header($key.": ".$value);
 	}
 }
+
+/**
+* Function changes CleanTalk result object if an error occured.
+* @return object
+*/ 
+function ct_change_plugin_resonse($ct_result = null, $checkjs = null) {
+    global $ct_plugin_name;
+
+    if (!$ct_result) {
+        return $ct_result;
+    }
+    
+    if(@intval($ct_result->errno) != 0)
+    {
+    	if($checkjs === null || $checkjs != 1)
+    	{
+    		$ct_result->allow = 0;
+    		$ct_result->spam = 1;
+    		$ct_result->comment = sprintf('We\'ve got an issue: %s. Forbidden. Please, enable Javascript. %s.',
+                $ct_result->comment,
+                $ct_plugin_name
+            );
+    	}
+    	else
+    	{
+    		$ct_result->allow = 1;
+    		$ct_result->comment = 'Allow';
+    	}
+    }
+
+    return $ct_result;
+}
+
 ?>
