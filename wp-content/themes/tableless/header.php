@@ -4,6 +4,14 @@
   <title><?php wp_title( '|', true, 'right' ); ?></title>
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url'); ?>">
   <link href='https://fonts.googleapis.com/css?family=PT+Serif+Caption|Lora:400,700' rel='stylesheet' type='text/css'>
+
+  <?php // Carousel da home mobile ?>
+  <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
+  <link media="only screen and (max-device-width: 995px)" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" type="text/css" rel="stylesheet" />
+  <link media="only screen and (max-device-width: 995px)" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css" type="text/css" rel="stylesheet" />
+  <link media="only screen and (max-device-width: 995px)" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.transitions.min.css" type="text/css" rel="stylesheet" />
+  <?php // FIM - Carousel da home mobile ?>
+
   <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -74,7 +82,7 @@
     </form>
 
     <div class="tb-search-results-list">
-      
+
     </div>
   </div>
 </div>
