@@ -67,7 +67,7 @@
 <div class="tb-search-box">
   <div class="tb-container">
     <span class="tb-close-search"></span>
-    <form role="search" method="get" id="searchform" class="searchform" action="http://localhost/tableless/">
+    <form role="search" method="get" id="searchform" class="searchform" action="<?php bloginfo('url');?>">
       <label class="screen-reader-text" for="s">Pesquisar por:</label>
       <input type="text" value="" name="s" id="s" placeholder="Buscar">
       <input type="submit" id="searchsubmit" value="Buscar">
