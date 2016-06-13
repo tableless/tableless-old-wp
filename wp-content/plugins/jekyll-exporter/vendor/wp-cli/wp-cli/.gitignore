@@ -1,5 +1,0 @@
-config.yml
-/cache
-/vendor
-/*.phar
-/phpunit.xml.dist
