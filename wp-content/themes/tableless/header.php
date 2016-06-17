@@ -73,8 +73,5 @@
       <input type="submit" id="searchsubmit" value="Buscar">
     </form>
 
-    <div class="tb-search-results-list">
-      
-    </div>
   </div>
 </div>
