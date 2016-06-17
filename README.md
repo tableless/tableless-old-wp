@@ -3,7 +3,7 @@ A ideia do [Tableless.com.br](http://tableless.com.br) sempre foi contribuir par
 
 Para tanto tentar ajudar pessoas que gostam de contribuir em projetos opensource ou até para aqueles que nunca contribuiram e gostariam de começar agora, disponibilizamos o código do site Tableless.com.br para que você possa contribuir com novas implementações, correção de bugs, melhoria de código e principalmente performance do site.
 
-Se você quer contribuir, faça um fork ou simplesmente clone o projeto (preferível) deste projeto e submeta as suas mudanças via Pull Request. Alguns detalhes seguem abaixo:
+Se você quer contribuir, simplesmente clone o projeto e submeta as suas mudanças via Pull Request, em uma branch nova. Alguns detalhes seguem abaixo:
 
 **Stack usada:**
 - WordPress
