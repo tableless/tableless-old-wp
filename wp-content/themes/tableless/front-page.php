@@ -37,11 +37,11 @@
 
     <div class="tb-container tb-thumb-list">
 
-      <div class="tb-box-title">
+      <!-- <div class="tb-box-title">
         <h3>Desta-<br>ques</h3>
         <p>Você precisa ler!</p>
       </div>
-
+ -->
         <?php
           $featuredPostsArgs = array(
             // 'post__in'  => get_option( 'sticky_posts' ), // Show only sticky-posts
@@ -125,7 +125,7 @@
 
   <?php wp_nav_menu(array('menu' => 'Menu Categorias', 'container' => 'nav', 'container_class' => 'tb-categ-menu','menu_class' => 'tb-categ-list', 'depth' => 2)); ?>
 
-  <div class="tb-container">
+  <div class="tb-latest-posts-list">
 
     <?php
       $latestPostsargs = array(
@@ -162,7 +162,7 @@
 </div>
 </section>
 
-<section class="tb-section-call tb-section-call-inverted">
+<section class="tb-section-call-inverted">
 <div class="tb-container">
 
   <div class="tb-text-call">
@@ -172,9 +172,9 @@
     <a href="http://bit.ly/live-codeing-2" class="tb-btn-wired">Assista agora!</a>
   </div>
 
-  <a href="http://bit.ly/live-codeing-2"><figure>
-    <img src="<?php bloginfo('template_url');?>/images/img-live-coding.jpg">
-  </figure></a>
+  <figure>
+    <a href="http://bit.ly/live-codeing-2"><img src="<?php bloginfo('template_url');?>/images/img-live-coding.jpg"></a>
+  </figure>
 
 </div>
 </section>
