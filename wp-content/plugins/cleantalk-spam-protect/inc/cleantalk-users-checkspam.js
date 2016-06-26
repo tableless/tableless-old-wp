@@ -114,10 +114,7 @@ function ct_insert_users()
 		url: ajaxurl,
 		data: data,
 		success: function(msg){
-			if(msg=='ok')
-			{
-				alert('Added 500 users');
-			}
+		    alert('Inserted ' + msg + ' users.');
 		}
 	});
 }
@@ -136,13 +133,20 @@ function ct_delete_all_users()
 			if(msg>0)
 			{
 				jQuery('#cleantalk_users_left').html(msg);
-				ct_delete_all();
+				ct_delete_all_users();
 			}
 			else
 			{
 				location.href='users.php?page=ct_check_users';
 			}
-		}
+		},
+        error: function(jqXHR, textStatus, errorThrown) {
+            if(textStatus === 'timeout') {     
+                alert('Failed from timeout. Going to run a new attempt to delete spam users.'); 
+				ct_delete_all_users();
+            }        
+        },
+        timeout: 160000
 	});
 }
 function ct_delete_checked_users()
@@ -192,7 +196,8 @@ jQuery(".cleantalk_delete_user_button").click(function(){
 			jQuery("#comment-"+id).hide();
 			jQuery("#comment-"+id).remove();
 			close_animate=true;
-		}
+		},
+        timeout: 180000
 	});
 });
 jQuery(".cleantalk_delete_user_button").click(function(){
@@ -208,7 +213,8 @@ jQuery("#ct_check_users_button").click(function(){
 	ct_clear_users();
 });
 jQuery("#ct_check_users_button").click(function(){
-	jQuery('#ct_checking_users_status').html('');
+
+//	jQuery('#ct_checking_users_status').html('');
 	jQuery('#ct_check_users_table').hide();
 	jQuery('#ct_delete_all_users').hide();
 	jQuery('#ct_delete_checked_users').hide();
@@ -219,13 +225,34 @@ jQuery("#ct_check_users_button").click(function(){
 jQuery("#ct_insert_users").click(function(){
 	ct_insert_users();
 });
+
+jQuery("#ct_stop_deletion").click(function(){
+    window.location.reload();	
+});
 jQuery("#ct_delete_all_users").click(function(){
+    if (!confirm('Delete all spam users?')) {
+        return false;
+    }
+
+	jQuery('#ct_checking_users_status').hide();
 	jQuery('#ct_check_users_table').hide();
+	jQuery('#ct_tools_buttons').hide();
+	jQuery('#ct_info_message').hide();
+	jQuery('#ct_ajax_info_users').hide();
+	jQuery('#ct_check_users_table').hide();
+	jQuery('#ct_check_users_button').hide();
+	jQuery('#ct_search_info').hide();
 	jQuery('#ct_deleting_message').show();
+	jQuery('#ct_preloader').show();
+	jQuery('#ct_stop_deletion').show();
 	jQuery("html, body").animate({ scrollTop: 0 }, "slow");
 	ct_delete_all_users();
 });
 jQuery("#ct_delete_checked_users").click(function(){
+    if (!confirm('Delete selected users?')) {
+        return false;
+    }
+
 	ct_delete_checked_users();
 });
 jQuery(".cleantalk_user").mouseover(function(){

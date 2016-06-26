@@ -1,5 +1,6 @@
 <?php
 global $cleantalk_hooked_actions;
+
 /*
 AJAX functions
 */
@@ -66,11 +67,6 @@ add_action( 'wp_ajax_nopriv_cscf-submitform', 'ct_ajax_hook',1 );
 add_action( 'wp_ajax_cscf-submitform', 'ct_ajax_hook',1 );
 $cleantalk_hooked_actions[]='cscf-submitform';
 
-/*hooks for stats */
-add_action( 'wp_ajax_nopriv_ajax_get_stats', 'ct_get_stats',1 );
-add_action( 'wp_ajax_ajax_get_stats', 'ct_get_stats',1 );
-$cleantalk_hooked_actions[]='ajax_get_stats';
-
 /*hooks for visual form builder */
 //add_action( 'wp_ajax_nopriv_vfb_submit', 'ct_vfb_submit',1 );
 //add_action( 'wp_ajax_vfb_submit', 'ct_vfb_submit',1 );
@@ -110,25 +106,6 @@ add_action( 'template_redirect', 'ct_ajax_hook',1 );
 add_action( 'wp_ajax_nopriv_ninja_forms_ajax_submit', 'ct_ajax_hook',1  );
 add_action( 'wp_ajax_ninja_forms_ajax_submit', 'ct_ajax_hook',1  );
 $cleantalk_hooked_actions[]='ninja_forms_ajax_submit';
-
-function ct_get_stats()
-{
-	check_ajax_referer( 'ct_secret_nonce', 'security' );
-	global $ct_data;
-	$ct_data=ct_get_data();
-	
-	if(!isset($ct_data['array_accepted']))
-	{
-		$ct_data['array_accepted']=Array();
-		$ct_data['array_blocked']=Array();
-		$ct_data['current_hour']=0;
-		update_option('cleantalk_data', $ct_data);
-	}
-	
-	$ret=Array('stat_accepted'=>@array_sum($ct_data['array_accepted']), 'stat_blocked'=>@array_sum($ct_data['array_blocked']), 'stat_all'=>@array_sum($ct_data['array_accepted']) + @array_sum($ct_data['array_blocked']));
-	print json_encode($ret);
-	die();
-}
 
 function ct_validate_email_ajaxlogin($email=null, $is_ajax=true)
 {
@@ -296,7 +273,7 @@ function ct_ajax_hook()
 {
 	require_once(CLEANTALK_PLUGIN_DIR . 'inc/cleantalk-public.php');
 	global $ct_agent_version, $ct_checkjs_register_form, $ct_session_request_id_label, $ct_session_register_ok_label, $bp, $ct_signup_done, $ct_formtime_label, $ct_negative_comment, $ct_options, $ct_data, $current_user;
-	
+
 	$ct_options = ct_get_options();
     $ct_data = ct_get_data();
 	$sender_email = null;
@@ -501,6 +478,17 @@ function ct_ajax_hook()
                 $result['code'] = 5; // Unused code number in WooWaitlist
 				print json_encode($result);
 				die();
+			}
+			//UserPro
+			else if($_POST['action']=='userpro_process_form' && $_POST['template']=='register')
+			{
+				foreach($_POST as $key => $value){
+					$output[$key]=$value;
+				}unset($key, $value);
+				$output['template'] = $ct_result->comment;
+				$output=json_encode($output);
+				print_r($output);
+				die;
 			}
 			else
 			{

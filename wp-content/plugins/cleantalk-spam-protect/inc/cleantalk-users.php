@@ -34,11 +34,10 @@ function ct_show_users_page()
 		$r=$wpdb->get_results("select distinct count($wpdb->users.ID) as cnt from $wpdb->users inner join $wpdb->usermeta on $wpdb->users.ID=$wpdb->usermeta.user_id where $wpdb->usermeta.meta_key='ct_marked_as_spam';", ARRAY_A);
 $cnt_spam1=$r[0]['cnt'];
 ?>
-		<div id="ct_working_message" style="margin:auto;padding:3px;width:70%;border:2px dotted gray;display:none;background:#ffff99;">
-			<?php _e("Please wait for a while. CleanTalk is checking all users via blacklist database at cleantalk.org. You will have option to delete found spam users after plugin finish.", 'cleantalk'); ?>
-		</div>
 		<div id="ct_deleting_message" style="display:none">
-			<?php _e("Please wait for a while. CleanTalk is deleting spam users. Users left: ", 'cleantalk'); ?> <span id="cleantalk_users_left"></span>
+			<?php _e("Please wait for a while. CleanTalk is deleting spam users. Users left: ", 'cleantalk'); ?> <span id="cleantalk_users_left">
+            <?php echo $cnt_spam1;?>
+            </span>
 		</div>
 		<div id="ct_done_message" <?php if($cnt_unchecked>0) print 'style="display:none"'; ?>>
 			<?php //_e("Done. All comments tested via blacklists database, please see result bellow.", 'cleantalk'); 
@@ -46,6 +45,9 @@ $cnt_spam1=$r[0]['cnt'];
 		</div>
 		<h3 id="ct_checking_users_status" style="text-align:center;width:90%;"></h3>
 		<div style="text-align:center;width:100%;display:none;" id="ct_preloader"><img border=0 src="<?php print plugin_dir_url(__FILE__); ?>images/preloader.gif" /></div>
+		<div id="ct_working_message" style="margin:auto;padding:3px;width:70%;border:2px dotted gray;display:none;background:#ffff99;margin-top: 1em;">
+			<?php _e("Please wait for a while. CleanTalk is checking all users via blacklist database at cleantalk.org. You will have option to delete found spam users after plugin finish.", 'cleantalk'); ?>
+		</div>
 		<?php
 			$page=1;
 			if(isset($_GET['spam_page']))
@@ -167,31 +169,49 @@ $cnt_spam1=$r[0]['cnt'];
 				?>
 			</tbody>
 		</table>
+        <div id="ct_tools_buttons">
 		<button class="button" id="ct_delete_all_users"><?php _e('Delete all users from list'); ?></button> 
 		<button class="button" id="ct_delete_checked_users"><?php _e('Delete selected', 'cleantalk'); ?></button>
 		<?php
 		}
 		if($_SERVER['REMOTE_ADDR']=='127.0.0.1')print '<button class="button" id="ct_insert_users">Insert accounts</button><br />';
 		?>
+        </div>
 		<br /><br />
-		<div id="ct_info_message"><?php _e("Anti-spam by CleanTalk will check all users against blacklists database and show you senders that have spam activity on other websites. Just click 'Find spam users' to start.", 'cleantalk'); ?>
+        <table>
+            <tr>
+                <td>
+		            <button class="button" id="ct_check_users_button"><?php _e("Check for spam again", 'cleantalk'); ?></button>
+                </td>
+                <td style="padding-left: 2em;">
+                <div id="ct_info_message" class="wrap"><?php _e("The plugin will check all users against blacklists database and show you senders that have spam activity on other websites. Just click 'Find spam users' to start.", 'cleantalk'); ?>
+                </td>
+            </tr>
+        </table>
 		<?php
 			if($cnt_spam1>0)
 			{
-				print "<br />
-		There is some differencies between blacklists database and our API mechanisms. Blacklists shows all history of spam activity, but our API (that used in spam checking) used another parameters, too: last day of activity, number of spam attacks during last days etc. This mechanisms help us to reduce number of false positivitie. So, there is nothing strange, if some emails/IPs will be not found by this checking.<br /><br />";
+				print "
+        <div id=\"ct_search_info\">
+        <br />
+		There is some differencies between blacklists database and our API mechanisms. Blacklists shows all history of spam activity, but our API (that used in spam checking) used another parameters, too: last day of activity, number of spam attacks during last days etc. This mechanisms help us to reduce number of false positivitie. So, there is nothing strange, if some emails/IPs will be not found by this checking.
+        </div>";
 			}
 		?>
-		<button class="button" id="ct_check_users_button"><?php _e("Check for spam again", 'cleantalk'); ?></button><br /><br />
 			
 	</div>
-	<br /><a href="options-general.php?page=cleantalk">&laquo;<?php print __('Back to CleanTalk settings', 'cleantalk'); ?></a>
+    
+    <div>
+		<button class="button" id="ct_stop_deletion" style="display:none;"><?php _e("Stop deletion", 'cleantalk'); ?></button>
+    </div>
 	<?php
 }
 
 add_action('admin_print_footer_scripts','ct_add_users_button');
 function ct_add_users_button()
 {
+    global $cleantalk_plugin_version;
+
     $screen = get_current_screen();
     $ajax_nonce = wp_create_nonce( "ct_secret_nonce" );
     ?>
@@ -202,13 +222,13 @@ function ct_add_users_button()
     <?php
     if( $screen->id == 'users' ){
         ?>
-            <script src="<?php print plugins_url( 'cleantalk-users-editscreen.js', __FILE__ ); ?>"></script>
+            <script src="<?php print plugins_url( 'cleantalk-users-editscreen.js?v=' . $cleantalk_plugin_version, __FILE__ ); ?>"></script>
         <?php
     }
     if($screen->id == 'users_page_ct_check_users')
     {
     	?>
-            <script src="<?php print plugins_url( 'cleantalk-users-checkspam.js', __FILE__ ); ?>"></script>
+            <script src="<?php print plugins_url( 'cleantalk-users-checkspam.js?v=' . $cleantalk_plugin_version, __FILE__ ); ?>"></script>
         <?php
     }
 }
@@ -218,9 +238,15 @@ add_action( 'wp_ajax_ajax_check_users', 'ct_ajax_check_users' );
 
 function ct_ajax_check_users()
 {
-	check_ajax_referer('ct_secret_nonce', 'security');
 	global $ct_options;
+
+	check_ajax_referer('ct_secret_nonce', 'security');
+
 	$ct_options = ct_get_options();
+    
+    $skip_roles = array(
+        'administrator'
+    );
 
 	$args_unchecked = array(
 		'meta_query' => array(
@@ -230,11 +256,11 @@ function ct_ajax_check_users()
 				'compare' => 'NOT EXISTS'
 			),
 		),
-		'number'=>500
+		'number' => 100
 	);
 	
 	$u=get_users($args_unchecked);
-	
+    
     if(sizeof($u)>0)
 	{
 		$data=Array();
@@ -245,14 +271,13 @@ function ct_ajax_check_users()
 			{
 				$user_meta=array_values($user_meta);
 			}
-			if(@isset($user_meta[0]['ip']))
+			if(isset($user_meta[0]['ip']))
 			{
 				$data[]=$user_meta[0]['ip'];
-			}
-			else
-			{
-				$data[]='8.8.8.8';
-			}
+			    $u[$i]->data->user_ip = $user_meta[0]['ip'];
+			} else {
+			    $u[$i]->data->user_ip = null;
+            }
 			$data[]=$u[$i]->data->user_email;
 		}
 		$data=implode(',',$data);
@@ -272,6 +297,7 @@ function ct_ajax_check_users()
             $ct_options['apikey']
         ); 
 		$result = file_get_contents($url, 0, $context);
+        
 		$result=json_decode($result);
 		if(isset($result->error_message))
 		{
@@ -282,22 +308,25 @@ function ct_ajax_check_users()
 			for($i=0;$i<sizeof($u);$i++)
 			{
 				update_user_meta($u[$i]->ID,'ct_checked',date("Y-m-d H:m:s"),true);
-				$user_meta=get_user_meta($u[$i]->ID, 'session_tokens', true);
-				
-                if(is_array($user_meta))
-				{
-					$user_meta=array_values($user_meta);
-				}
-                $uip = null;
-				if(@isset($user_meta[0]['ip']))
-				{
-					$uip=$user_meta[0]['ip'];
-				}
-			    	
-                $uim=$u[$i]->data->user_email;
-				
-				//print "uip: $uip, uim: $uim\n";
-				if(isset($result->data->$uip) && $result->data->$uip->appears==1 || isset($result->data->$uim) && $result->data->$uim->appears==1)
+                //
+                // Do not display forbidden roles.
+                //
+                $skip_user = false;
+                foreach ($skip_roles as $role) {
+                    if (!$skip_user && in_array($role, $u[$i]->roles)) {
+					    delete_user_meta($u[$i]->ID, 'ct_marked_as_spam');
+                        $skip_user = true;
+                        continue;
+                    }
+                }
+                if ($skip_user) {
+                    continue;
+                }
+
+                $uip = $u[$i]->data->user_ip;
+                $uim = $u[$i]->data->user_email;
+
+				if((isset($result->data->$uip) && $result->data->$uip->appears==1) || (isset($result->data->$uim) && $result->data->$uim->appears==1))
 				{
 					update_user_meta($u[$i]->ID,'ct_marked_as_spam','1',true);
 				}
@@ -317,7 +346,7 @@ add_action( 'wp_ajax_ajax_info_users', 'ct_ajax_info_users' );
 function ct_ajax_info_users()
 {
 	check_ajax_referer( 'ct_secret_nonce', 'security' );
-global $wpdb;
+    global $wpdb;
 		$r=$wpdb->get_results("select distinct count($wpdb->users.ID) as cnt from $wpdb->users inner join $wpdb->usermeta on $wpdb->users.ID=$wpdb->usermeta.user_id where $wpdb->usermeta.meta_key='ct_checked' or $wpdb->usermeta.meta_key='ct_hash';");
 		$cnt_checked=$r[0]->cnt;
 		$r=$wpdb->get_results("select count(ID) as cnt from $wpdb->users;");
@@ -328,7 +357,13 @@ global $wpdb;
 		$r=$wpdb->get_results("select distinct count($wpdb->users.ID) as cnt from $wpdb->users inner join $wpdb->usermeta on $wpdb->users.ID=$wpdb->usermeta.user_id where $wpdb->usermeta.meta_key='ct_marked_as_spam';", ARRAY_A);
 $cnt_spam1=$r[0]['cnt'];
 	
-	printf (__("Total users %s, checked %s, found %s spam users.", 'cleantalk'), $cnt, $cnt_checked, $cnt_spam1);
+	printf (__("Total users %s, checked %s, found %s spam users", 'cleantalk'), $cnt, $cnt_checked, $cnt_spam1);
+    $backup_notice = '&nbsp;';
+    if ($cnt_spam1 > 0) {
+        $backup_notice = __("Please do backup of WordPress database before delete any accounts!", 'cleantalk');
+    }
+	print "<p>$backup_notice</p>";
+
 	die();
 }
 
@@ -336,28 +371,30 @@ add_action( 'wp_ajax_ajax_insert_users', 'ct_ajax_insert_users' );
 function ct_ajax_insert_users()
 {
 	check_ajax_referer( 'ct_secret_nonce', 'security' );
-	$time = current_time('mysql');
-	
-	for($i=0;$i<500;$i++)
+    
+    $inserted = 0;
+    $use_id = 0;
+	for($i=0; $i<500 ;$i++)
 	{
-		$rnd=mt_rand(1,10000);
-		if($rnd<2000)
-		{
-		}
-		else
-		{
-			$email="stop_email_$rnd@example.com";
-		}
-			$email="stop_email@example.com";
-		$data = array(
-			'user_login'=>"user_$rnd",
-			'user_email'=>$email,
-			'user_pass'=>'123456',
-		);
-		
-		wp_insert_user($data);
+		$rnd=mt_rand(1,10000000);
+        
+        $user_name = "user_$rnd";
+		$email="stop_email_$rnd@example.com";
+        
+        $user_id = wp_create_user(
+            $user_name,
+            $email,
+            rand()
+        );
+
+        if (is_int($user_id)) {
+            $inserted++;
+        } else {
+            error_log(print_r($user_id, true));
+        }
 	}
-	print "ok";
+	
+    print "$inserted";
 	die();
 }
 
@@ -375,35 +412,21 @@ function ct_ajax_delete_checked_users()
 add_action( 'wp_ajax_ajax_delete_all_users', 'ct_ajax_delete_all_users' );
 function ct_ajax_delete_all_users()
 {
-	check_ajax_referer( 'ct_secret_nonce', 'security' );
-	$args_spam = array(
-		'number'=>100,
-		'meta_query' => array(
-			Array(
-				'key' => 'ct_marked_as_spam',
-				'value' => '1',
-				'compare' => 'NUMERIC'
-			)
-		)
-	);	
-	$c_spam=get_users($args_spam);
-	$cnt=sizeof($c_spam);
-	
-	$args_spam = array(
-		'meta_query' => array(
-			Array(
-				'key' => 'ct_marked_as_spam',
-				'value' => '1',
-				'compare' => 'NUMERIC'
-			)
-		)
-	);
-	$cnt_all=sizeof(get_users($args_spam));
-	for($i=0;$i<sizeof($c_spam);$i++)
-	{
-		wp_delete_user($c_spam[$i]->ID);
-		usleep(10000);
-	}
+    global $wpdb;
+    
+    $r=$wpdb->get_results("select distinct $wpdb->users.ID from $wpdb->users inner join $wpdb->usermeta on $wpdb->users.ID=$wpdb->usermeta.user_id where $wpdb->usermeta.meta_key='ct_marked_as_spam';", ARRAY_A);
+    $cnt_all = 0; 
+    if ($r) {
+        $cnt_all = count($r);
+    }
+    
+    $r=$wpdb->get_results("select distinct $wpdb->users.ID from $wpdb->users inner join $wpdb->usermeta on $wpdb->users.ID=$wpdb->usermeta.user_id where $wpdb->usermeta.meta_key='ct_marked_as_spam' limit 50;", ARRAY_A);
+    if ($r) {
+        for($i = 0; $i < count($r); $i++) {
+            wp_delete_user($r[$i]['ID']);
+            usleep(5000);
+        }
+    }
 	print $cnt_all;
 	die();
 }
