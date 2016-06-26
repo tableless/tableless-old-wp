@@ -12,6 +12,7 @@
 
       <article class="tb-post-text">
         <header>
+        <?php edit_post_link(); ?>
 
           <h1>
             <?php the_title();?>
