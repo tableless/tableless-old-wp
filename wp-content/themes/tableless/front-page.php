@@ -18,10 +18,10 @@
   );
   $featurePost = new WP_Query($featuredPostsArgs);
   while($featurePost->have_posts()) : $featurePost->the_post();
-  $urlImage = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );?>
+  $urlImage = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'large', true );?>
 
     <?php if(has_post_thumbnail()) :?>
-    <div class="tb-featured-post" id="<?php echo $post->ID; ?>" style="background-image: url(<?php echo $urlImage; ?>)">
+    <div class="tb-featured-post" id="<?php echo $post->ID; ?>" style="background-image: url(<?php echo $urlImage[0]; ?>)">
     <?php else :?>
     <div class="tb-featured-post" id="<?php echo $post->ID; ?>">
     <?php endif;?>
