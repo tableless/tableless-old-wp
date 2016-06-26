@@ -21,6 +21,7 @@
   </script>
 
   <?php // Banners DFP ?>
+  
   <script type='text/javascript'>
   var googletag = googletag || {};
   googletag.cmd = googletag.cmd || [];
@@ -34,9 +35,9 @@
     var node = document.getElementsByTagName('script')[0];
     node.parentNode.insertBefore(gads, node);
   })();
-</script>
+  </script>
 
-<script type='text/javascript'>
+  <script type='text/javascript'>
   googletag.cmd.push(function() {
     googletag.defineSlot('/7969368/banner-comunidades', [300, 125], 'div-gpt-ad-1461064765000-0').addService(googletag.pubads());
     googletag.defineSlot('/7969368/BannerHorizontal', [[970, 90], [1024, 768]], 'div-gpt-ad-1461064765000-1').addService(googletag.pubads());
@@ -47,9 +48,9 @@
     googletag.pubads().collapseEmptyDivs();
     googletag.enableServices();
   });
-</script>
+  </script>
 
-  <!-- <?php wp_head();?> -->
+  <?php wp_head();?>
 </head>
 <body>
 
