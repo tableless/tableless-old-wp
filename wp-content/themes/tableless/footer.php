@@ -57,7 +57,10 @@
         src="http://code.jquery.com/jquery-3.0.0.min.js"
         integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="
         crossorigin="anonymous"></script>
-<script id="dsq-count-scr" src="//tableless.disqus.com/count.js" async="async"></script>
+
+        <?php if (is_single()) :?>
+          <script id="dsq-count-scr" src="//tableless.disqus.com/count.js" async="async"></script>
+        <? endif;?>
 
   <script type='text/javascript'>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

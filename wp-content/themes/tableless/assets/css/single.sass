@@ -2,6 +2,13 @@
 @import 'helpers'
 @import 'sidebar'
 
+#disqus_thread iframe:first-child
+  width: 1px
+  height: 1px
+  position: absolute
+  top: -999999px
+  left: -999999px
+
 .single-post,
 .page
   background: #f7f9fb
@@ -309,14 +316,14 @@
     padding: 40px 0 0
 
     .tb-box 
-      flex: 1 0 31.2%
-      max-width: 31.2%
+      flex: 1 0 30.2%
+      max-width: 30.2%
 
 .tb-divider
   &:after
     content: ""
     display: block
-    background: url(images/img_divider.png) no-repeat center center
+    background: url(../../images/img_divider.png) no-repeat center center
     background-size: 98px
     height: 20px
     margin-top: 10px
