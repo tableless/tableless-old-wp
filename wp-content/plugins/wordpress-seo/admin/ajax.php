@@ -19,7 +19,7 @@ if ( ! defined( 'WPSEO_VERSION' ) ) {
  * @param array $results Results array for encoding.
  */
 function wpseo_ajax_json_echo_die( $results ) {
-	echo WPSEO_Utils::json_encode( $results );
+	echo wp_json_encode( $results );
 	die();
 }
 
@@ -319,22 +319,6 @@ function wpseo_upsert_new( $what, $post_id, $new, $original ) {
 }
 
 /**
- * Create an export and return the URL
- */
-function wpseo_get_export() {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		die( '-1' );
-	}
-
-	$include_taxonomy = ( filter_input( INPUT_POST, 'include_taxonomy' ) === 'true' );
-	$export           = new WPSEO_Export( $include_taxonomy );
-
-	wpseo_ajax_json_echo_die( $export->get_results() );
-}
-
-add_action( 'wp_ajax_wpseo_export', 'wpseo_get_export' );
-
-/**
  * Handles the posting of a new FB admin.
  */
 function wpseo_add_fb_admin() {
@@ -363,7 +347,7 @@ function ajax_get_keyword_usage() {
 	}
 
 	wp_die(
-		WPSEO_Utils::json_encode( WPSEO_Meta::keyword_usage( $keyword, $post_id ) )
+		wp_json_encode( WPSEO_Meta::keyword_usage( $keyword, $post_id ) )
 	);
 }
 
@@ -375,19 +359,25 @@ add_action( 'wp_ajax_get_focus_keyword_usage',  'ajax_get_keyword_usage' );
 function ajax_get_term_keyword_usage() {
 	$post_id = filter_input( INPUT_POST, 'post_id' );
 	$keyword = filter_input( INPUT_POST, 'keyword' );
-	$taxonomy = filter_input( INPUT_POST, 'taxonomy' );
+	$taxonomyName = filter_input( INPUT_POST, 'taxonomy' );
 
-	if ( ! current_user_can( 'edit_terms' ) ) {
-		die( '-1' );
+	$taxonomy = get_taxonomy( $taxonomyName );
+
+	if ( ! $taxonomy ) {
+		wp_die( 0 );
 	}
 
-	$usage = WPSEO_Taxonomy_Meta::get_keyword_usage( $keyword, $post_id, $taxonomy );
+	if ( ! current_user_can( $taxonomy->cap->edit_terms ) ) {
+		wp_die( -1 );
+	}
+
+	$usage = WPSEO_Taxonomy_Meta::get_keyword_usage( $keyword, $post_id, $taxonomyName );
 
 	// Normalize the result so it it the same as the post keyword usage AJAX request.
 	$usage = $usage[ $keyword ];
 
 	wp_die(
-		WPSEO_Utils::json_encode( $usage )
+		wp_json_encode( $usage )
 	);
 }
 
@@ -443,3 +433,16 @@ new WPSEO_Taxonomy_Columns();
 
 // Setting the notice for the recalculate the posts.
 new Yoast_Dismissable_Notice_Ajax( 'recalculate', Yoast_Dismissable_Notice_Ajax::FOR_SITE );
+
+/********************** DEPRECATED METHODS **********************/
+
+/**
+ * Create an export and return the URL
+ *
+ * @deprecated 3.3.2
+ */
+function wpseo_get_export() {
+	_deprecated_function( __METHOD__, 'WPSEO 3.3.2', 'This method is deprecated.' );
+
+	wpseo_ajax_json_echo_die( '' );
+}

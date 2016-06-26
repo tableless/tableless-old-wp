@@ -54,7 +54,7 @@ class AutoloadGenerator extends BaseGenerator {
 			// Force scanPsr0Packages when classmap is authoritative
 			$scanPsr0Packages = true;
 		}
-	
+
 		$filesystem = new Filesystem();
 		$filesystem->ensureDirectoryExists($config->get('vendor-dir'));
 
@@ -228,7 +228,7 @@ return ComposerAutoloaderInit$suffix::getLoader();
 AUTOLOAD;
 	}
 
-	protected function getAutoloadRealFile($useClassMap, $useIncludePath, $targetDirLoader, $filesCode, $vendorPathCode, $appBaseDirCode, $suffix, $useGlobalIncludePath, $prependAutoloader) {
+	protected function getAutoloadRealFile($useClassMap, $useIncludePath, $targetDirLoader, $filesCode, $vendorPathCode, $appBaseDirCode, $suffix, $useGlobalIncludePath, $prependAutoloader, $staticPhpVersion = 70000) {
 		// TODO the class ComposerAutoloaderInit should be revert to a closure
 		// when APC has been fixed:
 		// - https://github.com/composer/composer/issues/959

@@ -248,15 +248,19 @@ class WPSEO_Frontend {
 			$object = $GLOBALS['wp_query']->get_queried_object();
 		}
 
-		$title = WPSEO_Meta::get_value( 'title', $object->ID );
+		if ( is_object( $object ) ) {
+			$title = WPSEO_Meta::get_value( 'title', $object->ID );
 
-		if ( $title !== '' ) {
-			return wpseo_replace_vars( $title, $object );
+			if ( $title !== '' ) {
+				return wpseo_replace_vars( $title, $object );
+			}
+
+			$post_type = ( isset( $object->post_type ) ? $object->post_type : $object->query_var );
+
+			return $this->get_title_from_options( 'title-' . $post_type, $object );
 		}
 
-		$post_type = ( isset( $object->post_type ) ? $object->post_type : $object->query_var );
-
-		return $this->get_title_from_options( 'title-' . $post_type, $object );
+		return $this->get_title_from_options( 'title-404-wpseo' );
 	}
 
 	/**
@@ -626,11 +630,6 @@ class WPSEO_Frontend {
 	 * Output Webmaster Tools authentication strings
 	 */
 	public function webmaster_tools_authentication() {
-		// Alexa.
-		if ( $this->options['alexaverify'] !== '' ) {
-			echo '<meta name="alexaVerifyID" content="' . esc_attr( $this->options['alexaverify'] ) . "\" />\n";
-		}
-
 		// Bing.
 		if ( $this->options['msverify'] !== '' ) {
 			echo '<meta name="msvalidate.01" content="' . esc_attr( $this->options['msverify'] ) . "\" />\n";
@@ -721,6 +720,10 @@ class WPSEO_Frontend {
 				$term_meta = WPSEO_Taxonomy_Meta::get_term_meta( $term, $term->taxonomy, 'noindex' );
 				if ( is_string( $term_meta ) && 'default' !== $term_meta ) {
 					$robots['index'] = $term_meta;
+				}
+
+				if ( $this->is_multiple_terms_query() ) {
+					$robots['index'] = 'noindex';
 				}
 			}
 			elseif (
@@ -908,17 +911,24 @@ class WPSEO_Frontend {
 				}
 			}
 			elseif ( is_front_page() ) {
-				$canonical = home_url();
+				$canonical = WPSEO_Utils::home_url();
 			}
 			elseif ( $this->is_posts_page() ) {
 				$canonical = get_permalink( get_option( 'page_for_posts' ) );
 			}
 			elseif ( is_tax() || is_tag() || is_category() ) {
+
 				$term = get_queried_object();
 
-				$canonical_override = WPSEO_Taxonomy_Meta::get_term_meta( $term, $term->taxonomy, 'canonical' );
+				if ( ! empty( $term ) && ! $this->is_multiple_terms_query() ) {
 
-				$canonical = get_term_link( $term, $term->taxonomy );
+					$canonical_override = WPSEO_Taxonomy_Meta::get_term_meta( $term, $term->taxonomy, 'canonical' );
+					$term_link          = get_term_link( $term, $term->taxonomy );
+
+					if ( ! is_wp_error( $term_link ) ) {
+						$canonical = $term_link;
+					}
+				}
 			}
 			elseif ( is_post_type_archive() ) {
 				$post_type = get_query_var( 'post_type' );
@@ -1734,7 +1744,7 @@ class WPSEO_Frontend {
 	function embed_rss( $content, $context = 'full' ) {
 
 		/**
-		 * Filter: 'wpseo_include_rss_footer' - Allow the the RSS footer to be dynamically shown/hidden
+		 * Filter: 'wpseo_include_rss_footer' - Allow the RSS footer to be dynamically shown/hidden.
 		 *
 		 * @api boolean $show_embed Indicates if the RSS footer should be shown or not
 		 *
@@ -1896,4 +1906,27 @@ class WPSEO_Frontend {
 
 		return $keywords;
 	}
-} /* End of class */
+
+	/**
+	 * Check if term archive query is for multiple terms (/term-1,term2/ or /term-1+term-2/).
+	 *
+	 * @return bool
+	 */
+	protected function is_multiple_terms_query() {
+
+		global $wp_query;
+
+		if ( ! is_tax() && ! is_tag() && ! is_category() ) {
+			return false;
+		}
+
+		$term          = get_queried_object();
+		$queried_terms = $wp_query->tax_query->queried_terms;
+
+		if ( empty( $queried_terms[ $term->taxonomy ]['terms'] ) ) {
+			return false;
+		}
+
+		return count( $queried_terms[ $term->taxonomy ]['terms'] ) > 1;
+	}
+}

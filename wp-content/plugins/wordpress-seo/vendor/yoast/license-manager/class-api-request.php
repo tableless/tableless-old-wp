@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( "Yoast_API_Request", false ) ) {
+if ( ! class_exists( "Yoast_API_Request", false ) ) {
 
 	/**
 	* Handles requests to the Yoast EDD API
@@ -133,8 +133,6 @@ if( ! class_exists( "Yoast_API_Request", false ) ) {
 		public function get_response() {
 			return $this->response;
 		}
-
 	}
 
 }
-
