@@ -43,7 +43,7 @@
     <p class="tb-done-community">Feito pela e para a comunidade web brasileira. <a href="<?php bloginfo('url'); ?>/seja-um-autor?utm_source=footer&utm_medium=link&utm_campaign=linkAjudeFooter">Ajude</a>. <span class="tb-love">♥</span></p>
   </div>
 </footer>
-
+<!-- 
 <script type="text/javascript">
 // CrazyEgg
   setTimeout(function(){var a=document.createElement("script");
@@ -51,7 +51,7 @@
   a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0000/6090.js?"+Math.floor(new Date().getTime()/3600000);
   a.async=false;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
 </script>
-
+ -->
 
 <script
         src="http://code.jquery.com/jquery-3.0.0.min.js"

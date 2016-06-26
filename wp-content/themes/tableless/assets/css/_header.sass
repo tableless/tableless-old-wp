@@ -14,15 +14,15 @@
 
 .tb-logo
   @extend %center-vertical
-  @media #{$desktop}
-    .tb-logo a
-      height: 42px
-      width: 250px
+
   a
     @extend %image-replace
     background-image: url(images/logo.png)
     height: 38px
     width: 200px
+    @media #{$desktop}
+      width: 270px
+      margin-top: 5px
 
 .tb-sandwich
   @extend %image-replace
