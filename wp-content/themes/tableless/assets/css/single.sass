@@ -56,16 +56,13 @@
 
 .tb-post-text
   @extend %box-white
+  @extend %font-smooth
   border: none
   padding: 25px
   font-weight: 400
   font-size: 16px
   font-family: Lora, Arial, Tahoma, Sans-serif
   line-height: 1.5
-  text-rendering: optimizeLegibility !important
-  -moz-osx-font-smoothing: grayscale
-  -webkit-font-smoothing: antialiased !important
-  font-smoothing: antialiased !important
 
   @include break(desk)
     font-size: 19px
@@ -302,7 +299,7 @@
 
   .tb-lead-paragraph
     @extend .tb-divider
-    background: url(../../images/img_divider.png) no-repeat bottom center
+    // background: url(../../images/img_divider.png) no-repeat bottom center
     background-size: 10%
     margin-bottom: 30px
 
@@ -314,6 +311,15 @@
     .tb-box 
       flex: 1 0 31.2%
       max-width: 31.2%
+
+.tb-divider
+  &:after
+    content: ""
+    display: block
+    background: url(images/img_divider.png) no-repeat center center
+    background-size: 98px
+    height: 20px
+    margin-top: 10px
 
 ////
 // Comments

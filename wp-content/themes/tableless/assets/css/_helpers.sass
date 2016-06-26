@@ -17,6 +17,12 @@ $bg-color-default: #f7f9fb
 $border-diagonal-color: rgba(140, 153, 191, .20)
 $border-color-default: $border-diagonal-color
 
+%font-smooth
+  text-rendering: optimizeLegibility !important
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased !important
+  font-smoothing: antialiased !important
+
 ////
 // Image Replacement
 ////
@@ -214,12 +220,12 @@ $border-color-default: $border-diagonal-color
     margin-bottom: 10px
 
 .tb-lead-paragraph
+  @extend %font-smooth
   font-size: 15px
   font-family: "PT Serif Caption"
   line-height: 1.5
   color: #4E4E4E
   padding-bottom: 55px
-
   @include break(desk)
     font-size: 20px
     margin-bottom: 60px
