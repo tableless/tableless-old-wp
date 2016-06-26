@@ -32,7 +32,7 @@
   function rss_post_thumbnail($content) {
     global $post;
     if( has_post_thumbnail($post->ID) )
-      $content = '<p>' . get_the_post_thumbnail($post->ID, 'thumbnail') . '</p>' . $content;
+      $content = '<p>' . get_the_post_thumbnail($post->ID, 'medium') . '</p>' . $content;
     return $content;
   }
 
