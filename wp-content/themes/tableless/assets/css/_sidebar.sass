@@ -1,6 +1,10 @@
 .tb-sidebar
   flex: 1
   padding: 20px
+  text-rendering: optimizeLegibility !important
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased !important
+  font-smoothing: antialiased !important
 
   @include break(desk)
     padding: 0 0 0 70px
@@ -16,11 +20,12 @@
   li
     margin-bottom: 15px
     list-style: none
+    
     a
       text-decoration: none
       font: 20px/24px $font-bold
       color: #4E4E4E
-
+      
       &:hover
         color: $red
 
