@@ -75,11 +75,7 @@
         </div>
       </section>
 
-
-      <div class="tb-comments">
-        <div id="disqus_thread"></div>
-
-      </div>
+<?php get_template_part('comments');?>
     </section>
 
     <?php get_sidebar();?>
