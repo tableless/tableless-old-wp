@@ -10,7 +10,7 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
- 
+
 gulp.task('compile-sass', function () {
   gulp.src(paths.THEME_DIR + '**/*.sass')
     .pipe(sourcemaps.init())
@@ -30,8 +30,11 @@ gulp.task('compress-js', function() {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(paths.THEME_DIR + '**/*.sass', ['compilar-sass']);
-  gulp.watch(paths.JS_DIR + 'scripts.js', ['comprimir-js']);
+  gulp.watch([
+    paths.THEME_DIR + '**/*.sass',
+    paths.THEME_DIR + '**/_*.sass'
+  ], ['compile-sass']);
+  gulp.watch(paths.JS_DIR + 'scripts.js', ['compress-js']);
 });
 
 gulp.task('default', ['compile-sass', 'compress-js', 'watch']);
