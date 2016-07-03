@@ -170,7 +170,7 @@ function ct_init() {
         add_filter('gform_get_form_filter', 'ct_gforms_hidden_field', 10, 2);
         add_filter('gform_entry_is_spam', 'ct_gforms_spam_test', 1, 3);
     }
-
+    
     //
     // Load JS code to website footer
     //

@@ -718,6 +718,11 @@ function ct_get_fields_any2($arr, $message=array(), $email=NULL, $nickname=NULL,
 	{
 		if(!is_array($value)&&!is_object($value)&&@get_class($value)!='WP_User')
 		{
+            //
+            // Removes shortcodes to do better spam filtration on server side.
+            //
+            $value = strip_shortcodes($value);
+
 			if (in_array($key, $skip_params) && $key!=0 && $key!='' || preg_match("/^ct_checkjs/", $key)) {
                 $contact = false;
             }

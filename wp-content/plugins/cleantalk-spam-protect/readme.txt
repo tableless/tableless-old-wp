@@ -3,11 +3,11 @@ Contributors: znaeff, shagimuratov, serge00
 Tags: spam, anti-spam, antispam, anti spam, bbpress, buddypress, captcha, capcha, captha, catcha, cf7 spam, comments, contact form spam, signup, spammers, spammy, woocommerce, wordpress spam, booking, order, subscription, gravity spam, jetpack, bots, contact form 7, contact form, registrations, ninja, Fast Secure Contact, Gravity forms, formidable, mailchimp, s2member, protection, protect, email, akismet, plugin, contact, recaptcha, google captcha, google recaptcha, math, security, login, blacklist, prevent spam comments, wordpress, User Frontend, bulk delete, bulk remove, cloudflare, widget, review, auth forms, firewall, ddos, cleantalk, mailpoet, profile builder, comment spam, registration spam, spam comments, comment moderation, spam bots, block spam, signup spam, spam blocker, spam filter, user registration spam,pingback,trackback, anti-spam plugin, varnish, amp, spam free, userpro
 Requires at least: 3.0
 Tested up to: 4.5.3
-Stable tag: 5.43.1
+Stable tag: 5.43.2
 License: GPLv2 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Spam protection plug-in, all-in-one, premium anti-spam. No comments spam & registrations spam, no email spam, protects any forms. Forget spam.
+Spam protection, anti-spam, all-in-one, premium plug-in. No comments spam & registrations spam, no email spam, protects any forms. Forget spam.
 
 == Description ==
 No CAPTCHA, no questions, no animal counting, no puzzles, no math and no spam bots. Formerly 'Anti-Spam by CleanTalk'.
@@ -30,7 +30,7 @@ No CAPTCHA, no questions, no animal counting, no puzzles, no math and no spam bo
 Supports native WordPress, JetPack comments and any other comment plugins. The plugin moves spam comments to SPAM folder or you can set the option to ban spam comments silently. You can also enable the option in the plugin settings to auto-delete comments from SPAM folder.
 
 = Spam bot registrations filter =
-Filters spam bots on registration forms of WordPress, BuddyPress, bbPress, S2Member, WooCommerce, Profile builder and any other registration plugins.
+Filters spam bots on registration forms of WordPress, BuddyPress, bbPress, S2Member, WooCommerce, Profile builder, Login with AJAX and any other registration plugins.
 
 = Protection from contact form spam =
 The plugin is tested and ready to protect from spam emails via Formidable forms, Contact form 7, JetPack Contact form, Fast Secure Contact form, Ninja forms, Landing pages, Gravity forms and any other themes/custom contact forms.
@@ -467,6 +467,10 @@ WordPress 3.0 at least. PHP 5 with CURL or file_get_contents() function and enab
 1. CleanTalk works faster than most of other anti-spam plugins. 
 
 == Changelog ==
+= 5.43.2 June 30 2016 =
+  * Optimized anti-spam code for AJAX based contact forms. 
+  * Fixed CSS layout of counters in Admin bar (issue with layout in IE11). 
+
 = 5.43.1 June 23 2016 =
   * Added agent version in requests to test a connection between the website and servers.
   * Fixed issue with PHP notices in cleantalk-admin.php.
@@ -1077,6 +1081,10 @@ WordPress 3.0 at least. PHP 5 with CURL or file_get_contents() function and enab
   * First version
 
 == Upgrade Notice ==
+= 5.43.2 June 30 2016 =
+  * Optimized anti-spam code for AJAX based contact forms. 
+  * Fixed CSS layout of counters in Admin bar (issue with layout in IE11). 
+
 = 5.43.1 June 23 2016 =
   * Added agent version in requests to test a connection between the website and servers.
   * Fixed issue with PHP notices in cleantalk-admin.php.
