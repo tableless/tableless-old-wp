@@ -234,6 +234,8 @@
 
 #icon-sendgrid {
   background: url("../images/logo32.png") no-repeat;
+  height: 34px;
+  display: block;
 }
 
 /*
