@@ -18,8 +18,14 @@
   // Remove the Shortcut link of header.
   remove_action( 'wp_head', 'wp_shortlink_wp_head' );
   remove_filter('term_description','wpautop');
+  
   // Upgrade without FTP
   define('FS_METHOD','direct');
+  
+  // Auto Save
+  define('AUTOSAVE_INTERVAL', 3000);
+
+  define('WP_DEBUG', false);
 
   // get the "contributor" role object
   // $obj_existing_role = get_role( 'contributor' );
