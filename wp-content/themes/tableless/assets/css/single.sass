@@ -291,10 +291,21 @@
     float: left
     width: 60px
     height: 60px
+    margin-bottom: 16px
 
     @include break(desk)
       width: auto
       height: auto
+
+  .tb-post-author-social
+      display: inline-flex
+      float: left
+      flex-direction: column
+
+    .tb-post-author-social
+      display: inline-flex
+      align-self: center
+
 
 .tb-related-posts
   padding: 70px 0
@@ -312,7 +323,7 @@
     flex-wrap: wrap
     padding: 0
 
-    .tb-box 
+    .tb-box
       flex: 1 0 30.2%
       max-width: 30.2%
 
