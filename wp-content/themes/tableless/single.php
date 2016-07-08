@@ -44,11 +44,18 @@
       </div>
 
       <div class="tb-post-author">
-        <?php echo get_avatar( get_the_author_meta('ID') , 120 ); ?>
-        <h3><?php the_author(); ?></h3>
-        <p><?php the_author_meta('description'); ?></p>
-        <p><a href="<?php bloginfo('url'); ?>/?author=<?php the_author_meta('ID'); ?>">Veja mais artigos deste autor</a></p>
-      </div>
+        <div class="tb-post-author-media">
+            <?php echo get_avatar( get_the_author_meta('ID') , 120 ); ?>
+              <div class="tb-post-author-social">
+
+              </div>
+        </div>
+        <div class="tb-post-author-details">
+          <h3><?php the_author(); ?></h3>
+          <p><?php the_author_meta('description'); ?></p>
+          <p><a href="<?php bloginfo('url'); ?>/?author=<?php the_author_meta('ID'); ?>">Veja mais artigos deste autor</a></p>
+        </div>
+            </div>
 
       <section class="tb-related-posts">
         <h2 class="tb-title-section">Leia também</h2>
