@@ -1,0 +1,207 @@
+# Translation of the WordPress plugin Bulk Delete 0.7 by Sudar.
+# Copyright (C) 2010 Sudar
+# This file is distributed under the same license as the Bulk Delete package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Bulk Delete 1.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/bulk-delete\n"
+"POT-Creation-Date: 2010-02-27 11:19+0000\n"
+"PO-Revision-Date: 2010-11-29 21:41+0100\n"
+"Last-Translator: Rene <info@wpwebshop.com>\n"
+"Language-Team: Translation by WordPressWebshop.com <info@wpwebshop.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-Country: NETHERLANDS\n"
+
+#: bulk-delete.php:200
+msgid "All the selected posts have been sucessfully deleted."
+msgstr "Al de geselecteerde berichten zijn succesvol verwijderd."
+
+#: bulk-delete.php:210
+msgid "WARNING: Posts deleted once cannot be retrieved back. Use with caution."
+msgstr "WAARSCHUWING: Verwijderde berichten kunnen niet teruggehaald worden. Wees voorzichtig."
+
+#: bulk-delete.php:215
+msgid "Select the posts which you want to delete"
+msgstr "Selecteer de berichten welke je wilt verwijderen"
+
+#: bulk-delete.php:234
+msgid "All Drafts"
+msgstr "Alle Concepten"
+
+#: bulk-delete.php:234
+msgid "Drafts"
+msgstr "Concepten"
+
+#: bulk-delete.php:240
+msgid "All Revisions"
+msgstr "Alle Revisies"
+
+#: bulk-delete.php:240
+msgid "Revisons"
+msgstr "Herzieningen"
+
+#: bulk-delete.php:246
+msgid "All Pending posts"
+msgstr "Alle wachtende  berichten"
+
+#: bulk-delete.php:246
+#: bulk-delete.php:252
+#: bulk-delete.php:307
+#: bulk-delete.php:388
+msgid "Posts"
+msgstr "Berichten"
+
+#: bulk-delete.php:252
+msgid "All scheduled posts"
+msgstr "Alle ingeplande berichten"
+
+#: bulk-delete.php:258
+msgid "All Pages"
+msgstr "Alle Pagina's"
+
+#: bulk-delete.php:258
+msgid "Pages"
+msgstr "Pagina's"
+
+#: bulk-delete.php:264
+#: bulk-delete.php:341
+#: bulk-delete.php:423
+msgid "Move to Trash"
+msgstr "Verplaats naar Prullenbak"
+
+#: bulk-delete.php:265
+#: bulk-delete.php:342
+#: bulk-delete.php:424
+msgid "Delete permanently"
+msgstr "Verwijder permanent"
+
+#: bulk-delete.php:272
+#: bulk-delete.php:351
+#: bulk-delete.php:433
+msgid "Only delete first "
+msgstr "Verwijder alleen de eerste"
+
+#: bulk-delete.php:273
+#: bulk-delete.php:352
+#: bulk-delete.php:434
+msgid "posts."
+msgstr "berichten."
+
+#: bulk-delete.php:274
+#: bulk-delete.php:353
+#: bulk-delete.php:435
+msgid "Use this option if there are more than 1000 posts and the script timesout."
+msgstr "Gebruik deze optie als er meer dan 1000 berichten zijn en het script onderbroken wordt."
+
+#: bulk-delete.php:281
+#: bulk-delete.php:360
+#: bulk-delete.php:442
+msgid "Bulk Delete "
+msgstr "Massa Verwijdering"
+
+#: bulk-delete.php:289
+msgid "By Category"
+msgstr "Per Categorie"
+
+#: bulk-delete.php:290
+msgid "Select the categories whose post you want to delete"
+msgstr "Selecteer de categorieën van welke je de berichten wilt verwijderen"
+
+#: bulk-delete.php:318
+msgid "All Categories"
+msgstr "Alle Categorieën"
+
+#: bulk-delete.php:330
+#: bulk-delete.php:412
+msgid "Only restrict to posts which are "
+msgstr "Beperk alleen tot berichten welke zijn "
+
+#: bulk-delete.php:332
+#: bulk-delete.php:414
+msgid "older than"
+msgstr "ouder dan"
+
+#: bulk-delete.php:333
+#: bulk-delete.php:415
+msgid "posted within last"
+msgstr "geplaatst binnen laatst"
+
+#: bulk-delete.php:335
+#: bulk-delete.php:417
+msgid "days"
+msgstr "dagen"
+
+#: bulk-delete.php:371
+msgid "By Tags"
+msgstr "Per Tags"
+
+#: bulk-delete.php:372
+msgid "Select the tags whose post you want to delete"
+msgstr "Selecteer de tags van welke je de berichten wilt verwijderen"
+
+#: bulk-delete.php:399
+msgid "All Tags"
+msgstr "Alle Tags"
+
+#: bulk-delete.php:452
+msgid "If you are looking to move posts in bulk, instead of deleting then try out my "
+msgstr "Als je berichten in veelvoud wilt verplaatsen, ipv verwijderen probeer mijn"
+
+#: bulk-delete.php:452
+msgid "Bulk Move Plugin"
+msgstr "Bulk Move Plugin"
+
+#: bulk-delete.php:514
+msgid "Are you sure you want to delete all the selected posts"
+msgstr "Ben je er zeker van om alle geselecteerde berichten te verwijderen"
+
+#: bulk-delete.php:516
+msgid "Please select atleast one"
+msgstr "Selecteer ten minste één"
+
+#: bulk-delete.php:574
+msgid "Manage"
+msgstr "Beheer"
+
+#: bulk-delete.php:585
+msgid "plugin"
+msgstr "plugin"
+
+#: bulk-delete.php:585
+msgid "Version"
+msgstr "Versie"
+
+#: bulk-delete.php:585
+msgid "by"
+msgstr "door"
+
+#. Plugin Name of an extension
+msgid "Bulk Delete"
+msgstr "Bulk Delete"
+
+#. Plugin URI of an extension
+msgid "http://sudarmuthu.com/wordpress/bulk-delete"
+msgstr "http://sudarmuthu.com/wordpress/bulk-delete"
+
+#. Description of an extension
+msgid "Bulk delete posts from selected categories or tags. Use it with caution."
+msgstr "Massa verwijdering van berichten uit geselecteerde categorieën of tags. Wees voorzichtig."
+
+#. Author of an extension
+msgid "Sudar"
+msgstr "Sudar"
+
+#. Author URI of an extension
+msgid "http://sudarmuthu.com/"
+msgstr "http://sudarmuthu.com/"
+
+ulk Delete"
+
+#. Plugin URI of an extension
+msgid "http://

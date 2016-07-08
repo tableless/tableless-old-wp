@@ -1,0 +1,267 @@
+# Copyright (C) 2010 Bulk Delete
+# This file is distributed under the same license as the Bulk Delete package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Bulk Delete 1.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/bulk-delete\n"
+"POT-Creation-Date: 2011-01-24 17:19:16+00:00\n"
+"PO-Revision-Date: 2011-02-05 16:15-0300\n"
+"Last-Translator: Marcelo <contato@techload.com.br>\n"
+"Language-Team: pt-br <sudar@sudarmuthu.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
+
+#: bulk-delete.php:275
+msgid "All the selected posts have been sucessfully deleted."
+msgstr "Todos os posts selecionados foram deletados com sucesso."
+
+#: bulk-delete.php:285
+msgid "WARNING: Posts deleted once cannot be retrieved back. Use with caution."
+msgstr "AVISO: Depois de deletados os posts não podem ser recuperados. Use com cuidado."
+
+#: bulk-delete.php:290
+msgid "Select the posts which you want to delete"
+msgstr "Selecione os posts que deseja deletar"
+
+#: bulk-delete.php:310
+msgid "All Drafts"
+msgstr "Todos os Rascunhos"
+
+#: bulk-delete.php:310
+msgid "Drafts"
+msgstr "Rascunhos"
+
+#: bulk-delete.php:316
+msgid "All Revisions"
+msgstr "Todas as Revisões"
+
+#: bulk-delete.php:316
+msgid "Revisions"
+msgstr "Revisões"
+
+#: bulk-delete.php:322
+msgid "All Pending posts"
+msgstr "Todos os posts Pendentes"
+
+#: bulk-delete.php:322
+#: bulk-delete.php:328
+#: bulk-delete.php:334
+#: bulk-delete.php:389
+#: bulk-delete.php:477
+#: bulk-delete.php:572
+msgid "Posts"
+msgstr "Posts"
+
+#: bulk-delete.php:328
+msgid "All scheduled posts"
+msgstr "Todos os posts agendados"
+
+#: bulk-delete.php:334
+msgid "All private posts"
+msgstr "Todos os posts privados"
+
+#: bulk-delete.php:340
+msgid "All Pages"
+msgstr "Todas as páginas"
+
+#: bulk-delete.php:340
+msgid "Pages"
+msgstr "Páginas"
+
+#: bulk-delete.php:346
+#: bulk-delete.php:423
+#: bulk-delete.php:512
+#: bulk-delete.php:607
+msgid "Move to Trash"
+msgstr "Mover para a Lixeira"
+
+#: bulk-delete.php:347
+#: bulk-delete.php:424
+#: bulk-delete.php:513
+#: bulk-delete.php:608
+msgid "Delete permanently"
+msgstr "Deletar permanentemente"
+
+#: bulk-delete.php:354
+#: bulk-delete.php:440
+#: bulk-delete.php:529
+#: bulk-delete.php:624
+msgid "Only delete first "
+msgstr "Deletar somente o primeiro"
+
+#: bulk-delete.php:355
+#: bulk-delete.php:441
+#: bulk-delete.php:530
+#: bulk-delete.php:625
+msgid "posts."
+msgstr "posts."
+
+#: bulk-delete.php:356
+#: bulk-delete.php:442
+#: bulk-delete.php:531
+#: bulk-delete.php:626
+msgid "Use this option if there are more than 1000 posts and the script timesout."
+msgstr "Use esta opção se houver mais de 1000 posts e o script esgotar o tempo"
+
+#: bulk-delete.php:363
+#: bulk-delete.php:449
+#: bulk-delete.php:538
+#: bulk-delete.php:633
+msgid "Bulk Delete "
+msgstr "Deletar em Massa"
+
+#: bulk-delete.php:371
+msgid "By Category"
+msgstr "Por Categoria"
+
+#: bulk-delete.php:372
+msgid "Select the categories whose post you want to delete"
+msgstr "Selecione as categorias cujos posts deseja deletar"
+
+#: bulk-delete.php:400
+msgid "All Categories"
+msgstr "Todas Categorias"
+
+#: bulk-delete.php:412
+#: bulk-delete.php:501
+#: bulk-delete.php:596
+msgid "Only restrict to posts which are "
+msgstr "Restringir somente aos posts que são"
+
+#: bulk-delete.php:414
+#: bulk-delete.php:503
+#: bulk-delete.php:598
+msgid "older than"
+msgstr "mais antigos que"
+
+#: bulk-delete.php:415
+#: bulk-delete.php:504
+#: bulk-delete.php:599
+msgid "posted within last"
+msgstr "posts dentro dos últimos"
+
+#: bulk-delete.php:417
+#: bulk-delete.php:506
+#: bulk-delete.php:601
+msgid "days"
+msgstr "dias"
+
+#: bulk-delete.php:430
+#: bulk-delete.php:519
+#: bulk-delete.php:614
+msgid "Public posts"
+msgstr "Posts públicos"
+
+#: bulk-delete.php:431
+#: bulk-delete.php:520
+#: bulk-delete.php:615
+msgid "Private Posts"
+msgstr "Posts privados"
+
+#: bulk-delete.php:460
+msgid "By Tags"
+msgstr "Por Tags"
+
+#: bulk-delete.php:461
+msgid "Select the tags whose post you want to delete"
+msgstr "Selecione as tags cujos posts deseja deletar"
+
+#: bulk-delete.php:488
+msgid "All Tags"
+msgstr "Todas as Tags"
+
+#: bulk-delete.php:553
+msgid "By Taxonomies"
+msgstr "Por Taxonomias"
+
+#: bulk-delete.php:554
+msgid "Select the taxonomies whose post you want to delete"
+msgstr "Selecione as taxonomias cujos posts deseja deletar"
+
+#: bulk-delete.php:583
+msgid "All Taxonomies"
+msgstr "Todas Taxonomias"
+
+#: bulk-delete.php:643
+msgid "Support"
+msgstr "Suporte"
+
+#: bulk-delete.php:644
+msgid "If you have any questions/comments/feedback about the Plugin then post a comment in the <a target=\"_blank\" href = \"http://sudarmuthu.com/wordpress/bulk-delete\">Plugins homepage</a>."
+msgstr "Se você tem alguma pergunta/comentário/feedback sobre o Plugin, poste um comentário na <a target=\"_blank\" href = \"http://sudarmuthu.com/wordpress/bulk-delete\">Página do Plugin</a>."
+
+#: bulk-delete.php:645
+msgid "If you like the Plugin, then consider doing one of the following."
+msgstr "Se você gostou do Plugin, considere:"
+
+#: bulk-delete.php:647
+msgid "Write a blog post about the Plugin."
+msgstr "Escrever um post sobre o Plugin em seu blog."
+
+#: bulk-delete.php:648
+msgid " about it."
+msgstr "sobre o Plugin."
+
+#: bulk-delete.php:649
+msgid "Give a <a href = \"http://wordpress.org/extend/plugins/bulk-delete/\" target=\"_blank\">good rating</a>."
+msgstr "Dar uma <a href = \"http://wordpress.org/extend/plugins/bulk-delete/\" target=\"_blank\">boa nota</a>."
+
+#: bulk-delete.php:650
+msgid "Say <a href = \"http://sudarmuthu.com/if-you-wanna-thank-me\" target=\"_blank\">thank you</a>."
+msgstr "Dizer <a href = \"http://sudarmuthu.com/if-you-wanna-thank-me\" target=\"_blank\">obrigado</a>."
+
+#: bulk-delete.php:653
+msgid "If you are looking to move posts in bulk, instead of deleting then try out my "
+msgstr "Se está procurando mover posts em massa, em vez de deletá-los, tente o meu"
+
+#: bulk-delete.php:653
+msgid "Bulk Move Plugin"
+msgstr "Bulk Move Plugin (Plugin Mover em Massa)"
+
+#: bulk-delete.php:715
+msgid "Are you sure you want to delete all the selected posts"
+msgstr "Tem certeza que deseja deletar todos os posts selecionados"
+
+#: bulk-delete.php:717
+msgid "Please select at least one"
+msgstr "Por favor, selecione pelo menos um"
+
+#: bulk-delete.php:808
+msgid "Manage"
+msgstr "Gerenciar"
+
+#: bulk-delete.php:819
+msgid "plugin"
+msgstr "plugin"
+
+#: bulk-delete.php:819
+msgid "Version"
+msgstr "Versão"
+
+#: bulk-delete.php:819
+msgid "by"
+msgstr "por"
+
+#. Plugin Name of the plugin/theme
+msgid "Bulk Delete"
+msgstr "Bulk Delete (Deletar em Massa)"
+
+#. Plugin URI of the plugin/theme
+msgid "http://sudarmuthu.com/wordpress/bulk-delete"
+msgstr "http://sudarmuthu.com/wordpress/bulk-delete"
+
+#. Description of the plugin/theme
+msgid "Bulk delete posts from selected categories or tags. Use it with caution."
+msgstr "Deleta posts em massa a partir das categorias ou tags selecionadas. Use com cuidado."
+
+#. Author of the plugin/theme
+msgid "Sudar"
+msgstr "Sudar"
+
+#. Author URI of the plugin/theme
+msgid "http://sudarmuthu.com/"
+msgstr "http://sudarmuthu.com/"
+

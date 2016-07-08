@@ -1,0 +1,270 @@
+# Copyright (C) 2012 Bulk Delete
+# This file is distributed under the same license as the Bulk Delete package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Bulk Delete 2.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/bulk-delete\n"
+"POT-Creation-Date: 2012-04-01 14:20:55+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-10-18 21:51+0100\n"
+"Last-Translator: Diana <diana@wpcouponshop.com>\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: Serbian\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: bulk-delete.php:296
+msgid "All the selected posts have been successfully deleted."
+msgstr "Svi izabrani postovi su uspesno obrisani"
+
+#: bulk-delete.php:307
+msgid "WARNING: Posts deleted once cannot be retrieved back. Use with caution."
+msgstr ""
+"UPOZORENJE: Postovi koje jednom izbriseni ne mogu vise biti vraceni. "
+"Koristite pazljivo. "
+
+#: bulk-delete.php:320
+msgid "By Type"
+msgstr "Po tipu"
+
+#: bulk-delete.php:322
+msgid "Select the posts which you want to delete"
+msgstr "Izaberite postove koje zelite da izbrisete"
+
+#: bulk-delete.php:342
+msgid "All Drafts"
+msgstr "SVi draftovi"
+
+#: bulk-delete.php:342
+msgid "Drafts"
+msgstr "Draftovi"
+
+#: bulk-delete.php:349
+msgid "All Revisions"
+msgstr "Sve revizije"
+
+#: bulk-delete.php:349
+msgid "Revisions"
+msgstr "Revizije"
+
+#: bulk-delete.php:356
+msgid "All Pending posts"
+msgstr "Postovi na cekanju"
+
+#: bulk-delete.php:356 bulk-delete.php:363 bulk-delete.php:370
+#: bulk-delete.php:448 bulk-delete.php:548 bulk-delete.php:652
+msgid "Posts"
+msgstr "Postovi"
+
+#: bulk-delete.php:363
+msgid "All scheduled posts"
+msgstr "Svi programirani postovi"
+
+#: bulk-delete.php:370
+msgid "All private posts"
+msgstr "Svi privatni postovi"
+
+#: bulk-delete.php:377
+msgid "All Pages"
+msgstr "Sve stranice"
+
+#: bulk-delete.php:377
+msgid "Pages"
+msgstr "Stranice"
+
+#: bulk-delete.php:384
+msgid ""
+"Delete these specific pages (Enter one post url (not post ids) per line)"
+msgstr ""
+"Izbrisiti ove specificne stranice (Unesi jedan post url (ne post ID) po "
+"jednom redu)"
+
+#: bulk-delete.php:392 bulk-delete.php:465 bulk-delete.php:565
+#: bulk-delete.php:669
+msgid "Choose your filtering options"
+msgstr "Izaberite opcije za filtriranje"
+
+#: bulk-delete.php:398 bulk-delete.php:485 bulk-delete.php:585
+#: bulk-delete.php:689
+msgid "Move to Trash"
+msgstr "Premesti u djubre"
+
+#: bulk-delete.php:399 bulk-delete.php:486 bulk-delete.php:586
+#: bulk-delete.php:690
+msgid "Delete permanently"
+msgstr "Izbrisi zauvek"
+
+#: bulk-delete.php:406 bulk-delete.php:502 bulk-delete.php:602
+#: bulk-delete.php:706
+msgid "Only delete first "
+msgstr "Samo izbrisi prvo"
+
+#: bulk-delete.php:407 bulk-delete.php:503 bulk-delete.php:603
+#: bulk-delete.php:707
+msgid "posts."
+msgstr "postovi."
+
+#: bulk-delete.php:408 bulk-delete.php:504 bulk-delete.php:604
+#: bulk-delete.php:708
+msgid ""
+"Use this option if there are more than 1000 posts and the script timesout."
+msgstr ""
+"Koristite ovu opciju ukoliko ima vise od 1000 postova i skripti istece vreme"
+
+#: bulk-delete.php:416 bulk-delete.php:511 bulk-delete.php:611
+#: bulk-delete.php:715
+msgid "Bulk Delete "
+msgstr "Brisanje bulka"
+
+#: bulk-delete.php:430
+msgid "By Category"
+msgstr "Po kategoriji"
+
+#: bulk-delete.php:432
+msgid "Select the categories whose post you want to delete"
+msgstr "Izaberite kategorije cije postove zelite da izbrisete"
+
+#: bulk-delete.php:459
+msgid "All Categories"
+msgstr "Sve kategorije"
+
+#: bulk-delete.php:474 bulk-delete.php:574 bulk-delete.php:678
+msgid "Only restrict to posts which are "
+msgstr "Ogranici samo na postove koji su "
+
+#: bulk-delete.php:476 bulk-delete.php:576 bulk-delete.php:680
+msgid "older than"
+msgstr "stariji od"
+
+#: bulk-delete.php:477 bulk-delete.php:577 bulk-delete.php:681
+msgid "posted within last"
+msgstr "postovano u poslednjih"
+
+#: bulk-delete.php:479 bulk-delete.php:579 bulk-delete.php:683
+msgid "days"
+msgstr "dana"
+
+#: bulk-delete.php:492 bulk-delete.php:592 bulk-delete.php:696
+msgid "Public posts"
+msgstr "Javni postovi"
+
+#: bulk-delete.php:493 bulk-delete.php:593 bulk-delete.php:697
+msgid "Private Posts"
+msgstr "Privatni postovi"
+
+#: bulk-delete.php:529
+msgid "By Tags"
+msgstr "Po Tagovima"
+
+#: bulk-delete.php:532
+msgid "Select the tags whose post you want to delete"
+msgstr "Izaberite tagove cije postove zelite da izbrisete"
+
+#: bulk-delete.php:559
+msgid "All Tags"
+msgstr "Svi tagovi "
+
+#: bulk-delete.php:632
+msgid "By Taxonomies"
+msgstr "Po Taxonomiji"
+
+#: bulk-delete.php:634
+msgid "Select the taxonomies whose post you want to delete"
+msgstr "Izaberite taxonomije koje zelite da izbrisete"
+
+#: bulk-delete.php:663
+msgid "All Taxonomies"
+msgstr "Sve Taxonomije"
+
+#: bulk-delete.php:731
+msgid "Debug Information"
+msgstr "Debug informacije"
+
+#: bulk-delete.php:733
+msgid ""
+"If you are seeing a blank page after clicking the Bulk Delete button, then "
+msgstr ""
+"Ukoliko trazite blanko stranu nakon klikanja dugmeta Brisanje Bulkova, onda"
+
+#: bulk-delete.php:733
+msgid "check out this FAQ"
+msgstr "procitajte ove FAQ"
+
+#: bulk-delete.php:734
+msgid "You also need need the following debug information."
+msgstr "Takodje vam trebaju sledece debug informacije"
+
+#: bulk-delete.php:737
+msgid "Available memory size "
+msgstr "Raspoloziva memorija"
+
+#: bulk-delete.php:741
+msgid "Script time out "
+msgstr "Skripti je isteklo vreme"
+
+#: bulk-delete.php:745
+msgid "Script input time "
+msgstr "Skripta input vreme"
+
+#: bulk-delete.php:752
+msgid ""
+"If you are looking to move posts in bulk, instead of deleting then try out "
+"my "
+msgstr ""
+"Ukoliko zelite da pomerate postove u bulku umesto da ih brisete onda "
+"probajte moj"
+
+#: bulk-delete.php:752
+msgid "Bulk Move Plugin"
+msgstr "Bulk pomeranje plagin"
+
+#: bulk-delete.php:857
+msgid "Manage"
+msgstr "Upravljanje"
+
+#: bulk-delete.php:870
+msgid "plugin"
+msgstr "plagin"
+
+#: bulk-delete.php:870
+msgid "Version"
+msgstr "Verzija"
+
+#: bulk-delete.php:870
+msgid "by"
+msgstr "od"
+
+#: bulk-delete.php:931
+msgid "Are you sure you want to delete all the selected posts"
+msgstr "Da li ste sigurni da zelite da izbrisete sve odabrane postove?"
+
+#: bulk-delete.php:933
+msgid "Please select at least one"
+msgstr "Molim vas izaberite makar jedan"
+
+#. Plugin Name of the plugin/theme
+msgid "Bulk Delete"
+msgstr "Bulk Delete"
+
+#. Plugin URI of the plugin/theme
+msgid "http://sudarmuthu.com/wordpress/bulk-delete"
+msgstr "http://sudarmuthu.com/wordpress/bulk-delete"
+
+#. Description of the plugin/theme
+msgid ""
+"Bulk delete posts from selected categories or tags. Use it with caution."
+msgstr ""
+"Bulk brisanje postova iz odabranih kategorija i tagova. Molim koristite "
+"oprezno. "
+
+#. Author of the plugin/theme
+msgid "Sudar"
+msgstr "Sudar"
+
+#. Author URI of the plugin/theme
+msgid "http://sudarmuthu.com/"
+msgstr "http://sudarmuthu.com/"

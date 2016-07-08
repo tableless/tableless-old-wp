@@ -1,0 +1,13 @@
+/*! Bulk Delete - v5.5.4 %>
+ * http://bulkwp.com
+ * Copyright (c) 2016; * Licensed GPLv2+ */
+select[multiple].select2 {
+	width: 60%;
+}
+
+#post-body .select2-search__field {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+/*# sourceMappingURL=bulk-delete.css.map */
