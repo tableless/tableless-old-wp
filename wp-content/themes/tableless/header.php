@@ -2,8 +2,9 @@
 <html lang="pt-br" <?php body_class();?>>
 <head>
 
-<?php include('json-ld-article.php'); ?><script type="application/ld+json">// <![CDATA[
-<?php echo json_encode($payload); ?>
+<script type="application/ld+json">// <![CDATA[
+<?#php echo json_encode($payload); ?>
+<?php include('json-ld-article.php'); ?>
 // ]]></script>
 </head>
   <title><?php wp_title( '|', true, 'right' ); ?></title>
