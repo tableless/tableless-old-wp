@@ -12,17 +12,22 @@ $category = get_the_category(); // stuff for specific pages
     $author_data = get_userdata($post_data->post_author); 
     $post_url = get_permalink(); 
     $post_thumb = wp_get_attachment_url(get_post_thumbnail_id($post->ID)); 
+$thumb_id = get_post_thumbnail_id();
+    $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'large', true);
+    $thumb_url = $thumb_url_array[0];
+
+
     $payload["@type"] = "Article"; 
     $payload["name"] = $post_data->post_title; 
     $payload["headline"] = $post_data->post_title; 
     $payload["url"] = $post_url; 
     $payload["author"] = array( "@type" => "Person", "name" => $author_data->display_name, ); 
     $payload["datePublished"] = $post_data->post_date; 
-    $payload["image"] = echo $post_thumb; 
+    #$payload["image"] = $thumb_url; 
     $payload["ArticleSection"] = $category[0]->cat_name; 
-    $payload["Publisher"] = array( "@type" => "Organization", "name" => "Tableless", "logo" => "http://tableless.com.br/wp-content/themes/tableless/images/missing-img.png"); 
+    $payload["Publisher"] = array( "@type" => "Organization", "name" => "Tableless", "logo" => "image.png"); 
     $payload["dateModified"] = $post_data->post_date;
-    $payload["artcielBody"] = $post_data->post_content;
+    $payload["articleBody"] = $post_data->post_content;
 
   } // we do all this separately so we keep the right things for organization together 
 

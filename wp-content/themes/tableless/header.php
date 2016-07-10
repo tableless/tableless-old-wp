@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br" <?php body_class();?>>
 <head>
-
-<?php include('json-ld-article.php'); ?>
-<script type="application/ld+json">// <![CDATA[
-<?php echo json_encode($payload); ?>
-// ]]></script>
+<?#php include('json-ld-article.php'); ?>
+<!--script type="application/ld+json">// <![CDATA[
+<?#php echo json_encode($payload); ?>
+// ]]></script-->
 </head>
   <title><?php wp_title( '|', true, 'right' ); ?></title>
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url'); ?>">
