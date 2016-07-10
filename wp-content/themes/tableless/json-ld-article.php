@@ -17,11 +17,11 @@ $category = get_the_category(); // stuff for specific pages
     $payload["author"] = array( "@type" => "Person", "name" => $author_data->display_name, ); 
     $payload["headline"] = $post_data->post_title; 
     $payload["datePublished"] = $post_data->post_date; 
-    $payload["image"] = $post_thumb; 
+    $payload["image"] = "http://tableless.com.br/wp-content/themes/tableless/images/missing-img.png"; 
     $payload["ArticleSection"] = $category[0]->cat_name; 
-    $payload["Publisher"] = "Tableless"; 
+    $payload["Publisher"] = array( "@type" => "Organization", "name" => "Tableless", "logo" => "http://tableless.com.br/wp-content/themes/tableless/images/missing-img.png"); 
     $payload["dateModified"] = $post_data->post_date;
-    $payload["logo"] = "http://tableless.com.br/wp-content/themes/tableless/images/missing-img.png";
+    // $payload["logo"] = "http://tableless.com.br/wp-content/themes/tableless/images/missing-img.png";
   } // we do all this separately so we keep the right things for organization together 
 
   if (is_front_page()) { 
