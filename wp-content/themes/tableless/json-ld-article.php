@@ -17,7 +17,7 @@ $category = get_the_category(); // stuff for specific pages
     $payload["author"] = array( "@type" => "Person", "name" => $author_data->display_name, ); 
     $payload["headline"] = $post_data->post_title; 
     $payload["datePublished"] = $post_data->post_date; 
-    $payload["image"] = "http://tableless.com.br/wp-content/themes/tableless/images/missing-img.png"; 
+    $payload["image"] = '"'.$post_thumb.'"'; 
     $payload["ArticleSection"] = $category[0]->cat_name; 
     $payload["Publisher"] = array( "@type" => "Organization", "name" => "Tableless", "logo" => "http://tableless.com.br/wp-content/themes/tableless/images/missing-img.png"); 
     $payload["dateModified"] = $post_data->post_date;
