@@ -13,15 +13,17 @@ $category = get_the_category(); // stuff for specific pages
     $post_url = get_permalink(); 
     $post_thumb = wp_get_attachment_url(get_post_thumbnail_id($post->ID)); 
     $payload["@type"] = "Article"; 
+    $payload["name"] = $post_data->post_title; 
+    $payload["headline"] = $post_data->post_title; 
     $payload["url"] = $post_url; 
     $payload["author"] = array( "@type" => "Person", "name" => $author_data->display_name, ); 
-    $payload["headline"] = $post_data->post_title; 
     $payload["datePublished"] = $post_data->post_date; 
-    $payload["image"] = '"'.$post_thumb.'"'; 
+    $payload["image"] = echo $post_thumb; 
     $payload["ArticleSection"] = $category[0]->cat_name; 
     $payload["Publisher"] = array( "@type" => "Organization", "name" => "Tableless", "logo" => "http://tableless.com.br/wp-content/themes/tableless/images/missing-img.png"); 
     $payload["dateModified"] = $post_data->post_date;
-    // $payload["logo"] = "http://tableless.com.br/wp-content/themes/tableless/images/missing-img.png";
+    $payload["artcielBody"] = $post_data->post_content;
+
   } // we do all this separately so we keep the right things for organization together 
 
   if (is_front_page()) { 
