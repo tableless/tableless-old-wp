@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br" <?php body_class();?>>
 <head>
+
+<?php include('json-ld-article.php'); ?><script type="application/ld+json">// <![CDATA[
+<?php echo json_encode($payload); ?>
+// ]]></script>
+</head>
   <title><?php wp_title( '|', true, 'right' ); ?></title>
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url'); ?>">
   <link href='https://fonts.googleapis.com/css?family=PT+Serif+Caption|Lora:400,700' rel='stylesheet' type='text/css'>
@@ -12,7 +17,7 @@
   <meta charset="utf-8">
 
 <!-- Hotjar Tracking Code for http://tableless.com.br -->
-<script>
+<!-- <script>
     (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
         h._hjSettings={hjid:239732,hjsv:5};
@@ -22,9 +27,12 @@
         a.appendChild(r);
     })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
-
+ -->
   <?php wp_head();?>
-</head>
+
+
+
+
 <body>
 
 <header class="tb-header">
