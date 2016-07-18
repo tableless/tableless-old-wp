@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( "Yoast_Product", false ) ) {
+if ( ! class_exists( "Yoast_Product", false ) ) {
 
 	/**
 	 * Class Yoast_Product
@@ -49,33 +49,40 @@ if( ! class_exists( "Yoast_Product", false ) ) {
 		 */
 		protected $author;
 
-		public function __construct( $api_url, $item_name, $slug, $version, $item_url = '', $license_page_url = '#', $text_domain = 'yoast', $author = 'Yoast' ) {
-			$this->api_url          = $api_url;
-			$this->item_name        = $item_name;
-			$this->slug             = $slug;
-			$this->version          = $version;
-			$this->item_url         = $item_url;
-			$this->license_page_url = admin_url( $license_page_url );
-			$this->text_domain      = $text_domain;
-			$this->author           = $author;
+		/**
+		 * @var string Relative file path to the plugin.
+		 */
+		protected $file;
 
-			// Fix possible empty item url
-			if ( $this->item_url === '' ) {
-				$this->item_url = $this->api_url;
-			}
+		/** @var int Product ID in backend system for quick lookup */
+		protected $product_id;
 
-			if( is_admin() && is_multisite() ) {
-
-				if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
-					require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-				}
-
-				if( is_plugin_active_for_network( $slug ) ) {
-					$this->license_page_url = network_admin_url( $license_page_url );
-				}
-			}
+		/**
+		 * Yoast_Product constructor.
+		 *
+		 * @param string $api_url          The URL of the shop running the EDD API.
+		 * @param string $item_name        The item name in the EDD shop.
+		 * @param string $slug             The slug of the plugin, for shiny updates this needs to be a valid HTML id.
+		 * @param string $version          The version number of the item.
+		 * @param string $item_url         The absolute url on which users can purchase a license.
+		 * @param string $license_page_url Absolute admin URL on which users can enter their license key.
+		 * @param string $text_domain      The text domain used for translating strings.
+		 * @param string $author           The item author.
+		 * @param string $file             The relative file path to the plugin.
+		 * @param int    $product_id       The ID of the product in the backend system.
+		 */
+		public function __construct( $api_url, $item_name, $slug, $version, $item_url = '', $license_page_url = '#', $text_domain = 'yoast', $author = 'Yoast', $file = '', $product_id = 0 ) {
+			$this->set_api_url( $api_url );
+			$this->set_item_name( $item_name );
+			$this->set_slug( $slug );
+			$this->set_version( $version );
+			$this->set_item_url( $item_url );
+			$this->set_license_page_url( $license_page_url );
+			$this->set_text_domain( $text_domain );
+			$this->set_author( $author );
+			$this->set_file( $file );
+			$this->set_product_id( $product_id );
 		}
-
 
 		/**
 		 * @param string $api_url
@@ -123,6 +130,10 @@ if( ! class_exists( "Yoast_Product", false ) ) {
 		 * @param string $item_url
 		 */
 		public function set_item_url( $item_url ) {
+			if ( empty( $item_url ) ) {
+				$item_url = $this->api_url;
+			}
+
 			$this->item_url = $item_url;
 		}
 
@@ -137,7 +148,21 @@ if( ! class_exists( "Yoast_Product", false ) ) {
 		 * @param string $license_page_url
 		 */
 		public function set_license_page_url( $license_page_url ) {
-			$this->license_page_url = admin_page( $license_page_url );
+
+			if ( is_admin() && is_multisite() ) {
+
+				if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
+					require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+				}
+
+				if ( is_plugin_active_for_network( $this->get_slug() ) ) {
+					$this->license_page_url = network_admin_url( $license_page_url );
+
+					return;
+				}
+			}
+
+			$this->license_page_url = admin_url( $license_page_url );
 		}
 
 		/**
@@ -167,7 +192,7 @@ if( ! class_exists( "Yoast_Product", false ) ) {
 		 * @return string
 		 */
 		public function get_transient_prefix() {
-			return substr( dirname( $this->slug ), 0, 15 );
+			return substr( md5( $this->file ), 0, 15 );
 		}
 
 		/**
@@ -199,30 +224,69 @@ if( ! class_exists( "Yoast_Product", false ) ) {
 		}
 
 		/**
-		* Gets a Google Analytics Campaign url for this product
-		*
-		* @param string $link_identifier
-		* @return string The full URL
-		*/
+		 * Returns the file path relative to the plugins folder
+		 *
+		 * @return string
+		 */
+		public function get_file() {
+			/*
+			 * Fall back to the slug for BC reasons.
+			 *
+			 * We used to pass the file to the slug field, but this isn't supported with the shiny updates in WordPress.
+			 * WordPress uses the slug in the HTML as an ID and a slash isn't a valid
+			 */
+			return empty( $this->file ) ? $this->slug : $this->file;
+		}
+
+		/**
+		 * Sets the file path relative to the plugins folder
+		 *
+		 * @param string $file Relative file path to the plugin.
+		 */
+		public function set_file( $file ) {
+			$this->file = $file;
+		}
+
+		/**
+		 * Return the Product ID
+		 *
+		 * @return int
+		 */
+		public function get_product_id() {
+			return $this->product_id;
+		}
+
+		/**
+		 * Set the product ID
+		 *
+		 * @param int $product_id Product ID to set.
+		 */
+		public function set_product_id( $product_id ) {
+			$this->product_id = (int) $product_id;
+		}
+
+		/**
+		 * Gets a Google Analytics Campaign url for this product
+		 *
+		 * @param string $link_identifier
+		 *
+		 * @return string The full URL
+		 */
 		public function get_tracking_url( $link_identifier = '' ) {
 
 			$tracking_vars = array(
 				'utm_campaign' => $this->get_item_name() . ' licensing',
-				'utm_medium' => 'link',
-				'utm_source' => $this->get_item_name(),
-				'utm_content' => $link_identifier
+				'utm_medium'   => 'link',
+				'utm_source'   => $this->get_item_name(),
+				'utm_content'  => $link_identifier
 			);
 
-			// url encode tracking vars
+			// URL encode tracking vars.
 			$tracking_vars = urlencode_deep( $tracking_vars );
-
 			$query_string = build_query( $tracking_vars );
-
 
 			return $this->get_item_url() . '#' . $query_string;
 		}
-
 	}
 
 }
-

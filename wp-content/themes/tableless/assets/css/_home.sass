@@ -41,37 +41,37 @@
 
 
   .tb-box-title
-    @extend .tb-box
+    display: inline-block
+    text-align: left
+    background: #fff
     box-shadow: 0px 30px 30px 0px rgba(139,152,190, .2)
     cursor: default
-    @include break(desk)
-      flex: 1 0 340px
-      padding: 35px 25px
+    padding: 35px 25px
 
-      &:before
-        content: ""
-        background: url(images/img_divider.png) no-repeat center
-        background-size: contain
-        width: 99px
-        height: 18px
-        display: block
-        margin-bottom: 35px
+    &:before
+      content: ""
+      background: url(images/img_divider.png) no-repeat center
+      background-size: contain
+      width: 99px
+      height: 18px
+      display: block
+      margin-bottom: 35px
 
-      h3
-        font: 100px/85px $font-bold
-        color: #4E4E4E
-        letter-spacing: 0.5px
-        text-transform: uppercase
-        width: 100%
-        -webkit-hyphens: auto
-        -moz-hyphens: auto
-        -ms-hyphens: auto
-        hyphens: auto
-        margin-bottom: 35px
+    h3
+      font: 70px/.9 $font-bold
+      color: #4E4E4E
+      letter-spacing: .2px
+      text-transform: uppercase
+      width: 100%
+      -webkit-hyphens: auto
+      -moz-hyphens: auto
+      -ms-hyphens: auto
+      hyphens: auto
+      margin-bottom: 35px
 
-      p
-        font: 26px "PT Serif Caption"
-        color: #4E4E4E
+    p
+      font: 22px "PT Serif Caption"
+      color: #4E4E4E
 
     &:hover
       box-shadow: 0px 30px 30px 0px rgba(139,152,190, .2)
@@ -81,18 +81,18 @@
   top: 0
   left: 0
   width: 100%
-  height: 250px
+  height: inherit
   background-repeat: no-repeat
   background-size: cover
-  background-color: rgba(50, 50, 50, .2)
+  background-color: rgba(50, 50, 50, .6)
   background-blend-mode: color-burn
   opacity: 0
   transition: opacity .25s linear
 
-  @include break(desk)
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
-    height: inherit
+  // @include break(desk)
+  //   -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
+  //   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 75%)
+  //   height: inherit
 
 
     a.tb-lnk-featured
@@ -101,23 +101,19 @@
   h1
     @extend %center-vertical
     color: #FFF
-    margin-top: -5%
     width: 100%
-    font-family:  "PT Serif Caption"
-    font-size: 12px
+    font: 12px "PT Serif Caption"
     letter-spacing: 2px
-    line-height: 80px
     text-align: center
     text-transform: uppercase
     text-shadow: 0 0 17px rgba(0, 0, 0, .3)
     @include break(desk)
       font-size: 30px
-      letter-spacing: 8px
 
     strong
       display: block
-      font-size: 27px
-      font-family: $font-bold
+      font: 27px $font-bold
+      padding-top: 7px
 
       @include break(desk)
         font-size: 89px
@@ -143,7 +139,7 @@
 
 
 .tb-thumb-list
-  margin-top: -250px
+  margin-top: -100px
   text-align: center
   display: none
   margin-bottom: 50px
@@ -153,31 +149,30 @@
     display: flex
 
 .tb-thumb-box
-  @extend .tb-box
   z-index: 1
+  flex: 1
   height: 200px
   border: 10px solid #fff
-  display: inline-block
   position: relative
   overflow: hidden
+
   @include break(desk)
-    flex: 1 0 150px
-    margin-top: 100px
+    box-shadow: 0px 30px 30px 0px rgba(139, 152, 190, .20)
+    display: inline-block
+    width: 24%
+    margin-left: 1%
     position: relative
+    transition: box-shadow .1s linear
 
-    &:nth-child(2)
-      display: none
+    &:hover
+      box-shadow: 0 5px 10px 2px rgba(139, 152, 190, .55)
 
-    &:nth-child(4),
-    &:nth-child(6)
-      top: 50px
   img
     @extend %center
     height: 200px
     width: auto
 
 .tb-choose-category
-  // padding: 0 40px 50px
   padding: 0 40px 0px
   text-align: center
   background: $bg-color-default
@@ -389,16 +384,13 @@
   .tb-btn
     margin: 70px 0
 
-  .tb-container
-    @extend .tb-box-list
-
 .tb-section-call
   @extend .tb-section
   overflow: hidden
   text-align: center
   @include break(desk)
     text-align: left
-    padding-bottom: 100px
+    margin-top: -120px
 
   .tb-title-1
     margin-bottom: 15px
@@ -406,38 +398,45 @@
 
   .tb-container
     display: flex
+    flex-wrap: wrap
+    align-items: center
+    justify-content: center
     max-width: 1000px
 
-  .tb-lead-paragraph
-    flex: 1 0 600px
-    margin-bottom: 0
-    @include break(desk)
-      width: 420px
-      display: inline-block
+  .tb-text-call
+    flex: 1 0 500px
+    padding-right: 40px
+    .tb-lead-paragraph
+      margin-bottom: 0
 
   figure
-    @extend .tb-box
-    flex: 1 0 450px
+    flex: 1 0 350px
     padding: 10px
-    width: 430px
-    float: right
     border: none
     display: none
+    background: #fff
     @include break(desk)
       display: block
 
     img
       width: 100%
 
-.tb-section-call-inverted .tb-container
-  flex-direction: row-reverse
+.tb-section-call-inverted
+  @extend .tb-section-call
+  margin-top: 0
 
-  figure
-    margin-right: 150px
+  .tb-container
+    flex-direction: row-reverse
+  .tb-text-call
+    padding-left: 40px
+    padding-right: 0
 
 .tb-latest-posts-list
   @extend .tb-flex-box
-  
+  @extend .tb-container
+  flex-wrap: wrap
+  justify-content: center
+
 .no-divider
   padding: 0
   @include break(desk)

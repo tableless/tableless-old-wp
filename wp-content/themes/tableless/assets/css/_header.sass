@@ -20,6 +20,9 @@
     background-image: url(images/logo.png)
     height: 38px
     width: 200px
+    @media #{$desktop}
+      width: 270px
+      margin-top: 5px
 
 .tb-sandwich
   @extend %image-replace
@@ -69,24 +72,7 @@
       transition: all .2s linear .15s
       text-transform: uppercase
 
-@media #{$desktop}
-  .tb-logo a
-    height: 42px
-    width: 299px
-
-  .tb-search-btn
-    display: block
-    background-image: url(images/search-header.png)
-    float: right
-    cursor: pointer
-    width: 24px
-    height: 24px
-    margin: 25px 15px 0
-
-  .tb-sandwich
-    display: none
-
-  .tb-menu
+  @include break(desk)
     position: static
     width: auto
     background: transparent
@@ -110,6 +96,20 @@
         display: inline-block
         padding: 5px
         transition: border-bottom linear .15s
-
+        
         &:hover
           border-bottom: 3px solid #FF5252
+
+@media #{$desktop}
+  .tb-search-btn
+    display: block
+    background-image: url(images/search-header.png)
+    float: right
+    cursor: pointer
+    width: 24px
+    height: 24px
+    margin: 25px 15px 0
+
+  .tb-sandwich
+    display: none
+

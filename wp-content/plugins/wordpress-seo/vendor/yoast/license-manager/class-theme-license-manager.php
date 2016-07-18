@@ -1,6 +1,6 @@
 <?php
 
-if( class_exists( 'Yoast_License_Manager' ) &&  ! class_exists( "Yoast_Theme_License_Manager", false ) ) {
+if ( class_exists( 'Yoast_License_Manager' ) && ! class_exists( "Yoast_Theme_License_Manager", false ) ) {
 
 	class Yoast_Theme_License_Manager extends Yoast_License_Manager {
 
@@ -31,7 +31,7 @@ if( class_exists( 'Yoast_License_Manager' ) &&  ! class_exists( "Yoast_Theme_Lic
 		 * Add license page and add it to Themes menu
 		 */
 		public function add_license_menu() {
-			$theme_page = add_theme_page( sprintf( __( '%s License', $this->product->get_text_domain() ), $this->product->get_item_name() ), __( 'Theme License', $this->product->get_text_domain() ), 'manage_options', 'theme-license', array( $this, 'show_license_page' ) );
+			add_theme_page( sprintf( __( '%s License', $this->product->get_text_domain() ), $this->product->get_item_name() ), __( 'Theme License', $this->product->get_text_domain() ), 'manage_options', 'theme-license', array( $this, 'show_license_page' ) );
 		}
 
 		/**
@@ -46,8 +46,6 @@ if( class_exists( 'Yoast_License_Manager' ) &&  ! class_exists( "Yoast_Theme_Lic
 			</div>
 			<?php
 		}
-
-
 	}
 
 }

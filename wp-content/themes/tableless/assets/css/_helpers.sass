@@ -17,6 +17,12 @@ $bg-color-default: #f7f9fb
 $border-diagonal-color: rgba(140, 153, 191, .20)
 $border-color-default: $border-diagonal-color
 
+%font-smooth
+  text-rendering: optimizeLegibility !important
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased !important
+  font-smoothing: antialiased !important
+
 ////
 // Image Replacement
 ////
@@ -148,14 +154,17 @@ $border-color-default: $border-diagonal-color
   transition: box-shadow .1s linear
   color: #4E4E4E
   text-decoration: none
-  flex: 1 0 150px
   -webkit-transform-style: preserve-3d
   -moz-transform-style: preserve-3d
   transform-style: preserve-3d
+  flex: 1 0 250px
+  width: 100%
+  display: flex
+  flex-direction: column
 
   @include break(desk)
-    margin: 0 20px 45px
-    flex: 1 0 250px
+    max-width: 23.5%
+
 
   &:hover
     box-shadow: 0 5px 10px 2px rgba(139, 152, 190, .55)
@@ -172,10 +181,13 @@ $border-color-default: $border-diagonal-color
 
     img
       @extend %center
-      width: auto
-      height: 110%
       position: relative
       z-index: 0
+      width: 100%
+      height: auto
+      @include break(desk)
+        width: auto
+        height: 110%
 
     &:before
       content: ""
@@ -208,12 +220,12 @@ $border-color-default: $border-diagonal-color
     margin-bottom: 10px
 
 .tb-lead-paragraph
+  @extend %font-smooth
   font-size: 15px
   font-family: "PT Serif Caption"
   line-height: 1.5
   color: #4E4E4E
   padding-bottom: 55px
-
   @include break(desk)
     font-size: 20px
     margin-bottom: 60px

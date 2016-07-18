@@ -250,6 +250,10 @@ class yoast_i18n {
 		if ( $body ) {
 			$body = json_decode( $body );
 			foreach ( $body->translation_sets as $set ) {
+				if ( ! property_exists( $set, 'wp_locale' ) ) {
+					continue;
+				}
+
 				if ( $this->locale == $set->wp_locale ) {
 					return $set;
 				}

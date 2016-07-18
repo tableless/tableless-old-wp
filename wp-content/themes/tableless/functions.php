@@ -18,8 +18,14 @@
   // Remove the Shortcut link of header.
   remove_action( 'wp_head', 'wp_shortlink_wp_head' );
   remove_filter('term_description','wpautop');
+  
   // Upgrade without FTP
   define('FS_METHOD','direct');
+  
+  // Auto Save
+  define('AUTOSAVE_INTERVAL', 3000);
+
+  define('WP_DEBUG', false);
 
   // get the "contributor" role object
   // $obj_existing_role = get_role( 'contributor' );
@@ -32,9 +38,19 @@
   function rss_post_thumbnail($content) {
     global $post;
     if( has_post_thumbnail($post->ID) )
-      $content = '<p>' . get_the_post_thumbnail($post->ID, 'thumbnail') . '</p>' . $content;
+      $content = '<p>' . get_the_post_thumbnail($post->ID, 'medium') . '</p>' . $content;
     return $content;
   }
+
+  function add_async_forscript($url) {
+      if (strpos($url, '#asyncload')===false)
+          return $url;
+      else if (is_admin())
+          return str_replace('#asyncload', '', $url);
+      else
+          return str_replace('#asyncload', '', $url)."' async='async"; 
+  }
+  add_filter('clean_url', 'add_async_forscript', 11, 1);
 
   /////
   // SCRIPT ENQUEUE
@@ -45,13 +61,11 @@
     wp_dequeue_script('devicepx');
     wp_dequeue_script('e-201408');
 
-    wp_register_script('disqus', get_template_directory_uri().'/assets/js/vendor/disqus.js', array(), '1.0', true );
-    wp_register_script('prettify', get_template_directory_uri().'/assets/js/vendor/prettify/src/prettify.js', array(), '1.0', true );
-    wp_register_script('scripts', get_template_directory_uri().'/assets/js/scripts.min.js', array(), '1.0', true );
+    wp_register_script('prettify', get_template_directory_uri().'/assets/js/vendor/prettify/src/prettify.js#asyncload', array(), '', true );
+    wp_register_script('scripts', get_template_directory_uri().'/assets/js/scripts.min.js#asyncload', array(), '', true );
 
     if (is_single()) {
       wp_enqueue_script('prettify');
-      wp_enqueue_script('disqus');
     }
 
     wp_enqueue_script('scripts');
@@ -142,5 +156,16 @@ function jeherve_remove_all_jp_css() {
   wp_deregister_style( 'jetpack-widgets' ); // Widgets
 }
 add_action('wp_print_styles', 'jeherve_remove_all_jp_css' );
+
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
+remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
+remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
+remove_action('template_redirect', 'rest_output_link_header', 11, 0);
+remove_action( 'wp_head', 'wp_oembed_add_host_js' );
+remove_action('rest_api_init', 'wp_oembed_register_route');
+remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
 
 ?>

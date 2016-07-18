@@ -194,6 +194,7 @@ class Jetpack {
 		                                                         // 2 Click Social Media Buttons
 		'add-link-to-facebook/add-link-to-facebook.php',         // Add Link to Facebook
 		'add-meta-tags/add-meta-tags.php',                       // Add Meta Tags
+		'autodescription/autodescription.php',                   // The SEO Framework
 		'easy-facebook-share-thumbnails/esft.php',               // Easy Facebook Share Thumbnail
 		'facebook/facebook.php',                                 // Facebook (official plugin)
 		'facebook-awd/AWD_facebook.php',                         // Facebook AWD All in one
@@ -1937,7 +1938,7 @@ class Jetpack {
 		 *
 		 * @param bool true Should Twitter Card Meta tags be disabled. Default to true.
 		 */
-		if ( apply_filters( 'jetpack_disable_twitter_cards', true ) ) {
+		if ( ! apply_filters( 'jetpack_disable_twitter_cards', false ) ) {
 			require_once JETPACK__PLUGIN_DIR . 'class.jetpack-twitter-cards.php';
 		}
 	}
@@ -4594,6 +4595,7 @@ p {
 			    'admin.php?page=jetpack-settings' ), $url );
 			}
 		} else {
+			require_once JETPACK__GLOTPRESS_LOCALES_PATH;
 			$role = $this->translate_current_user_to_role();
 			$signed_role = $this->sign_role( $role );
 
@@ -4601,14 +4603,18 @@ p {
 
 			$redirect = $redirect ? esc_url_raw( $redirect ) : esc_url_raw( menu_page_url( 'jetpack', false ) );
 
+			$gp_locale = GP_Locales::by_field( 'wp_locale', get_locale() );
+
 			if( isset( $_REQUEST['is_multisite'] ) ) {
 				$redirect = Jetpack_Network::init()->get_url( 'network_admin_page' );
 			}
 
-			$secrets = Jetpack::init()->generate_secrets();
-			Jetpack_Options::update_option( 'authorize', $secrets[0] . ':' . $secrets[1] . ':' . $secrets[2] . ':' . $secrets[3] );
-
-			@list( $secret ) = explode( ':', Jetpack_Options::get_option( 'authorize' ) );
+			$secrets = Jetpack::init()->generate_secrets( 'authorize' );
+			@list( $secret ) = explode( ':', $secrets );
+			
+			$site_icon = ( function_exists( 'has_site_icon') && has_site_icon() )
+				? get_site_icon_url()
+				: false;
 
 			$args = urlencode_deep(
 				array(
@@ -4629,7 +4635,12 @@ p {
 					'is_active'     => Jetpack::is_active(),
 					'jp_version'    => JETPACK__VERSION,
 					'auth_type'     => 'calypso',
-					'secret'		=> $secret,
+					'secret'        => $secret,
+					'locale'        => isset( $gp_locale->slug ) ? $gp_locale->slug : '',
+					'blogname'      => get_option( 'blogname' ),
+					'site_url'      => site_url(),
+					'home_url'      => home_url(),
+					'site_icon'     => $site_icon,
 				)
 			);
 
@@ -4639,6 +4650,11 @@ p {
 		if ( $from ) {
 			$url = add_query_arg( 'from', $from, $url );
 		}
+
+		if ( isset( $_GET['calypso_env'] ) ) {
+			$url = add_query_arg( 'calypso_env', $_GET['calypso_env'], $url );
+		}
+
 		return $raw ? $url : esc_url( $url );
 	}
 
@@ -4987,15 +5003,13 @@ p {
 	 * @since 2.6
 	 * @return array
 	 */
-	public function generate_secrets() {
-	    $secrets = array(
-			wp_generate_password( 32, false ), // secret_1
-			wp_generate_password( 32, false ), // secret_2
-			( time() + 600 ), // eol ( End of Life )
-			get_current_user_id(), // ties the secrets to the current user
-	    );
-
-	    return $secrets;
+	public function generate_secrets( $action, $exp = 600 ) {
+	    $secret = wp_generate_password( 32, false ) // secret_1
+	    		. ':' . wp_generate_password( 32, false ) // secret_2
+	    		. ':' . ( time() + $exp ) // eol ( End of Life )
+	    		. ':' . get_current_user_id(); // ties the secrets to the current user
+		Jetpack_Options::update_option( $action, $secret );
+	    return Jetpack_Options::get_option( $action );
 	}
 
 	/**
@@ -5061,11 +5075,9 @@ p {
 	 */
 	public static function register() {
 		add_action( 'pre_update_jetpack_option_register', array( 'Jetpack_Options', 'delete_option' ) );
-		$secrets = Jetpack::init()->generate_secrets();
+		$secrets = Jetpack::init()->generate_secrets( 'register' );
 
-		Jetpack_Options::update_option( 'register', $secrets[0] . ':' . $secrets[1] . ':' . $secrets[2] . ':' . $secrets[3] );
-
-		@list( $secret_1, $secret_2, $secret_eol ) = explode( ':', Jetpack_Options::get_option( 'register' ) );
+		@list( $secret_1, $secret_2, $secret_eol ) = explode( ':', $secrets );
 		if ( empty( $secret_1 ) || empty( $secret_2 ) || empty( $secret_eol ) || $secret_eol < time() ) {
 			return new Jetpack_Error( 'missing_secrets' );
 		}
@@ -6110,6 +6122,7 @@ p {
 				),
 			'constants' => array(
 				'IS_WPE_SNAPSHOT',
+				'KINSTA_DEV_ENV',
 				'JETPACK_STAGING_MODE',
 				)
 			);
@@ -6121,7 +6134,7 @@ p {
 		 * @param array $known_staging {
 		 *     An array of arrays that each are used to check if the current site is staging.
 		 *     @type array $urls      URLs of staging sites in regex to check against site_url.
-		 *     @type array $cosntants PHP constants of known staging/developement environments.
+		 *     @type array $constants PHP constants of known staging/developement environments.
 		 *  }
 		 */
 		$known_staging = apply_filters( 'jetpack_known_staging', $known_staging );

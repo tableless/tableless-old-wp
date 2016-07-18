@@ -1,6 +1,6 @@
 <?php
 
-if( ! class_exists( "Yoast_Update_Manager", false ) ) {
+if ( ! class_exists( "Yoast_Update_Manager", false ) ) {
 
 	class Yoast_Update_Manager {
 
@@ -37,19 +37,15 @@ if( ! class_exists( "Yoast_Update_Manager", false ) ) {
 		/**
 		 * Constructor
 		 *
-		 * @param string $api_url     The url to the EDD shop
-		 * @param string $item_name   The item name in the EDD shop
-		 * @param string $license_key The (valid) license key
-		 * @param string $slug        The slug. This is either the plugin main file path or the theme slug.
-		 * @param string $version     The current plugin or theme version
-		 * @param string $author      (optional) The item author.
+		 * @param Yoast_Product         $product         The product.
+		 * @param Yoast_License_Manager $license_manager The License Manager.
 		 */
 		public function __construct( Yoast_Product $product, $license_manager ) {
-			$this->product = $product;
+			$this->product         = $product;
 			$this->license_manager = $license_manager;
 
 			// generate transient names
-			$this->response_transient_key = $this->product->get_transient_prefix() . '-update-response';
+			$this->response_transient_key       = $this->product->get_transient_prefix() . '-update-response';
 			$this->request_failed_transient_key = $this->product->get_transient_prefix() . '-update-request-failed';
 
 			// maybe delete transient
@@ -63,7 +59,7 @@ if( ! class_exists( "Yoast_Update_Manager", false ) ) {
 		private function maybe_delete_transients() {
 			global $pagenow;
 
-			if( $pagenow === 'update-core.php' && isset( $_GET['force-check'] ) ) {
+			if ( $pagenow === 'update-core.php' && isset( $_GET['force-check'] ) ) {
 				delete_transient( $this->response_transient_key );
 				delete_transient( $this->request_failed_transient_key );
 			}
@@ -83,7 +79,7 @@ if( ! class_exists( "Yoast_Update_Manager", false ) ) {
 				<p><?php printf( __( '%s failed to check for updates because of the following error: <em>%s</em>', $this->product->get_text_domain() ), $this->product->get_item_name(), $this->error_message ); ?></p>
 			</div>
 			<?php
-			}
+		}
 
 		/**
 		 * Calls the API and, if successfull, returns the object delivered by the API.
@@ -97,7 +93,7 @@ if( ! class_exists( "Yoast_Update_Manager", false ) ) {
 		private function call_remote_api() {
 
 			// only check if the failed transient is not set (or if it's expired)
-			if( get_transient( $this->request_failed_transient_key ) !== false ) {
+			if ( get_transient( $this->request_failed_transient_key ) !== false ) {
 				return false;
 			}
 
@@ -110,25 +106,33 @@ if( ! class_exists( "Yoast_Update_Manager", false ) ) {
 
 			// setup api parameters
 			$api_params = array(
-				'edd_action' => 'get_version',
-				'license'    => $this->license_manager->get_license_key(),
-				'item_name'       => $this->product->get_item_name(),
-				'wp_version'       => $wp_version,
-				'item_version'     => $this->product->get_version(),
-				'url' => home_url(),
-				'slug' => $this->product->get_slug()
+				'edd_action'   => 'get_version',
+				'license'      => $this->license_manager->get_license_key(),
+				'item_name'    => $this->product->get_item_name(),
+				'wp_version'   => $wp_version,
+				'item_version' => $this->product->get_version(),
+				'url'          => home_url(),
+				'slug'         => $this->product->get_slug(),
 			);
+
+			// Add product ID from product if it is implemented.
+			if ( method_exists( $this->product, 'get_product_id' ) ) {
+				$product_id = $this->product->get_product_id();
+				if ( $product_id > 0 ) {
+					$api_params['product_id'] = $this->product->get_product_id();
+				}
+			}
 
 			// setup request parameters
 			$request_params = array(
 				'method' => 'POST',
-				'body'      => $api_params
+				'body'   => $api_params
 			);
 
 			require_once dirname( __FILE__ ) . '/class-api-request.php';
 			$request = new Yoast_API_Request( $this->product->get_api_url(), $request_params );
 
-			if( $request->is_valid() !== true ) {
+			if ( $request->is_valid() !== true ) {
 
 				// show error message
 				$this->error_message = $request->get_error_message();
@@ -144,7 +148,7 @@ if( ! class_exists( "Yoast_Update_Manager", false ) ) {
 			$response = $request->get_response();
 
 			// check if response returned that a given site was inactive
-			if( isset( $response->license_check ) && ! empty( $response->license_check ) && $response->license_check != 'valid' ) {
+			if ( isset( $response->license_check ) && ! empty( $response->license_check ) && $response->license_check != 'valid' ) {
 
 				// deactivate local license
 				$this->license_manager->set_license_status( 'invalid' );
@@ -174,7 +178,7 @@ if( ! class_exists( "Yoast_Update_Manager", false ) ) {
 		protected function get_remote_data() {
 
 			// always use property if it's set
-			if( null !== $this->update_response ) {
+			if ( null !== $this->update_response ) {
 				return $this->update_response;
 			}
 
@@ -182,11 +186,12 @@ if( ! class_exists( "Yoast_Update_Manager", false ) ) {
 			$data = $this->get_cached_remote_data();
 
 			// if cache is empty or expired, call remote api
-			if( $data === false ) {
+			if ( $data === false ) {
 				$data = $this->call_remote_api();
 			}
 
 			$this->update_response = $data;
+
 			return $data;
 		}
 
@@ -199,7 +204,7 @@ if( ! class_exists( "Yoast_Update_Manager", false ) ) {
 
 			$data = get_transient( $this->response_transient_key );
 
-			if( $data ) {
+			if ( $data ) {
 				return $data;
 			}
 
@@ -207,5 +212,5 @@ if( ! class_exists( "Yoast_Update_Manager", false ) ) {
 		}
 
 	}
-	
+
 }

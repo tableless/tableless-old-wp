@@ -26,7 +26,10 @@
 
 .tb-comment-count
   float: right
-
+  font-size: 13px
+  @include break(desk)
+    font-size: 16px
+    padding-top: 15px
 .tb-featured-image
   height: 220px
   width: 100%
@@ -42,10 +45,9 @@
     height: 520px
 
   img
-    width: 100%
-    height: auto
-    min-height: 440px
     @extend %center
+    width: 110%
+    height: auto
 
 
 ////
@@ -56,6 +58,8 @@
 
 .tb-post-text
   @extend %box-white
+  @extend %font-smooth
+  max-width: 1000px
   border: none
   padding: 25px
   font-weight: 400
@@ -119,24 +123,31 @@
       color: #4A4A4A
       padding-bottom: 30px
       cursor: default
+      text-rendering: optimizeLegibility !important
+      -moz-osx-font-smoothing: grayscale
+      -webkit-font-smoothing: antialiased !important
+      font-smoothing: antialiased !important
 
       @include break(desk)
-        font-size: 60px
+        padding-bottom: 70px
+        font-size: 55px
 
     .tb-author-info
-      @extend .tb-divider
       background: url(../../images/img_divider.png) no-repeat bottom left
-      background-size: 10%
+      background-size: 70px
       display: block
       color: #9C9C9C
       font: 13px/24px $font-light
+      padding-bottom: 50px
 
       @include break(desk)
         font: 20px/24px $font-light
+        padding-bottom: 80px
+        background-size: 100px
 
       &:after
         background-position: bottom left
-        margin-top: 30px
+        margin-top: 50px
 
       a
         box-shadow: none
@@ -179,7 +190,6 @@
   bottom: 0
   left: 0
   width: 100%
-  height: 70px
   z-index: 3
 
   @include break(desk)
@@ -198,19 +208,19 @@
   a
     @extend %image-replace
     display: block
-    height: 70px
+    height: 40px
     width: 100%
     background-position: center
     background-repeat: no-repeat
-    background-size: 25%
+    background-size: 15%
     transition: background-size .10s linear
 
     @include break(desk)
-      background-size: 13%
-
+      height: 70px
+      background-size: 10%
 
     &:hover
-      background-size: 15%
+      background-size: 13%
 
 .tb-social-twitter
   background-color: rgba(85, 172, 238, 1)
@@ -239,6 +249,7 @@
   margin-top: 75px
   padding: 30px
   position: relative
+  display: block
 
   &:after
     content: ""
@@ -280,10 +291,21 @@
     float: left
     width: 60px
     height: 60px
+    margin-bottom: 16px
 
     @include break(desk)
       width: auto
       height: auto
+
+  .tb-post-author-social
+      display: inline-flex
+      float: left
+      flex-direction: column
+
+    .tb-post-author-social
+      display: inline-flex
+      align-self: center
+
 
 .tb-related-posts
   padding: 70px 0
@@ -292,17 +314,27 @@
 
   .tb-lead-paragraph
     @extend .tb-divider
-    background: url(../../images/img_divider.png) no-repeat bottom center
+    // background: url(../../images/img_divider.png) no-repeat bottom center
     background-size: 10%
     margin-bottom: 30px
 
   .tb-related-group
     display: flex
     flex-wrap: wrap
+    padding: 0
 
-    .tb-post-box
-      @include break(desk)
-        flex: 1
+    .tb-box
+      flex: 1 0 30.2%
+      max-width: 30.2%
+
+.tb-divider
+  &:after
+    content: ""
+    display: block
+    background: url(../../images/img_divider.png) no-repeat center center
+    background-size: 98px
+    height: 20px
+    margin-top: 10px
 
 ////
 // Comments

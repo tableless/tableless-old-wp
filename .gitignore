@@ -21,3 +21,6 @@ wp-content/cache/
 node_modules/
 npm-debug.log
 wp-content/themes/tableless/assets/css/single.css
+wp-content/themes/tableless/**/*.min.js
+wp-content/themes/tableless/**/*.min.css
+wp-content/themes/tableless/**/*.map

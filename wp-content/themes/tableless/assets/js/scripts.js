@@ -5,7 +5,7 @@ var tableless = (function() {
     showFeaturedPosts();
     prettyPrintHighlight();
     openCloseSearch();
-    searchAjax();
+    // searchAjax();
     showMenu();
   }
 
@@ -47,7 +47,7 @@ var tableless = (function() {
       e.preventDefault();
       var searchTerm = $('#s').val();
       $.ajax({
-        url: "http://tableless.com.br/?s=" + searchTerm,
+        url: "http://localhost/tableless/?s=" + searchTerm,
         type : 'get',
         success: function( data ) {
           var dataContent = $('<div class="tb-data-box">').html(data).find('.tb-search-content').html();

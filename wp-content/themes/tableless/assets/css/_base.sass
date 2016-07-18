@@ -12,6 +12,7 @@ body
   margin: 0 auto
 
 .tb-title-section
+  @extend %font-smooth
   font-size: 25px
   line-height: 1.1
   font-family: $font-bold
@@ -19,7 +20,6 @@ body
   letter-spacing: 2px
   text-transform: uppercase
   margin-bottom: 10px
-
   @include break(desk)
     font-size: 50px
 
@@ -27,9 +27,9 @@ body
   display: flex
   flex-wrap: wrap
 
-  .tb-box
-    @extend .tb-box
-    flex: 1 0 300px
+  // .tb-box
+  //   @extend .tb-box
+  //   flex: 1 0 300px
 
 ////
 // Categ Menu in Home
@@ -72,13 +72,6 @@ body
   @include break(desk)
     padding: 100px 0
 
-
-.tb-post-box
-  @extend .tb-box
-  flex: 1 0 300px
-  font: 20px/24px $font-bold
-  letter-spacing: 0.45px
-
 ////
 // Page Nav buttons
 ////
@@ -94,6 +87,25 @@ body
     flex: 1 0 250px
     text-align: center
 
+.tb-twitter-lnk
+  display: block
+  text-decoration: none
+  color: #2daae2
+  padding: 25px 0 0
+  &:empty
+    display: none
+  &:hover
+    color: #000
+  &:before
+    content: ""
+    display: inline-block
+    vertical-align: middle
+    background: url(images/twitter-icon-blue.png) no-repeat center
+    background-size: contain
+    width: 20px
+    height: 20px
+    margin-right: 5px
+
 ////
 // Página de Author
 ////
@@ -101,17 +113,27 @@ body
   @extend .tb-section
 
 .tb-post-author
+  display: flex
+  flex-direction: column
+  align-items: center
 
   img
-    width: 300px
-    height: 300px
+    max-width: 300px
+    height: auto
     border-radius: 100%
     margin-bottom: 25px
 
   .tb-lead-paragraph
+    @extend %font-smooth
     max-width: 1000px
     margin-right: auto
     margin-left: auto
+    text-align: center
+    padding-bottom: 20px
+
+    &:after
+      margin-top: 60px
+      margin-bottom: 20px
 
 /////
 /// Contact Form

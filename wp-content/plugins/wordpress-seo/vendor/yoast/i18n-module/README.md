@@ -5,7 +5,7 @@ Promote your own translation site for people who are using your plugin in anothe
 
 ## Example of the rendered promo box
 
-![Example promo box](http://uploads.yoast.nl/i18n-promo-box_1A1B3FFF.png)
+![Example promo box](http://uploads.yoast.nl/yoast_wordpress_seo__allgemeine_einstellungen_____clean_____wordpress_1B4BF473.png)
 
 The image, the name of your plugin and the name of your translation project are all configurable (see example below). The name of the language is retrieved from your GlotPress install, as is the percentage translated. The box doesn't display when a language has been translated for 90% or more.
 

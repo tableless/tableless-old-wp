@@ -6,7 +6,9 @@
   <div class="tb-post-author">
     <?php echo get_avatar( get_the_author_meta('ID') , 600 ); ?>
     <h3 class="tb-title-section"><?php the_author(); ?></h3>
-    <p class="tb-lead-paragraph tb-divider"><?php the_author_meta('description'); ?></p>
+    <p class="tb-lead-paragraph tb-divider"><?php the_author_meta('description'); ?> 
+    
+      <a href="http://twitter.com/<?php the_author_meta('twitter'); ?>" class="tb-twitter-lnk"><?php the_author_meta('twitter'); ?></a></p>
   </div>
 
   <div class="tb-box-list">
