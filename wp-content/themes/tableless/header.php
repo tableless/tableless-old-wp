@@ -15,7 +15,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta charset="utf-8">
-
+<link rel="icon" type="image/png" href="<?php bloginfo('template_url');?>/favicon.png">
 <!-- Hotjar Tracking Code for http://tableless.com.br -->
 <!-- <script>
     (function(h,o,t,j,a,r){
