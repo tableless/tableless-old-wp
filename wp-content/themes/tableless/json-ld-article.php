@@ -24,7 +24,8 @@ $thumb_id = get_post_thumbnail_id();
     $payload["author"] = array( 
         "@type" => "Person", 
         "name" => $author_data->display_name, 
-        "@id" => get_the_author_meta('url'),
+        "@id" => get_the_author_meta('twitter'),
+        "sameAs" = array( $twitterHandleURL, $websiteHandle ),
         ); 
     $payload["datePublished"] = $post_data->post_date; 
     $payload["image"] = $thumb_url; 
