@@ -21,9 +21,13 @@ $thumb_id = get_post_thumbnail_id();
     $payload["name"] = $post_data->post_title; 
     $payload["headline"] = $post_data->post_title; 
     $payload["url"] = $post_url; 
-    $payload["author"] = array( "@type" => "Person", "name" => $author_data->display_name, ); 
+    $payload["author"] = array( 
+        "@type" => "Person", 
+        "name" => $author_data->display_name, 
+        "@id" => get_the_author_meta('url'),
+        ); 
     $payload["datePublished"] = $post_data->post_date; 
-    #$payload["image"] = $thumb_url; 
+    $payload["image"] = $thumb_url; 
     $payload["ArticleSection"] = $category[0]->cat_name; 
     $payload["Publisher"] = array( "@type" => "Organization", "name" => "Tableless", "logo" => "image.png"); 
     $payload["dateModified"] = $post_data->post_date;
