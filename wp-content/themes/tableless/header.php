@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br" <?php body_class();?>>
 <head>
-<?#php include('json-ld-article.php'); ?>
-<!--script type="application/ld+json">// <![CDATA[
-<?#php echo json_encode($payload); ?>
-// ]]></script-->
+<script type="application/ld+json">
+<?php include('json-ld-article.php'); ?>
+<?php echo json_encode($payload); ?>
+</script>
 </head>
   <title><?php wp_title( '|', true, 'right' ); ?></title>
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url'); ?>">
@@ -28,6 +28,20 @@
     })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
  -->
+  <script type='text/javascript'>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/7969368/banner-comunidades', [300, 125], 'div-gpt-ad-1461064765000-0').addService(googletag.pubads());
+    googletag.defineSlot('/7969368/BannerHorizontal', [[970, 90], [1024, 768]], 'div-gpt-ad-1461064765000-1').addService(googletag.pubads());
+    googletag.defineSlot('/7969368/ForumTableless', [[970, 90], [728, 90]], 'div-gpt-ad-1461064765000-2').addService(googletag.pubads());
+    googletag.defineSlot('/7969368/RetanguloMedio-MiddleSidebar', [[300, 250], [300, 300], [360, 360], [336, 280]], 'div-gpt-ad-1461064765000-3').addService(googletag.pubads());
+    googletag.defineSlot('/7969368/RetanguloMedio-TopoSidebar', [[300, 250], [300, 300], [360, 360], [336, 280]], 'div-gpt-ad-1461064765000-4').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs();
+    googletag.enableServices();
+  });
+  </script>
+
+
   <?php wp_head();?>
 
 
