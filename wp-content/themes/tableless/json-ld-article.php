@@ -29,7 +29,7 @@ $thumb_id = get_post_thumbnail_id();
     $payload["datePublished"] = $post_data->post_date; 
     $payload["image"] = $thumb_url; 
     $payload["ArticleSection"] = $category[0]->cat_name; 
-    $payload["Publisher"] = array( "@type" => "Organization", "name" => "Tableless", "logo" => "image.png"); 
+    $payload["Publisher"] = array( "@type" => "Organization", "name" => "Tableless", "logo" => "http://tableless.com.br/wp-content/themes/tableless/images/logo.png"); 
     $payload["dateModified"] = $post_data->post_date;
     $payload["articleBody"] = $post_data->post_content;
 
