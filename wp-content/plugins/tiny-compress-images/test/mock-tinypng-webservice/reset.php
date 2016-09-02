@@ -1,4 +1,4 @@
 <?php
 
-require('common.php');
+require 'common.php';
 $session = null;

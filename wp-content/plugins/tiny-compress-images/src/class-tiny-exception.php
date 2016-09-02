@@ -19,14 +19,31 @@
 */
 
 class Tiny_Exception extends Exception {
-    private $error;
+	protected $type;
+	protected $status;
 
-    public function __construct($message, $error=null) {
-        parent::__construct($message);
-        $this->error = $error;
-    }
+	public function __construct( $message, $type = null, $status = null ) {
+		if ( ! is_string( $message ) || ($type && ! is_string( $type )) ) {
+			throw new InvalidArgumentException(
+				'First two arguments must be strings'
+			);
+		}
 
-    public function get_error() {
-        return $this->error;
-    }
+		$this->type = $type;
+		$this->status = $status;
+
+		parent::__construct( $message );
+	}
+
+	public function get_type() {
+		return $this->type;
+	}
+
+	public function get_status() {
+		return $this->status;
+	}
+
+	public function get_message() {
+		return $this->getMessage();
+	}
 }

@@ -385,3 +385,25 @@
 #sendgrid-statistics-page .error {
   width: 1660px;
 }
+
+.sendgrid-settings-top-header {
+  margin-top: 0px;
+}
+
+.sengrid-settings-select {
+  width: 435px;
+}
+
+.sendgrid-settings-select {
+  width: 350px;
+}
+
+.sendgrid-settings-key {
+  width: 350px;
+}
+
+.sengrid-settings-nav-bar {
+  font-size: 0.9em;
+  padding-bottom: 0px;
+  margin-bottom: 20px!important;
+}

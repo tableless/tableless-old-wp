@@ -1,0 +1,380 @@
+div.tiny-bulk-optimization div.dashboard {
+	min-width: 750px;
+	margin-top: 10px;
+	border: 1px solid #e5e5e5;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+	background-color: #fff;
+}
+
+@media only screen and (max-width: 799px) {
+	div.tiny-bulk-optimization div.dashboard {
+		min-width: 250px;
+	}
+}
+
+div.tiny-bulk-optimization div.available {
+	float: left;
+	width: 50%;
+}
+
+@media only screen and (max-width: 799px) {
+	div.tiny-bulk-optimization div.available {
+		width: 100%;
+	}
+}
+
+div.tiny-bulk-optimization div.available div.inner {
+	max-width: 600px;
+	padding: 4px 23px 23px;
+}
+
+div.tiny-bulk-optimization div.available table.totals {
+	max-width: 500px;
+	width: 100%;
+	margin: 18px 0;
+	border: 1px solid #e5e5e5;
+	border-spacing: 1px;
+	box-shadow: inset 0 0 0 25px #fff;
+	background-color: #e5e5e5;
+}
+
+/*ie6-8*/ div.tiny-bulk-optimization div.available table.totals {
+	border-collapse: collapse \9;
+	border-spacing: 0 \9;
+}
+
+/*ie6-8*/ div.tiny-bulk-optimization div.available table.totals td {
+	border: 1px solid #e5e5e5 \9;
+}
+
+div.tiny-bulk-optimization div.available table.totals td.item {
+	width: 33%;
+	padding: 1em 8px;
+	vertical-align: top;
+	text-align: center;
+	background-color: #fff;
+}
+
+@media only screen and (max-width: 400px) {
+	div.tiny-bulk-optimization div.available table.totals td.item.costs {
+		display: none;
+	}
+}
+
+div.tiny-bulk-optimization div.available table.totals td.item h3 {
+	margin-top: 0;
+	text-transform: uppercase;
+	color: #bbb;
+	font-size: 1.1em;
+	font-weight: normal;
+}
+
+div.tiny-bulk-optimization div.available table.totals td.item span {
+	font-size: 1.8em;
+	font-weight: bold;
+	line-height: 1em;
+}
+
+div.tiny-bulk-optimization div.available table.totals td.item div.tooltip {
+	position: relative;
+	display: inline-block;
+	vertical-align: super;
+}
+
+div.tiny-bulk-optimization div.available table.totals td.item div.tooltip span.dashicons {
+	font-weight: normal;
+	font-size: 1.3em;
+	/* WordPress color embedded in webpage */
+}
+
+* + html div.tiny-bulk-optimization div.available table.totals td.item div.tooltip span.dashicons {
+	display: none;
+}
+
+div.tiny-bulk-optimization div.available table.totals td.item div.tooltip div.tip {
+	position: absolute;
+	z-index: 10;
+	display: none;
+	top: 50%;
+	left: 130%;
+	width: 18em;
+	padding: 0 1em;
+	background-color: #fff;
+	box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+	border: 1px solid #e5e5e5;
+	text-align: left;
+}
+
+div.tiny-bulk-optimization div.available table.totals td.item div.tooltip:hover div.tip {
+	display: block;
+}
+
+div.tiny-bulk-optimization div.available div.notes {
+	display: table;
+}
+
+div.tiny-bulk-optimization div.available div.notes h4 {
+	display: table-cell;
+	font-size: 1.1em;
+	padding-right: 1.2em;
+	white-space: nowrap;
+}
+
+div.tiny-bulk-optimization div.available div.notes p {
+	display: table-cell;
+}
+
+div.tiny-bulk-optimization div.savings {
+	margin-left: 50%;
+}
+
+@media only screen and (max-width: 799px) {
+	div.tiny-bulk-optimization div.savings {
+		margin-left: 0;
+	}
+}
+
+div.tiny-bulk-optimization div.savings div.inner {
+	max-width: 600px;
+	padding: 4px 23px 23px;
+}
+
+div.tiny-bulk-optimization div.savings div.legend {
+	margin-left: 50%;
+}
+
+div.tiny-bulk-optimization div.savings div.chart {
+	float: left;
+	position: relative;
+	width: 50%;
+	text-align: center;
+}
+
+div.tiny-bulk-optimization div.savings div.chart svg circle.main {
+	fill: #ebebeb;
+	animation: shwoosh 2s ease;
+	transition: stroke-dasharray 1s ease;
+}
+
+div.tiny-bulk-optimization div.savings div.chart svg circle.inner {
+	fill: #fff;
+}
+
+div.tiny-bulk-optimization div.savings div.chart div.value {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	color: #7acb44;
+	text-align: center;
+}
+
+div.tiny-bulk-optimization div.savings div.chart div.value div.percentage {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 65px;
+	font-size: 2.4em;
+	line-height: 1em;
+}
+
+div.tiny-bulk-optimization div.savings div.chart div.value div.label {
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 1.4em;
+	line-height: 1.2em;
+}
+
+div.tiny-bulk-optimization div.savings div.legend {
+	/* margin-left defined inline */
+	padding: 30px 0;
+}
+
+div.tiny-bulk-optimization div.savings table {
+	margin: 0 auto;
+}
+
+div.tiny-bulk-optimization div.savings table td.value {
+	font-size: 1.4em;
+	vertical-align: top;
+	text-align: right;
+	padding: 15px 8px 0 5px;
+	white-space: nowrap;
+}
+
+div.tiny-bulk-optimization div.savings table td.description {
+	padding: 19px 0 0;
+	line-height: 14px;
+	vertical-align: top;
+	text-align: left;
+	color: #bbb;
+}
+
+@media only screen and (max-width: 400px) {
+	div.tiny-bulk-optimization div.savings div.chart {
+		float: none;
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	div.tiny-bulk-optimization div.savings div.legend {
+		margin-left: 0 !important;
+		padding: 10px 0;
+	}
+}
+
+div.tiny-bulk-optimization div.optimize {
+	margin: 4px 23px 32px;
+	text-align: center;
+	clear: both;
+}
+
+div.tiny-bulk-optimization div.optimize div.progressbar {
+	position: relative;
+	height: 32px;
+	margin-bottom: 32px;
+	line-height: 32px;
+	border-radius: 32px;
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #fff;
+	background-color: #ebebeb;
+}
+
+div.tiny-bulk-optimization div.optimize div.progressbar div.progress {
+	position: absolute;
+	left: 0;
+	min-width: 32px;
+	width: 0;
+	height: 32px;
+	z-index: 2;
+	border-radius: 16px;
+	transition: width 1s ease;
+	background-size: 40px 80px;
+	-webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
+	backface-visibility: hidden;
+	perspective: 1000;
+}
+
+@keyframes progress-bar {
+	to {
+		background-position: 3200px 0;
+	}
+}
+
+div.tiny-bulk-optimization div.optimize div.progressbar div.numbers {
+	position: relative;
+	z-index: 3;
+	text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+div.tiny-bulk-optimization div.optimize div.optimization-buttons input.button-hero {
+	display: none;
+}
+
+div.tiny-bulk-optimization div.optimize div.optimization-buttons input.button-hero.visible {
+	display: inline;
+}
+
+div.tiny-bulk-optimization div.optimize div.optimization-buttons input.button-hero {
+	min-width: 230px;
+}
+
+div.tiny-bulk-optimization div.optimize div.optimization-buttons input.button-hero.red {
+	/* WP < 3.8 */ background-image: none;
+	border-color: #920011;
+	background-color: #d0021b;
+	box-shadow: 0 2px 0 #920011 !important;
+	text-shadow: 0 -1px 1px #920011, 1px 0 1px #920011, 0 1px 1px #920011, -1px 0 1px #920011;
+}
+
+div.tiny-bulk-optimization div.optimize div.optimization-buttons input.button-hero.red:focus,
+div.tiny-bulk-optimization div.optimize div.optimization-buttons input.button-hero.red:hover {
+	background-color: #e00016;
+}
+
+div.tiny-bulk-optimization div.optimize div.optimization-buttons input.button-hero.red:active {
+	background-color: #d0021b;
+	box-shadow: 0 3px 0 #920011 inset !important;
+}
+
+div.tiny-bulk-optimization div.optimize div#optimization-spinner {
+	position: absolute;
+	display: none;
+	width: 20px;
+	height: 20px;
+	margin-top: 15px;
+	background-size: 20px 20px;
+}
+
+div.tiny-bulk-optimization table.whitebox {
+	min-width: 750px;
+	margin-top: 16px;
+	border: 1px solid #e5e5e5;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+	background-color: #fff;
+}
+
+
+@media only screen and (max-width: 799px) {
+	div.tiny-bulk-optimization table.whitebox {
+		min-width: 250px;
+	}
+}
+
+div.tiny-bulk-optimization table.whitebox th.column-author {
+	/* WP 3.1-4.2 */ width: auto;
+}
+
+div.tiny-bulk-optimization table.whitebox thead th.thumbnail {
+	width: 30px;
+}
+
+div.tiny-bulk-optimization table.whitebox thead th.savings {
+	width: 70px;
+}
+
+div.tiny-bulk-optimization table.whitebox thead th.status {
+}
+
+div.tiny-bulk-optimization table.whitebox th.thumbnail {
+	width: 30px;
+	height: 32px;
+	padding-top: 6px;
+	vertical-align: top;
+}
+
+div.tiny-bulk-optimization table.whitebox td {
+	padding-top: 12px;
+}
+
+div.tiny-bulk-optimization table.whitebox td.name,
+div.tiny-bulk-optimization table.whitebox td.status {
+	padding-bottom: 12px;
+}
+
+div.tiny-bulk-optimization table.whitebox td.column-primary button {
+	margin-top: 6px;
+}
+
+div.tiny-bulk-optimization button.toggle-row {
+	/* WP < 4.3 */ display: none;
+}
+
+div.tiny-bulk-optimization table.whitebox tr.success button.toggle-row:before {
+	color: #7acb44;
+	content: "\f147"; /* yes */
+}
+
+div.tiny-bulk-optimization table.whitebox tr.failed button.toggle-row:before {
+	color: #d54e21;
+	content: "\f158"; /* more compatibility*/
+}
+
+div.tiny-bulk-optimization table.whitebox tr.failed.is-expanded span.icon {
+	display: none;
+}
+

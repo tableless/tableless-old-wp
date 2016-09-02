@@ -1,0 +1,49 @@
+{
+  "0": {
+    "input": {
+      "size": 146480
+    },
+    "output": {
+      "size": 137856,
+      "resized": true
+    },
+    "end": 1447925138,
+    "start": 1447925134
+  },
+  "small": {
+    "input": {
+      "size": 66480
+    },
+    "start": 1447925134
+  },
+  "medium": {
+    "input": {
+      "size": 72480
+    },
+    "output": {
+      "size": 57856
+    }
+  },
+  "thumbnail": {
+    "input": {
+      "size": 46480
+    },
+    "output": {
+      "size": 37856
+    },
+    "timestamp": 1437925244
+  },
+  "twentyfourteen-full-width": {
+    "input": {
+      "size": 139127
+    },
+    "output": {
+      "size": 121873
+    },
+    "end": 1447925214
+  },
+  "failed": {
+    "input": {
+    }
+  }
+}

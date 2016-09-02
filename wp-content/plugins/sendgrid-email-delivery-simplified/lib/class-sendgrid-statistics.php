@@ -114,7 +114,7 @@ class Sendgrid_Statistics
     wp_enqueue_script( 'jquery-flot-time', plugin_dir_url( __FILE__ ) . '../view/js/jquery.flot.time.js', array('jquery') );
     wp_enqueue_script( 'jquery-flot-tofflelegend', plugin_dir_url( __FILE__ ) . '../view/js/jquery.flot.togglelegend.js', array('jquery') );
     wp_enqueue_script( 'jquery-flot-symbol', plugin_dir_url( __FILE__ ) . '../view/js/jquery.flot.symbol.js', array('jquery') );
-    wp_enqueue_script('jquery-ui-datepicker', plugin_dir_url( __FILE__ ) . '../view/js/jquery.ui.datepicker.js', array('jquery', 'jquery-ui-core') );
+    wp_enqueue_script( 'jquery-ui-datepicker', plugin_dir_url( __FILE__ ) . '../view/js/jquery.ui.datepicker.js', array('jquery', 'jquery-ui-core') );
 
     // CSS
     wp_enqueue_style( 'jquery-ui-datepicker', plugin_dir_url( __FILE__ ) . '../view/css/datepicker/smoothness/jquery-ui-1.10.3.custom.css' );

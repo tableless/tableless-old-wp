@@ -9,7 +9,7 @@
  * Requires Connection: No
  * Auto Activate: Yes
  * Module Tags: Photos and Videos, Social, Writing, Appearance
- * Additional Search Queries: shortcodes, shortcode, embeds, media, bandcamp, blip.tv, dailymotion, digg, facebook, flickr, google calendars, google maps, google+, polldaddy, recipe, recipes, scribd, slideshare, slideshow, slideshows, soundcloud, ted, twitter, vimeo, vine, youtube
+ * Additional Search Queries: shortcodes, shortcode, embeds, media, bandcamp, blip.tv, dailymotion, facebook, flickr, google calendars, google maps, google+, polldaddy, recipe, recipes, scribd, slideshare, slideshow, slideshows, soundcloud, ted, twitter, vimeo, vine, youtube
  */
 
 /**
@@ -39,12 +39,12 @@ function shortcode_new_to_old_params( $params, $old_format_support = false ) {
 }
 
 function jetpack_load_shortcodes() {
-	global $wp_version;
-
 	$shortcode_includes = array();
 
 	foreach ( Jetpack::glob_php( dirname( __FILE__ ) . '/shortcodes' ) as $file ) {
-		$shortcode_includes[] = $file;
+		$filename = substr( basename( $file ), 0, -4 );
+
+		$shortcode_includes[ $filename ] = $file;
 	}
 
 /**
@@ -53,22 +53,19 @@ function jetpack_load_shortcodes() {
  * @module shortcodes
  *
  * @since 2.2.1
+ * @since 4.2.0 Added filename without extension as array key.
  *
  * @param array $shortcode_includes An array of which shortcodes to include.
  */
 	$shortcode_includes = apply_filters( 'jetpack_shortcodes_to_include', $shortcode_includes );
 
 	foreach ( $shortcode_includes as $include ) {
-		if ( version_compare( $wp_version, '3.6-z', '>=' ) && stristr( $include, 'audio.php' ) ) {
-			continue;
-		}
-
 		include $include;
 	}
 }
 
 /**
- * Runs preg_replace so that replacements don't happen within open tags.  
+ * Runs preg_replace so that replacements don't happen within open tags.
  * Parameters are the same as preg_replace, with an added optional search param for improved performance
  *
  * @param String $pattern
@@ -85,7 +82,7 @@ function jetpack_preg_replace_outside_tags( $pattern, $replacement, $content, $s
 	if ( $search && false === strpos( $content, $search ) ) {
 		return $content;
 	}
-	
+
 	$textarr = wp_html_split( $content );
 	unset( $content );
 	foreach( $textarr as &$element ) {
@@ -93,12 +90,12 @@ function jetpack_preg_replace_outside_tags( $pattern, $replacement, $content, $s
 	        continue;
 	    $element = preg_replace( $pattern, $replacement, $element );
 	}
-	
+
 	return join( $textarr );
 }
 
 /**
- * Runs preg_replace_callback so that replacements don't happen within open tags.  
+ * Runs preg_replace_callback so that replacements don't happen within open tags.
  * Parameters are the same as preg_replace, with an added optional search param for improved performance
  *
  * @param String $pattern
@@ -115,7 +112,7 @@ function jetpack_preg_replace_callback_outside_tags( $pattern, $callback, $conte
 	if ( $search && false === strpos( $content, $search ) ) {
 		return $content;
 	}
-	
+
 	$textarr = wp_html_split( $content );
 	unset( $content );
 	foreach( $textarr as &$element ) {
@@ -123,28 +120,8 @@ function jetpack_preg_replace_callback_outside_tags( $pattern, $callback, $conte
 	        continue;
 	    $element = preg_replace_callback( $pattern, $callback, $element );
 	}
-	
+
 	return join( $textarr );
-}
-
-global $wp_version;
-
-if ( version_compare( $wp_version, '3.6-z', '>=' ) ) {
-	add_filter( 'shortcode_atts_audio', 'jetpack_audio_atts_handler', 10, 3 );
-
-	function jetpack_audio_atts_handler( $out, $pairs, $atts ) {
-		if( isset( $atts[0] ) )
-			$out['src'] = $atts[0];
-
-		return $out;
-	}
-
-	function jetpack_shortcode_get_audio_id( $atts ) {
-		if ( isset( $atts[ 0 ] ) )
-			return $atts[ 0 ];
-		else
-			return 0;
-	}
 }
 
 if ( ! function_exists( 'jetpack_shortcode_get_wpvideo_id' ) ) {

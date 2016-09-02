@@ -126,6 +126,7 @@ print $reflection->getFileName();
 
 <form name="EmailUsersOptions" action="options.php" method="post">		
 	<?php settings_fields('email_users') ;?>
+    <?php wp_nonce_field( 'mailusers_plugin_settings', 'mailusers_plugin_settings_nonce' ); ?>
 	<input type="hidden" name="mailusers_version" value="<?php echo mailusers_get_current_version(); ?>" />
 	<table class="form-table" style="clear:none;" width="100%" cellspacing="2" cellpadding="5">
 	<tr>
@@ -441,6 +442,7 @@ print $reflection->getFileName();
 	</tbody>
 </table>
 <form name="ResetPluginSettings" action="" method="post">
+    <?php wp_nonce_field( 'mailusers_plugin_settings', 'mailusers_plugin_settings_nonce' ); ?>
 	<p class="submit">
 		<input type="hidden" name="resetpluginsettings" value="true" />
 		<input class="button-primary" type="submit" name="Submit" value="<?php _e('Apply Default Settings', MAILUSERS_I18N_DOMAIN); ?> &raquo;" />
@@ -538,6 +540,7 @@ print $reflection->getFileName();
 	</tbody>
 </table>
 <form name="SendTestEmail" action="" method="post">
+    <?php wp_nonce_field( 'mailusers_plugin_settings', 'mailusers_plugin_settings_nonce' ); ?>
 	<p class="submit">
 		<input type="hidden" name="sendtestemail" value="true" />
 		<input class="button-primary" type="submit" name="Submit" value="<?php _e('Send Test Notification to Yourself', MAILUSERS_I18N_DOMAIN); ?> &raquo;" />

@@ -5,7 +5,7 @@ define('SESSION_FILE', '/tmp/session.dat');
 if (file_exists(SESSION_FILE)) {
     $session = unserialize(file_get_contents(SESSION_FILE));
 } else {
-    $session = array('Compression-Count' => 0);
+    $session = array( 'Compression-Count' => 0 );
 }
 
 function save_session() {

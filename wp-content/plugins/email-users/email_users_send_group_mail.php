@@ -41,6 +41,14 @@
 
 	// Send the email if it has been requested
 	if (array_key_exists('send', $_POST) && $_POST['send']=='true') {
+        if (! isset( $_POST['mailusers_send_to_group_nonce'] ) 
+            || ! wp_verify_nonce( $_POST['mailusers_send_to_group_nonce'], 'mailusers_send_to_group' ) ) {
+
+            wp_die(printf('<div class="error fade"><p>%s</p></div>',
+                __('WordPress nonce failed to verify, requested action terminated.', MAILUSERS_I18N_DOMAIN)));
+        }
+		// No error and nonce ok, send the mail
+
 	    // Use current user info only if from name and address has not been set by the form
 	    if (!isset($_POST['fromName']) || !isset($_POST['fromAddress']) || empty($_POST['fromName']) || empty($_POST['fromAddress'])) {
 	        $from_name = empty($user_identity) ? get_bloginfo('name') : $user_identity;

@@ -26,6 +26,7 @@
 	} 
 ?>
 
+
 <?php
         //printf('<div class="error nag"><p>Max Input Vars:  %s</p></div>', ini_get('max_input_vars')) ;
         //printf('<div class="updated nag" style="border-left: 4px solid #89deee;"><p>Max Input Vars:  %s</p></div>', ini_get('max_input_vars')) ;
@@ -112,7 +113,14 @@
 
 	// If error, we simply show the form again
 	if (array_key_exists('send', $_POST) && ($_POST['send']=='true') && ($err_msg == '')) {
-		// No error, send the mail
+        //  Verify WordPress nonce before proceeding ...
+        if (! isset( $_POST['mailusers_send_to_user_nonce'] ) 
+            || ! wp_verify_nonce( $_POST['mailusers_send_to_user_nonce'], 'mailusers_send_to_user' ) ) {
+
+            wp_die(printf('<div class="error fade"><p>%s</p></div>',
+                __('WordPress nonce failed to verify, requested action terminated.', MAILUSERS_I18N_DOMAIN)));
+        }
+		// No error and nonce ok, send the mail
 		
 		// Do some HTML homework if needed
 		//--

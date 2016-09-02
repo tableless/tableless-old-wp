@@ -2,8 +2,22 @@
 
 require_once plugin_dir_path( __FILE__ ) . 'sendgrid/class-sendgrid-smtp.php';
 require_once plugin_dir_path( __FILE__ ) . 'class-sendgrid-tools.php';
+require_once plugin_dir_path( __FILE__ ) . 'class-sendgrid-nlvx.php';
+require_once plugin_dir_path( __FILE__ ) . 'class-sendgrid-mc-optin.php';
+require_once plugin_dir_path( __FILE__ ) . 'class-sendgrid-nlvx-widget.php';
 
 class Sendgrid_Settings {
+  const DEFAULT_SIGNUP_EMAIL_SUBJECT = 'Confirm your subscription to ';
+  const DEFAULT_SIGNUP_EMAIL_CONTENT = '&lt;p&gt;Greetings!&lt;/p&gt;&#13;&#10;&#13;&#10;&lt;p&gt;Please click &lt;a href=&quot;%confirmation_link%&quot;&gt;here&lt;/a&gt; in order to subscribe to our newsletter!&lt;/p&gt;&#13;&#10;&#13;&#10;&lt;p&gt;Thank you,&lt;/p&gt;&#13;&#10;&lt;p&gt;';
+  const DEFAULT_SIGNUP_EMAIL_CONTENT_TEXT = 'Greetings!&#13;&#10;&#13;&#10;Please open %confirmation_link% in order to subscribe to our newsletter!&#13;&#10;&#13;&#10;Thank you,&#13;&#10;';
+
+  /**
+   * Settings class constructor
+   *
+   * @param  string   $plugin_directory   name of the plugin directory
+   *
+   * @return void
+   */
   public function __construct( $plugin_directory )
   {
     // Add SendGrid settings page in the menu
@@ -21,6 +35,8 @@ class Sendgrid_Settings {
 
   /**
    * Add SendGrid settings page in the menu
+   *
+   * @return void
    */
   public static function add_settings_menu() {
     add_options_page( __( 'SendGrid' ), __( 'SendGrid' ), 'manage_options', 'sendgrid-settings',
@@ -31,6 +47,7 @@ class Sendgrid_Settings {
    * Add SendGrid settings page in the plugin list
    *
    * @param  mixed   $links   links
+   *
    * @return mixed            links
    */
   public static function add_settings_link( $links )
@@ -47,6 +64,7 @@ class Sendgrid_Settings {
    * @param   mixed   $contextual_help    contextual help
    * @param   integer $screen_id          screen id
    * @param   integer $screen             screen
+   *
    * @return  string
    */
   public static function show_contextual_help( $contextual_help, $screen_id, $screen )
@@ -62,7 +80,7 @@ class Sendgrid_Settings {
   /**
    * Include css & javascripts we need for SendGrid settings page and widget
    *
-   * @return void;
+   * @return void
    */
   public static function add_headers( $hook )
   {
@@ -71,19 +89,23 @@ class Sendgrid_Settings {
     }
 
     wp_enqueue_style( 'sendgrid', plugin_dir_url( __FILE__ ) . '../view/css/sendgrid.css' );
+    wp_enqueue_style( 'select2', plugin_dir_url( __FILE__ ) . '../view/css/select2.min.css' );
 
-    wp_enqueue_script( 'sendgrid', plugin_dir_url( __FILE__ ) . '../view/js/sendgrid.settings-v1.7.3.js', array('jquery') );
+    wp_enqueue_script( 'select2', plugin_dir_url( __FILE__ ) . '../view/js/select2.full.min.js', array('jquery') );
+    wp_enqueue_script( 'sendgrid', plugin_dir_url( __FILE__ ) . '../view/js/sendgrid.settings-v1.7.3.js', array('jquery', 'select2') );
   }
 
   /**
    * Display SendGrid settings page content
+   *
+   * @return void
    */
   public static function show_settings_page()
   { 
     $response = null;
     $error_from_update = false;
 
-    if ( 'POST' == $_SERVER['REQUEST_METHOD'] ) {
+    if ( 'POST' == $_SERVER['REQUEST_METHOD'] and ! isset( $_POST['sg_dismiss_widget_notice'] ) ) {
       $response = self::do_post( $_POST );
       if( isset( $response['status'] ) and $response['status'] == 'error' ) {
         $error_from_update = true;
@@ -105,11 +127,81 @@ class Sendgrid_Settings {
     $template             = stripslashes( Sendgrid_Tools::get_template() );
     $port                 = Sendgrid_Tools::get_port();
     $content_type         = Sendgrid_Tools::get_content_type();
+    $unsubscribe_group_id = Sendgrid_Tools::get_unsubscribe_group();
     $stats_categories     = stripslashes( Sendgrid_Tools::get_stats_categories() );
+
+    $mc_api_key                   = Sendgrid_Tools::get_mc_api_key();
+    $mc_list_id                   = Sendgrid_Tools::get_mc_list_id();
+    $mc_opt_use_transactional     = Sendgrid_Tools::get_mc_opt_use_transactional();
+    $mc_opt_incl_fname_lname      = Sendgrid_Tools::get_mc_opt_incl_fname_lname();
+    $mc_opt_req_fname_lname       = Sendgrid_Tools::get_mc_opt_req_fname_lname();
+    $mc_signup_confirmation_page  = Sendgrid_Tools::get_mc_signup_confirmation_page();
+
+    $mc_signup_email_subject = Sendgrid_Tools::get_mc_signup_email_subject();
+    if ( false == $mc_signup_email_subject ) {
+      $mc_signup_email_subject = self::DEFAULT_SIGNUP_EMAIL_SUBJECT . get_bloginfo('name');
+    }
+
+    $mc_signup_email_content = Sendgrid_Tools::get_mc_signup_email_content();
+    if ( false == $mc_signup_email_content ) {
+      $mc_signup_email_content = self::DEFAULT_SIGNUP_EMAIL_CONTENT . get_bloginfo('name') . '&lt;/p&gt;';
+    }
+    $mc_signup_email_content = stripslashes( $mc_signup_email_content );
+
+    $mc_signup_email_content_text = Sendgrid_Tools::get_mc_signup_email_content_text();
+    if ( false == $mc_signup_email_content_text ) {
+      $mc_signup_email_content_text = self::DEFAULT_SIGNUP_EMAIL_CONTENT_TEXT . get_bloginfo('name');
+    }
+    $mc_signup_email_content_text = stripslashes( $mc_signup_email_content_text );
+
+    $confirmation_pages = get_pages( array( 'parent' => 0 ) );
+
+    $checked_use_transactional = '';
+    if ( 'true' == $mc_opt_use_transactional ) {
+      $checked_use_transactional = 'checked';
+    }
+
+    $checked_incl_fname_lname = '';
+    if ( 'true' == $mc_opt_incl_fname_lname ) {
+      $checked_incl_fname_lname = 'checked';
+    }
+
+    $checked_req_fname_lname = '';
+    if ( 'true' == $mc_opt_req_fname_lname ) {
+      $checked_req_fname_lname = 'checked';
+    }
+
+    $contact_lists = Sendgrid_NLVX::get_all_lists();
+    $contact_list_id_is_valid = false;
+    if ( false != $contact_lists ) {
+      foreach ( $contact_lists as $key => $list ) {
+        if ( $mc_list_id == $list['id'] ) {
+          $contact_list_id_is_valid = true;
+          break;
+        }
+      }
+    }
 
     $allowed_send_methods = array( 'API' );
     if ( class_exists( 'Swift' ) ) {
       $allowed_send_methods[] = 'SMTP';
+    }
+
+    $is_mc_api_key_valid = true;
+    if ( 'true' == $mc_opt_use_transactional and 'apikey' == $auth_method and ! empty( $api_key ) ) {
+      if ( ! Sendgrid_Tools::check_api_key_mc( $api_key ) ) {
+        $is_mc_api_key_valid = false;
+      }
+    } else if ( 'true' != $mc_opt_use_transactional ) {
+      if ( ! Sendgrid_Tools::check_api_key_mc( $mc_api_key ) ) {
+        $is_mc_api_key_valid = false;
+      }
+    }
+
+    if ( $is_mc_api_key_valid ) {
+      Sendgrid_Tools::set_mc_auth_valid( 'true' );
+    } else {
+      Sendgrid_Tools::set_mc_auth_valid( 'false' );
     }
 
     if ( ! $error_from_update ) {
@@ -122,14 +214,17 @@ class Sendgrid_Settings {
         if ( ! Sendgrid_Tools::check_api_key( $api_key, true ) ) {
           $message = 'API Key is invalid or without permissions.';
           $status  = 'error';
-        } else {
+        } elseif ( 'true' == $mc_opt_use_transactional and ! $is_mc_api_key_valid ) {
+          $message = 'The configured API Key for subscription widget is invalid, empty or without permissions.';
+          $status  = 'error';  
+        } elseif ( 'error' != $status ) {
           $status  = 'valid_auth';
         }
       } elseif ( 'credentials' == $auth_method and ! empty( $user ) and ! empty( $password ) ) {
         if ( ! Sendgrid_Tools::check_username_password( $user, $password, true ) ) {
           $message = 'Username and password are invalid.';
           $status  = 'error';
-        } else {
+        } elseif ( 'error' != $status ) {
           $status  = 'valid_auth';
         }
       }
@@ -138,7 +233,7 @@ class Sendgrid_Settings {
         $message = 'Template not found.';
         $status  = 'error';
       }
-   
+
       if ( ! in_array( $port, Sendgrid_Tools::$allowed_ports ) ) {
         $message = 'Invalid port configured in the config file, available ports are: ' . join( ",", Sendgrid_Tools::$allowed_ports );
         $status = 'error';
@@ -171,15 +266,32 @@ class Sendgrid_Settings {
       }
     }
 
-    $is_env_auth_method   = defined( 'SENDGRID_AUTH_METHOD' );
-    $is_env_send_method   = defined( 'SENDGRID_SEND_METHOD' );
-    $is_env_username      = defined( 'SENDGRID_USERNAME' );
-    $is_env_password      = defined( 'SENDGRID_PASSWORD' );
-    $is_env_api_key       = defined( 'SENDGRID_API_KEY' );
-    $is_env_port          = defined( 'SENDGRID_PORT' );
-    $is_env_content_type  = defined( 'SENDGRID_CONTENT_TYPE' );
-    
-    if ( $response && $status != 'error' ) {
+    // get unsubscribe groups
+    $unsubscribe_groups = Sendgrid_Tools::get_all_unsubscribe_groups();
+    $no_permission_on_unsubscribe_groups = false;
+    if ( ( 'apikey' == $auth_method ) and ( 'true' != Sendgrid_Tools::get_asm_permission() ) ) {
+      $no_permission_on_unsubscribe_groups = true;  
+    }
+
+    $is_env_auth_method                  = defined( 'SENDGRID_AUTH_METHOD' );
+    $is_env_send_method                  = defined( 'SENDGRID_SEND_METHOD' );
+    $is_env_username                     = defined( 'SENDGRID_USERNAME' );
+    $is_env_password                     = defined( 'SENDGRID_PASSWORD' );
+    $is_env_api_key                      = defined( 'SENDGRID_API_KEY' );
+    $is_env_port                         = defined( 'SENDGRID_PORT' );
+    $is_env_content_type                 = defined( 'SENDGRID_CONTENT_TYPE' );
+    $is_env_unsubscribe_group            = defined( 'SENDGRID_UNSUBSCRIBE_GROUP' );
+    $is_env_mc_api_key                   = defined( 'SENDGRID_MC_API_KEY' );
+    $is_env_mc_list_id                   = defined( 'SENDGRID_MC_LIST_ID' );
+    $is_env_mc_opt_use_transactional     = defined( 'SENDGRID_MC_OPT_USE_TRANSACTIONAL' );
+    $is_env_mc_opt_incl_fname_lname      = defined( 'SENDGRID_MC_OPT_INCL_FNAME_LNAME' );
+    $is_env_mc_opt_req_fname_lname       = defined( 'SENDGRID_MC_OPT_REQ_FNAME_LNAME' );
+    $is_env_mc_signup_email_subject      = defined( 'SENDGRID_MC_SIGNUP_EMAIL_SUBJECT' );
+    $is_env_mc_signup_email_content      = defined( 'SENDGRID_MC_SIGNUP_EMAIL_CONTENT' );
+    $is_env_mc_signup_email_content_text = defined( 'SENDGRID_MC_SIGNUP_EMAIL_CONTENT_TEXT' );
+    $is_env_mc_signup_confirmation_page  = defined( 'SENDGRID_MC_SIGNUP_CONFIRMATION_PAGE' );
+
+    if ( $response and $status != 'error' ) {
       $message  = $response['message'];
       $status   = $response['status'];
       if( array_key_exists( 'error_type', $response ) ) {
@@ -190,43 +302,209 @@ class Sendgrid_Settings {
     require_once dirname( __FILE__ ) . '/../view/sendgrid_settings.php';
   }
 
+  /**
+   * Routes processing of request parameters depending on the source section of the settings page
+   *
+   * @param  mixed   $params    array of parameters from $_POST
+   *
+   * @return mixed              response array from the save or send functions
+   */
   private static function do_post( $params ) {
+    if ( isset($params['mc_settings'] ) and $params['mc_settings'] ) {
+      return self::save_mc_settings( $params );
+    }
+
     if ( isset($params['email_test'] ) and $params['email_test'] ) {
       return self::send_test_email( $params );
+    }
+
+    if ( isset($params['contact_upload_test'] ) and $params['contact_upload_test'] ) {
+      return self::send_contact_upload_test( $params );
     } 
-    
-    return self::save_settings( $params );
+
+    return self::save_general_settings( $params );
   }
 
-  private static function save_settings( $params ) {
+  /**
+   * Saves the Marketing Campaigns parameters sent from the settings page
+   *
+   * @param  mixed   $params    array of parameters from $_POST
+   *
+   * @return mixed              response array with message and status
+   */
+  private static function save_mc_settings( $params ) {
+    // Use Transactional Option 
+    $use_transactional_key = false;
+
+    if ( ! defined( 'SENDGRID_MC_OPT_USE_TRANSACTIONAL' ) ) {
+      if ( isset( $params['sendgrid_mc_use_transactional'] ) ) {
+        $use_transactional_key = true;
+        Sendgrid_Tools::set_mc_opt_use_transactional( 'true' );
+      } else {
+        Sendgrid_Tools::set_mc_opt_use_transactional( 'false' );
+      }
+    } else {
+      $use_transactional_key = ( 'true' == SENDGRID_MC_OPT_USE_TRANSACTIONAL ? true : false );
+    }
+
+    // If Use Transactional Is Set and auth is not through credentials, check the API key for MC scopes.
+    if ( $use_transactional_key and 'apikey' == Sendgrid_Tools::get_auth_method() ) {
+      $apikey = Sendgrid_Tools::get_api_key();
+      if( false == $apikey or empty( $apikey ) ) {
+        $response = array(
+          'message' => 'API Key is empty.',
+          'status' => 'error'
+        );
+
+        return $response;
+      }
+
+      if ( ! Sendgrid_Tools::check_api_key_mc( $apikey ) ) {
+        $response = array(
+          'message' => 'API Key is invalid or without permissions.',
+          'status' => 'error'
+        );
+
+        return $response;
+      }
+    }
+
+    if ( false == $use_transactional_key and ! defined( 'SENDGRID_MC_API_KEY' ) ) {
+      // MC API Key was set empty on purpose
+      if ( ! isset( $params['sendgrid_mc_apikey'] ) or empty( $params['sendgrid_mc_apikey'] ) ) {
+        $response = array(
+          'message' => 'API Key is empty.',
+          'status' => 'error'
+        );
+
+        Sendgrid_Tools::set_mc_api_key( '' );
+      } else {
+        // MC API Key was set, check scopes and save if correct
+        $apikey = $params['sendgrid_mc_apikey'];
+
+        if ( ! Sendgrid_Tools::check_api_key_mc( $apikey ) ) {
+          $response = array(
+            'message' => 'API Key is invalid or without permissions.',
+            'status' => 'error'
+          );
+        } else {
+          Sendgrid_Tools::set_mc_api_key( $apikey );
+        }
+      }
+    }
+
+    if ( ! defined( 'SENDGRID_MC_OPT_INCL_FNAME_LNAME' ) ) {
+      if ( isset( $params['sendgrid_mc_incl_fname_lname'] ) ) {
+        Sendgrid_Tools::set_mc_opt_incl_fname_lname( 'true' );
+      } else {
+        Sendgrid_Tools::set_mc_opt_incl_fname_lname( 'false' );
+      }
+    }
+
+    if ( ! defined( 'SENDGRID_MC_OPT_REQ_FNAME_LNAME' ) ) {
+      if ( isset( $params['sendgrid_mc_req_fname_lname'] ) ) {
+        Sendgrid_Tools::set_mc_opt_req_fname_lname( 'true' );
+      } else {
+        Sendgrid_Tools::set_mc_opt_req_fname_lname( 'false' );
+      }
+    }
+
+    if ( isset( $params['sendgrid_mc_contact_list'] ) and ! defined( 'SENDGRID_MC_LIST_ID' ) ) {
+      Sendgrid_Tools::set_mc_list_id( $params['sendgrid_mc_contact_list'] );
+    }
+
+    if ( ! defined( 'SENDGRID_MC_SIGNUP_EMAIL_SUBJECT' ) ) {
+      if ( ! isset( $params['sendgrid_mc_email_subject'] ) or empty( $params['sendgrid_mc_email_subject'] ) ) {
+        $response = array(
+          'message' => 'Signup email subject cannot be empty.',
+          'status' => 'error'
+        );
+      } else {
+        Sendgrid_Tools::set_mc_signup_email_subject( $params['sendgrid_mc_email_subject'] );
+      }
+    }
+
+    if ( ! defined( 'SENDGRID_MC_SIGNUP_EMAIL_CONTENT' ) ) {
+      if ( ! isset( $params['sendgrid_mc_email_content'] ) or empty( $params['sendgrid_mc_email_content'] ) ) {
+        $response = array(
+          'message' => 'Signup email content cannot be empty.',
+          'status' => 'error'
+        );
+      } else {
+        Sendgrid_Tools::set_mc_signup_email_content( $params['sendgrid_mc_email_content'] );
+      }
+    }
+
+    if ( ! defined( 'SENDGRID_MC_SIGNUP_EMAIL_CONTENT_TEXT' ) ) {
+      if ( ! isset( $params['sendgrid_mc_email_content_text'] ) or empty( $params['sendgrid_mc_email_content_text'] ) ) {
+        $response = array(
+          'message' => 'Signup email content plain/text cannot be empty.',
+          'status' => 'error'
+        );
+      } else {
+        Sendgrid_Tools::set_mc_signup_email_content_text( $params['sendgrid_mc_email_content_text'] );
+      }
+    }
+
+    if ( isset( $params['sendgrid_mc_signup_page'] ) and ! defined( 'SENDGRID_MC_SIGNUP_CONFIRMATION_PAGE' ) ) {
+      Sendgrid_Tools::set_mc_signup_confirmation_page( $params['sendgrid_mc_signup_page'] );
+    }
+
+    if ( isset( $response ) and $response['status'] == 'error' ) {
+      return $response;
+    }
+
+    return array(
+      'message' => 'Options are saved.',
+      'status' => 'updated'
+    );
+  }
+
+  /**
+   * Saves the General Settings parameters sent from the settings page
+   *
+   * @param  mixed   $params    array of parameters from $_POST
+   *
+   * @return mixed              response array with message and status
+   */
+  private static function save_general_settings( $params ) {
     if ( ! isset( $params['auth_method'] ) ) {
       $params['auth_method'] = Sendgrid_Tools::get_auth_method();
     }
 
     switch ( $params['auth_method'] ) {
       case 'apikey':
-        if ( ! isset( $params['sendgrid_apikey'] ) or empty( $params['sendgrid_apikey'] ) ) {
-          $response = array(
-            'message' => 'API Key is empty.',
-            'status' => 'error'
-          );
+        if ( ! defined( 'SENDGRID_API_KEY' ) ) {
+          if ( ! isset( $params['sendgrid_apikey'] ) or empty( $params['sendgrid_apikey'] ) ) {
+            $response = array(
+              'message' => 'API Key is empty.',
+              'status' => 'error'
+            );
 
-          Sendgrid_Tools::set_api_key( '' );
+            Sendgrid_Tools::set_api_key( '' );
 
-          break;
+            break;
+          }
+
+          if ( ! Sendgrid_Tools::check_api_key( $params['sendgrid_apikey'], true ) ) {
+            $response = array(
+              'message' => 'API Key is invalid or without permissions.',
+              'status' => 'error'
+            );
+
+            break;
+          }
+
+          if ( 'true' == Sendgrid_Tools::get_mc_opt_use_transactional() and ! Sendgrid_Tools::check_api_key_mc( $params['sendgrid_apikey'] ) ) {
+            $response = array(
+              'message' => 'This API key is also used for the Subscription Widget but does not have Marketing Campaigns permissions.',
+              'status' => 'error'
+            );
+          }
+
+          Sendgrid_Tools::set_api_key( $params['sendgrid_apikey'] );
         }
-
-        if ( ! Sendgrid_Tools::check_api_key( $params['sendgrid_apikey'], true ) ) {
-          $response = array(
-            'message' => 'API Key is invalid or without permissions.',
-            'status' => 'error'
-          );
-
-          break;
-        }
-
-        Sendgrid_Tools::set_api_key( $params['sendgrid_apikey'] );
-
+       
         break;
       
       case 'credentials':
@@ -332,6 +610,10 @@ class Sendgrid_Settings {
       update_option( 'sendgrid_content_type', $params['content_type'] );
     }
 
+    if ( isset( $params['unsubscribe_group'] ) ) {
+      Sendgrid_Tools::set_unsubscribe_group( $params['unsubscribe_group'] );
+    }
+
     if( isset( $response ) and $response['status'] == 'error') {
       return $response;
     }
@@ -342,6 +624,13 @@ class Sendgrid_Settings {
     );
   }
 
+  /**
+   * Sends a test email using the parameters specified in the settings page
+   *
+   * @param  mixed   $params    array of parameters from $_POST
+   *
+   * @return mixed              response array with message and status
+   */
   private static function send_test_email( $params ) {
     $to = $params['sendgrid_to'];
     if ( ! Sendgrid_Tools::is_valid_email( $to ) ) {
@@ -381,6 +670,67 @@ class Sendgrid_Settings {
       'message' => 'Email wasn\'t sent.',
       'status' => 'error',
       'error_type' => 'sending'
+    );
+  }
+
+  /**
+   * Uploads a contact using the parameters specified in the settings page
+   *
+   * @param  mixed   $params    array of parameters from $_POST
+   *
+   * @return mixed              response array with message and status
+   */
+  private static function send_contact_upload_test( $params ) {
+    $email = $params['sendgrid_test_email'];
+    if ( ! Sendgrid_Tools::is_valid_email( $email ) ) {
+      return array(
+        'message' => 'Email address provided is invalid.',
+        'status' => 'error',
+        'error_type' => 'upload'
+      );
+    }
+    
+    switch ( Sendgrid_Tools::get_auth_method() ) {
+      case 'apikey':
+        $apikey = Sendgrid_Tools::get_api_key();
+        if ( ! Sendgrid_Tools::check_api_key( $apikey, true ) ) {
+          return array(
+            'message' => 'API Key used for mail send is invalid or without permissions.',
+            'status' => 'error',
+            'error_type' => 'upload'
+          );
+        }
+        break;
+      case 'credentials':
+        $username = Sendgrid_Tools::get_username();
+        $password = Sendgrid_Tools::get_password();
+        if ( ! Sendgrid_Tools::check_username_password( $params['sendgrid_username'], $params['sendgrid_password'], true ) ) {
+          return array(
+            'message' => 'Credentials used for mail send are invalid.',
+            'status' => 'error',
+            'error_type' => 'upload'
+          );
+        }
+        break;
+      default:
+        return array(
+          'message' => 'An error occured when trying to check your transactional credentials. Please check that they are correct on the General Settings tab.',
+          'status' => 'error',
+          'error_type' => 'upload'
+        );
+    }
+
+    if ( false == Sendgrid_OptIn_API_Endpoint::send_confirmation_email( $email, '', '', true ) ) {
+      return array(
+        'message' => 'An error occured when trying send the subscription email. Please make sure you have configured all settings properly.',
+        'status' => 'error',
+        'error_type' => 'upload'
+      );
+    }
+
+    return array(
+      'message' => 'Subscription confirmation email was sent.',
+      'status' => 'updated'
     );
   }
 }

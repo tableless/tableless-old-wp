@@ -1,23 +1,20 @@
 <?php
 
-require_once(dirname(__FILE__) . "/TinyTestCase.php");
+require_once dirname( __FILE__ ) . '/TinyTestCase.php';
 
-class Tiny_Compress_Test extends TinyTestCase {
-    protected $php_mock;
+class Tiny_Compress_Common extends Tiny_TestCase {
+	public function test_estimate_cost_free() {
+		$this->assertEquals( 150 * 0,
+		Tiny_Compress::estimate_cost( 150, 0 ) );
+	}
 
-    public function setUp() {
-        parent::setUp();
-        $this->php_mock = \Mockery::mock('alias:Tiny_PHP');
-        $this->php_mock->shouldReceive('is_curl_available')->andReturn(true);
-    }
+	public function test_estimate_cost_normal_and_free() {
+		$this->assertEquals( 350 * 0 + 2650 * 0.009,
+		Tiny_Compress::estimate_cost( 3000, 150 ) );
+	}
 
-    public function testShouldReturnCompressor() {
-        $compressor = Tiny_Compress::get_compressor('api1234');
-        $this->assertInstanceOf('Tiny_Compress', $compressor);
-    }
-
-    public function testShouldReturnCurlCompressorByDefault() {
-        $compressor = Tiny_Compress::get_compressor('api1234');
-        $this->assertInstanceOf('Tiny_Compress_Curl', $compressor);
-    }
+	public function test_estimate_cost_cheap_and_normal_and_free() {
+		$this->assertEquals( 500 * 0 + 9500 * 0.009 + 40000 * 0.002,
+		Tiny_Compress::estimate_cost( 50000, 0 ) );
+	}
 }

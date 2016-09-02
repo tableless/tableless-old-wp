@@ -19,105 +19,123 @@
 */
 
 class Tiny_Notices extends Tiny_WP_Base {
+	private $notices;
+	private $dismissals;
 
-    private $notices;
-    private $dismissals;
+	private static function get_option_key() {
+		return self::get_prefixed_name( 'admin_notices' );
+	}
 
-    private static function get_option_key() {
-        return self::get_prefixed_name('admin_notices');
-    }
+	private static function get_user_meta_key() {
+		return self::get_prefixed_name( 'admin_notice_dismissals' );
+	}
 
-    private static function get_user_meta_key() {
-        return self::get_prefixed_name('admin_notice_dismissals');
-    }
+	public function admin_init() {
+		add_action( 'wp_ajax_tiny_dismiss_notice', $this->get_method( 'dismiss' ) );
+		if ( current_user_can( 'manage_options' ) ) {
+			$this->show_stored();
+		}
+	}
 
-    public function admin_init() {
-        add_action('wp_ajax_tiny_dismiss_notice', $this->get_method('dismiss'));
-        if (current_user_can('manage_options')) {
-            $this->show_stored();
-        }
-    }
+	private function load_notices() {
+		if ( is_array( $this->notices ) ) {
+			return;
+		}
+		$option = get_option( self::get_option_key() );
+		$this->notices = is_array( $option ) ? $option : array();
+	}
 
-    private function load_notices() {
-        if (is_array($this->notices)) {
-            return;
-        }
-        $option = get_option(self::get_option_key());
-        $this->notices = is_array($option) ? $option : array();
-    }
+	private function save_notices() {
+		update_option( self::get_option_key(), $this->notices );
+	}
 
-    private function save_notices() {
-        update_option(self::get_option_key(), $this->notices);
-    }
+	private function load() {
+		$this->load_notices();
+		$this->load_dismissals();
+	}
 
-    private function load() {
-        $this->load_notices();
-        $this->load_dismissals();
-    }
+	private function load_dismissals() {
+		if ( is_array( $this->dismissals ) ) {
+			return;
+		}
 
-    private function load_dismissals() {
-        if (is_array($this->dismissals)) {
-            return;
-        }
-        $meta = get_user_meta($this->get_user_id(), $this->get_user_meta_key(), true);
-        $this->dismissals = is_array($meta) ? $meta : array();
-    }
+		$meta = get_user_meta(
+			$this->get_user_id(),
+			$this->get_user_meta_key(),
+			true
+		);
 
-    private function save_dismissals() {
-        update_user_meta($this->get_user_id(), $this->get_user_meta_key(), $this->dismissals);
-    }
+		$this->dismissals = is_array( $meta ) ? $meta : array();
+	}
 
-    private function show_stored() {
-        $this->load();
-        foreach ($this->notices as $name => $message) {
-            if (empty($this->dismissals[$name])) {
-                $this->show($name, $message);
-            }
-        }
-    }
+	private function save_dismissals() {
+		update_user_meta(
+			$this->get_user_id(),
+			$this->get_user_meta_key(),
+			$this->dismissals
+		);
+	}
 
-    public function add($name, $message) {
-        $this->load_notices();
-        $this->notices[$name] = $message;
-        $this->save_notices();
-    }
+	private function show_stored() {
+		$this->load();
+		foreach ( $this->notices as $name => $message ) {
+			if ( empty( $this->dismissals[ $name ] ) ) {
+				$this->show( $name, $message );
+			}
+		}
+	}
 
-    public function remove($name) {
-        $this->load();
-        if (isset($this->notices[$name])) {
-            unset($this->notices[$name]);
-            $this->save_notices();
-        }
-        if (isset($this->dismissals[$name])) {
-            unset($this->dismissals[$name]);
-            $this->save_dismissals();
-        }
-    }
+	public function add( $name, $message ) {
+		$this->load_notices();
+		$this->notices[ $name ] = $message;
+		$this->save_notices();
+	}
 
-    public function dismiss() {
-        if (empty($_POST['name']) || !$this->check_ajax_referer()) {
-            echo json_encode(false);
-            exit();
-        }
-        $this->load_dismissals();
-        $this->dismissals[$_POST['name']] = true;
-        $this->save_dismissals();
-        echo json_encode(true);
-        exit();
-    }
+	public function remove( $name ) {
+		$this->load();
+		if ( isset( $this->notices[ $name ] ) ) {
+			unset( $this->notices[ $name ] );
+			$this->save_notices();
+		}
+		if ( isset( $this->dismissals[ $name ] ) ) {
+			unset( $this->dismissals[ $name ] );
+			$this->save_dismissals();
+		}
+	}
 
-    public function show($name, $message, $klass='error', $dismissible=true) {
-        $css = array($klass, 'notice', 'tiny-notice');
-        if (!$dismissible) {
-            $add = '</p>';
-        } else if (self::check_wp_version(4.2)) {
-            $add = '</p>';
-            $css[] = 'is-dismissible';
-        } else {
-            $add = '&nbsp;<a href="#" class="tiny-dismiss">' . esc_html__('Dismiss', 'tiny-compress-images') . '</a></p>';
-        }
-        $css = implode(' ', $css);
-        $pluginName = __('Compress JPEG & PNG images', 'tiny-compress-images');
-        add_action('admin_notices', create_function('', "echo '<div class=\"$css\" data-name=\"$name\"><p>" . $pluginName . ": $message$add</div>';"));
-    }
+	public function dismiss() {
+		if ( empty( $_POST['name'] ) || ! $this->check_ajax_referer() ) {
+			echo json_encode( false );
+			exit();
+		}
+		$this->load_dismissals();
+		$this->dismissals[ $_POST['name'] ] = true;
+		$this->save_dismissals();
+		echo json_encode( true );
+		exit();
+	}
+
+	public function show( $name, $message, $klass = 'error', $dismissible = true ) {
+		$css = array( $klass, 'notice', 'tiny-notice' );
+		if ( ! $dismissible ) {
+			$add = '</p>';
+		} else if ( self::check_wp_version( 4.2 ) ) {
+			$add = '</p>';
+			$css[] = 'is-dismissible';
+		} else {
+			$add = '&nbsp;<a href="#" class="tiny-dismiss">' .
+				esc_html__( 'Dismiss', 'tiny-compress-images' ) . '</a></p>';
+		}
+
+		$css = implode( ' ', $css );
+		$plugin_name = esc_html__( 'Compress JPEG & PNG images', 'tiny-compress-images' );
+
+		add_action( 'admin_notices',
+			create_function(
+				'',
+				"echo '<div class=\"$css\" data-name=\"$name\"><p>" .
+					$plugin_name . ": $message$add</div>';"
+			)
+		);
+	}
 }

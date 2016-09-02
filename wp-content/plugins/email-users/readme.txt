@@ -4,7 +4,7 @@ Donate link: http://michaelwalsh.org/wordpress/wordpress-plugins/email-users/
 Tags: email, users, list, admin
 Requires at least: 3.6.1
 Tested up to: 4.5.2
-Stable tag: 4.8.2
+Stable tag: 4.8.4
 License: GPL
 
 == Description ==
@@ -220,6 +220,12 @@ function update_publicworks_meta_filter()
 `
 
 == Changelog ==
+
+= Version 4.8.4 =
+* Addressed secruity concern raised by WordPress.org - added nonce to Send to Users, Send to Groups, and Send Test Email forms.
+
+= Version 4.8.3 =
+* Addressed secruity concern raised by WordPress.org.
 
 = Version 4.8.2 =
 * Addressed deprecated warnings for get_currentuserinfo() in WordPress 4.5.

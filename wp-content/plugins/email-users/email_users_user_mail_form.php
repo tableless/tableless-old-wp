@@ -60,6 +60,7 @@
 	<?php	} ?>
 
 	<form name="SendEmail" action="" method="post">
+        <?php wp_nonce_field( 'mailusers_send_to_user', 'mailusers_send_to_user_nonce' ); ?>
 		<input type="hidden" name="send" value="true" />
 		<input type="hidden" name="fromName" value="<?php echo $from_name;?>" />
 		<input type="hidden" name="fromAddress" value="<?php echo $from_address;?>" />

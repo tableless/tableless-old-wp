@@ -1,0 +1,25 @@
+#!/bin/bash -x
+
+# Copyright 2016 go-dockerclient authors. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+DOCKER_VERSION=1.12.0~rc2
+LSB_RELEASE=$(lsb_release -cs)
+OS_NAME=$(uname -s)
+OS_ARCH=$(uname -m)
+
+stop docker || true
+rm -rf /var/lib/docker
+rm -f $(which docker)
+rm -f $(which docker-compose)
+
+set -e
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | tee /etc/apt/sources.list.d/docker.list
+echo "deb https://apt.dockerproject.org/repo ubuntu-trusty testing" | tee -a /etc/apt/sources.list.d/docker.list
+apt-get update
+apt-get install docker-engine=${DOCKER_VERSION}-0~${LSB_RELEASE} -y --force-yes -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"
+
+curl -L https://github.com/docker/compose/releases/download/1.8.0-rc1/docker-compose-${OS_NAME}-${OS_ARCH} > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose

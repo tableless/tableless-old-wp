@@ -70,6 +70,7 @@
 
 	<!--<form name="SendEmail" action="admin.php?page=mailusers-send-group-mail-page" method="post">-->
 	<form name="SendEmail" action="" method="post">
+        <?php wp_nonce_field( 'mailusers_send_to_group', 'mailusers_send_to_group_nonce' ); ?>
 		<input type="hidden" name="send" value="true" />
 		<input type="hidden" name="fromName" value="<?php echo $from_name;?>" />
 		<input type="hidden" name="fromAddress" value="<?php echo $from_address;?>" />

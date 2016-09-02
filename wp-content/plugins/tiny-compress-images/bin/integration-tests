@@ -1,57 +1,82 @@
-#!/usr/bin/env perl
+#!/bin/bash
 
-use strict;
-use warnings;
-use File::Basename qw(dirname);
-use IO::Socket;
-use Time::HiRes qw(usleep);
-
-my $dir = dirname($0);
-
-my $hostip;
-if (`which docker-machine`) {
-  $hostip = `docker-machine ip $ENV{'DOCKER_MACHINE_NAME'}`;
-} else {
-  $hostip = `boot2docker ip`;
+display_usage() {
+  echo -e "Usage:\n\t$0 <version> \n\nExample:\n\t$0 45"
 }
 
-sub check_port {
-    my ($ip, $port, $times, $sleep) = @_;
-    for (my $i = 0; $i < $times; $i++) {
-        my $sock = IO::Socket::INET->new(
-            PeerAddr => $ip,
-            PeerPort => $port,
-            Proto => 'tcp',
-            Timeout => 2
-        );
-        return 1 if $sock;
-        usleep($sleep * 1000);
-    }
-    return 0;
+if [ -z "${HOST}" ]; then
+  export HOST=127.0.0.1
+fi
+
+if [ -z "${WORDPRESS_VERSION}" ]; then
+  if [ $# -eq 0 ]; then
+    display_usage
+    exit 1
+  fi
+
+  export WORDPRESS_VERSION="$1"
+fi
+
+export MYSQL_PWD=root
+export WORDPRESS_DATABASE=wordpress_${WORDPRESS_VERSION}
+export WORDPRESS_PORT=80${WORDPRESS_VERSION}
+export WORDPRESS_URL=http://wordpress
+
+function wait_for_service_port {
+  while ! curl -s localhost:$1 > /dev/null; do
+    sleep 0.25
+  done
 }
 
-my $from = $ARGV[0] || 42;
-my $to = $ARGV[1] || $from;
-
-for (my $version = $from; $version <= $to; $version++) {
-    printf("==================== WordPress %d ====================\n", $version);
-    print(" - Running\n");
-    my $ret = system("$dir/run-wordpress $version > /dev/null 2>&1");
-    if ($ret) {
-        print("   Error: $ret\n");
-        next;
-    }
-    print(" - Sitting\n  - Waiting\n   - Wishing\n");
-    sleep(10);
-    print(" - Checking\n");
-    if (!check_port($hostip, 8000 + $version, 10, 500)) {
-        print("   Error: No open port\n");
-        next;
-    }
-    print(" - Testing\n");
-    $ret = system("$dir/test-wordpress $version");
-    if ($ret) {
-        print("   Error: $ret\n");
-        next;
-    }
+function prepare_test_config {
+  mv src/config/tiny-config.php src/config/tiny-config.php.bak
+  mv src/vendor/tinify/Tinify/Client.php src/vendor/tinify/Tinify/Client.php.bak
+  cp test/fixtures/tiny-config.php src/config/tiny-config.php
+  cp test/fixtures/Client.php src/vendor/tinify/Tinify/Client.php
 }
+
+function restore_config {
+  mv src/config/tiny-config.php.bak src/config/tiny-config.php
+  mv src/vendor/tinify/Tinify/Client.php.bak src/vendor/tinify/Tinify/Client.php
+}
+
+function start_services {
+  if [ "${KEEP_ALIVE}" ]; then
+    docker-compose up -d --build > /dev/null || { trap - EXIT; exit 1; }
+  else
+    docker-compose up -d --build --force-recreate > /dev/null || { trap - EXIT; exit 1; }
+  fi
+}
+
+function stop_services {
+  docker-compose down
+}
+
+function wait_for_services {
+  echo "Waiting for PhantomJS..."
+  wait_for_service_port 8910
+
+  echo "Waiting for WordPress..."
+  wait_for_service_port 80${WORDPRESS_VERSION}
+
+  echo "Waiting for MySQL..."
+  wait_for_service_port 3306
+}
+
+function setup {
+  prepare_test_config
+  start_services
+  wait_for_services
+}
+
+function teardown {
+  restore_config
+  if ! [ "${KEEP_ALIVE}" ]; then
+    stop_services
+  fi
+}
+
+trap teardown EXIT
+setup
+
+vendor/bin/phpunit test/integration

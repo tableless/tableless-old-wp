@@ -1,0 +1,33 @@
+{
+  "width": 1256,
+  "height": 1256,
+  "file": "2015/09/tinypng_gravatar.png",
+  "sizes": {
+    "small": {
+      "file": "tinypng_gravatar-200x200.png",
+      "width": 200,
+      "height": 200,
+      "mime-type": "image/png"
+    },
+    "medium": {
+      "file": "tinypng_gravatar-300x300.png",
+      "width": 300,
+      "height": 300,
+      "mime-type": "image/png"
+    },
+    "large": {
+      "file": "tinypng_gravatar-600x600.png",
+      "width": 600,
+      "height": 600,
+      "mime-type": "image/png"
+    },
+    "thumbnail": {
+      "file": "tinypng_gravatar-150x150.png",
+      "width": 150,
+      "height": 150,
+      "mime-type": "image/png"
+    }
+  },
+  "image_meta": {
+  }
+}

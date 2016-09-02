@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Email-Users\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-10 13:44+0100\n"
-"PO-Revision-Date: 2016-06-10 13:44+0100\n"
+"POT-Creation-Date: 2016-07-24 18:22+0100\n"
+"PO-Revision-Date: 2016-07-24 18:22+0100\n"
 "Last-Translator: Mike Walsh <mpwalsh8@gmail.com>\n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,1177 +20,719 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: email_users_send_notify_mail.php:24 email_users_notify_form.php:26
-msgid "You are not allowed to notify users about posts and pages."
-msgstr "﻿Du får inte meddela användare om inlägg och sidor."
-
-#: email_users_send_notify_mail.php:54
-msgid "You must select at least a recipient."
-msgstr "﻿Du måste välja minst en mottagare."
-
-#: email_users_send_notify_mail.php:61 email_users_send_user_mail.php:59
-#: email_users_send_custom_filter_mail.php:73 email_users_send_group_mail.php:67
-msgid "You must enter a subject."
-msgstr "﻿Du måste ange ett ämne."
-
-#: email_users_send_notify_mail.php:67 email_users_send_user_mail.php:65
-#: email_users_send_custom_filter_mail.php:79 email_users_send_group_mail.php:73
-msgid "You must enter some content."
-msgstr "﻿Du måste ange en del innehåll."
-
-#: email_users_send_notify_mail.php:197 email_users_send_test_mail.php:90
-#: email_users_send_user_mail.php:130
-#: email_users_send_custom_filter_mail.php:144
-#: email_users_send_group_mail.php:190
-msgid "No recipients were found."
-msgstr "﻿Inga mottagare hittades."
-
-#: email_users_send_notify_mail.php:203
-#, php-format
-msgid "Notification sent to %s user(s)."
-msgstr "﻿Meddelande skickas till %s användare."
-
-#: email_users_notify_form.php:39
-#, php-format
-msgid "Trying to notify users of a %s without passing the %s id!"
-msgstr "Försöker meddela användare av en% s utan att skicka %s id!"
-
-#: email_users_notify_form.php:50 email_users_notify_form.php:128
-#, php-format
-msgid "Notify Users of a %s"
-msgstr "Meddela användare av en %s"
-
-#: email_users_notify_form.php:52
-#, php-format
-msgid "Please select the %s that you wish to notify users about."
-msgstr "Välj det %s som du önskar meddela användarna om."
-
-#: email_users_notify_form.php:65
-#, php-format
-msgid "Select %s"
-msgstr "﻿Välj %s"
-
-#: email_users_notify_form.php:78 email_users_user_mail_form.php:71
-#: email_users_group_mail_form.php:82 email_users_options_form.php:127
-#: email_users_custom_filter_mail_form.php:73
-msgid "HTML"
-msgstr "﻿HTML"
-
-#: email_users_notify_form.php:78 email_users_user_mail_form.php:72
-#: email_users_group_mail_form.php:83 email_users_options_form.php:128
-#: email_users_custom_filter_mail_form.php:74
-msgid "Plain text"
-msgstr "﻿Enkel text"
-
-#: email_users_notify_form.php:132 email_users_user_mail_form.php:59
-#: email_users_group_mail_form.php:68 email_users_options_form.php:105
-#: email_users_custom_filter_mail_form.php:61
-msgid "Please correct the errors displayed above and try again."
-msgstr "﻿Korrigera de fel som visas ovan och försök igen."
-
-#: email_users_notify_form.php:148
-msgid "Mail will be sent as:"
-msgstr "﻿Mail kommer att skickas som:"
-
-#: email_users_notify_form.php:151 email_users_user_mail_form.php:76
-#: email_users_group_mail_form.php:87 email_users_custom_filter_mail_form.php:78
-msgid "Sender"
-msgstr "Avsändare"
-
-#: email_users_notify_form.php:159 email_users_user_mail_form.php:84
-#: email_users_group_mail_form.php:95 email_users_custom_filter_mail_form.php:86
-msgid "Recipients"
-msgstr "Mottagare"
-
-#: email_users_notify_form.php:161
-msgid "Use CTRL key to select/deselect multiple items"
-msgstr "﻿Använd CTRL-tangenten för att markera/avmarkera flera objekt"
-
-#: email_users_notify_form.php:163
-msgid ""
-"The users that did not agree to receive notifications do not appear here."
-msgstr "De användare som inte godkänt att ta emot meddelanden visas inte här."
-
-#: email_users_notify_form.php:168 email_users_group_mail_form.php:104
-msgid "Filter"
-msgstr "﻿Filter"
-
-#: email_users_notify_form.php:181 email_users_group_mail_form.php:117
-msgid "Role"
-msgstr "﻿Roll"
-
-#: email_users_notify_form.php:197 email_users_group_mail_form.php:133
-msgid "User Group"
-msgstr "﻿Användargrupp"
-
-#: email_users_notify_form.php:214 email_users_group_mail_form.php:150
-msgid "UAM"
-msgstr "﻿UAM"
-
-#: email_users_notify_form.php:231 email_users_group_mail_form.php:167
-msgid "Groups"
-msgstr "﻿Grupper"
-
-#: email_users_notify_form.php:250 email_users_user_mail_form.php:97
-#: email_users_custom_filter_mail_form.php:99
-msgid "N/A"
-msgstr "Ej tillgänglig"
-
-#: email_users_notify_form.php:318 email_users_user_mail_form.php:165
-#: email_users_custom_filter_mail_form.php:167
-msgid "User"
-msgstr "﻿Användare"
-
-#: email_users_notify_form.php:327 email_users_user_mail_form.php:174
-#: email_users_group_mail_form.php:184 email_users_options_form.php:402
-#: email_users_custom_filter_mail_form.php:176
-msgid "Subject"
-msgstr "Ämne"
-
-#: email_users_notify_form.php:331 email_users_user_mail_form.php:178
-#: email_users_group_mail_form.php:188 email_users_options_form.php:406
-#: email_users_custom_filter_mail_form.php:180
-msgid "Message"
-msgstr "﻿Meddelande"
-
-#: email_users_notify_form.php:339 email_users_user_mail_form.php:196
-#: email_users_group_mail_form.php:207
-#: email_users_custom_filter_mail_form.php:198
-msgid "Send Email"
-msgstr "﻿Skicka e-post"
-
-#: email_users_overview.php:26
-msgid "You are not allowed to send emails."
-msgstr "﻿Du får inte skicka e-post."
-
-#: email_users_overview.php:33 email-users.php:297 email-users.php:312
-#: email-users.php:346 email-users.php:347 email-users.php:353
-#: email-users.php:354
-msgid "Email Users"
-msgstr "Email Users"
-
-#: email_users_overview.php:45 email_users_overview.php:51
-msgid "Send Individual Message"
-msgstr "Skicka individuella meddelanden"
-
-#: email_users_overview.php:48
-msgid "Send an email to one or more individual users"
-msgstr "﻿Skicka ett mail till en eller flera enskilda användare"
-
-#: email_users_overview.php:50
-msgid ""
-"You can send an email to one or more users by selecting them individually."
-msgstr ""
-"﻿Du kan skicka ett mail till en eller flera användare genom att markera dem "
-"individuellt."
-
-#: email_users_overview.php:63
-msgid "Send a Group Message"
-msgstr "﻿Skicka ett gruppmeddelande"
-
-#: email_users_overview.php:66
-msgid "Send an email to one or more user groups"
-msgstr "﻿Skicka ett mail till en eller flera användargrupper"
-
-#: email_users_overview.php:68
-msgid ""
-"You can send an email to one or more user groups (i.e. users belonging to the "
-"same WordPress role)."
-msgstr ""
-"﻿Du kan skicka ett mail till en eller flera grupper av användare (d.v.s. "
-"användare som tillhör samma WordPress roll)."
-
-#: email_users_overview.php:69
-msgid "Send Group Message"
-msgstr "﻿Skicka gruppmeddelande"
-
-#: email_users_user_settings.php:30
-msgid "You are not allowed to view the user settings."
-msgstr "﻿Du får inte Visa användarinställningarna."
-
-#: email_users_user_settings.php:107 email-users.php:1557 email-users.php:1561
-#: email-users.php:1565
-msgid "On"
-msgstr "﻿På"
-
-#: email_users_user_settings.php:107 email-users.php:1557 email-users.php:1561
-#: email-users.php:1565
-msgid "Off"
-msgstr "﻿Av"
-
-#: email_users_user_settings.php:182 email_users_options_form.php:137
-msgid "Display Name"
-msgstr "﻿Visningsnamn"
-
-#: email_users_user_settings.php:183
-msgid "Username"
-msgstr "Användarnamn"
-
-#: email_users_user_settings.php:184
-msgid "E-Mail Address"
-msgstr "﻿E-postadress"
-
-#: email_users_user_settings.php:187
-msgid "Notifications"
-msgstr "﻿Meddelanden"
-
-#: email_users_user_settings.php:188
-msgid "Mass Email"
-msgstr "Massutskick e-post"
-
-#: email_users_user_settings.php:239
-msgid "Notifications On"
-msgstr "Meddelanden På"
-
-#: email_users_user_settings.php:240
-msgid "Notifications Off"
-msgstr "Meddelanden Av"
-
-#: email_users_user_settings.php:241
-msgid "Mass Email On"
-msgstr "Massutskick mail På"
-
-#: email_users_user_settings.php:242
-msgid "Mass Email Off"
-msgstr "Massutskick email Av"
-
-#: email_users_user_settings.php:243
-msgid "Notifications On & Mass Email On"
-msgstr "Meddelanden På & Massutskick epost På"
-
-#: email_users_user_settings.php:244
-msgid "Notifications On & Mass Email Off"
-msgstr "Meddelanden På & Massutskick epost Av"
-
-#: email_users_user_settings.php:245
-msgid "Notifications Off & Mass Email On"
-msgstr "Meddelanden Av & Massutskick epost På"
-
-#: email_users_user_settings.php:246
-msgid "Notifications Off & Mass Email Off"
-msgstr "Meddelanden Av & Massutskick epost Av"
-
-#: email_users_user_settings.php:324
-msgid "No users selected"
-msgstr "Inga användare valda"
-
-#: email_users_user_settings.php:489
-msgid "Search"
-msgstr "﻿Sök"
-
-#: email_users_user_mail_form.php:27 email_users_send_user_mail.php:25
-#: email_users_custom_filter_mail_form.php:28
-msgid "You are not allowed to send emails to users."
-msgstr "﻿Du får inte skicka e-post till användare."
-
-#: email_users_user_mail_form.php:55
-msgid "Send an Email to Individual Users"
-msgstr "﻿Skicka ett mail till enskilda användare"
-
-#: email_users_user_mail_form.php:69 email_users_group_mail_form.php:80
-#: email_users_custom_filter_mail_form.php:71
-msgid "Mail format"
-msgstr "﻿E-postformat"
-
-#: email_users_user_mail_form.php:88 email_users_custom_filter_mail_form.php:90
-msgid "You are only allowed to select one user at a time."
-msgstr "﻿Du får bara välja en användare åt gången."
-
-#: email_users_user_mail_form.php:90 email_users_custom_filter_mail_form.php:92
-msgid ""
-"You can select multiple users by pressing the CTRL key.  When selecting "
-"multiple users, any user who should not receive Mass Email will be filtered "
-"from the recipient list."
-msgstr ""
-"﻿Du kan välja flera användare genom att trycka på CTRL-tangenten.  När du "
-"väljer flera användare, filtreras alla användare som inte ska få "
-"massutskicket från mottagarlistan."
-
-#: email_users_send_test_mail.php:24 email_users_options_form.php:28
-#: email_users_set_options.php:24
-msgid "You are not allowed to change the options of this plugin."
-msgstr "﻿Du får inte ändra alternativ för denna plugin."
-
-#: email_users_send_test_mail.php:61 email_users_options_form.php:365
-msgid "No post found in the blog in order to build a notification preview."
-msgstr ""
-"﻿Inga inlägg hittades i bloggen för att bygga ett förhandsvisningsmeddelande."
-
-#: email_users_send_test_mail.php:96
-#, php-format
-msgid "Test email sent to %s."
-msgstr "﻿Test e-post skickat till %s."
-
-#: email-users.php:89
-msgid "A post of interest:"
-msgstr "﻿Ett inlägg av intresse:"
-
-#: email-users.php:91
-msgid ""
-"<p>Hello, </p><p>I would like to bring your attention on a new post published "
-"on the blog. Details of the post follow; I hope you will find it interesting."
-"</p><p>Best regards, </p><p>%FROM_NAME%</p><hr><p><strong>%POST_TITLE%</"
-"strong></p><p>%POST_EXCERPT%</p><ul><li>Link to the post: <a href=\"%POST_URL%"
-"\">%POST_URL%</a></li><li>Link to %BLOG_NAME%: <a href=\"%BLOG_URL%\">"
-"%BLOG_URL%</a></li></ul>"
-msgstr ""
-"﻿<p>Hej</p><p>Jag vill uppmärksamma dig om ny post som publicerats på bloggen. "
-"Detaljer för inlägget följer; Jag hoppas du finner det intressant.</"
-"p><p>Vänliga hälsningar</p><p>% FROM_NAME %</p><hr><p><strong>% POST_TITLE %</"
-"strong></p><p>% POST_EXCERPT %</p><ul><li>Länk till inlägget: <a href="
-"\"\"%POST_URL%\"\">% POST_URL %</a></li><li>Länk till % BLOG_NAME %: <a href="
-"\"\"%BLOG_URL%\"\">% BLOG_URL %</a></li></ul>"
-
-#: email-users.php:123
-msgid "Powered by"
-msgstr "Drivs av"
-
-#: email-users.php:299
-msgid "Notify Users About this Post"
-msgstr "﻿Meddela användare om detta inlägg"
-
-#: email-users.php:314
-msgid "Notify Users About this Page"
-msgstr "﻿Meddela användare om denna sida"
-
-#: email-users.php:332 email-users.php:333 email-users.php:339
-#: email-users.php:340
-msgid "Notify Users"
-msgstr "﻿Meddela användare"
-
-#: email-users.php:362 email-users.php:363
-msgid "Send to User(s)"
-msgstr "﻿Skicka till användare"
-
-#: email-users.php:392 email-users.php:393
-#, php-format
-msgid "Send to %s"
-msgstr "﻿Skicka till %s"
-
-#: email-users.php:401 email-users.php:402
-msgid "Send to Group(s)"
-msgstr "﻿Skicka till grupp(er)"
-
-#: email-users.php:433 email-users.php:434 email_users_options_form.php:617
-msgid "User Settings"
-msgstr "Inställningar"
-
-#: email-users.php:550
-msgid "Email Preferences"
-msgstr "﻿E-postinställningar"
-
-#: email-users.php:563
-msgid "Accept to receive post or page notification emails"
-msgstr "Acceptera att ta emot epostmeddelanden om nya inlägg eller sidor"
-
-#: email-users.php:571
-msgid ""
-"Accept to receive emails sent to multiple recipients (but still accept emails "
-"sent only to me)"
-msgstr ""
-"﻿Acceptera att få e-postmeddelanden som skickas till flera mottagare (men "
-"fortfarande acceptera e-post som skickas endast till mig)"
-
-#: email-users.php:1445
-#, php-format
-msgid ""
-"The email address (%s) of the user you are trying to send mail to is not a "
-"valid email address format."
-msgstr ""
-"﻿Den e-postadress (%s) för den användare som du försöker att skicka mail till "
-"är inte en giltig epostadress."
-
-#: email-users.php:1504
-#, php-format
-msgid "Invalid email address (\"%s\") found."
-msgstr "﻿Ogiltig e-postadress (\"%s\") hittad."
-
-#: email-users.php:1553
-msgid "Default User Settings"
-msgstr "﻿Standardinställningarna för användare"
-
-#: email-users.php:1556
-msgid "Receive post or page notification emails:"
-msgstr "Ta emot epost om nya inlägg eller sidor"
-
-#: email-users.php:1560
-msgid "Receive emails sent to multiple recipients:"
-msgstr "Ta emot epost som skickas till flera mottagare:"
-
-#: email-users.php:1564
-msgid "Allow Users to control their own Email Users settings:"
-msgstr "Tillåt användare att kontrollera sina egna epostinställningar:"
-
-#: email-users.php:1578
-msgid "User Statistics"
-msgstr "﻿Användarstatistik"
-
-#: email-users.php:1581 email_users_options_form.php:73
-msgid "Number of Users who accept post or page notification emails:"
-msgstr ""
-"﻿Antal användare som accepterar att ta emot epost om inlägg eller sido "
-"tillkännagivanden:"
-
-#: email-users.php:1585 email_users_options_form.php:77
-msgid "Number of Users who accept emails sent to multiple recipients:"
-msgstr "﻿Antal användare som accepterar e-post som skickas till flera mottagare:"
-
-#: email-users.php:1633 email-users.php:1634
-msgid "Mail sending aborted."
-msgstr "﻿Mail skickning avbröts."
-
-#: email-users.php:1657
-msgid "PHPMailer Debug"
-msgstr "﻿PHPMailer Debug"
-
-#: email-users.php:1689
-msgid "wp_mail() Debug"
-msgstr "﻿wp_mail() Debug"
-
-#: email_users_group_mail_form.php:26 email_users_send_custom_filter_mail.php:24
-#: email_users_send_group_mail.php:24
-msgid "You are not allowed to send emails to user groups."
-msgstr "﻿Du får inte skicka e-post till användargrupper."
-
-#: email_users_group_mail_form.php:64
-msgid "Send an Email to User Groups Filtered by User Meta Data"
-msgstr "﻿Skicka ett mail till användargrupper filtrerade efter användar-Metadata"
-
-#: email_users_group_mail_form.php:64
-msgid "Send an Email to a Group of Users"
-msgstr "﻿Skicka ett mail till en grupp av användare"
-
-#: email_users_group_mail_form.php:97
-msgid "You can select multiple groups by pressing the CTRL key."
-msgstr "﻿Du kan välja flera grupper genom att trycka på CTRL-tangenten."
-
-#: email_users_group_mail_form.php:99
-msgid ""
-"Only the groups having at least one user that accepts group mails appear here."
-msgstr ""
-"﻿Endast de grupper som har minst en användare som accepterar grupp e-post "
-"visas här."
-
-#: email_users_credits.php:23 email_users_options_form.php:652
-msgid "Make a Donation"
-msgstr "﻿Ge ett bidrag"
-
-#: email_users_credits.php:29 email_users_options_form.php:658
-msgid "Plugin's Home Page"
-msgstr "Tilläggets startsida"
-
-#: email_users_credits.php:38
-msgid "EN"
-msgstr "﻿EN"
-
-#: email_users_credits.php:51 email_users_options_form.php:686
-msgid "Discover other Plugins by MarvinLabs"
-msgstr "﻿Upptäck andra Plugins av MarvinLabs"
-
-#: email_users_credits.php:56 email_users_options_form.php:691
-msgid ""
-"If Email-Users is not robust enough or if you want to allow your users to "
-"communicate with each other, try: "
-msgstr ""
-"﻿Om e-användare inte är tillräckligt robust eller om du vill tillåta "
-"användarna att kommunicera med varandra, försök: "
-
-#: email_users_credits.php:57 email_users_options_form.php:692
-msgid "If you lose time copy/pasting the same post structure every time, try: "
-msgstr ""
-"﻿Om du förlorar tid genom att kopiera/klistra in samma inläggsstruktur varje "
-"gång, prova: "
-
-#: email_users_credits.php:65 email_users_options_form.php:672
-msgid "More Plugins from Mike Walsh"
-msgstr "﻿Fler Plugins från Mike Walsh"
-
-#: email_users_credits.php:70 email_users_options_form.php:677
-msgid ""
-"If you use Google Forms and want to integrate them with your WordPress site, "
-"try: "
-msgstr ""
-"﻿Om du använder Google Formulär och vill integrera dem med din Wordpress "
-"webbplats, prova: "
-
-#: email_users_send_user_mail.php:47 email_users_send_custom_filter_mail.php:53
-#: email_users_send_group_mail.php:55
-msgid "You must specify the mail format."
-msgstr "﻿Du måste ange e-postformat."
-
-#: email_users_send_user_mail.php:53 email_users_send_custom_filter_mail.php:59
-msgid "You must enter at least a recipient."
-msgstr "﻿Du måste välja minst en mottagare."
-
-#: email_users_send_user_mail.php:124
-#, php-format
-msgid ""
-"<br/>%d users who should not to receive Mass Email were filtered from the "
-"recipient list."
-msgstr ""
-"<br>%d användare som inte ska ta emot massmailutskick har filtreras bort från "
-"mottagarlistan."
-
-#: email_users_send_user_mail.php:136
-#: email_users_send_custom_filter_mail.php:149
-#: email_users_send_group_mail.php:195
-msgid "There was a problem trying to send email to users."
-msgstr "﻿Det uppstod ett problem vid försöket att skicka e-post till användare."
-
-#: email_users_send_user_mail.php:138
-#: email_users_send_custom_filter_mail.php:152
-#: email_users_send_group_mail.php:197
-msgid ""
-"No email has been sent to other users. This may be because no valid email "
-"addresses were found."
-msgstr ""
-"﻿Ingen e-post har skickats till andra användare. Detta kan bero på att inga "
-"giltiga email adresser hittades."
-
-#: email_users_send_user_mail.php:142
-#: email_users_send_custom_filter_mail.php:156
-#: email_users_send_group_mail.php:201
-#, php-format
-msgid "Email sent to %s user(s)."
-msgstr "﻿Mail skickade till %s användare."
-
-#: email_users_send_user_mail.php:146
-#: email_users_send_custom_filter_mail.php:160
-#: email_users_send_group_mail.php:205
-msgid "WARNING: More email has been sent than the number of recipients found."
-msgstr "﻿VARNING: Fler mail har skickats än antalet mottagare hittas."
-
-#: email_users_send_user_mail.php:148
-#, php-format
-msgid ""
-"Email has been sent to %d users, but %d recipients were originally found. "
-"Perhaps some users don't have valid email addresses?"
-msgstr ""
-"﻿E-post har skickats till %d användare, men %d mottagare hittades "
-"ursprungligen. Kanske vissa användare inte har giltiga e-postadresser?"
-
-#: email_users_send_custom_filter_mail.php:162
-#: email_users_send_group_mail.php:207
-#, php-format
-msgid ""
-"Email has been sent to %s users, but %s recipients were originally found. "
-"Perhaps some users don't have valid email addresses?"
-msgstr ""
-"﻿E-post har skickats till %s användare, men %s mottagare hittades. Kanske "
-"vissa användare inte har giltiga e-postadresser?"
-
-#: email_users_options_form.php:35
-msgid ""
-"It looks like you have an old version of the plugin activated. Please "
-"deactivate the plugin and activate it again to complete the installation of "
-"the new version."
-msgstr ""
-"﻿Det ser ut som du har en gammal version av insticksprogrammet aktiverad. "
-"Vänligen avaktivera plugin och aktivera den igen för att slutföra "
-"installationen av den nya versionen."
-
-#: email_users_options_form.php:38
-msgid "Installed Version:"
-msgstr "﻿Installerad version:"
-
-#: email_users_options_form.php:39
-msgid "Current Version:"
-msgstr "﻿Aktuell version:"
-
-#: email_users_options_form.php:56
-msgid "Warning:  wp_mail() appears to be overloaded."
-msgstr "﻿Varning: wp_mail() verkar vara överbelastad."
-
-#: email_users_options_form.php:70
-msgid ""
-"Current settings show post or page notification and/or mass email may not be "
-"received by any users."
-msgstr ""
-"﻿Aktuella inställningar visar att post eller sida meddelanden och/eller "
-"massutskick kanske inte tas emot av alla användare."
-
-#: email_users_options_form.php:100
-msgid "Email Users Settings"
-msgstr "Email Users inställningar"
-
-#: email_users_options_form.php:115
-msgid "Email-Users Plugin Settings"
-msgstr "Email-Users Plugin inställningar"
-
-#: email_users_options_form.php:124
-msgid "Mail Format"
-msgstr "﻿E-postformat"
-
-#: email_users_options_form.php:129
-msgid "Send mail as plain text or HTML by default?"
-msgstr "﻿Skicka e-post som formaterad text eller HTML-standard?"
-
-#: email_users_options_form.php:133
-msgid "Sort Users By"
-msgstr "﻿Sortera användare enligt"
-
-#: email_users_options_form.php:136 email_users_options_form.php:154
-msgid "None"
-msgstr "Ingen"
-
-#: email_users_options_form.php:138
-msgid "Display Name (User Login)"
-msgstr "﻿Visningsnamn (User Login)"
-
-#: email_users_options_form.php:139
-msgid "First Name Last Name"
-msgstr "﻿Förnamn Efternamn"
-
-#: email_users_options_form.php:140
-msgid "First Name Last Name (User Login)"
-msgstr "﻿Förnamn efternamn (User Login)"
-
-#: email_users_options_form.php:141
-msgid "Last Name, First Name"
-msgstr "﻿Efternamn, förnamn"
-
-#: email_users_options_form.php:142
-msgid "Last Name, First Name (User Login)"
-msgstr "﻿Efternamn, förnamn (User Login)"
-
-#: email_users_options_form.php:143
-msgid "User Login"
-msgstr "﻿Användarinloggning"
-
-#: email_users_options_form.php:144
-msgid "User Login (Display Name)"
-msgstr "﻿Användarlogin (Visningsnamn)"
-
-#: email_users_options_form.php:145
-msgid "User Login (First Name Last Name)"
-msgstr "﻿Användarinloggning (Förnamn Efternamn)"
-
-#: email_users_options_form.php:146
-msgid "User Login (Last Name, First Name)"
-msgstr "﻿Användarinloggning (Efternamn, Förnamn)"
-
-#: email_users_options_form.php:147
-msgid "Determine how to sort and display names in the User selection list?"
-msgstr "﻿Bestäm hur du sorterar och visar namn i urvalslistan för användare?"
-
-#: email_users_options_form.php:151
-msgid "BCC Limit"
-msgstr "﻿BCC Gräns"
-
-#: email_users_options_form.php:159
-msgid ""
-"Try 30 if you have problems sending emails to many users (some providers "
-"forbid too many recipients in BCC field)."
-msgstr ""
-"﻿Prova 30 om du har problem med att skicka e-post till många användare (vissa "
-"leverantörer förbjuder alltför många mottagare i BCC fält)."
-
-#: email_users_options_form.php:164
-msgid "Default<br/>Notification Subject"
-msgstr "﻿Standard<br>Meddelande ämne"
-
-#: email_users_options_form.php:171
-msgid "Display Names"
-msgstr "﻿Visa namn"
-
-#: email_users_options_form.php:175
-msgid "Omit Display Names when sending email."
-msgstr "﻿Utelämna visningsnamn när du skickar e-post."
-
-#: email_users_options_form.php:176
-msgid ""
-"Use \"john.doe@example.com\" instead of \"John Doe &lt;john.doe@example."
-"com&gt;\""
-msgstr ""
-"﻿Använd \"john.doe@example.com\" i stället för \"John Doe &lt; john."
-"doe@example.com &gt;\""
-
-#: email_users_options_form.php:180
-msgid "Copy Sender"
-msgstr "Kopiera avsändaren"
-
-#: email_users_options_form.php:184
-msgid "Copy sender (add sender email to Cc: header) when sending email."
-msgstr ""
-"﻿Kopiera avsändaren (lägga till avsändare email till Cc: huvudet) när du "
-"skickar e-post."
-
-#: email_users_options_form.php:188
-msgid "From Sender<br/>Exclude"
-msgstr "﻿Från avsändare<br>Uteslut"
-
-#: email_users_options_form.php:192
-msgid "Exclude sender from email recipient list."
-msgstr "﻿Uteslut avsändare från e-postens mottagarlista."
-
-#: email_users_options_form.php:197
-msgid "From Sender<br/>Name Override"
-msgstr "﻿Från avsändare<br>Åsidosätt namnet"
-
-#: email_users_options_form.php:201
-msgid ""
-"A name that can be used in place of the logged in user's name when sending "
-"email or notifications."
-msgstr ""
-"﻿Ett namn som kan användas i stället för den inloggade användarens namn när du "
-"skickar e-post eller meddelanden."
-
-#: email_users_options_form.php:205
-msgid "From Sender Email<br/>Address Override"
-msgstr "﻿Från avsändare Email<br>Åsidosätt Adress"
-
-#: email_users_options_form.php:209
-msgid ""
-"An email address that can be used in place of the logged in user's email "
-"address when sending email or notifications."
-msgstr ""
-"﻿En mailadress som kan användas i stället för den inloggade användarens "
-"mailadress när e-post eller meddelanden skickas."
-
-#: email_users_options_form.php:209 email_users_options_form.php:217
-msgid "Note:  Invalid email addresses are not saved."
-msgstr "﻿Obs: Ogiltig e-adresser sparas inte."
-
-#: email_users_options_form.php:213
-msgid "Send Bounces To Email<br/>Address Override"
-msgstr "﻿Skicka studsar till e-post<br>Åsidosätt Adress"
-
-#: email_users_options_form.php:217
-msgid ""
-"An email address that can be used in place of the logged in user's email "
-"address to receive bounced email notifications."
-msgstr ""
-"﻿En mailadress som kan användas i stället för den inloggade användarens "
-"mailadress för att ta emot studsande mailmeddelanden."
-
-#: email_users_options_form.php:221
-msgid "Default<br/>Notification Body"
-msgstr "﻿Standard <br/> Meddelandeinnehåll"
-
-#: email_users_options_form.php:229
-msgid "Email Footer"
-msgstr "﻿E-post sidfot"
-
-#: email_users_options_form.php:236
-msgid "Short Code<br/>Processing"
-msgstr "﻿Kort kod<br>Bearbetar"
-
-#: email_users_options_form.php:240
-msgid "Process short codes embedded in posts or pages."
-msgstr "﻿Processa korta koder inbäddade i inlägg eller sidor."
-
-#: email_users_options_form.php:245
-msgid "User Settings<br/>Table Rows"
-msgstr "Anv.inställn.<br>Tabellrader"
-
-#: email_users_options_form.php:248
-msgid "10"
-msgstr "﻿10"
-
-#: email_users_options_form.php:249
-msgid "20"
-msgstr "﻿20"
-
-#: email_users_options_form.php:250
-msgid "40"
-msgstr "﻿40"
-
-#: email_users_options_form.php:251
-msgid "50"
-msgstr "﻿50"
-
-#: email_users_options_form.php:252
-msgid "75"
-msgstr "﻿75"
-
-#: email_users_options_form.php:253
-msgid "100"
-msgstr "﻿100"
-
-#: email_users_options_form.php:254
-msgid "200"
-msgstr "﻿200"
-
-#: email_users_options_form.php:255
-msgid "500"
-msgstr "﻿500"
-
-#: email_users_options_form.php:256
-msgid "By default the table will display 20 rows."
-msgstr "﻿Som standard visas i tabell 20 rader."
-
-#: email_users_options_form.php:260
-msgid "Default<br/>User Settings"
-msgstr "﻿Standard <br/> Användarinställningar"
-
-#: email_users_options_form.php:264
-msgid "Receive post or page notification emails."
-msgstr "Ta emot epost om nya inlägg eller sidor."
-
-#: email_users_options_form.php:268
-msgid "Receive emails sent to multiple recipients."
-msgstr "﻿Ta emot epost som skickas till flera mottagare."
-
-#: email_users_options_form.php:272
-msgid "Allow Users to control their own Email Users settings."
-msgstr "﻿Tillåt användare att kontrollera sina egna epostinställningar:"
-
-#: email_users_options_form.php:276
-msgid "Additional<br/>Mail Headers"
-msgstr "﻿Ytterligare<br/>E-postrubriker"
-
-#: email_users_options_form.php:281
-msgid ""
-"Add <b>X-Mailer</b> mail header record.<br/><small><i>Not recommended for "
-"typical WordPress installations.</i></small>"
-msgstr ""
-"﻿Lägg till <b>X-Mailer</b> mail rubrikposten.<br><small><i>Rekommenderas inte "
-"för typiska WordPress installationer.</i></small>"
-
-#: email_users_options_form.php:285
-msgid ""
-"Add <a href=\"http://en.wikipedia.org/wiki/MIME-Version#MIME-Version\">MIME-"
-"Version</a> mail header record.<br/><small><i>Not recommended for typical "
-"WordPress installations.</i></small>"
-msgstr ""
-"﻿Lägg till<a href=\"http://en.wikipedia.org/wiki/MIME-Version#MIME-Version"
-"\">MIME-Version</a> posthuvudpost. <br/> <i><small>Rekommenderas inte för "
-"typiska Wordpress installationer.</small></i>"
-
-#: email_users_options_form.php:289
-msgid "Debug"
-msgstr "﻿Felsök"
-
-#: email_users_options_form.php:294
-msgid ""
-"Enable Debug Mode<br/><small><i>Note:  Email is not sent when in debug mode.</"
-"i></small>"
-msgstr ""
-"﻿Aktivera Felsökningsläge <br/><small>>i>Obs: E-post skickas inte i "
-"felsökningsläge.</i></small>"
-
-#: email_users_options_form.php:300
-msgid "Save Changes"
-msgstr "Spara ändringar"
-
-#: email_users_options_form.php:311
-msgid "Email-Users Defaults"
-msgstr "Email-Users Förinställningar"
-
-#: email_users_options_form.php:313
-msgid ""
-"Email-Users has default values for all settings.  When reset, the following "
-"values are used."
-msgstr ""
-"﻿Email-Users har standardvärden för alla inställningar. Vid återställning kan "
-"följande värden användas."
-
-#: email_users_options_form.php:317
-msgid "Settings"
-msgstr "﻿Inställningar"
-
-#: email_users_options_form.php:318
-msgid "Default Value"
-msgstr "﻿Förvalt värde"
-
-#: email_users_options_form.php:338
-msgid "Apply Default Settings"
-msgstr "﻿Tillämpa standardinställningarna"
-
-#: email_users_options_form.php:349
-msgid "Email-Users Test Notification Mail"
-msgstr "﻿Email-Users Test Anmälan Mail"
-
-#: email_users_options_form.php:351
-msgid "Use this Test Notification to verify proper operation of Email-Users."
-msgstr "﻿Använd detta Testmeddelande för att verifiera att Email-Users fungerar."
-
-#: email_users_options_form.php:355
-msgid "Notification Mail Preview (updated when the options are saved)"
-msgstr "﻿Meddelande förhandsgranskning (uppdaterad när alternativ sparas)"
-
-#: email_users_options_form.php:417
-msgid "Send Test Notification to Yourself"
-msgstr "﻿Skicka testmedelande till dig själv"
-
-#: email_users_options_form.php:427
-msgid "Email-Users Variables"
-msgstr "Email-Users variabler"
-
-#: email_users_options_form.php:429
-msgid "Variables you can include in the subject or body templates"
-msgstr "﻿Variabler som du kan inkludera i ämnet eller meddelandetextens mallar"
-
-#: email_users_options_form.php:433
-msgid "Variable"
-msgstr "Variabel"
-
-#: email_users_options_form.php:434 email_users_options_form.php:488
-msgid "Description"
-msgstr "﻿Beskrivning"
-
-#: email_users_options_form.php:440
-msgid "the link to the blog"
-msgstr "länken till bloggen"
-
-#: email_users_options_form.php:444
-msgid "the blog's name"
-msgstr "bloggens namn"
-
-#: email_users_options_form.php:448
-msgid "the WordPress user name of the person sending the mail"
-msgstr "﻿Wordpress användarnamnet på den person du skickar e-post till"
-
-#: email_users_options_form.php:452
-msgid "the title of the post you want to highlight"
-msgstr "Titel på inlägget som du vill markera"
-
-#: email_users_options_form.php:456
-msgid "the author of the post you want to highlight"
-msgstr "Författaren till inlägget som du vill markera"
-
-#: email_users_options_form.php:460
-msgid "the excerpt of the post you want to highlight"
-msgstr "utdraget av inlägget som du vill markera"
-
-#: email_users_options_form.php:464
-msgid "the content of the post you want to highlight"
-msgstr "﻿innehållet i inlägget som du vill markera"
-
-#: email_users_options_form.php:468
-msgid "the link to the post you want to highlight"
-msgstr "﻿länken till inlägget som du vill lyfta fram"
-
-#: email_users_options_form.php:479
-msgid "Email-Users Capabilities"
-msgstr "﻿Email-Users Möjligheter"
-
-#: email_users_options_form.php:482
-msgid ""
-"Email Users uses capabilities to define what users are allowed to do. Below "
-"is a list of the capabilities used by the plugin and the default user role "
-"allowed to make these actions."
-msgstr ""
-"﻿E posta användare om deras användarfunktioner för att definiera vad "
-"användarna får göra. Nedan följer en lista över de resurser som används av "
-"pluginet och förvald användarroll för att få göra dessa åtgärder."
-
-#: email_users_options_form.php:482
-msgid ""
-"If you want to change the roles having those capabilities, you should use the "
-"plugin:"
-msgstr ""
-"﻿Om du vill ändra rollerna som har dessa resurser, bör du använda "
-"insticksprogrammet:"
-
-#: email_users_options_form.php:487
-msgid "Capability"
-msgstr "Möjlighet"
-
-#: email_users_options_form.php:489
-msgid "Default Roles"
-msgstr "﻿Standardroller"
-
-#: email_users_options_form.php:495
-msgid "Access this options page."
-msgstr "Tillgång till den här alternativsidan"
-
-#: email_users_options_form.php:496
-msgid "Administrators only."
-msgstr "Bara administratörer."
-
-#: email_users_options_form.php:500
-msgid "Send an email to a single user."
-msgstr "﻿Skicka ett mail till en enda användare."
-
-#: email_users_options_form.php:501
-msgid "Administrators, editors, authors and contributors."
-msgstr "﻿Administratörer, redaktörer, författare och medarbetare."
-
-#: email_users_options_form.php:505
-msgid "Send an email to various users at the same time."
-msgstr "Skicka ett email till olika användare på samma gång."
-
-#: email_users_options_form.php:506
-msgid "Administrators, editors and authors."
-msgstr "Administratörer, redaktörer och författare."
-
-#: email_users_options_form.php:510
-msgid "Notify users of new posts."
-msgstr "﻿Meddela användarna om nya inlägg."
-
-#: email_users_options_form.php:511 email_users_options_form.php:516
-msgid "Administrators and editors."
-msgstr "﻿Administratörer och redaktörer."
-
-#: email_users_options_form.php:515
-msgid "Send an email to user groups."
-msgstr "﻿Skicka ett mail till användargrupper."
-
-#: email_users_options_form.php:527
-msgid "Email-Users wp_mail() Check"
-msgstr "Email-Users wp_mail() Check"
-
-#: email_users_options_form.php:530
-msgid ""
-"Email Users is dependent on the <a href=\"http://codex.wordpress.org/"
-"Function_Reference/wp_mail\">wp_mail()</a> function."
-msgstr ""
-"Email Users är beroende av <a href=\"http://codex.wordpress.org/"
-"Function_Reference/wp_mail\">wp_mail ()</a> funktionen."
-
-#: email_users_options_form.php:535
-msgid "wp_mail() is loaded from:"
-msgstr "﻿wp_mail () laddas från:"
-
-#: email_users_options_form.php:539
-msgid "Expected:"
-msgstr "Förväntad:"
-
-#: email_users_options_form.php:543
-msgid "Actual:"
-msgstr "﻿Faktisk:"
-
-#: email_users_options_form.php:549
+#~ msgid "You are not allowed to notify users about posts and pages."
+#~ msgstr "﻿Du får inte meddela användare om inlägg och sidor."
+
+#~ msgid "You must select at least a recipient."
+#~ msgstr "﻿Du måste välja minst en mottagare."
+
+#~ msgid "You must enter a subject."
+#~ msgstr "﻿Du måste ange ett ämne."
+
+#~ msgid "You must enter some content."
+#~ msgstr "﻿Du måste ange en del innehåll."
+
+#~ msgid "No recipients were found."
+#~ msgstr "﻿Inga mottagare hittades."
+
+#~ msgid "Notification sent to %s user(s)."
+#~ msgstr "﻿Meddelande skickas till %s användare."
+
+#~ msgid "Trying to notify users of a %s without passing the %s id!"
+#~ msgstr "Försöker meddela användare av en% s utan att skicka %s id!"
+
+#~ msgid "Notify Users of a %s"
+#~ msgstr "Meddela användare av en %s"
+
+#~ msgid "Please select the %s that you wish to notify users about."
+#~ msgstr "Välj det %s som du önskar meddela användarna om."
+
+#~ msgid "Select %s"
+#~ msgstr "﻿Välj %s"
+
+#~ msgid "HTML"
+#~ msgstr "﻿HTML"
+
+#~ msgid "Plain text"
+#~ msgstr "﻿Enkel text"
+
+#~ msgid "Please correct the errors displayed above and try again."
+#~ msgstr "﻿Korrigera de fel som visas ovan och försök igen."
+
+#~ msgid "Mail will be sent as:"
+#~ msgstr "﻿Mail kommer att skickas som:"
+
+#~ msgid "Sender"
+#~ msgstr "Avsändare"
+
+#~ msgid "Recipients"
+#~ msgstr "Mottagare"
+
+#~ msgid "Use CTRL key to select/deselect multiple items"
+#~ msgstr "﻿Använd CTRL-tangenten för att markera/avmarkera flera objekt"
+
+#~ msgid "The users that did not agree to receive notifications do not appear here."
+#~ msgstr "De användare som inte godkänt att ta emot meddelanden visas inte här."
+
+#~ msgid "Filter"
+#~ msgstr "﻿Filter"
+
+#~ msgid "Role"
+#~ msgstr "﻿Roll"
+
+#~ msgid "User Group"
+#~ msgstr "﻿Användargrupp"
+
+#~ msgid "UAM"
+#~ msgstr "﻿UAM"
+
+#~ msgid "Groups"
+#~ msgstr "﻿Grupper"
+
+#~ msgid "N/A"
+#~ msgstr "Ej tillgänglig"
+
+#~ msgid "User"
+#~ msgstr "﻿Användare"
+
+#~ msgid "Subject"
+#~ msgstr "Ämne"
+
+#~ msgid "Message"
+#~ msgstr "﻿Meddelande"
+
+#~ msgid "Send Email"
+#~ msgstr "﻿Skicka e-post"
+
+#~ msgid "You are not allowed to send emails."
+#~ msgstr "﻿Du får inte skicka e-post."
+
+#~ msgid "Email Users"
+#~ msgstr "Email Users"
+
+#~ msgid "Send Individual Message"
+#~ msgstr "Skicka individuella meddelanden"
+
+#~ msgid "Send an email to one or more individual users"
+#~ msgstr "﻿Skicka ett mail till en eller flera enskilda användare"
+
+#~ msgid "You can send an email to one or more users by selecting them individually."
+#~ msgstr "﻿Du kan skicka ett mail till en eller flera användare genom att markera dem individuellt."
+
+#~ msgid "Send a Group Message"
+#~ msgstr "﻿Skicka ett gruppmeddelande"
+
+#~ msgid "Send an email to one or more user groups"
+#~ msgstr "﻿Skicka ett mail till en eller flera användargrupper"
+
+#~ msgid "You can send an email to one or more user groups (i.e. users belonging to the same WordPress role)."
+#~ msgstr "﻿Du kan skicka ett mail till en eller flera grupper av användare (d.v.s. användare som tillhör samma WordPress roll)."
+
+#~ msgid "Send Group Message"
+#~ msgstr "﻿Skicka gruppmeddelande"
+
+#~ msgid "You are not allowed to view the user settings."
+#~ msgstr "﻿Du får inte Visa användarinställningarna."
+
+#~ msgid "On"
+#~ msgstr "﻿På"
+
+#~ msgid "Off"
+#~ msgstr "﻿Av"
+
+#~ msgid "Display Name"
+#~ msgstr "﻿Visningsnamn"
+
+#~ msgid "Username"
+#~ msgstr "Användarnamn"
+
+#~ msgid "E-Mail Address"
+#~ msgstr "﻿E-postadress"
+
+#~ msgid "Notifications"
+#~ msgstr "﻿Meddelanden"
+
+#~ msgid "Mass Email"
+#~ msgstr "Massutskick e-post"
+
+#~ msgid "Notifications On"
+#~ msgstr "Meddelanden På"
+
+#~ msgid "Notifications Off"
+#~ msgstr "Meddelanden Av"
+
+#~ msgid "Mass Email On"
+#~ msgstr "Massutskick mail På"
+
+#~ msgid "Mass Email Off"
+#~ msgstr "Massutskick email Av"
+
+#~ msgid "Notifications On & Mass Email On"
+#~ msgstr "Meddelanden På & Massutskick epost På"
+
+#~ msgid "Notifications On & Mass Email Off"
+#~ msgstr "Meddelanden På & Massutskick epost Av"
+
+#~ msgid "Notifications Off & Mass Email On"
+#~ msgstr "Meddelanden Av & Massutskick epost På"
+
+#~ msgid "Notifications Off & Mass Email Off"
+#~ msgstr "Meddelanden Av & Massutskick epost Av"
+
+#~ msgid "No users selected"
+#~ msgstr "Inga användare valda"
+
+#~ msgid "Search"
+#~ msgstr "﻿Sök"
+
+#~ msgid "You are not allowed to send emails to users."
+#~ msgstr "﻿Du får inte skicka e-post till användare."
+
+#~ msgid "Send an Email to Individual Users"
+#~ msgstr "﻿Skicka ett mail till enskilda användare"
+
+#~ msgid "Mail format"
+#~ msgstr "﻿E-postformat"
+
+#~ msgid "You are only allowed to select one user at a time."
+#~ msgstr "﻿Du får bara välja en användare åt gången."
+
+#~ msgid "You can select multiple users by pressing the CTRL key.  When selecting multiple users, any user who should not receive Mass Email will be filtered from the recipient list."
+#~ msgstr "﻿Du kan välja flera användare genom att trycka på CTRL-tangenten.  När du väljer flera användare, filtreras alla användare som inte ska få massutskicket från mottagarlistan."
+
+#~ msgid "You are not allowed to change the options of this plugin."
+#~ msgstr "﻿Du får inte ändra alternativ för denna plugin."
+
+#~ msgid "No post found in the blog in order to build a notification preview."
+#~ msgstr "﻿Inga inlägg hittades i bloggen för att bygga ett förhandsvisningsmeddelande."
+
+#~ msgid "Test email sent to %s."
+#~ msgstr "﻿Test e-post skickat till %s."
+
+#~ msgid "A post of interest:"
+#~ msgstr "﻿Ett inlägg av intresse:"
+
+#~ msgid "<p>Hello, </p><p>I would like to bring your attention on a new post published on the blog. Details of the post follow; I hope you will find it interesting.</p><p>Best regards, </p><p>%FROM_NAME%</p><hr><p><strong>%POST_TITLE%</strong></p><p>%POST_EXCERPT%</p><ul><li>Link to the post: <a href=\"%POST_URL%\">%POST_URL%</a></li><li>Link to %BLOG_NAME%: <a href=\"%BLOG_URL%\">%BLOG_URL%</a></li></ul>"
+#~ msgstr "﻿<p>Hej</p><p>Jag vill uppmärksamma dig om ny post som publicerats på bloggen. Detaljer för inlägget följer; Jag hoppas du finner det intressant.</p><p>Vänliga hälsningar</p><p>% FROM_NAME %</p><hr><p><strong>% POST_TITLE %</strong></p><p>% POST_EXCERPT %</p><ul><li>Länk till inlägget: <a href=\"\"%POST_URL%\"\">% POST_URL %</a></li><li>Länk till % BLOG_NAME %: <a href=\"\"%BLOG_URL%\"\">% BLOG_URL %</a></li></ul>"
+
+#~ msgid "Powered by"
+#~ msgstr "Drivs av"
+
+#~ msgid "Notify Users About this Post"
+#~ msgstr "﻿Meddela användare om detta inlägg"
+
+#~ msgid "Notify Users About this Page"
+#~ msgstr "﻿Meddela användare om denna sida"
+
+#~ msgid "Notify Users"
+#~ msgstr "﻿Meddela användare"
+
+#~ msgid "Send to User(s)"
+#~ msgstr "﻿Skicka till användare"
+
+#~ msgid "Send to %s"
+#~ msgstr "﻿Skicka till %s"
+
+#~ msgid "Send to Group(s)"
+#~ msgstr "﻿Skicka till grupp(er)"
+
+#~ msgid "User Settings"
+#~ msgstr "Inställningar"
+
+#~ msgid "Email Preferences"
+#~ msgstr "﻿E-postinställningar"
+
+#~ msgid "Accept to receive post or page notification emails"
+#~ msgstr "Acceptera att ta emot epostmeddelanden om nya inlägg eller sidor"
+
+#~ msgid "Accept to receive emails sent to multiple recipients (but still accept emails sent only to me)"
+#~ msgstr "﻿Acceptera att få e-postmeddelanden som skickas till flera mottagare (men fortfarande acceptera e-post som skickas endast till mig)"
+
+#~ msgid "The email address (%s) of the user you are trying to send mail to is not a valid email address format."
+#~ msgstr "﻿Den e-postadress (%s) för den användare som du försöker att skicka mail till är inte en giltig epostadress."
+
+#~ msgid "Invalid email address (\"%s\") found."
+#~ msgstr "﻿Ogiltig e-postadress (\"%s\") hittad."
+
+#~ msgid "Default User Settings"
+#~ msgstr "﻿Standardinställningarna för användare"
+
+#~ msgid "Receive post or page notification emails:"
+#~ msgstr "Ta emot epost om nya inlägg eller sidor"
+
+#~ msgid "Receive emails sent to multiple recipients:"
+#~ msgstr "Ta emot epost som skickas till flera mottagare:"
+
+#~ msgid "Allow Users to control their own Email Users settings:"
+#~ msgstr "Tillåt användare att kontrollera sina egna epostinställningar:"
+
+#~ msgid "User Statistics"
+#~ msgstr "﻿Användarstatistik"
+
+#~ msgid "Number of Users who accept post or page notification emails:"
+#~ msgstr "﻿Antal användare som accepterar att ta emot epost om inlägg eller sido tillkännagivanden:"
+
+#~ msgid "Number of Users who accept emails sent to multiple recipients:"
+#~ msgstr "﻿Antal användare som accepterar e-post som skickas till flera mottagare:"
+
+#~ msgid "Mail sending aborted."
+#~ msgstr "﻿Mail skickning avbröts."
+
+#~ msgid "PHPMailer Debug"
+#~ msgstr "﻿PHPMailer Debug"
+
+#~ msgid "wp_mail() Debug"
+#~ msgstr "﻿wp_mail() Debug"
+
+#~ msgid "You are not allowed to send emails to user groups."
+#~ msgstr "﻿Du får inte skicka e-post till användargrupper."
+
+#~ msgid "Send an Email to User Groups Filtered by User Meta Data"
+#~ msgstr "﻿Skicka ett mail till användargrupper filtrerade efter användar-Metadata"
+
+#~ msgid "Send an Email to a Group of Users"
+#~ msgstr "﻿Skicka ett mail till en grupp av användare"
+
+#~ msgid "You can select multiple groups by pressing the CTRL key."
+#~ msgstr "﻿Du kan välja flera grupper genom att trycka på CTRL-tangenten."
+
+#~ msgid "Only the groups having at least one user that accepts group mails appear here."
+#~ msgstr "﻿Endast de grupper som har minst en användare som accepterar grupp e-post visas här."
+
+#~ msgid "Make a Donation"
+#~ msgstr "﻿Ge ett bidrag"
+
+#~ msgid "Plugin's Home Page"
+#~ msgstr "Tilläggets startsida"
+
+#~ msgid "EN"
+#~ msgstr "﻿EN"
+
+#~ msgid "Discover other Plugins by MarvinLabs"
+#~ msgstr "﻿Upptäck andra Plugins av MarvinLabs"
+
+#~ msgid "If Email-Users is not robust enough or if you want to allow your users to communicate with each other, try: "
+#~ msgstr "﻿Om e-användare inte är tillräckligt robust eller om du vill tillåta användarna att kommunicera med varandra, försök: "
+
+#~ msgid "If you lose time copy/pasting the same post structure every time, try: "
+#~ msgstr "﻿Om du förlorar tid genom att kopiera/klistra in samma inläggsstruktur varje gång, prova: "
+
+#~ msgid "More Plugins from Mike Walsh"
+#~ msgstr "﻿Fler Plugins från Mike Walsh"
+
+#~ msgid "If you use Google Forms and want to integrate them with your WordPress site, try: "
+#~ msgstr "﻿Om du använder Google Formulär och vill integrera dem med din Wordpress webbplats, prova: "
+
+#~ msgid "You must specify the mail format."
+#~ msgstr "﻿Du måste ange e-postformat."
+
+#~ msgid "You must enter at least a recipient."
+#~ msgstr "﻿Du måste välja minst en mottagare."
+
+#~ msgid "<br/>%d users who should not to receive Mass Email were filtered from the recipient list."
+#~ msgstr "<br>%d användare som inte ska ta emot massmailutskick har filtreras bort från mottagarlistan."
+
+#~ msgid "There was a problem trying to send email to users."
+#~ msgstr "﻿Det uppstod ett problem vid försöket att skicka e-post till användare."
+
+#~ msgid "No email has been sent to other users. This may be because no valid email addresses were found."
+#~ msgstr "﻿Ingen e-post har skickats till andra användare. Detta kan bero på att inga giltiga email adresser hittades."
+
+#~ msgid "Email sent to %s user(s)."
+#~ msgstr "﻿Mail skickade till %s användare."
+
+#~ msgid "WARNING: More email has been sent than the number of recipients found."
+#~ msgstr "﻿VARNING: Fler mail har skickats än antalet mottagare hittas."
+
+#~ msgid "Email has been sent to %d users, but %d recipients were originally found. Perhaps some users don't have valid email addresses?"
+#~ msgstr "﻿E-post har skickats till %d användare, men %d mottagare hittades ursprungligen. Kanske vissa användare inte har giltiga e-postadresser?"
+
+#~ msgid "Email has been sent to %s users, but %s recipients were originally found. Perhaps some users don't have valid email addresses?"
+#~ msgstr "﻿E-post har skickats till %s användare, men %s mottagare hittades. Kanske vissa användare inte har giltiga e-postadresser?"
+
+#~ msgid "It looks like you have an old version of the plugin activated. Please deactivate the plugin and activate it again to complete the installation of the new version."
+#~ msgstr "﻿Det ser ut som du har en gammal version av insticksprogrammet aktiverad. Vänligen avaktivera plugin och aktivera den igen för att slutföra installationen av den nya versionen."
+
+#~ msgid "Installed Version:"
+#~ msgstr "﻿Installerad version:"
+
+#~ msgid "Current Version:"
+#~ msgstr "﻿Aktuell version:"
+
+#~ msgid "Warning:  wp_mail() appears to be overloaded."
+#~ msgstr "﻿Varning: wp_mail() verkar vara överbelastad."
+
+#~ msgid "Current settings show post or page notification and/or mass email may not be received by any users."
+#~ msgstr "﻿Aktuella inställningar visar att post eller sida meddelanden och/eller massutskick kanske inte tas emot av alla användare."
+
+#~ msgid "Email Users Settings"
+#~ msgstr "Email Users inställningar"
+
+#~ msgid "Email-Users Plugin Settings"
+#~ msgstr "Email-Users Plugin inställningar"
+
+#~ msgid "Mail Format"
+#~ msgstr "﻿E-postformat"
+
+#~ msgid "Send mail as plain text or HTML by default?"
+#~ msgstr "﻿Skicka e-post som formaterad text eller HTML-standard?"
+
+#~ msgid "Sort Users By"
+#~ msgstr "﻿Sortera användare enligt"
+
+#~ msgid "None"
+#~ msgstr "Ingen"
+
+#~ msgid "Display Name (User Login)"
+#~ msgstr "﻿Visningsnamn (User Login)"
+
+#~ msgid "First Name Last Name"
+#~ msgstr "﻿Förnamn Efternamn"
+
+#~ msgid "First Name Last Name (User Login)"
+#~ msgstr "﻿Förnamn efternamn (User Login)"
+
+#~ msgid "Last Name, First Name"
+#~ msgstr "﻿Efternamn, förnamn"
+
+#~ msgid "Last Name, First Name (User Login)"
+#~ msgstr "﻿Efternamn, förnamn (User Login)"
+
+#~ msgid "User Login"
+#~ msgstr "﻿Användarinloggning"
+
+#~ msgid "User Login (Display Name)"
+#~ msgstr "﻿Användarlogin (Visningsnamn)"
+
+#~ msgid "User Login (First Name Last Name)"
+#~ msgstr "﻿Användarinloggning (Förnamn Efternamn)"
+
+#~ msgid "User Login (Last Name, First Name)"
+#~ msgstr "﻿Användarinloggning (Efternamn, Förnamn)"
+
+#~ msgid "Determine how to sort and display names in the User selection list?"
+#~ msgstr "﻿Bestäm hur du sorterar och visar namn i urvalslistan för användare?"
+
+#~ msgid "BCC Limit"
+#~ msgstr "﻿BCC Gräns"
+
+#~ msgid "Try 30 if you have problems sending emails to many users (some providers forbid too many recipients in BCC field)."
+#~ msgstr "﻿Prova 30 om du har problem med att skicka e-post till många användare (vissa leverantörer förbjuder alltför många mottagare i BCC fält)."
+
+#~ msgid "Default<br/>Notification Subject"
+#~ msgstr "﻿Standard<br>Meddelande ämne"
+
+#~ msgid "Display Names"
+#~ msgstr "﻿Visa namn"
+
+#~ msgid "Omit Display Names when sending email."
+#~ msgstr "﻿Utelämna visningsnamn när du skickar e-post."
+
+#~ msgid "Use \"john.doe@example.com\" instead of \"John Doe &lt;john.doe@example.com&gt;\""
+#~ msgstr "﻿Använd \"john.doe@example.com\" i stället för \"John Doe &lt; john.doe@example.com &gt;\""
+
+#~ msgid "Copy Sender"
+#~ msgstr "Kopiera avsändaren"
+
+#~ msgid "Copy sender (add sender email to Cc: header) when sending email."
+#~ msgstr "﻿Kopiera avsändaren (lägga till avsändare email till Cc: huvudet) när du skickar e-post."
+
+#~ msgid "From Sender<br/>Exclude"
+#~ msgstr "﻿Från avsändare<br>Uteslut"
+
+#~ msgid "Exclude sender from email recipient list."
+#~ msgstr "﻿Uteslut avsändare från e-postens mottagarlista."
+
+#~ msgid "From Sender<br/>Name Override"
+#~ msgstr "﻿Från avsändare<br>Åsidosätt namnet"
+
+#~ msgid "A name that can be used in place of the logged in user's name when sending email or notifications."
+#~ msgstr "﻿Ett namn som kan användas i stället för den inloggade användarens namn när du skickar e-post eller meddelanden."
+
+#~ msgid "From Sender Email<br/>Address Override"
+#~ msgstr "﻿Från avsändare Email<br>Åsidosätt Adress"
+
+#~ msgid "An email address that can be used in place of the logged in user's email address when sending email or notifications."
+#~ msgstr "﻿En mailadress som kan användas i stället för den inloggade användarens mailadress när e-post eller meddelanden skickas."
+
+#~ msgid "Note:  Invalid email addresses are not saved."
+#~ msgstr "﻿Obs: Ogiltig e-adresser sparas inte."
+
+#~ msgid "Send Bounces To Email<br/>Address Override"
+#~ msgstr "﻿Skicka studsar till e-post<br>Åsidosätt Adress"
+
+#~ msgid "An email address that can be used in place of the logged in user's email address to receive bounced email notifications."
+#~ msgstr "﻿En mailadress som kan användas i stället för den inloggade användarens mailadress för att ta emot studsande mailmeddelanden."
+
+#~ msgid "Default<br/>Notification Body"
+#~ msgstr "﻿Standard <br/> Meddelandeinnehåll"
+
+#~ msgid "Email Footer"
+#~ msgstr "﻿E-post sidfot"
+
+#~ msgid "Short Code<br/>Processing"
+#~ msgstr "﻿Kort kod<br>Bearbetar"
+
+#~ msgid "Process short codes embedded in posts or pages."
+#~ msgstr "﻿Processa korta koder inbäddade i inlägg eller sidor."
+
+#~ msgid "User Settings<br/>Table Rows"
+#~ msgstr "Anv.inställn.<br>Tabellrader"
+
+#~ msgid "10"
+#~ msgstr "﻿10"
+
+#~ msgid "20"
+#~ msgstr "﻿20"
+
+#~ msgid "40"
+#~ msgstr "﻿40"
+
+#~ msgid "50"
+#~ msgstr "﻿50"
+
+#~ msgid "75"
+#~ msgstr "﻿75"
+
+#~ msgid "100"
+#~ msgstr "﻿100"
+
+#~ msgid "200"
+#~ msgstr "﻿200"
+
+#~ msgid "500"
+#~ msgstr "﻿500"
+
+#~ msgid "By default the table will display 20 rows."
+#~ msgstr "﻿Som standard visas i tabell 20 rader."
+
+#~ msgid "Default<br/>User Settings"
+#~ msgstr "﻿Standard <br/> Användarinställningar"
+
+#~ msgid "Receive post or page notification emails."
+#~ msgstr "Ta emot epost om nya inlägg eller sidor."
+
+#~ msgid "Receive emails sent to multiple recipients."
+#~ msgstr "﻿Ta emot epost som skickas till flera mottagare."
+
+#~ msgid "Allow Users to control their own Email Users settings."
+#~ msgstr "﻿Tillåt användare att kontrollera sina egna epostinställningar:"
+
+#~ msgid "Additional<br/>Mail Headers"
+#~ msgstr "﻿Ytterligare<br/>E-postrubriker"
+
+#~ msgid "Add <b>X-Mailer</b> mail header record.<br/><small><i>Not recommended for typical WordPress installations.</i></small>"
+#~ msgstr "﻿Lägg till <b>X-Mailer</b> mail rubrikposten.<br><small><i>Rekommenderas inte för typiska WordPress installationer.</i></small>"
+
+#~ msgid "Add <a href=\"http://en.wikipedia.org/wiki/MIME-Version#MIME-Version\">MIME-Version</a> mail header record.<br/><small><i>Not recommended for typical WordPress installations.</i></small>"
+#~ msgstr "﻿Lägg till<a href=\"http://en.wikipedia.org/wiki/MIME-Version#MIME-Version\">MIME-Version</a> posthuvudpost. <br/> <i><small>Rekommenderas inte för typiska Wordpress installationer.</small></i>"
+
+#~ msgid "Debug"
+#~ msgstr "﻿Felsök"
+
+#~ msgid "Enable Debug Mode<br/><small><i>Note:  Email is not sent when in debug mode.</i></small>"
+#~ msgstr "﻿Aktivera Felsökningsläge <br/><small>>i>Obs: E-post skickas inte i felsökningsläge.</i></small>"
+
+#~ msgid "Save Changes"
+#~ msgstr "Spara ändringar"
+
+#~ msgid "Email-Users Defaults"
+#~ msgstr "Email-Users Förinställningar"
+
+#~ msgid "Email-Users has default values for all settings.  When reset, the following values are used."
+#~ msgstr "﻿Email-Users har standardvärden för alla inställningar. Vid återställning kan följande värden användas."
+
+#~ msgid "Settings"
+#~ msgstr "﻿Inställningar"
+
+#~ msgid "Default Value"
+#~ msgstr "﻿Förvalt värde"
+
+#~ msgid "Apply Default Settings"
+#~ msgstr "﻿Tillämpa standardinställningarna"
+
+#~ msgid "Email-Users Test Notification Mail"
+#~ msgstr "﻿Email-Users Test Anmälan Mail"
+
+#~ msgid "Use this Test Notification to verify proper operation of Email-Users."
+#~ msgstr "﻿Använd detta Testmeddelande för att verifiera att Email-Users fungerar."
+
+#~ msgid "Notification Mail Preview (updated when the options are saved)"
+#~ msgstr "﻿Meddelande förhandsgranskning (uppdaterad när alternativ sparas)"
+
+#~ msgid "Send Test Notification to Yourself"
+#~ msgstr "﻿Skicka testmedelande till dig själv"
+
+#~ msgid "Email-Users Variables"
+#~ msgstr "Email-Users variabler"
+
+#~ msgid "Variables you can include in the subject or body templates"
+#~ msgstr "﻿Variabler som du kan inkludera i ämnet eller meddelandetextens mallar"
+
+#~ msgid "Variable"
+#~ msgstr "Variabel"
+
+#~ msgid "Description"
+#~ msgstr "﻿Beskrivning"
+
+#~ msgid "the link to the blog"
+#~ msgstr "länken till bloggen"
+
+#~ msgid "the blog's name"
+#~ msgstr "bloggens namn"
+
+#~ msgid "the WordPress user name of the person sending the mail"
+#~ msgstr "﻿Wordpress användarnamnet på den person du skickar e-post till"
+
+#~ msgid "the title of the post you want to highlight"
+#~ msgstr "Titel på inlägget som du vill markera"
+
+#~ msgid "the author of the post you want to highlight"
+#~ msgstr "Författaren till inlägget som du vill markera"
+
+#~ msgid "the excerpt of the post you want to highlight"
+#~ msgstr "utdraget av inlägget som du vill markera"
+
+#~ msgid "the content of the post you want to highlight"
+#~ msgstr "﻿innehållet i inlägget som du vill markera"
+
+#~ msgid "the link to the post you want to highlight"
+#~ msgstr "﻿länken till inlägget som du vill lyfta fram"
+
+#~ msgid "Email-Users Capabilities"
+#~ msgstr "﻿Email-Users Möjligheter"
+
+#~ msgid "Email Users uses capabilities to define what users are allowed to do. Below is a list of the capabilities used by the plugin and the default user role allowed to make these actions."
+#~ msgstr "﻿E posta användare om deras användarfunktioner för att definiera vad användarna får göra. Nedan följer en lista över de resurser som används av pluginet och förvald användarroll för att få göra dessa åtgärder."
+
+#~ msgid "If you want to change the roles having those capabilities, you should use the plugin:"
+#~ msgstr "﻿Om du vill ändra rollerna som har dessa resurser, bör du använda insticksprogrammet:"
+
+#~ msgid "Capability"
+#~ msgstr "Möjlighet"
+
+#~ msgid "Default Roles"
+#~ msgstr "﻿Standardroller"
+
+#~ msgid "Access this options page."
+#~ msgstr "Tillgång till den här alternativsidan"
+
+#~ msgid "Administrators only."
+#~ msgstr "Bara administratörer."
+
+#~ msgid "Send an email to a single user."
+#~ msgstr "﻿Skicka ett mail till en enda användare."
+
+#~ msgid "Administrators, editors, authors and contributors."
+#~ msgstr "﻿Administratörer, redaktörer, författare och medarbetare."
+
+#~ msgid "Send an email to various users at the same time."
+#~ msgstr "Skicka ett email till olika användare på samma gång."
+
+#~ msgid "Administrators, editors and authors."
+#~ msgstr "Administratörer, redaktörer och författare."
+
+#~ msgid "Notify users of new posts."
+#~ msgstr "﻿Meddela användarna om nya inlägg."
+
+#~ msgid "Administrators and editors."
+#~ msgstr "﻿Administratörer och redaktörer."
+
+#~ msgid "Send an email to user groups."
+#~ msgstr "﻿Skicka ett mail till användargrupper."
+
+#~ msgid "Email-Users wp_mail() Check"
+#~ msgstr "Email-Users wp_mail() Check"
+
+#~ msgid "Email Users is dependent on the <a href=\"http://codex.wordpress.org/Function_Reference/wp_mail\">wp_mail()</a> function."
+#~ msgstr "Email Users är beroende av <a href=\"http://codex.wordpress.org/Function_Reference/wp_mail\">wp_mail ()</a> funktionen."
+
+#~ msgid "wp_mail() is loaded from:"
+#~ msgstr "﻿wp_mail () laddas från:"
+
+#~ msgid "Expected:"
+#~ msgstr "Förväntad:"
+
+#~ msgid "Actual:"
+#~ msgstr "﻿Faktisk:"
+
 #, fuzzy
-msgid ""
-"The WordPress wp_mail() function is <a href=\"http://codex.wordpress.org/"
-"Pluggable_Functions\">pluggable</a>\n"
-"    which means the standard WordPress functionality can be overloaded by a "
-"Theme or another WordPress plugin.\n"
-"    It is important to note that if the <strong><i>expected</i></strong> and "
-"<strong><i>actual</i></strong> do\n"
-"    not match, it does not automatically mean there will be a problem.  "
-"However, if Email Users is not producing\n"
-"    the expected results AND the <strong><i>expected</i></strong> and "
-"<strong><i>actual</i></strong> do not match,\n"
-"    it is something which should be looked at as a potential source of the "
-"problem."
-msgstr ""
-"Wordpress wp_mail () funktionen är <a href=\"http://codex.wordpress.org/"
-"Pluggable_Functions\">pluggable</a>\n"
-"     vilket innebär standardWordPress funktionalitet kan överbelastas av ett "
-"tema eller en annan Wordpress plugin.\n"
-"     Det är viktigt att notera att om <strong><i>förväntat</i></strong> och "
-"<strong><i>faktiskt</i></strong> gör\n"
-"     inte matchar, betyder det inte automatiskt att det kommer att bli ett "
-"problem. Men om Email Users inte producerar\n"
-"     förväntat resultat OCH <strong><i>förväntat</i></strong> och "
-"<strong><i>faktiskt</i></strong> inte matchar,\n"
-"     det är något som bör ses som en potentiell källa till problemet."
+#~ msgid ""
+#~ "The WordPress wp_mail() function is <a href=\"http://codex.wordpress.org/Pluggable_Functions\">pluggable</a>\n"
+#~ "    which means the standard WordPress functionality can be overloaded by a Theme or another WordPress plugin.\n"
+#~ "    It is important to note that if the <strong><i>expected</i></strong> and <strong><i>actual</i></strong> do\n"
+#~ "    not match, it does not automatically mean there will be a problem.  However, if Email Users is not producing\n"
+#~ "    the expected results AND the <strong><i>expected</i></strong> and <strong><i>actual</i></strong> do not match,\n"
+#~ "    it is something which should be looked at as a potential source of the problem."
+#~ msgstr ""
+#~ "Wordpress wp_mail () funktionen är <a href=\"http://codex.wordpress.org/Pluggable_Functions\">pluggable</a>\n"
+#~ "     vilket innebär standardWordPress funktionalitet kan överbelastas av ett tema eller en annan Wordpress plugin.\n"
+#~ "     Det är viktigt att notera att om <strong><i>förväntat</i></strong> och <strong><i>faktiskt</i></strong> gör\n"
+#~ "     inte matchar, betyder det inte automatiskt att det kommer att bli ett problem. Men om Email Users inte producerar\n"
+#~ "     förväntat resultat OCH <strong><i>förväntat</i></strong> och <strong><i>faktiskt</i></strong> inte matchar,\n"
+#~ "     det är något som bör ses som en potentiell källa till problemet."
 
-#: email_users_options_form.php:557
 #, fuzzy
-msgid ""
-"The recommended way to eliminate the overloaded version of wp_mail() as the "
-"source of a problem is to disable\n"
-"    the plugin or theme which has overloaded wp_mail()."
-msgstr ""
-"Det rekommenderade sättet att eliminera den överbelastade versionen av "
-"wp_mail() som källa till ett problem är att inaktivare\n"
-" det plugin eller tema som har överbelastat wp_mail()."
+#~ msgid ""
+#~ "The recommended way to eliminate the overloaded version of wp_mail() as the source of a problem is to disable\n"
+#~ "    the plugin or theme which has overloaded wp_mail()."
+#~ msgstr ""
+#~ "Det rekommenderade sättet att eliminera den överbelastade versionen av wp_mail() som källa till ett problem är att inaktivare\n"
+#~ " det plugin eller tema som har överbelastat wp_mail()."
 
-#: email_users_options_form.php:566
-msgid "Email-Users Integration"
-msgstr "Email-Users integration"
+#~ msgid "Email-Users Integration"
+#~ msgstr "Email-Users integration"
 
-#: email_users_options_form.php:569
-msgid ""
-"Email Users provides integration hooks with several WordPress \"Group\" "
-"plugins."
-msgstr ""
-"﻿Email Users tillhandahåller integrationskrokar med flera Wordpress \"Group\" "
-"plugins."
+#~ msgid "Email Users provides integration hooks with several WordPress \"Group\" plugins."
+#~ msgstr "﻿Email Users tillhandahåller integrationskrokar med flera Wordpress \"Group\" plugins."
 
-#: email_users_options_form.php:574
-msgid "Plugin"
-msgstr "﻿Plugin"
+#~ msgid "Plugin"
+#~ msgstr "﻿Plugin"
 
-#: email_users_options_form.php:575
-msgid "Description <small><i>(from the plugin web site)</i></small>"
-msgstr "﻿Beskrivning <small><i>(från plugin hemsida)</i></small>"
+#~ msgid "Description <small><i>(from the plugin web site)</i></small>"
+#~ msgstr "﻿Beskrivning <small><i>(från plugin hemsida)</i></small>"
 
-#: email_users_options_form.php:576
-msgid "Status"
-msgstr "﻿Status"
+#~ msgid "Status"
+#~ msgstr "﻿Status"
 
-#: email_users_options_form.php:582
-msgid ""
-"This plugin does one thing, and does it well: create groups and organize your "
-"users by that group."
-msgstr ""
-"﻿Denna plugin gör en sak och gör det bra: skapa grupper och ordnar dina "
-"användare enligt denna grupp."
+#~ msgid "This plugin does one thing, and does it well: create groups and organize your users by that group."
+#~ msgstr "﻿Denna plugin gör en sak och gör det bra: skapa grupper och ordnar dina användare enligt denna grupp."
 
-#: email_users_options_form.php:587
-msgid ""
-"With the \"User Access Manager\"-plugin you can manage the access to your "
-"posts, pages and files."
-msgstr ""
-"﻿Med \"User Access Manager\"-plugin kan du hantera åtkomsten till dina inlägg, "
-"sidor och filer."
+#~ msgid "With the \"User Access Manager\"-plugin you can manage the access to your posts, pages and files."
+#~ msgstr "﻿Med \"User Access Manager\"-plugin kan du hantera åtkomsten till dina inlägg, sidor och filer."
 
-#: email_users_options_form.php:592
-msgid ""
-"Groups provides group-based user membership management, group-based "
-"capabilities and content access control."
-msgstr ""
-"﻿Grupper ger gruppbaserad medlemshantering, gruppbaserade kapacitet och "
-"åtkomstkontroll av innehåll."
+#~ msgid "Groups provides group-based user membership management, group-based capabilities and content access control."
+#~ msgstr "﻿Grupper ger gruppbaserad medlemshantering, gruppbaserade kapacitet och åtkomstkontroll av innehåll."
 
-#: email_users_options_form.php:611
-msgid "Email-Users Information"
-msgstr "Email-Users Information"
+#~ msgid "Email-Users Information"
+#~ msgstr "Email-Users Information"
 
-#: email_users_options_form.php:619
-msgid "Number of Users who accept<br/>post or page notification emails:"
-msgstr ""
-"Antal användare som accepterar<br/>inläggs eller sido e-postmeddelanden:"
+#~ msgid "Number of Users who accept<br/>post or page notification emails:"
+#~ msgstr "Antal användare som accepterar<br/>inläggs eller sido e-postmeddelanden:"
 
-#: email_users_options_form.php:623
-msgid "Number of Users who accept<br/>emails sent to multiple recipients:"
-msgstr ""
-"﻿Antal användare som accepterar<br/>mail som skickas till flera mottagare:"
+#~ msgid "Number of Users who accept<br/>emails sent to multiple recipients:"
+#~ msgstr "﻿Antal användare som accepterar<br/>mail som skickas till flera mottagare:"
 
-#: email_users_options_form.php:629
-msgid "Filters"
-msgstr "﻿Filter"
+#~ msgid "Filters"
+#~ msgstr "﻿Filter"
 
-#: email_users_options_form.php:637
-msgid "Yes"
-msgstr "﻿Ja"
+#~ msgid "Yes"
+#~ msgstr "﻿Ja"
 
-#: email_users_options_form.php:637
-msgid "No"
-msgstr "﻿Nej"
+#~ msgid "No"
+#~ msgstr "﻿Nej"
 
-#: email_users_options_form.php:643
-msgid ""
-"There are a number of <a href=\"http://codex.wordpress.org/Plugin_API/"
-"Filter_Reference\">WordPress Filters</a> which <strong><i>may</i></strong> "
-"affect Email Users.  The presence of these filters does not mean they will "
-"adversely affect Email Users but should be examined if email delivery isn't "
-"reaching all of the intended recipients or the mail format and/or header "
-"detail isn't as expected."
-msgstr ""
-"﻿Det finns ett antal av <a href=\"http://codex.wordpress.org/Plugin_API/"
-"Filter_Reference\">Wordpress Filter</a> som <strong><i>kan</i></strong> "
-"påverka Email Users. Förekomsten av dessa filter betyder inte att de kommer "
-"att negativt påverka Email Users men bör undersökas om e-postleverans inte "
-"når alla de avsedda mottagarna eller postformat och/eller header detalj inte "
-"är som förväntat."
+#~ msgid "There are a number of <a href=\"http://codex.wordpress.org/Plugin_API/Filter_Reference\">WordPress Filters</a> which <strong><i>may</i></strong> affect Email Users.  The presence of these filters does not mean they will adversely affect Email Users but should be examined if email delivery isn't reaching all of the intended recipients or the mail format and/or header detail isn't as expected."
+#~ msgstr "﻿Det finns ett antal av <a href=\"http://codex.wordpress.org/Plugin_API/Filter_Reference\">Wordpress Filter</a> som <strong><i>kan</i></strong> påverka Email Users. Förekomsten av dessa filter betyder inte att de kommer att negativt påverka Email Users men bör undersökas om e-postleverans inte når alla de avsedda mottagarna eller postformat och/eller header detalj inte är som förväntat."
 
-#: email_users_send_group_mail.php:61
-msgid "You must select at least a role."
-msgstr "﻿Du måste välja minst en roll."
+#~ msgid "You must select at least a role."
+#~ msgstr "﻿Du måste välja minst en roll."
 
-#: email_users_set_options.php:37
-msgid "Plugin settings have been restored to the defaults."
-msgstr "﻿Plugin inställningar har återställts till standardinställningarna."
+#~ msgid "Plugin settings have been restored to the defaults."
+#~ msgstr "﻿Plugin inställningar har återställts till standardinställningarna."
 
-#: email_users_custom_filter_mail_form.php:57
-msgid "Send an Email to a Custom Filtered list of Users"
-msgstr "﻿Skicka ett e-post till en anpassad Filtrerad lista över användare"
+#~ msgid "Send an Email to a Custom Filtered list of Users"
+#~ msgstr "﻿Skicka ett e-post till en anpassad Filtrerad lista över användare"
 
 #~ msgid "Filter Users with no role from Recipient List:"
 #~ msgstr "﻿Filtrerar Användare med ingen roll från mottagarlistan:"
@@ -1211,24 +753,10 @@ msgstr "﻿Skicka ett e-post till en anpassad Filtrerad lista över användare"
 #~ msgstr "Förhandsvisa"
 
 #~ msgid "Notification Mail Preview (based on default notification body)"
-#~ msgstr ""
-#~ "﻿Meddelandemail Förhandsvisning (baserat på standardmeddelande kroppen)"
+#~ msgstr "﻿Meddelandemail Förhandsvisning (baserat på standardmeddelande kroppen)"
 
-#~ msgid ""
-#~ "Warning:  The number of users (%d) plus overhead exceeds the PHP <a href="
-#~ "\"http://php.net/manual/en/info.configuration.php#ini.max-input-vars"
-#~ "\">max_input_vars</a> setting (%d).  You will not be able to send email to "
-#~ "more than %d users in one batch.  This can be changed by increasing the "
-#~ "value of <a href=\"http://php.net/manual/en/info.configuration.php#ini.max-"
-#~ "input-vars\">max_input_vars</a> setting in the PHP.ini configuration file."
-#~ msgstr ""
-#~ "﻿Varning:  Antalet användare (%d) plus övrig last överskrider inställningen "
-#~ "PHP <a href=\"http://php.net/manual/en/info.configuration.php#ini.max-"
-#~ "input-vars\">max_input_vars</a> setting (%d).  Du kommer inte att kunna "
-#~ "skicka e-post till mer än %d användare i ett parti.  Detta kan ändras "
-#~ "genom att öka värdet av a href=\"http://php.net/manual/en/info."
-#~ "configuration.php#ini.max-input-vars\">max_input_vars</a> inställningen i "
-#~ "PHP.ini konfigurationsfilen."
+#~ msgid "Warning:  The number of users (%d) plus overhead exceeds the PHP <a href=\"http://php.net/manual/en/info.configuration.php#ini.max-input-vars\">max_input_vars</a> setting (%d).  You will not be able to send email to more than %d users in one batch.  This can be changed by increasing the value of <a href=\"http://php.net/manual/en/info.configuration.php#ini.max-input-vars\">max_input_vars</a> setting in the PHP.ini configuration file."
+#~ msgstr "﻿Varning:  Antalet användare (%d) plus övrig last överskrider inställningen PHP <a href=\"http://php.net/manual/en/info.configuration.php#ini.max-input-vars\">max_input_vars</a> setting (%d).  Du kommer inte att kunna skicka e-post till mer än %d användare i ett parti.  Detta kan ändras genom att öka värdet av a href=\"http://php.net/manual/en/info.configuration.php#ini.max-input-vars\">max_input_vars</a> inställningen i PHP.ini konfigurationsfilen."
 
 #~ msgid "1 (use To: field)"
 #~ msgstr "﻿1 (använd Till: fält)"
@@ -1245,28 +773,14 @@ msgstr "﻿Skicka ett e-post till en anpassad Filtrerad lista över användare"
 #~ msgid "1000"
 #~ msgstr "﻿1000"
 
-#~ msgid ""
-#~ "Filter Users with <a href=\"https://codex.wordpress.org/"
-#~ "Roles_and_Capabilities#Roles\">no role</a> from Recipient List."
-#~ msgstr ""
-#~ "﻿Filtrera användare med <a href=\"https://codex.wordpress.org/"
-#~ "Roles_and_Capabilities#Roles\">ingen roll</a> från mottagarlistan."
+#~ msgid "Filter Users with <a href=\"https://codex.wordpress.org/Roles_and_Capabilities#Roles\">no role</a> from Recipient List."
+#~ msgstr "﻿Filtrera användare med <a href=\"https://codex.wordpress.org/Roles_and_Capabilities#Roles\">ingen roll</a> från mottagarlistan."
 
 #~ msgid "Base64 Encode Email"
 #~ msgstr "﻿Base64-kodad Email"
 
-#~ msgid ""
-#~ "Enable Base64 Encoding<br/><small><i>Note:  All email will be Base64 "
-#~ "encoded when enabled.</i></small>"
-#~ msgstr ""
-#~ "﻿Aktivera Base64-kodning<br/><small><i>Obs: All e-post kommer att Base64 "
-#~ "kodad när aktiverad.</i></small>"
+#~ msgid "Enable Base64 Encoding<br/><small><i>Note:  All email will be Base64 encoded when enabled.</i></small>"
+#~ msgstr "﻿Aktivera Base64-kodning<br/><small><i>Obs: All e-post kommer att Base64 kodad när aktiverad.</i></small>"
 
-#~ msgid ""
-#~ "Paid Memberships Pro:  The easiest way to GET PAID with your WordPress "
-#~ "site. Flexible content control by Membership Level, Reports, Affiliates "
-#~ "and Discounts."
-#~ msgstr ""
-#~ "﻿Betalt medlemskap Pro: Det enklaste sättet att FÅ BETALT med din "
-#~ "WordPresswebbplats. Flexibel innehållskontroll av medlemsnivå, rapporter, "
-#~ "samarbetspartners och rabatter."
+#~ msgid "Paid Memberships Pro:  The easiest way to GET PAID with your WordPress site. Flexible content control by Membership Level, Reports, Affiliates and Discounts."
+#~ msgstr "﻿Betalt medlemskap Pro: Det enklaste sättet att FÅ BETALT med din WordPresswebbplats. Flexibel innehållskontroll av medlemsnivå, rapporter, samarbetspartners och rabatter."

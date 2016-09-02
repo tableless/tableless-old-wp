@@ -1,3 +1,2 @@
-#!/bin/sh
-
-vendor/bin/phpunit --process-isolation test/unit $@
+#!/bin/bash
+vendor/bin/phpunit test/unit $@

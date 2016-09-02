@@ -1,0 +1,22 @@
+{
+  "path": "2015/09",
+  "images": [{
+    "file": "tinypng_gravatar.png",
+    "size": 137856
+  }, {
+    "file": "tinypng_gravatar-150x150.png",
+    "size": 37856
+  }, {
+    "file": "tinypng_gravatar-200x200.png",
+    "size": 66480
+  }, {
+    "file": "tinypng_gravatar-300x300.png",
+    "size": 57856
+  }, {
+    "file": "tinypng_gravatar-600x600.png",
+    "size": 95102
+  }, {
+    "file": "tinypng_gravatar-1038x576.png",
+    "size": 121873
+  }]
+}

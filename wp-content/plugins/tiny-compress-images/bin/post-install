@@ -1,0 +1,4 @@
+#!/bin/bash
+rm -rf src/vendor
+mkdir src/vendor
+cp -R vendor/tinify/tinify/lib src/vendor/tinify

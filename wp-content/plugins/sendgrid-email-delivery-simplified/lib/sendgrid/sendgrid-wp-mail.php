@@ -318,7 +318,7 @@ function wp_mail( $to, $subject, $message, $headers = '', $attachments = array()
     }
   }
 
-  if( ! array_key_exists( 'sendgrid_override_template' , $GLOBALS['wp_filter'] ) ) {
+  if ( ! array_key_exists( 'sendgrid_override_template', $GLOBALS['wp_filter'] ) ) {
     $template = Sendgrid_Tools::get_template();
     if ( $template ) {
       $mail->setTemplateId( $template );
@@ -329,8 +329,13 @@ function wp_mail( $to, $subject, $message, $headers = '', $attachments = array()
 
   $content_type = apply_filters( 'wp_mail_content_type', $content_type );
 
+  $text_content = $message;
+  if ( array_key_exists( 'sendgrid_mail_text' , $GLOBALS['wp_filter'] ) ) {
+    $text_content = apply_filters( 'sendgrid_mail_text', $text_content );
+  }
+
   $mail->setSubject( $subject )
-       ->setText( $message )
+       ->setText( $text_content )
        ->addCategory( SENDGRID_CATEGORY )
        ->setFrom( $from_email );
 
@@ -347,7 +352,13 @@ function wp_mail( $to, $subject, $message, $headers = '', $attachments = array()
 
   // send HTML content
   if ( 'text/plain' !== $content_type ) {
-    $mail->setHtml( Sendgrid_Tools::remove_all_tag_urls( $message ) );
+    $html_content = Sendgrid_Tools::remove_all_tag_urls( $message );
+
+    if ( array_key_exists( 'sendgrid_mail_html' , $GLOBALS['wp_filter'] ) ) {
+      $html_content = apply_filters( 'sendgrid_mail_html', $html_content );
+    }
+
+    $mail->setHtml( $html_content );
   }
 
   // set from name
@@ -365,7 +376,7 @@ function wp_mail( $to, $subject, $message, $headers = '', $attachments = array()
     $mail->setBccs( $bcc );
   }
 
-  if ( ! isset( $replyto ) ) {
+  if ( ! isset( $replyto ) or false == $replyto ) {
     $replyto = trim( Sendgrid_Tools::get_reply_to() );
   }
 
@@ -381,17 +392,23 @@ function wp_mail( $to, $subject, $message, $headers = '', $attachments = array()
     $mail->setAttachments( $attached_files );
   }
 
+  // set unsubscribe group
+  $unsubscribe_group_id = Sendgrid_Tools::get_unsubscribe_group();
+  if ( $unsubscribe_group_id and $unsubscribe_group_id != 0 ) {
+    $mail->setAsmGroupId( $unsubscribe_group_id );
+  }
+
   $sendgrid = Sendgrid_WP::get_instance();
 
   if ( ! $sendgrid ) {
     return false;
   }
 
-  return $sendgrid->send($mail);
+  return $sendgrid->send( $mail );
 }
   
 
-if ( ! function_exists('set_html_content_type') )
+if ( ! function_exists( 'set_html_content_type' ) )
 {
   /**
    * Return the content type used to send html emails

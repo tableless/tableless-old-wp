@@ -1,5 +1,7 @@
 *.log
+*.bak
 /vendor
 .DS_Store
 /tmp/*
 !/tmp/.gitkeep
+/src/languages/

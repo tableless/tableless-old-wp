@@ -1,6 +1,11 @@
 <?php
 
+if ( ! defined( 'TINY_DEBUG' ) ) {
+	define( 'TINY_DEBUG', null );
+}
+
 class Tiny_Config {
-    const URL = 'http://webservice/shrink';
-    const MONTHLY_FREE_COMPRESSIONS = 500;
+	/* URL is only used by fopen driver. */
+	const URL = 'http://webservice/shrink';
+	const MONTHLY_FREE_COMPRESSIONS = 500;
 }

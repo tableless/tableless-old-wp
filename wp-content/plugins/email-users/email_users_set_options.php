@@ -24,6 +24,14 @@
             __('You are not allowed to change the options of this plugin.', MAILUSERS_I18N_DOMAIN)));
 	} 
 
+    //  Validate WordPress nonce (security)
+    if (($_SERVER['REQUEST_METHOD'] == 'POST') && (! isset( $_POST['mailusers_plugin_settings_nonce'] ) 
+        || ! wp_verify_nonce( $_POST['mailusers_plugin_settings_nonce'], 'mailusers_plugin_settings' ) )) {
+
+        wp_die(printf('<div class="error fade"><p>%s</p></div>',
+            __('WordPress nonce failed to verify, requested action terminated.', MAILUSERS_I18N_DOMAIN)));
+    }
+
 	// Send the email if it has been requested
 	if (array_key_exists('sendtestemail', $_POST) && $_POST['sendtestemail']=='true') {
 		include('email_users_send_test_mail.php');

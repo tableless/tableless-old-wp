@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<ruleset>
+  <config name="installed_paths" value="vendor/wp-coding-standards/wpcs"/>
+
+  <rule ref="WordPress-Core"/>
+  <rule ref="Generic.Files.LineLength">
+    <properties>
+      <property name="lineLimit" value="100"/>
+      <property name="absoluteLineLimit" value="100"/>
+    </properties>
+    <exclude-pattern>src/views</exclude-pattern>
+  </rule>
+
+  <file>tiny-compress-images.php</file>
+  <file>src</file>
+  <file>test</file>
+  <exclude-pattern>src/css</exclude-pattern>
+  <exclude-pattern>src/data</exclude-pattern>
+  <exclude-pattern>src/js</exclude-pattern>
+  <exclude-pattern>src/vendor</exclude-pattern>
+  <exclude-pattern>test/mock-tinypng-webservice</exclude-pattern>
+</ruleset>

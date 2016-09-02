@@ -19,142 +19,149 @@
 */
 
 abstract class Tiny_Compress {
-    protected $api_key;
-    protected $after_compress_callback;
+	const KEY_MISSING = 'Register an account or provide an API key first';
+	const FILE_MISSING = 'File does not exist';
+	const WRITE_ERROR = 'No permission to write to file';
 
-    public static function get_ca_file() {
-        return dirname(__FILE__) . '/cacert.pem';
-    }
+	protected $after_compress_callback;
 
-    public static function get_compressor($api_key, $after_compress_callback=null) {
-        if (Tiny_PHP::is_curl_available()) {
-            return new Tiny_Compress_Curl($api_key, $after_compress_callback);
-        } elseif (Tiny_PHP::is_fopen_available()) {
-            return new Tiny_Compress_Fopen($api_key, $after_compress_callback);
-        }
-        throw new Tiny_Exception('No HTTP client is available (cURL or fopen)', 'NoHttpClient');
-    }
+	public static function create( $api_key, $after_compress_callback = null ) {
+		if ( Tiny_PHP::client_supported() ) {
+			$class = 'Tiny_Compress_Client';
+		} elseif ( Tiny_PHP::fopen_available() ) {
+			$class = 'Tiny_Compress_Fopen';
+		} else {
+			throw new Tiny_Exception(
+				'No HTTP client is available (cURL or fopen)',
+				'NoHttpClient'
+			);
+		}
+		return new $class($api_key, $after_compress_callback);
+	}
 
-    protected function __construct($api_key, $after_compress_callback) {
-        $this->api_key = $api_key;
-        $this->after_compress_callback = $after_compress_callback;
-        $this->proxy = new WP_HTTP_Proxy();
-    }
+	/* Based on pricing April 2016. */
+	public static function estimate_cost( $compressions, $usage ) {
+		return round(
+			self::compression_cost( $compressions + $usage ) -
+			self::compression_cost( $usage ),
+			2
+		);
+	}
 
-    abstract protected function shrink($input);
-    abstract protected function output($url, $resize_options, $preserve_options);
+	protected function __construct( $after_compress_callback ) {
+		$this->after_compress_callback = $after_compress_callback;
+	}
 
-    public function get_status(&$details) {
-        list($details, $headers, $status_code) = $this->shrink(null);
+	public abstract function can_create_key();
+	public abstract function get_compression_count();
+	public abstract function get_key();
+	public abstract function limit_reached();
 
-        $this->call_after_compress_callback($details, $headers);
-        if ($status_code >= 400 && $status_code < 500 && $status_code != 401) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+	public function get_status() {
+		if ( $this->get_key() == null ) {
+			return (object) array(
+				'ok' => false,
+				'message' => self::KEY_MISSING,
+			);
+		}
 
-    public function compress($input, $resize_options, $preserve_options) {
-        list($details, $headers, $status_code) = $this->shrink($input);
-        $this->call_after_compress_callback($details, $headers);
-        $outputUrl = isset($headers['location']) ? $headers['location'] : null;
-        if (isset($details['error']) && $details['error']) {
-            throw new Tiny_Exception($details['message'], $details['error']);
-        } else if ($status_code >= 400) {
-            throw new Tiny_Exception('Unexepected error in shrink', 'UnexpectedError');
-        } else if ($outputUrl === null) {
-            throw new Tiny_Exception('Could not find output url', 'OutputNotFound');
-        }
+		$result = false;
+		$message = null;
 
-        list($output, $headers, $status_code) = $this->output($outputUrl, $resize_options, $preserve_options);
-        if (isset($headers['content-type']) && substr($headers['content-type'], 0, 16) == 'application/json') {
-            $details = self::decode($output);
-            if (isset($details['error']) && $details['error']) {
-                throw new Tiny_Exception($details['message'], $details['error']);
-            } else {
-                throw new Tiny_Exception('Unknown error', 'UnknownError');
-            }
-        } else if ($status_code >= 400) {
-            throw new Tiny_Exception('Unexepected error in output', 'UnexpectedError');
-        }
+		try {
+			$result = $this->validate();
+		} catch (Tiny_Exception $err) {
+			if ( $err->get_status() == 401 ) {
+				$message = 'The key that you have entered is not valid';
+			} else {
+				list( $message ) = explode( ' (HTTP', $err->getMessage(), 2 );
+			}
+		}
 
-        $this->call_after_compress_callback(null, $headers);
-        if (strlen($output) == 0) {
-            throw new Tiny_Exception('Could not download output', 'OutputError');
-        }
+		$this->call_after_compress_callback();
 
-        return array($output, $details);
-    }
+		return (object) array(
+			'ok' => $result,
+			'message' => $message,
+		);
+	}
 
-    public function compress_file($file, $resize_options, $preserve_options) {
-        if (!file_exists($file)) {
-            throw new Tiny_Exception('File does not exist', 'FileError');
-        }
+	public function compress_file( $file, $resize_opts = array(), $preserve_opts = array() ) {
+		if ( $this->get_key() == null ) {
+			throw new Tiny_Exception( self::KEY_MISSING, 'KeyError' );
+		}
 
-        if (!self::needs_resize($file, $resize_options)) {
-            $resize_options = false;
-        }
+		if ( ! file_exists( $file ) ) {
+			throw new Tiny_Exception( self::FILE_MISSING, 'FileError' );
+		}
 
-        list($output, $details) = $this->compress(file_get_contents($file), $resize_options, $preserve_options);
-        file_put_contents($file, $output);
+		if ( ! is_writable( $file ) ) {
+			throw new Tiny_Exception( self::WRITE_ERROR, 'FileError' );
+		}
 
-        $details['output'] = self::update_details($file, $details) + $details['output'];
-        if ($resize_options) {
-            $details['output']['resized'] = true;
-        }
+		if ( ! $this->needs_resize( $file, $resize_opts ) ) {
+			$resize_opts = false;
+		}
 
-        return $details;
-    }
+		try {
+			list( $output, $details ) = $this->compress(
+				file_get_contents( $file ),
+				$resize_opts,
+				$preserve_opts
+			);
+		} catch (Tiny_Exception $err) {
+			$this->call_after_compress_callback();
+			throw $err;
+		}
 
-    protected function call_after_compress_callback($details, $headers) {
-        if ($this->after_compress_callback) {
-            call_user_func($this->after_compress_callback, $details, $headers);
-        }
-    }
+		$this->call_after_compress_callback();
+		file_put_contents( $file, $output );
 
-    protected static function parse_headers($headers) {
-        if (!is_array($headers)) {
-            $headers = explode("\r\n", $headers);
-        }
-        $res = array();
-        foreach ($headers as $header) {
-            $split = explode(":", $header, 2);
-            if (count($split) === 2) {
-                $res[strtolower($split[0])] = trim($split[1]);
-            }
-        }
-        return $res;
-    }
+		if ( $resize_opts ) {
+			$details['output']['resized'] = true;
+		}
 
-    protected static function decode($text) {
-        $result = json_decode($text, true);
-        if ($result === null) {
-            throw new Tiny_Exception(sprintf('JSON: %s [%d]',
-                    PHP_VERSION_ID >= 50500 ? json_last_error_msg() : 'Unknown error',
-                    PHP_VERSION_ID >= 50300 ? json_last_error() : 'Error'),
-                'JsonError');
-        }
-        return $result;
-    }
+		return $details;
+	}
 
-    protected static function needs_resize($file, $resize_options) {
-        if (!$resize_options) {
-            return false;
-        }
+	protected abstract function validate();
+	protected abstract function compress( $input, $resize_options, $preserve_options );
 
-        list($width, $height) = getimagesize($file);
-        return $width > $resize_options['width'] || $height > $resize_options['height'];
-    }
+	protected static function identifier() {
+		return 'WordPress/' . Tiny_Plugin::wp_version() . ' Plugin/' . Tiny_Plugin::version();
+	}
 
-    protected static function update_details($file, $details) {
-        $size = filesize($file);
-        list($width, $height) = getimagesize($file);
-        return array(
-            'size'    => $size,
-            'width'   => $width,
-            'height'  => $height,
-            'ratio'   => round($size / $details['input']['size'], 4)
-        );
-    }
+	private function call_after_compress_callback() {
+		if ( $this->after_compress_callback ) {
+			call_user_func( $this->after_compress_callback, $this );
+		}
+	}
+
+	private static function needs_resize( $file, $resize_options ) {
+		if ( ! $resize_options ) {
+			return false;
+		}
+
+		list($width, $height) = getimagesize( $file );
+
+		return ( $width > $resize_options['width'] || $height > $resize_options['height'] );
+	}
+
+	private static function compression_cost( $total ) {
+		$cost = 0;
+
+		if ( $total > 10000 ) {
+			$compressions = $total - 10000;
+			$cost += $compressions * 0.002;
+			$total -= $compressions;
+		}
+
+		if ( $total > 500 ) {
+			$compressions = $total - 500;
+			$cost += $compressions * 0.009;
+			$total -= $compressions;
+		}
+
+		return $cost;
+	}
 }

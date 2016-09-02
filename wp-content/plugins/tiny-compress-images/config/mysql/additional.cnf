@@ -1,0 +1,3 @@
+[mysqld]
+# Required for WordPress 3.8 and below.
+sql-mode="NO_ENGINE_SUBSTITUTION"

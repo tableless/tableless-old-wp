@@ -1,190 +1,290 @@
 <?php
 
-require_once(dirname(__FILE__) . "/IntegrationTestCase.php");
-
-use Facebook\WebDriver\WebDriverBy;
-use Facebook\WebDriver\WebDriverExpectedCondition;
+require_once dirname( __FILE__ ) . '/IntegrationTestCase.php';
 
 class SettingsIntegrationTest extends IntegrationTestCase {
+	public function set_up() {
+		parent::set_up();
+		$this->visit( '/wp-admin/options-media.php' );
+	}
 
-    public function setUp() {
-        parent::setUp();
-        self::$driver->get(wordpress('/wp-admin/options-media.php'));
-    }
+	public function tear_down() {
+		parent::tear_down();
+		clear_settings();
+		clear_uploads();
+	}
 
-    public function tearDown() {
-        clear_settings();
-    }
+	protected function get_enabled_sizes() {
+		return array_map( function( $checkbox ) {
+			return $checkbox->getAttribute( 'name' );
+		}, $this->find_all( 'input[type=checkbox][checked][name^=tinypng_sizes]' ) );
+	}
 
-    public function testTitlePresence()
-    {
-        $headings = self::$driver->findElements(WebDriverBy::cssSelector('h1, h2, h3, h4'));
-        $texts = array_map('innerText', $headings);
-        $this->assertContains('PNG and JPEG optimization', $texts);
-    }
+	public function test_settings_should_contain_title() {
+		$headings = array_map( function( $heading ) {
+			return $heading->getText();
+		}, $this->find_all( 'h2, h3' ) );
 
-    public function testApiKeyInputPresence() {
-        $elements = self::$driver->findElements(WebDriverBy::name('tinypng_api_key'));
-        $this->assertEquals(1, count($elements));
-    }
+		$this->assertContains( 'JPEG and PNG optimization', $headings );
+	}
 
-    public function testShouldPersistApiKey() {
-        $element = $this->set_api_key('1234');
-        $this->assertEquals('1234', $element->getAttribute('value'));
-    }
+	public function test_settings_should_show_notice_if_key_is_missing() {
+		$this->assertStringEndsWith(
+			'options-media.php#tiny-compress-images',
+			$this->find( '.error a' )->getAttribute( 'href' )
+		);
+	}
 
-    public function testShouldShowNoticeIfNoApiKeyIsSet() {
-        $element = self::$driver->findElement(WebDriverBy::cssSelector('.error a'));
-        $this->assertStringEndsWith('options-media.php#tiny-compress-images', $element->getAttribute('href'));
-    }
+	public function test_settings_should_not_show_notice_if_key_is_set() {
+		$this->set_api_key( 'PNG123' );
+		$this->refresh();
 
-    public function testShouldShowNoNoticeIfApiKeyIsSet() {
-        $this->set_api_key('1234');
-        $elements = self::$driver->findElements(WebDriverBy::cssSelector('.error a'));
-        $this->assertEquals(0, count($elements));
-    }
+		$this->assertEquals( 0, count( $this->find_all( '.error a' ) ) );
+	}
 
-    public function testNoApiKeyNoticeShouldLinkToSettings() {
-        self::$driver->findElement(WebDriverBy::cssSelector('.error a'))->click();
-        $this->assertStringEndsWith('options-media.php#tiny-compress-images', self::$driver->getCurrentURL());
-    }
+	public function test_settings_should_store_valid_api_key() {
+		$this->find( '#tinypng_api_key' )->sendKeys( 'PNG123' );
+		$this->find( 'button[data-tiny-action=update-key]' )->click();
 
-    public function testDefaultSizesBeingCompressed() {
-        $elements = self::$driver->findElements(
-            WebDriverBy::xpath('//input[@type="checkbox" and starts-with(@name, "tinypng_sizes") and @checked="checked"]'));
-        $size_ids = array_map('elementName', $elements);
-        $this->assertContains('tinypng_sizes[0]', $size_ids);
-        $this->assertContains('tinypng_sizes[thumbnail]', $size_ids);
-        $this->assertContains('tinypng_sizes[medium]', $size_ids);
-        $this->assertContains('tinypng_sizes[large]', $size_ids);
-    }
+		$this->wait_for_text(
+			'div.tiny-account-status p.status',
+			'Your account is connected'
+		);
 
-    public function testShouldPersistSizes() {
-        $element = self::$driver->findElement(WebDriverBy::id('tinypng_sizes_medium'));
-        $element->click();
-        $element = self::$driver->findElement(WebDriverBy::id('tinypng_sizes_0'));
-        $element->click();
-        self::$driver->findElement(WebDriverBy::tagName('form'))->submit();
+		$this->refresh();
 
-        $elements = self::$driver->findElements(
-            WebDriverBy::xpath('//input[@type="checkbox" and starts-with(@name, "tinypng_sizes") and @checked="checked"]'));
-        $size_ids = array_map('elementName', $elements);
-        $this->assertNotContains('tinypng_sizes[0]', $size_ids);
-        $this->assertContains('tinypng_sizes[thumbnail]', $size_ids);
-        $this->assertNotContains('tinypng_sizes[medium]', $size_ids);
-        $this->assertContains('tinypng_sizes[large]', $size_ids);
-    }
+		$this->assertEquals(
+			'Your account is connected',
+			$this->find( 'div.tiny-account-status p.status' )->getText()
+		);
+	}
 
-    public function testShouldPersistNoSizes() {
-        $elements = self::$driver->findElements(
-            WebDriverBy::xpath('//input[@type="checkbox" and starts-with(@name, "tinypng_sizes") and @checked="checked"]'));
-        foreach ($elements as $element) {
-            $element->click();
-        }
-        self::$driver->findElement(WebDriverBy::tagName('form'))->submit();
+	public function test_settings_should_not_store_invalid_api_key() {
+		$this->find( '#tinypng_api_key' )->sendKeys( 'INVALID123' );
+		$this->find( 'button[data-tiny-action=update-key]' )->click();
 
-        $elements = self::$driver->findElements(
-            WebDriverBy::xpath('//input[@type="checkbox" and starts-with(@name, "tinypng_sizes") and @checked="checked"]'));
-        $this->assertEquals(0, count(array_map('elementName', $elements)));
-    }
+		$this->wait_for_text(
+			'div.tiny-account-status div.update p.message',
+			'The key that you have entered is not valid'
+		);
 
-    public function testShouldShowTotalImagesInfo() {
-        $this->enable_compression_sizes(array('0', 'thumbnail', 'medium', 'large'));
-        $element = self::$driver->findElement(WebDriverBy::id('tiny-image-sizes-notice'));
-        $this->assertContains('With these settings you can compress at least 125 images for free each month.', $element->getText());
-    }
+		$this->refresh();
 
-    public function testShouldUpdateTotalImagesInfo() {
-        $this->enable_compression_sizes(array('0', 'thumbnail', 'medium', 'large'));
-        $element = self::$driver->findElement(
-            WebDriverBy::xpath('//input[@type="checkbox" and @name="tinypng_sizes[0]" and @checked="checked"]'));
-        $element->click();
-        self::$driver->wait(2)->until(WebDriverExpectedCondition::textToBePresentInElement(
-            WebDriverBy::cssSelector('#tiny-image-sizes-notice'),
-            'With these settings you can compress at least 166 images for free each month.'));
-    }
+		$this->assertEquals(
+			'Register new account',
+			$this->find( 'div.tiny-account-status h4' )->getText()
+		);
+	}
 
-    public function testShouldShowCorrectNoImageSizesInfo() {
-        $elements = self::$driver->findElements(
-            WebDriverBy::xpath('//input[@type="checkbox" and starts-with(@name, "tinypng_sizes") and @checked="checked"]'));
-        foreach ($elements as $element) {
-            $element->click();
-        }
-        self::$driver->wait(2)->until(WebDriverExpectedCondition::textToBePresentInElement(
-            WebDriverBy::cssSelector('#tiny-image-sizes-notice'), 'With these settings no images will be compressed.'));
-        // Not really necessary anymore to assert this.
-        $elements = self::$driver->findElement(WebDriverBy::id('tiny-image-sizes-notice'))->findElements(WebDriverBy::tagName('p'));
-        $statuses = array_map('innerText', $elements);
-        $this->assertContains('With these settings no images will be compressed.', $statuses);
-    }
+	public function test_settings_should_allow_changing_api_key() {
+		$this->find( '#tinypng_api_key' )->sendKeys( 'PNG123' );
+		$this->find( 'button[data-tiny-action=update-key]' )->click();
 
-    public function testShouldShowResizingWhenOriginalEnabled() {
-        $element = self::$driver->findElement(WebDriverBy::id('tinypng_sizes_0'));
-        if (!$element->getAttribute('checked')) {
-            $element->click();
-        }
-        $labels = self::$driver->findElements(WebDriverBy::tagName('label'));
-        $texts = array_map('innerText', $labels);
-        $this->assertContains('Resize and compress the orginal image', $texts);
-        $paragraphs = self::$driver->findElements(WebDriverBy::tagName('p'));
-        $texts = array_map('innerText', $paragraphs);
-        $this->assertNotContains('Enable compression of the original image size for more options.', $texts);
-    }
+		$this->wait_for_text(
+			'div.tiny-account-status p.status',
+			'Your account is connected'
+		);
 
-    public function testShouldNotShowResizingWhenOriginalDisabled() {
-        $element = self::$driver->findElement(WebDriverBy::id('tinypng_sizes_0'));
-        if ($element->getAttribute('checked')) {
-            $element->click();
-        }
-        self::$driver->wait(1)->until(WebDriverExpectedCondition::textToBePresentInElement(
-            WebDriverBy::cssSelector('p.tiny-resize-unavailable'), 'Enable compression of the original image size for more options.'));
-        $labels = self::$driver->findElements(WebDriverBy::tagName('label'));
-        $texts = array_map('innerText', $labels);
-        $this->assertNotContains('Resize and compress orginal images to fit within:', $texts);
-    }
+		$this->find_link( 'Change API key' )->click();
 
-    public function testShouldNotShowResizingWhenOriginalDisabledWhenShownFirst() {
-        $this->enable_compression_sizes(array('original'));
-        self::$driver->navigate()->refresh();
-        $this->assertEquals('Enable compression of the original image size for more options.',
-            self::$driver->findElement(WebDriverBy::cssSelector('.tiny-resize-unavailable'))->getText());
-    }
+		$this->find( '#tinypng_api_key' )->sendKeys( 'JPG123' );
+		$this->find( 'button[data-tiny-action=update-key]' )->click();
 
-    public function testShouldPersistResizingSettings() {
-        $this->enable_resize(123, 456);
-        $this->assertEquals('123', self::$driver->findElement(WebDriverBy::id('tinypng_resize_original_width'))->getAttribute('value'));
-        $this->assertEquals('456', self::$driver->findElement(WebDriverBy::id('tinypng_resize_original_height'))->getAttribute('value'));
-    }
+		$this->wait_for_text(
+			'div.tiny-account-status p.status',
+			'Your account is connected'
+		);
+	}
 
-    public function testStatusPresenceOK() {
-        reset_webservice();
-        $this->set_api_key('PNG123');
-        self::$driver->wait(2)->until(WebDriverExpectedCondition::textToBePresentInElement(
-            WebDriverBy::cssSelector('#tiny-compress-status'),
-           "API connection successful\nYou have made"));
-    }
+	public function test_settings_should_pre_fill_registration_form() {
+		$this->assertEquals(
+			'',
+			$this->find( '#tinypng_api_key_name' )->getAttribute( 'value' )
+		);
 
-    public function testStatusPresenseFail() {
-        $this->set_api_key('INVALID123');
-        self::$driver->wait(2)->until(WebDriverExpectedCondition::textToBePresentInElement(
-            WebDriverBy::cssSelector('#tiny-compress-status'),
-           "API connection unsuccessful\nError: Credentials are invalid"));
-    }
+		$this->assertEquals(
+			'developers@voormedia.com',
+			$this->find( '#tinypng_api_key_email' )->getAttribute( 'value' )
+		);
+	}
 
-    public function testShouldShowBulkCompressionLink() {
-        reset_webservice();
-        self::$driver->wait(2)->until(WebDriverExpectedCondition::textToBePresentInElement(
-            WebDriverBy::cssSelector('#tiny-compress-savings p'),
-            'No images compressed yet. Use Compress All Images to compress existing images.'));
-    }
+	public function test_settings_should_not_send_registration_without_name() {
+		$this->find( '#tinypng_api_key_name' )->clear();
+		$this->find( '#tinypng_api_key_email' )->clear()->sendKeys( 'john@example.com' );
+		$this->find( 'button[data-tiny-action=create-key]' )->click();
 
-    public function testShouldShowSavings() {
-        reset_webservice();
-        $this->set_api_key('PNG123');
-        $this->upload_media(dirname(__FILE__) . '/../fixtures/input-example.png');
-        self::$driver->get(wordpress('/wp-admin/options-media.php'));
-        self::$driver->wait(2)->until(WebDriverExpectedCondition::textToBePresentInElement(
-            WebDriverBy::cssSelector('#tiny-compress-savings p'),
-            'You have saved a total of'));
-    }
+		$this->wait_for_text(
+			'div.tiny-account-status div.create p.message',
+			'Please enter your name'
+		);
+
+		$this->refresh();
+
+		$this->assertEquals(
+			'Register new account',
+			$this->find( 'div.tiny-account-status h4' )->getText()
+		);
+	}
+
+	public function test_settings_should_not_send_registration_without_email() {
+		$this->find( '#tinypng_api_key_name' )->clear()->sendKeys( 'John' );
+		$this->find( '#tinypng_api_key_email' )->clear();
+		$this->find( 'button[data-tiny-action=create-key]' )->click();
+
+		$this->wait_for_text(
+			'div.tiny-account-status div.create p.message',
+			'Please enter your email address'
+		);
+
+		$this->refresh();
+
+		$this->assertEquals(
+			'Register new account',
+			$this->find( 'div.tiny-account-status h4' )->getText()
+		);
+	}
+
+	public function test_settings_should_store_registration_key() {
+		$this->find( '#tinypng_api_key_name' )->clear()->sendKeys( 'John' );
+		$this->find( '#tinypng_api_key_email' )->clear()->sendKeys( 'john@example.com' );
+		$this->find( 'button[data-tiny-action=create-key]' )->click();
+
+		$this->wait_for_text(
+			'div.tiny-account-status p.status',
+			'An email has been sent with a link to activate your account'
+		);
+
+		$this->refresh();
+
+		$this->assertEquals(
+			'An email has been sent with a link to activate your account',
+			$this->find( 'div.tiny-account-status p.status' )->getText()
+		);
+	}
+
+	public function test_settings_should_enable_all_sizes_by_default() {
+		$enabled_sizes = $this->get_enabled_sizes();
+
+		$this->assertContains( 'tinypng_sizes[0]', $enabled_sizes );
+		$this->assertContains( 'tinypng_sizes[thumbnail]', $enabled_sizes );
+		$this->assertContains( 'tinypng_sizes[medium]', $enabled_sizes );
+		$this->assertContains( 'tinypng_sizes[large]', $enabled_sizes );
+	}
+
+	public function test_settings_should_store_enabled_sizes() {
+		$this->find( '#tinypng_sizes_medium' )->click();
+		$this->find( '#tinypng_sizes_0' )->click();
+		$this->find( 'form' )->submit();
+
+		$enabled_sizes = $this->get_enabled_sizes();
+
+		$this->assertNotContains( 'tinypng_sizes[0]', $enabled_sizes );
+		$this->assertContains( 'tinypng_sizes[thumbnail]', $enabled_sizes );
+		$this->assertNotContains( 'tinypng_sizes[medium]', $enabled_sizes );
+		$this->assertContains( 'tinypng_sizes[large]', $enabled_sizes );
+	}
+
+	public function test_settings_should_store_all_disabled_sizes() {
+		$checkboxes = $this->find_all(
+			'input[type=checkbox][checked][name^=tinypng_sizes]'
+		);
+
+		foreach ( $checkboxes as $checkbox ) {
+			$checkbox->click();
+		}
+
+		$this->find( 'form' )->submit();
+
+		$enabled_sizes = $this->get_enabled_sizes();
+		$this->assertEquals( 0, count( $enabled_sizes ) );
+	}
+
+	public function test_settings_should_show_free_compressions() {
+		$this->enable_compression_sizes(
+			array( '0', 'thumbnail', 'medium', 'large' )
+		);
+
+		$this->refresh();
+
+		$this->assertContains(
+			'With these settings you can compress at least 125 images for free each month.',
+			$this->find( '#tiny-image-sizes-notice' )->getText()
+		);
+	}
+
+	public function test_settings_should_update_free_compressions() {
+		$this->enable_compression_sizes(
+			array( '0', 'thumbnail', 'medium', 'large' )
+		);
+
+		$this->refresh();
+		$this->find( '#tinypng_sizes_medium' )->click();
+
+		$this->assertContains(
+			'With these settings you can compress at least 166 images for free each month.',
+			$this->find( '#tiny-image-sizes-notice' )->getText()
+		);
+	}
+
+	public function test_settings_should_show_no_compressions() {
+		$checkboxes = $this->find_all(
+			'input[type=checkbox][checked][name^=tinypng_sizes]'
+		);
+
+		foreach ( $checkboxes as $checkbox ) {
+			$checkbox->click();
+		}
+
+		$this->assertContains(
+			'With these settings no images will be compressed.',
+			$this->find( '#tiny-image-sizes-notice' )->getText()
+		);
+	}
+
+	public function test_settings_should_show_resizing_when_original_enabled() {
+		$elements = $this->find_all( 'label[for=tinypng_resize_original_enabled]' );
+		$this->assertEquals(
+			'Resize and compress the original image',
+			$elements[0]->getText()
+		);
+
+		$elements = $this->find_all( 'p.tiny-resize-unavailable' );
+		$this->assertEquals(
+			'',
+			$elements[0]->getText()
+		);
+	}
+
+	public function test_settings_should_not_show_resizing_when_original_disabled() {
+		$this->find( '#tinypng_sizes_0' )->click(); /* Enabled by default */
+
+		$elements = $this->find_all( 'label[for=tinypng_resize_original_enabled]' );
+		$this->assertEquals(
+			'',
+			$elements[0]->getText()
+		);
+
+		$elements = $this->find_all( 'p.tiny-resize-unavailable' );
+		$this->assertEquals(
+			'Enable compression of the original image size for more options.',
+			$elements[0]->getText()
+		);
+	}
+
+	public function test_settings_should_store_resizing_settings() {
+		$this->find( '#tinypng_resize_original_enabled' )->click();
+		$this->find( '#tinypng_resize_original_width' )->clear()->sendKeys( '234' );
+		$this->find( '#tinypng_resize_original_height' )->clear()->sendKeys( '345' );
+		$this->find( 'form' )->submit();
+
+		$this->assertEquals(
+			'234',
+			$this->find( '#tinypng_resize_original_width' )->getAttribute( 'value' )
+		);
+
+		$this->assertEquals(
+			'345',
+			$this->find( '#tinypng_resize_original_height' )->getAttribute( 'value' )
+		);
+	}
 }

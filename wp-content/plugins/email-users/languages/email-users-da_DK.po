@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Email-Users\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-23 13:23+0000\n"
-"PO-Revision-Date: 2016-06-10 13:11+0100\n"
+"POT-Creation-Date: 2016-07-24 18:23+0100\n"
+"PO-Revision-Date: 2016-07-24 18:24+0100\n"
 "Last-Translator: Mike Walsh <mpwalsh8@gmail.com>\n"
 "Language-Team: \n"
 "Language: da_DK\n"
@@ -101,7 +101,8 @@ msgstr "Modtager(e)"
 #: email_users_notify_form.php:161
 msgid "Use CTRL key to select/deselect multiple items"
 msgstr ""
-"Du kan vælge/fravælge flere brugere ved at holde CTRL-tasten nede på dit tastatur"
+"Du kan vælge/fravælge flere brugere ved at holde CTRL-tasten nede på dit "
+"tastatur"
 
 #: email_users_notify_form.php:163
 msgid "The users that did not agree to receive notifications do not appear here."
@@ -150,7 +151,8 @@ msgid "Message"
 msgstr "Besked"
 
 #: email_users_notify_form.php:339 email_users_user_mail_form.php:196
-#: email_users_group_mail_form.php:207 email_users_custom_filter_mail_form.php:198
+#: email_users_group_mail_form.php:207
+#: email_users_custom_filter_mail_form.php:198
 msgid "Send Email"
 msgstr "Send e-post"
 
@@ -159,7 +161,8 @@ msgid "You are not allowed to send emails."
 msgstr "Du har ikke lov til at sende e-post."
 
 #: email_users_overview.php:33 email-users.php:297 email-users.php:312
-#: email-users.php:346 email-users.php:347 email-users.php:353 email-users.php:354
+#: email-users.php:346 email-users.php:347 email-users.php:353
+#: email-users.php:354
 msgid "Email Users"
 msgstr "Email-Users"
 
@@ -172,8 +175,10 @@ msgid "Send an email to one or more individual users"
 msgstr "Send en e-post til én eller flere individuelle brugere"
 
 #: email_users_overview.php:50
-msgid "You can send an email to one or more users by selecting them individually."
-msgstr "Du kan sende en e-post til én eller flere brugere ved at vælge dem individuelt"
+msgid ""
+"You can send an email to one or more users by selecting them individually."
+msgstr ""
+"Du kan sende en e-post til én eller flere brugere ved at vælge dem individuelt"
 
 #: email_users_overview.php:63
 msgid "Send a Group Message"
@@ -185,11 +190,11 @@ msgstr "Send en e-post til én eller flere bruger grupper"
 
 #: email_users_overview.php:68
 msgid ""
-"You can send an email to one or more user groups (i.e. users belonging to the same "
-"WordPress role)."
+"You can send an email to one or more user groups (i.e. users belonging to the "
+"same WordPress role)."
 msgstr ""
-"Du kan sende en e-post til én eller flere bruger grupper (d.v.s. til brugere der "
-"tilhører samme WordPress rolle)"
+"Du kan sende en e-post til én eller flere bruger grupper (d.v.s. til brugere "
+"der tilhører samme WordPress rolle)"
 
 #: email_users_overview.php:69
 msgid "Send Group Message"
@@ -289,13 +294,13 @@ msgstr "Du har kun lov til at vælge én bruger ad gangen."
 
 #: email_users_user_mail_form.php:90 email_users_custom_filter_mail_form.php:92
 msgid ""
-"You can select multiple users by pressing the CTRL key.  When selecting multiple "
-"users, any user who should not receive Mass Email will be filtered from the "
-"recipient list."
+"You can select multiple users by pressing the CTRL key.  When selecting "
+"multiple users, any user who should not receive Mass Email will be filtered "
+"from the recipient list."
 msgstr ""
-"Du kan vælge/fravælge flere brugere ved at holde CTRL-tasten nede på dit tastatur. "
-"Når du vælger flere brugere, vil bruger der ikke skal modtage gruppe e-post, blive "
-"sorteret fra i modtagerlisten"
+"Du kan vælge/fravælge flere brugere ved at holde CTRL-tasten nede på dit "
+"tastatur. Når du vælger flere brugere, vil bruger der ikke skal modtage gruppe "
+"e-post, blive sorteret fra i modtagerlisten"
 
 #: email_users_send_test_mail.php:24 email_users_options_form.php:28
 #: email_users_set_options.php:24
@@ -317,18 +322,19 @@ msgstr "Et interessant indlæg:"
 
 #: email-users.php:91
 msgid ""
-"<p>Hello, </p><p>I would like to bring your attention on a new post published on the "
-"blog. Details of the post follow; I hope you will find it interesting.</p><p>Best "
-"regards, </p><p>%FROM_NAME%</p><hr><p><strong>%POST_TITLE%</strong></p><p>"
-"%POST_EXCERPT%</p><ul><li>Link to the post: <a href=\"%POST_URL%\">%POST_URL%</a></"
-"li><li>Link to %BLOG_NAME%: <a href=\"%BLOG_URL%\">%BLOG_URL%</a></li></ul>"
+"<p>Hello, </p><p>I would like to bring your attention on a new post published "
+"on the blog. Details of the post follow; I hope you will find it interesting.</"
+"p><p>Best regards, </p><p>%FROM_NAME%</p><hr><p><strong>%POST_TITLE%</strong></"
+"p><p>%POST_EXCERPT%</p><ul><li>Link to the post: <a href=\"%POST_URL%\">"
+"%POST_URL%</a></li><li>Link to %BLOG_NAME%: <a href=\"%BLOG_URL%\">%BLOG_URL%</"
+"a></li></ul>"
 msgstr ""
-"<p>Hej</p><p>Jeg vil gøre dig opmærksom på et nyt indlæg der er blevet publiseret på "
-"bloggen. Detaljer omkring indlægget følger; Jeg håber du finder det interessant.</"
-"p><p>Venlig hilsen</p><p>% FROM_NAME %</p><hr><p><strong>% POST_TITLE %</strong></"
-"p><p>% POST_EXCERPT %</p><ul><li>Link til indlæg: <a href=\"\"%POST_URL%\"\">% "
-"POST_URL %</a></li><li>Link til % BLOG_NAME %: <a href=\"\"%BLOG_URL%\"\">% BLOG_URL "
-"%</a></li></ul>"
+"<p>Hej</p><p>Jeg vil gøre dig opmærksom på et nyt indlæg der er blevet "
+"publiseret på bloggen. Detaljer omkring indlægget følger; Jeg håber du finder "
+"det interessant.</p><p>Venlig hilsen</p><p>% FROM_NAME %</p><hr><p><strong>% "
+"POST_TITLE %</strong></p><p>% POST_EXCERPT %</p><ul><li>Link til indlæg: <a "
+"href=\"\"%POST_URL%\"\">% POST_URL %</a></li><li>Link til % BLOG_NAME %: <a "
+"href=\"\"%BLOG_URL%\"\">% BLOG_URL %</a></li></ul>"
 
 #: email-users.php:123
 msgid "Powered by"
@@ -342,7 +348,8 @@ msgstr "Notificer brugere om dette indlæg"
 msgid "Notify Users About this Page"
 msgstr "Notificer brugere om denne side"
 
-#: email-users.php:332 email-users.php:333 email-users.php:339 email-users.php:340
+#: email-users.php:332 email-users.php:333 email-users.php:339
+#: email-users.php:340
 msgid "Notify Users"
 msgstr "Nofiticér"
 
@@ -373,20 +380,20 @@ msgstr "Accepter at modtage e-post fra indlæg eller side notificering"
 
 #: email-users.php:571
 msgid ""
-"Accept to receive emails sent to multiple recipients (but still accept emails sent "
-"only to me)"
+"Accept to receive emails sent to multiple recipients (but still accept emails "
+"sent only to me)"
 msgstr ""
-"Accepter at modtage e-post sendt til flere modtagere (men jeg vil gerne modtage e-"
-"post sendt kun til mig)"
+"Accepter at modtage e-post sendt til flere modtagere (men jeg vil gerne "
+"modtage e-post sendt kun til mig)"
 
 #: email-users.php:1445
 #, php-format
 msgid ""
-"The email address (%s) of the user you are trying to send mail to is not a valid "
-"email address format."
+"The email address (%s) of the user you are trying to send mail to is not a "
+"valid email address format."
 msgstr ""
-"E-post adressen (%s) på den bruger du prøver at sende e-post til, er ikke en valid "
-"adresse."
+"E-post adressen (%s) på den bruger du prøver at sende e-post til, er ikke en "
+"valid adresse."
 
 #: email-users.php:1504
 #, php-format
@@ -416,11 +423,13 @@ msgstr "Bruger statistik"
 #: email-users.php:1581 email_users_options_form.php:73
 msgid "Number of Users who accept post or page notification emails:"
 msgstr ""
-"Antal af brugere der accepterer at modtage e-pst for indæg eller side notificering:"
+"Antal af brugere der accepterer at modtage e-pst for indæg eller side "
+"notificering:"
 
 #: email-users.php:1585 email_users_options_form.php:77
 msgid "Number of Users who accept emails sent to multiple recipients:"
-msgstr "Antal af brugere der accepterer at modtage e-post send til flere modtagere:"
+msgstr ""
+"Antal af brugere der accepterer at modtage e-post send til flere modtagere:"
 
 #: email-users.php:1633 email-users.php:1634
 msgid "Mail sending aborted."
@@ -450,13 +459,15 @@ msgstr "Send en e-post  til en gruppe af brugere"
 #: email_users_group_mail_form.php:97
 msgid "You can select multiple groups by pressing the CTRL key."
 msgstr ""
-"Du kan vælge/fravælge flere grupper ved at holde CTRL-tasten nede på dit tastatur"
+"Du kan vælge/fravælge flere grupper ved at holde CTRL-tasten nede på dit "
+"tastatur"
 
 #: email_users_group_mail_form.php:99
-msgid "Only the groups having at least one user that accepts group mails appear here."
+msgid ""
+"Only the groups having at least one user that accepts group mails appear here."
 msgstr ""
-"Kun grupper der har mindst én bruger der accepterer at modtage gruppe e-post bliver "
-"vist"
+"Kun grupper der har mindst én bruger der accepterer at modtage gruppe e-post "
+"bliver vist"
 
 #: email_users_credits.php:23 email_users_options_form.php:652
 msgid "Make a Donation"
@@ -485,8 +496,8 @@ msgstr ""
 #: email_users_credits.php:57 email_users_options_form.php:692
 msgid "If you lose time copy/pasting the same post structure every time, try: "
 msgstr ""
-"Hvis du spilder tid med kopi/klister det samme indhold til dine indlæg gang på gang, "
-"så prøv: "
+"Hvis du spilder tid med kopi/klister det samme indhold til dine indlæg gang på "
+"gang, så prøv: "
 
 #: email_users_credits.php:65 email_users_options_form.php:672
 msgid "More Plugins from Mike Walsh"
@@ -494,10 +505,11 @@ msgstr "Flere Plugins fra Mike Walsh"
 
 #: email_users_credits.php:70 email_users_options_form.php:677
 msgid ""
-"If you use Google Forms and want to integrate them with your WordPress site, try: "
+"If you use Google Forms and want to integrate them with your WordPress site, "
+"try: "
 msgstr ""
-"Hvis du benytter Google Forms og ønsker at integrerer til disse fra din WordPress "
-"side, så prøv:"
+"Hvis du benytter Google Forms og ønsker at integrerer til disse fra din "
+"WordPress side, så prøv:"
 
 #: email_users_send_user_mail.php:47 email_users_send_custom_filter_mail.php:53
 #: email_users_send_group_mail.php:55
@@ -511,8 +523,8 @@ msgstr "Du skal vælge mindst én modtager."
 #: email_users_send_user_mail.php:124
 #, php-format
 msgid ""
-"<br/>%d users who should not to receive Mass Email were filtered from the recipient "
-"list."
+"<br/>%d users who should not to receive Mass Email were filtered from the "
+"recipient list."
 msgstr ""
 "<br>%d brugere som ikke skal have gruppe e-post er blevet sorteret fra "
 "modtagerlisten."
@@ -525,11 +537,11 @@ msgstr "Der opstod et problem med at sende e-post til brugere."
 #: email_users_send_user_mail.php:138 email_users_send_custom_filter_mail.php:152
 #: email_users_send_group_mail.php:197
 msgid ""
-"No email has been sent to other users. This may be because no valid email addresses "
-"were found."
+"No email has been sent to other users. This may be because no valid email "
+"addresses were found."
 msgstr ""
-"Der er ikke sendt e-post til andre brugere. Det kan skyldes at der ikke blev funden "
-"en korrekt e-post adresse."
+"Der er ikke sendt e-post til andre brugere. Det kan skyldes at der ikke blev "
+"funden en korrekt e-post adresse."
 
 #: email_users_send_user_mail.php:142 email_users_send_custom_filter_mail.php:156
 #: email_users_send_group_mail.php:201
@@ -545,28 +557,31 @@ msgstr "ADVARSEL: Der er sendt flere e-post beskeder end der er modtagere."
 #: email_users_send_user_mail.php:148
 #, php-format
 msgid ""
-"Email has been sent to %d users, but %d recipients were originally found. Perhaps "
-"some users don't have valid email addresses?"
+"Email has been sent to %d users, but %d recipients were originally found. "
+"Perhaps some users don't have valid email addresses?"
 msgstr ""
-"E-post er sendt til %d bruger(e), men %d modtagere fundet. Der er muligt at nogen "
-"brugere ikke har en korrekt e-post adresse?"
+"E-post er sendt til %d bruger(e), men %d modtagere fundet. Der er muligt at "
+"nogen brugere ikke har en korrekt e-post adresse?"
 
-#: email_users_send_custom_filter_mail.php:162 email_users_send_group_mail.php:207
+#: email_users_send_custom_filter_mail.php:162
+#: email_users_send_group_mail.php:207
 #, php-format
 msgid ""
-"Email has been sent to %s users, but %s recipients were originally found. Perhaps "
-"some users don't have valid email addresses?"
+"Email has been sent to %s users, but %s recipients were originally found. "
+"Perhaps some users don't have valid email addresses?"
 msgstr ""
-"E-post er sendt til %s bruger(e), men %s modtagere fundet. Der er muligt at nogen "
-"brugere ikke har en korrekt e-post adresse?"
+"E-post er sendt til %s bruger(e), men %s modtagere fundet. Der er muligt at "
+"nogen brugere ikke har en korrekt e-post adresse?"
 
 #: email_users_options_form.php:35
 msgid ""
-"It looks like you have an old version of the plugin activated. Please deactivate the "
-"plugin and activate it again to complete the installation of the new version."
+"It looks like you have an old version of the plugin activated. Please "
+"deactivate the plugin and activate it again to complete the installation of "
+"the new version."
 msgstr ""
-"Det ser ud til at du har en gammel version af dette plugin aktiveret. Deaktivér og "
-"aktivér venligst det plugin for at gennemfører installationen af den nye version."
+"Det ser ud til at du har en gammel version af dette plugin aktiveret. "
+"Deaktivér og aktivér venligst det plugin for at gennemfører installationen af "
+"den nye version."
 
 #: email_users_options_form.php:38
 msgid "Installed Version:"
@@ -585,8 +600,8 @@ msgid ""
 "Current settings show post or page notification and/or mass email may not be "
 "received by any users."
 msgstr ""
-"Nuværende indstillinger viser at indlæg eller side notificering og/eller gruppe e-"
-"post muligvis ikke vil blive modtaget af brugerne."
+"Nuværende indstillinger viser at indlæg eller side notificering og/eller "
+"gruppe e-post muligvis ikke vil blive modtaget af brugerne."
 
 #: email_users_options_form.php:100
 msgid "Email Users Settings"
@@ -658,8 +673,8 @@ msgstr "BCC Grænse"
 
 #: email_users_options_form.php:159
 msgid ""
-"Try 30 if you have problems sending emails to many users (some providers forbid too "
-"many recipients in BCC field)."
+"Try 30 if you have problems sending emails to many users (some providers "
+"forbid too many recipients in BCC field)."
 msgstr ""
 "Prøv med 30 hvis der er problemer med at sende e-post til mange brugere (nogen "
 "udbydere tillader ikke mange modtagere i BCC feltet)"
@@ -678,10 +693,11 @@ msgstr "Udelad Vist Navn når der sendes e-post"
 
 #: email_users_options_form.php:176
 msgid ""
-"Use \"john.doe@example.com\" instead of \"John Doe &lt;john.doe@example.com&gt;\""
-msgstr ""
-"Brug \"john.doe@example.com\" i stedet for \"John Doe &lt; john.doe@example.com &gt;"
+"Use \"john.doe@example.com\" instead of \"John Doe &lt;john.doe@example.com&gt;"
 "\""
+msgstr ""
+"Brug \"john.doe@example.com\" i stedet for \"John Doe &lt; john.doe@example."
+"com &gt;\""
 
 #: email_users_options_form.php:180
 msgid "Copy Sender"
@@ -705,11 +721,11 @@ msgstr "Afsender<br>Erstat navn"
 
 #: email_users_options_form.php:201
 msgid ""
-"A name that can be used in place of the logged in user's name when sending email or "
-"notifications."
+"A name that can be used in place of the logged in user's name when sending "
+"email or notifications."
 msgstr ""
-"Navn der skal bruges i steder for den nuværende afsender, når der sendes e-post og "
-"notificeringer"
+"Navn der skal bruges i steder for den nuværende afsender, når der sendes e-"
+"post og notificeringer"
 
 #: email_users_options_form.php:205
 msgid "From Sender Email<br/>Address Override"
@@ -717,11 +733,11 @@ msgstr "Afsender<br>E-post adresse"
 
 #: email_users_options_form.php:209
 msgid ""
-"An email address that can be used in place of the logged in user's email address "
-"when sending email or notifications."
+"An email address that can be used in place of the logged in user's email "
+"address when sending email or notifications."
 msgstr ""
-"E-post adresse der skal bruges i stedet for den nuværende afsender, når der sendes e-"
-"post og notificeringer"
+"E-post adresse der skal bruges i stedet for den nuværende afsender, når der "
+"sendes e-post og notificeringer"
 
 #: email_users_options_form.php:209 email_users_options_form.php:217
 msgid "Note:  Invalid email addresses are not saved."
@@ -733,11 +749,11 @@ msgstr "Bounce To<br>E-post adresse"
 
 #: email_users_options_form.php:217
 msgid ""
-"An email address that can be used in place of the logged in user's email address to "
-"receive bounced email notifications."
+"An email address that can be used in place of the logged in user's email "
+"address to receive bounced email notifications."
 msgstr ""
-"E-post adresse der skal bruges i stedet for den nuværende afsender, til at modtage "
-"bounced e-post notificeringer"
+"E-post adresse der skal bruges i stedet for den nuværende afsender, til at "
+"modtage bounced e-post notificeringer"
 
 #: email_users_options_form.php:221
 msgid "Default<br/>Notification Body"
@@ -817,17 +833,17 @@ msgstr "Ydereligere<br/>E-post elementer"
 
 #: email_users_options_form.php:281
 msgid ""
-"Add <b>X-Mailer</b> mail header record.<br/><small><i>Not recommended for typical "
-"WordPress installations.</i></small>"
+"Add <b>X-Mailer</b> mail header record.<br/><small><i>Not recommended for "
+"typical WordPress installations.</i></small>"
 msgstr ""
-"Tilføj <b>X-Mailer</b> post feltet<br><small><i>Dette anbefales ikke for almindelige "
-"WordPress installationer</i></small>"
+"Tilføj <b>X-Mailer</b> post feltet<br><small><i>Dette anbefales ikke for "
+"almindelige WordPress installationer</i></small>"
 
 #: email_users_options_form.php:285
 msgid ""
-"Add <a href=\"http://en.wikipedia.org/wiki/MIME-Version#MIME-Version\">MIME-Version</"
-"a> mail header record.<br/><small><i>Not recommended for typical WordPress "
-"installations.</i></small>"
+"Add <a href=\"http://en.wikipedia.org/wiki/MIME-Version#MIME-Version\">MIME-"
+"Version</a> mail header record.<br/><small><i>Not recommended for typical "
+"WordPress installations.</i></small>"
 msgstr ""
 "Tilføj <a href=\"http://en.wikipedia.org/wiki/MIME-Version#MIME-Version\">MIME-"
 "Version</a> post feltet<br/> <i><small>Dette anbefales ikke for almindelige "
@@ -839,11 +855,11 @@ msgstr "Fejlfinding"
 
 #: email_users_options_form.php:294
 msgid ""
-"Enable Debug Mode<br/><small><i>Note:  Email is not sent when in debug mode.</i></"
-"small>"
+"Enable Debug Mode<br/><small><i>Note:  Email is not sent when in debug mode.</"
+"i></small>"
 msgstr ""
-"Aktivér fejlfinding<br/><small><i><strong>OBS: E-post meddelser vil ikke blive sendt "
-"når fejlfinding er aktiveret</strong></i></small>"
+"Aktivér fejlfinding<br/><small><i><strong>OBS: E-post meddelser vil ikke blive "
+"sendt når fejlfinding er aktiveret</strong></i></small>"
 
 #: email_users_options_form.php:300
 msgid "Save Changes"
@@ -855,11 +871,11 @@ msgstr "Email-Users Standard indstillinger"
 
 #: email_users_options_form.php:313
 msgid ""
-"Email-Users has default values for all settings.  When reset, the following values "
-"are used."
+"Email-Users has default values for all settings.  When reset, the following "
+"values are used."
 msgstr ""
-"Email-Users har standard værdier for alle indstillinger. Ved nulstilling, bliver de "
-"følgende værdier brugt:"
+"Email-Users har standard værdier for alle indstillinger. Ved nulstilling, "
+"bliver de følgende værdier brugt:"
 
 #: email_users_options_form.php:317
 msgid "Settings"
@@ -880,12 +896,14 @@ msgstr "Email-Users Test Notificering e-post"
 #: email_users_options_form.php:351
 msgid "Use this Test Notification to verify proper operation of Email-Users."
 msgstr ""
-"Brug Test Notificering for at kontrollerer om Email-Users fungerer efter hensigten"
+"Brug Test Notificering for at kontrollerer om Email-Users fungerer efter "
+"hensigten"
 
 #: email_users_options_form.php:355
 msgid "Notification Mail Preview (updated when the options are saved)"
 msgstr ""
-"E-post notificerings eksempel (bliver opdateret når indstillingerne bliver gemt)"
+"E-post notificerings eksempel (bliver opdateret når indstillingerne bliver "
+"gemt)"
 
 #: email_users_options_form.php:417
 msgid "Send Test Notification to Yourself"
@@ -945,18 +963,20 @@ msgstr "Email-Users Roller"
 
 #: email_users_options_form.php:482
 msgid ""
-"Email Users uses capabilities to define what users are allowed to do. Below is a "
-"list of the capabilities used by the plugin and the default user role allowed to "
-"make these actions."
+"Email Users uses capabilities to define what users are allowed to do. Below is "
+"a list of the capabilities used by the plugin and the default user role "
+"allowed to make these actions."
 msgstr ""
-"Email-Users benytter roller til at definerer hvad brugere har adgang til. Herunder "
-"er en liste af roller der benyttes af dette plugin sant hvilke standard grupper der "
-"er med I hvilke roller."
+"Email-Users benytter roller til at definerer hvad brugere har adgang til. "
+"Herunder er en liste af roller der benyttes af dette plugin sant hvilke "
+"standard grupper der er med I hvilke roller."
 
 #: email_users_options_form.php:482
 msgid ""
-"If you want to change the roles having those capabilities, you should use the plugin:"
-msgstr "Hvis du ønsker at ændre en rolles muligheder, skal du benytte dette plugin:"
+"If you want to change the roles having those capabilities, you should use the "
+"plugin:"
+msgstr ""
+"Hvis du ønsker at ændre en rolles muligheder, skal du benytte dette plugin:"
 
 #: email_users_options_form.php:487
 msgid "Capability"
@@ -1011,8 +1031,8 @@ msgid ""
 "Email Users is dependent on the <a href=\"http://codex.wordpress.org/"
 "Function_Reference/wp_mail\">wp_mail()</a> function."
 msgstr ""
-"Email-Users er afhængig af <a href=\"http://codex.wordpress.org/Function_Reference/"
-"wp_mail\">wp_mail ()</a> funktionen"
+"Email-Users er afhængig af <a href=\"http://codex.wordpress.org/"
+"Function_Reference/wp_mail\">wp_mail ()</a> funktionen"
 
 #: email_users_options_form.php:535
 msgid "wp_mail() is loaded from:"
@@ -1029,34 +1049,39 @@ msgstr "Faktisk:"
 #: email_users_options_form.php:549
 msgid ""
 "The WordPress wp_mail() function is <a href=\"http://codex.wordpress.org/"
-"Pluggable_Functions\">pluggable</a>\r\n"
-"    which means the standard WordPress functionality can be overloaded by a Theme or "
-"another WordPress plugin.\r\n"
+"Pluggable_Functions\">pluggable</a>\n"
+"    which means the standard WordPress functionality can be overloaded by a "
+"Theme or another WordPress plugin.\n"
 "    It is important to note that if the <strong><i>expected</i></strong> and "
-"<strong><i>actual</i></strong> do\r\n"
-"    not match, it does not automatically mean there will be a problem.  However, if "
-"Email Users is not producing\r\n"
+"<strong><i>actual</i></strong> do\n"
+"    not match, it does not automatically mean there will be a problem.  "
+"However, if Email Users is not producing\n"
 "    the expected results AND the <strong><i>expected</i></strong> and "
-"<strong><i>actual</i></strong> do not match,\r\n"
-"    it is something which should be looked at as a potential source of the problem."
+"<strong><i>actual</i></strong> do not match,\n"
+"    it is something which should be looked at as a potential source of the "
+"problem."
 msgstr ""
-"WordPress wp_mail() funktionen er <a href=\"http://codex.wordpress.org/"
-"Pluggable_Functions\">pluggable</a> hvilket betyder at standard WordPress "
-"funktionalitet kan blive overskrevet af et Tema eller et WordPress plugin. Det er "
-"vigtigt at understrege at det ikke nødvendigvis er en fejl at <strong><i>forventet</"
-"i></strong> og <strong><i>faktisk</i></strong> ikke stemmer overens. MEN, hvis Email "
-"Users ikke fungerer som forventet OG <strong><i>forventet</i></strong> og "
-"<strong><i>faktisk</i></strong> ikke stemmer overens, skal det undersøges om dette "
-"er årsag til fejlen."
+"Wordpress wp_mail () funktionen r <a href=\"http://codex.wordpress.org/"
+"Pluggable_Functions\">pluggable</a>\n"
+"     vilket innebr standardWordPress funktionalitet kan verbelastas av ett "
+"tema eller en annan Wordpress plugin.\n"
+"ÿÿÿÿ Det r viktigt att notera att om <strong><i>frvntat</i></strong> och "
+"<strong><i>faktiskt</i></strong> gr\n"
+"ÿÿÿÿ inte matchar, betyder det inte automatiskt att det kommer att bli ett "
+"problem. Men om Email Users inte producerar\n"
+"ÿÿÿÿ frvntat resultat OCH <strong><i>frvntat</i></strong> och "
+"<strong><i>faktiskt</i></strong> inte matchar,\n"
+"ÿÿÿÿ det r ngot som br ses som en potentiell klla till problemet."
 
 #: email_users_options_form.php:557
 msgid ""
-"The recommended way to eliminate the overloaded version of wp_mail() as the source "
-"of a problem is to disable\r\n"
+"The recommended way to eliminate the overloaded version of wp_mail() as the "
+"source of a problem is to disable\n"
 "    the plugin or theme which has overloaded wp_mail()."
 msgstr ""
-"Den anbefalede måde at fjerne den overskrevede version af wp_mail(), som er årsagen "
-"til problemet, er at deaktiverer det pågældende plugin eller Tema."
+"Den anbefalede made at fjerne den overbelastede version af wp_mail(), som er "
+"årsagen til problemet, er at deaktiverer\n"
+" det plugin eller tema som har overbelastet wp_mail(). (***)"
 
 #: email_users_options_form.php:566
 msgid "Email-Users Integration"
@@ -1064,7 +1089,8 @@ msgstr "Email-Users Integration"
 
 #: email_users_options_form.php:569
 msgid ""
-"Email Users provides integration hooks with several WordPress \"Group\" plugins."
+"Email Users provides integration hooks with several WordPress \"Group\" "
+"plugins."
 msgstr ""
 "Email-Users tilbyder direkte integration til flere WordPress \"Gruppe\" plugins"
 
@@ -1082,24 +1108,24 @@ msgstr "Status"
 
 #: email_users_options_form.php:582
 msgid ""
-"This plugin does one thing, and does it well: create groups and organize your users "
-"by that group."
+"This plugin does one thing, and does it well: create groups and organize your "
+"users by that group."
 msgstr ""
-"Dette plugin kan kun én ting - men gør det godt: Opretter grupper og administererer "
-"dine brugere pr. gruppe"
+"Dette plugin kan kun én ting - men gør det godt: Opretter grupper og "
+"administererer dine brugere pr. gruppe"
 
 #: email_users_options_form.php:587
 msgid ""
-"With the \"User Access Manager\"-plugin you can manage the access to your posts, "
-"pages and files."
+"With the \"User Access Manager\"-plugin you can manage the access to your "
+"posts, pages and files."
 msgstr ""
-"Med \"User Access Manager\"-plugin't kan du administrerer adgang til dine indlæg, "
-"sider og filer"
+"Med \"User Access Manager\"-plugin't kan du administrerer adgang til dine "
+"indlæg, sider og filer"
 
 #: email_users_options_form.php:592
 msgid ""
-"Groups provides group-based user membership management, group-based capabilities and "
-"content access control."
+"Groups provides group-based user membership management, group-based "
+"capabilities and content access control."
 msgstr ""
 "Med \"Groups\" får du overblik over gruppe-baseret bruger medlemsskab, gruppe-"
 "baserede muligheder og indholds styret adgang"
@@ -1134,17 +1160,19 @@ msgstr "Nej"
 #: email_users_options_form.php:643
 msgid ""
 "There are a number of <a href=\"http://codex.wordpress.org/Plugin_API/"
-"Filter_Reference\">WordPress Filters</a> which <strong><i>may</i></strong> affect "
-"Email Users.  The presence of these filters does not mean they will adversely affect "
-"Email Users but should be examined if email delivery isn't reaching all of the "
-"intended recipients or the mail format and/or header detail isn't as expected."
+"Filter_Reference\">WordPress Filters</a> which <strong><i>may</i></strong> "
+"affect Email Users.  The presence of these filters does not mean they will "
+"adversely affect Email Users but should be examined if email delivery isn't "
+"reaching all of the intended recipients or the mail format and/or header "
+"detail isn't as expected."
 msgstr ""
-"Der finds en del <a href=\"http://codex.wordpress.org/Plugin_API/Filter_Reference"
-"\">WordPress Filtere</a> som <strong><i>kan</i></strong> påvirke Email-Users. "
-"Benyttes disse, betyder det ikke at de absolut vil have en negativ påvirke på Email "
-"Users, men i tilfældet af at notificering og e-post ikke bliver modtaget, af alle "
-"brugere, som forventet, eller e-post formatering og element tilvalg ikke er som "
-"ønsket, så bør disse filter undersøges"
+"Der finds en del <a href=\"http://codex.wordpress.org/Plugin_API/"
+"Filter_Reference\">WordPress Filtere</a> som <strong><i>kan</i></strong> "
+"påvirke Email-Users. Benyttes disse, betyder det ikke at de absolut vil have "
+"en negativ påvirke på Email Users, men i tilfældet af at notificering og e-"
+"post ikke bliver modtaget, af alle brugere, som forventet, eller e-post "
+"formatering og element tilvalg ikke er som ønsket, så bør disse filter "
+"undersøges"
 
 #: email_users_send_group_mail.php:61
 msgid "You must select at least a role."
@@ -1157,6 +1185,37 @@ msgstr "Indstillinger for plugin sat til standard."
 #: email_users_custom_filter_mail_form.php:57
 msgid "Send an Email to a Custom Filtered list of Users"
 msgstr "Send en e-post til en tilpasset filtreret liste af brugere"
+
+#~ msgid ""
+#~ "The WordPress wp_mail() function is <a href=\"http://codex.wordpress.org/"
+#~ "Pluggable_Functions\">pluggable</a>\r\n"
+#~ "    which means the standard WordPress functionality can be overloaded by a "
+#~ "Theme or another WordPress plugin.\r\n"
+#~ "    It is important to note that if the <strong><i>expected</i></strong> "
+#~ "and <strong><i>actual</i></strong> do\r\n"
+#~ "    not match, it does not automatically mean there will be a problem.  "
+#~ "However, if Email Users is not producing\r\n"
+#~ "    the expected results AND the <strong><i>expected</i></strong> and "
+#~ "<strong><i>actual</i></strong> do not match,\r\n"
+#~ "    it is something which should be looked at as a potential source of the "
+#~ "problem."
+#~ msgstr ""
+#~ "WordPress wp_mail() funktionen er <a href=\"http://codex.wordpress.org/"
+#~ "Pluggable_Functions\">pluggable</a> hvilket betyder at standard WordPress "
+#~ "funktionalitet kan blive overskrevet af et Tema eller et WordPress plugin. "
+#~ "Det er vigtigt at understrege at det ikke nødvendigvis er en fejl at "
+#~ "<strong><i>forventet</i></strong> og <strong><i>faktisk</i></strong> ikke "
+#~ "stemmer overens. MEN, hvis Email Users ikke fungerer som forventet OG "
+#~ "<strong><i>forventet</i></strong> og <strong><i>faktisk</i></strong> ikke "
+#~ "stemmer overens, skal det undersøges om dette er årsag til fejlen."
+
+#~ msgid ""
+#~ "The recommended way to eliminate the overloaded version of wp_mail() as the "
+#~ "source of a problem is to disable\r\n"
+#~ "    the plugin or theme which has overloaded wp_mail()."
+#~ msgstr ""
+#~ "Den anbefalede måde at fjerne den overskrevede version af wp_mail(), som er "
+#~ "årsagen til problemet, er at deaktiverer det pågældende plugin eller Tema."
 
 #~ msgid "Filter Users with no role from Recipient List:"
 #~ msgstr "Filtrér brugere der ikke har en rolle på modtagerlisten:"
@@ -1180,18 +1239,18 @@ msgstr "Send en e-post til en tilpasset filtreret liste af brugere"
 #~ msgstr "Meddelandemail Frhandsvisning (baserat p standardmeddelande kroppen)"
 
 #~ msgid ""
-#~ "Warning:  The number of users (%d) plus overhead exceeds the PHP <a href=\"http://"
-#~ "php.net/manual/en/info.configuration.php#ini.max-input-vars\">max_input_vars</a> "
-#~ "setting (%d).  You will not be able to send email to more than %d users in one "
-#~ "batch.  This can be changed by increasing the value of <a href=\"http://php.net/"
-#~ "manual/en/info.configuration.php#ini.max-input-vars\">max_input_vars</a> setting "
-#~ "in the PHP.ini configuration file."
-#~ msgstr ""
-#~ "Varning:  Antalet anvndare (%d) plus vrig last verskrider instllningen PHP <a "
-#~ "href=\"http://php.net/manual/en/info.configuration.php#ini.max-input-vars"
-#~ "\">max_input_vars</a> setting (%d).  Du kommer inte att kunna skicka e-post till "
-#~ "mer n %d anvndare i ett parti.  Detta kan ndras genom att ka vrdet av a href="
+#~ "Warning:  The number of users (%d) plus overhead exceeds the PHP <a href="
 #~ "\"http://php.net/manual/en/info.configuration.php#ini.max-input-vars"
+#~ "\">max_input_vars</a> setting (%d).  You will not be able to send email to "
+#~ "more than %d users in one batch.  This can be changed by increasing the "
+#~ "value of <a href=\"http://php.net/manual/en/info.configuration.php#ini.max-"
+#~ "input-vars\">max_input_vars</a> setting in the PHP.ini configuration file."
+#~ msgstr ""
+#~ "Varning:  Antalet anvndare (%d) plus vrig last verskrider instllningen PHP "
+#~ "<a href=\"http://php.net/manual/en/info.configuration.php#ini.max-input-vars"
+#~ "\">max_input_vars</a> setting (%d).  Du kommer inte att kunna skicka e-post "
+#~ "till mer n %d anvndare i ett parti.  Detta kan ndras genom att ka vrdet av "
+#~ "a href=\"http://php.net/manual/en/info.configuration.php#ini.max-input-vars"
 #~ "\">max_input_vars</a> instllningen i PHP.ini konfigurationsfilen."
 
 #~ msgid "1 (use To: field)"
@@ -1214,17 +1273,18 @@ msgstr "Send en e-post til en tilpasset filtreret liste af brugere"
 #~ "Roles_and_Capabilities#Roles\">no role</a> from Recipient List."
 #~ msgstr ""
 #~ "Filtrer brugere med <a href=\"https://codex.wordpress.org/"
-#~ "Roles_and_Capabilities#Roles\">ingen rolle valgt</a> fra modtagerlisten. (***)"
+#~ "Roles_and_Capabilities#Roles\">ingen rolle valgt</a> fra modtagerlisten. "
+#~ "(***)"
 
 #~ msgid "Base64 Encode Email"
 #~ msgstr "Base64-kodet e-post"
 
 #~ msgid ""
-#~ "Enable Base64 Encoding<br/><small><i>Note:  All email will be Base64 encoded when "
-#~ "enabled.</i></small>"
+#~ "Enable Base64 Encoding<br/><small><i>Note:  All email will be Base64 "
+#~ "encoded when enabled.</i></small>"
 #~ msgstr ""
-#~ "Aktivér Base64-kodning<br/><small><i>Obs: Alle e-post meddelser vil blive Base64 "
-#~ "kodet ved aktivering.</i></small>"
+#~ "Aktivér Base64-kodning<br/><small><i>Obs: Alle e-post meddelser vil blive "
+#~ "Base64 kodet ved aktivering.</i></small>"
 
 #~ msgid "the WordPress user name of the person sending the mail\" ******"
 #~ msgstr "WordPress brugernavnet på den bruger der afsender denne e-post"
@@ -1233,43 +1293,9 @@ msgstr "Send en e-post til en tilpasset filtreret liste af brugere"
 #~ msgstr "indholdet i det indlæg som du vil fremhæve"
 
 #~ msgid ""
-#~ "The WordPress wp_mail() function is <a href=\"http://codex.wordpress.org/"
-#~ "Pluggable_Functions\">pluggable</a>\n"
-#~ "    which means the standard WordPress functionality can be overloaded by a Theme "
-#~ "or another WordPress plugin.\n"
-#~ "    It is important to note that if the <strong><i>expected</i></strong> and "
-#~ "<strong><i>actual</i></strong> do\n"
-#~ "    not match, it does not automatically mean there will be a problem.  However, "
-#~ "if Email Users is not producing\n"
-#~ "    the expected results AND the <strong><i>expected</i></strong> and "
-#~ "<strong><i>actual</i></strong> do not match,\n"
-#~ "    it is something which should be looked at as a potential source of the "
-#~ "problem."
-#~ msgstr ""
-#~ "Wordpress wp_mail () funktionen r <a href=\"http://codex.wordpress.org/"
-#~ "Pluggable_Functions\">pluggable</a>\n"
-#~ "     vilket innebr standardWordPress funktionalitet kan verbelastas av ett tema "
-#~ "eller en annan Wordpress plugin.\n"
-#~ "ÿÿÿÿ Det r viktigt att notera att om <strong><i>frvntat</i></strong> och "
-#~ "<strong><i>faktiskt</i></strong> gr\n"
-#~ "ÿÿÿÿ inte matchar, betyder det inte automatiskt att det kommer att bli ett "
-#~ "problem. Men om Email Users inte producerar\n"
-#~ "ÿÿÿÿ frvntat resultat OCH <strong><i>frvntat</i></strong> och "
-#~ "<strong><i>faktiskt</i></strong> inte matchar,\n"
-#~ "ÿÿÿÿ det r ngot som br ses som en potentiell klla till problemet."
-
-#~ msgid ""
-#~ "The recommended way to eliminate the overloaded version of wp_mail() as the "
-#~ "source of a problem is to disable\n"
-#~ "    the plugin or theme which has overloaded wp_mail()."
-#~ msgstr ""
-#~ "Den anbefalede made at fjerne den overbelastede version af wp_mail(), som er "
-#~ "årsagen til problemet, er at deaktiverer\n"
-#~ " det plugin eller tema som har overbelastet wp_mail(). (***)"
-
-#~ msgid ""
-#~ "Paid Memberships Pro:  The easiest way to GET PAID with your WordPress site. "
-#~ "Flexible content control by Membership Level, Reports, Affiliates and Discounts."
+#~ "Paid Memberships Pro:  The easiest way to GET PAID with your WordPress "
+#~ "site. Flexible content control by Membership Level, Reports, Affiliates and "
+#~ "Discounts."
 #~ msgstr ""
 #~ "Betalt medlemskap Pro: Det enklaste sttet att F BETALT med din "
 #~ "WordPresswebbplats. Flexibel innehllskontroll av medlemsniv, rapporter, "

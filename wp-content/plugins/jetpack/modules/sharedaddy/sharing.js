@@ -72,7 +72,7 @@ if ( sharing_js_options && sharing_js_options.counts ) {
 			}
 
 			for ( url in data ) {
-				if ( ! data.hasOwnProperty( url ) || ! data[ url ].shares ) {
+				if ( ! data.hasOwnProperty( url ) || ! data[ url ].share.share_count ) {
 					continue;
 				}
 
@@ -82,7 +82,7 @@ if ( sharing_js_options && sharing_js_options.counts ) {
 					continue;
 				}
 
-				WPCOMSharing.inject_share_count( 'sharing-facebook-' + WPCOM_sharing_counts[ permalink ], data[ url ].shares );
+				WPCOMSharing.inject_share_count( 'sharing-facebook-' + WPCOM_sharing_counts[ permalink ], data[ url ].share.share_count );
 			}
 		},
 		update_linkedin_count : function( data ) {
@@ -129,7 +129,7 @@ var updateLinkedInCount = function( data ) {
 	} );
 
 	$body = $( document.body ).on( 'post-load', WPCOMSharing_do );
-	$( document ).on( 'ready', function() {
+	$( document ).ready( function() {
 		$sharing_email = $( '#sharing_email' );
 		$body.append( $sharing_email );
 		WPCOMSharing_do();
@@ -204,7 +204,7 @@ var updateLinkedInCount = function( data ) {
 								$more_sharing_pane.data( 'justSlid', false );
 							}, 300 );
 
-							if ( $more_sharing_pane.find( '.share-google-plus-1' ).size() ) {
+							if ( $more_sharing_pane.find( '.share-google-plus-1' ).length ) {
 								// The pane needs to stay open for the Google+ Button
 								return;
 							}

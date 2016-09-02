@@ -1,0 +1,15 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use File::Basename qw(dirname fileparse);
+
+my $dir = dirname($0);
+open FIND, "find $dir/../src/languages -type f -name '*.po' |";
+while (<FIND>) {
+    chomp;
+    my ($name,$path,$suffix) = fileparse($_, qr/[.][^.]*/);
+    print "$name\n";
+    system "msgfmt", "-o", "$path$name.mo", "$path$name$suffix";
+}
+close FIND;

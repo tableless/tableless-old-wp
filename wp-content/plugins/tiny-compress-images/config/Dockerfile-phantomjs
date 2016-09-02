@@ -1,4 +1,4 @@
-FROM servebox/phantomjs:latest
+FROM wernight/phantomjs:2
 
 EXPOSE 8910
 
