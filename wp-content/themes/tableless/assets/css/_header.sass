@@ -21,8 +21,8 @@
     height: 38px
     width: 200px
     @media #{$desktop}
-      width: 270px
-      margin-top: 5px
+      width: 200px
+      margin-top: 0px
 
 .tb-sandwich
   @extend %image-replace
@@ -63,7 +63,7 @@
     list-style: none
 
     a
-      font: 25px $font-regular
+      font: 23px $font-regular
       text-decoration: none
       color: #303030
       display: block
@@ -81,11 +81,23 @@
     float: right
     box-shadow: none
     transform: translateX(0)
-    padding: 25px 0 0
+    padding: 0 0 0
 
     li
       display: inline-block
-      margin: 0 25px
+      position: relative
+
+      &.menu-item-has-children:hover
+        background: #fff
+        color: #FF5252
+
+        ul
+          visibility: visible
+          opacity: 1
+          transition: opacity ease-in .25s
+
+        a
+          color: #303030
 
       a
         color: white
@@ -94,11 +106,39 @@
         text-decoration: none
         font: 16px $font-regular
         display: inline-block
-        padding: 5px
-        transition: border-bottom linear .15s
+        padding: 23px 25px 23px
+        transition: box-shadow linear .15s
         
         &:hover
-          border-bottom: 3px solid #FF5252
+          background: #fff
+          box-shadow: inset 0 -5px 0 #FF5252
+          color: #FF5252
+
+      ul
+        opacity: 0
+        visibility: hidden
+        width: 300px
+        position: absolute
+        right: 0
+        top: 65px
+        background: #FFF
+
+        li 
+          padding: 0
+          margin: 0
+          display: block
+
+          a
+            color: #303030
+            display: block
+            padding: 15px 20px
+            transition: .15s linear background
+
+            &:hover
+              box-shadow: none
+              background: #FF5252
+              color: #fff !important
+
 
 @media #{$desktop}
   .tb-search-btn
