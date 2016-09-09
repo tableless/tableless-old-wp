@@ -16,37 +16,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta charset="utf-8">
 <link rel="icon" type="image/png" href="<?php bloginfo('template_url');?>/favicon.png">
-<!-- Hotjar Tracking Code for http://tableless.com.br -->
-<!-- <script>
-    (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:239732,hjsv:5};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
 </script>
- -->
-  <script type='text/javascript'>
+
+<script>
   googletag.cmd.push(function() {
-    googletag.defineSlot('/7969368/banner-comunidades', [300, 125], 'div-gpt-ad-1461064765000-0').addService(googletag.pubads());
-    googletag.defineSlot('/7969368/BannerHorizontal', [[970, 90], [1024, 768]], 'div-gpt-ad-1461064765000-1').addService(googletag.pubads());
-    googletag.defineSlot('/7969368/ForumTableless', [[970, 90], [728, 90]], 'div-gpt-ad-1461064765000-2').addService(googletag.pubads());
-    googletag.defineSlot('/7969368/RetanguloMedio-MiddleSidebar', [[300, 250], [300, 300], [360, 360], [336, 280]], 'div-gpt-ad-1461064765000-3').addService(googletag.pubads());
-    googletag.defineSlot('/7969368/RetanguloMedio-TopoSidebar', [[300, 250], [300, 300], [360, 360], [336, 280]], 'div-gpt-ad-1461064765000-4').addService(googletag.pubads());
+    googletag.defineSlot('/7969368/banner-comunidades', [300, 125], 'div-gpt-ad-1473429933704-0').addService(googletag.pubads());
+    googletag.defineSlot('/7969368/RetanguloMedio-MiddleSidebar', [[300, 250], [336, 280], [300, 300], [360, 360]], 'div-gpt-ad-1473429933704-1').addService(googletag.pubads());
+    googletag.defineSlot('/7969368/RetanguloMedio-TopoSidebar', [[300, 250], [336, 280], [300, 300], [360, 360]], 'div-gpt-ad-1473429933704-2').addService(googletag.pubads());
     googletag.pubads().enableSingleRequest();
-    googletag.pubads().collapseEmptyDivs();
     googletag.enableServices();
   });
-  </script>
-
-
+</script>
   <?php wp_head();?>
-
-
-
-
 <body>
 
 <header class="tb-header">
