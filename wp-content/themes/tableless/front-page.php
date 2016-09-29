@@ -106,15 +106,14 @@
       <a href="http://tableless.github.io/iniciantes/" class="tb-icon-iniciantes">Iniciantes</a>
     </li>
   </ul>
-
+<!-- 
   <a href="http://bit.ly/progress-webinar-2016" class="tb-banner-home">
     <img src="<?php bloginfo("template_url");?>/images/telerik-test-studio.jpg">
   </a>
-
+ -->
 </div>
 
 <div class="tb-ultra-banner">
-
   <!-- /7969368/BannerHorizontal -->
   <div id='div-gpt-ad-1461064765000-1'>
   <script type='text/javascript'>
