@@ -85,6 +85,19 @@
   })();
   </script>
 
+<script type="text/javascript">
+  $(function(){
+    $( ".contact-form" ).on('submit', function( event ) {
+      if ( $( ".robotDefend" ).val() === "4" ) {
+        return;
+      } else {
+        event.preventDefault();
+      }
+    });
+
+  })
+</script>
+
 
 
 <?php wp_footer();?>
