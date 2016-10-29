@@ -121,4 +121,16 @@ class Tiny_Image_Test extends Tiny_TestCase {
 			Tiny_Image::get_optimization_statistics( new Tiny_Settings(), $wpdb_results )
 		);
 	}
+
+	public function test_is_retina_for_retina_size() {
+		$this->assertEquals( true, Tiny_Image::is_retina( 'small_wr2x' ) );
+	}
+
+	public function test_is_retina_for_non_retina_size() {
+		$this->assertEquals( false, Tiny_Image::is_retina( 'small' ) );
+	}
+
+	public function test_is_retina_for_non_retina_size_with_short_name() {
+		$this->assertEquals( false, Tiny_Image::is_retina( 'file' ) );
+	}
 }

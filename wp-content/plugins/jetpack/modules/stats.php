@@ -1,14 +1,14 @@
 <?php
 /**
  * Module Name: Site Stats
- * Module Description: Collect traffic stats and insights.
+ * Module Description: Collect valuable traffic stats and insights.
  * Sort Order: 1
  * Recommendation Order: 2
  * First Introduced: 1.1
  * Requires Connection: Yes
  * Auto Activate: Yes
  * Module Tags: Site Stats, Recommended
- * Feature: Recommended, Traffic
+ * Feature: Engagement
  * Additional Search Queries: statistics, tracking, analytics, views, traffic, stats
  */
 
@@ -181,8 +181,9 @@ function stats_footer() {
 function stats_get_options() {
 	$options = get_option( 'stats_options' );
 
-	if ( !isset( $options['version'] ) || $options['version'] < STATS_VERSION )
+	if ( ! isset( $options['version'] ) || $options['version'] < STATS_VERSION ) {
 		$options = stats_upgrade_options( $options );
+	}
 
 	return $options;
 }
@@ -204,11 +205,11 @@ function stats_set_option( $option, $value ) {
 
 	$options[$option] = $value;
 
-	stats_set_options($options);
+	return stats_set_options($options);
 }
 
 function stats_set_options($options) {
-	update_option( 'stats_options', $options );
+	return update_option( 'stats_options', $options );
 }
 
 function stats_upgrade_options( $options ) {
@@ -236,7 +237,9 @@ function stats_upgrade_options( $options ) {
 
 	$new_options['version'] = STATS_VERSION;
 
-	stats_set_options( $new_options );
+	if ( !  stats_set_options( $new_options ) ) {
+		return false;
+	}
 
 	stats_update_blog();
 
@@ -476,6 +479,11 @@ echo esc_url(
 		$body = stats_convert_admin_urls( $body );
 		echo $body;
 	}
+
+	if ( isset( $_GET['page'] ) && 'stats' === $_GET['page'] && ! isset( $_GET['chart'] ) ) {
+		JetpackTracking::record_user_event( 'wpa_page_view', array( 'path' => 'old_stats' ) );
+	}
+
 	if ( isset( $_GET['noheader'] ) )
 		die;
 }

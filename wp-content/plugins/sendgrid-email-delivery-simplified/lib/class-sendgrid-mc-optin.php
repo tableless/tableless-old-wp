@@ -10,7 +10,7 @@ class Sendgrid_OptIn_API_Endpoint{
    *
    * @return void
    */
-  public function __construct(){
+  public function __construct() {
     add_filter( 'query_vars', array( $this, 'add_query_vars' ), 0 );
     add_action( 'parse_request', array( $this, 'sniff_requests' ), 0 );
   }
@@ -21,7 +21,7 @@ class Sendgrid_OptIn_API_Endpoint{
    * @param array $vars List of current public query vars
    * @return array $vars 
    */
-  public function add_query_vars( $vars ){
+  public function add_query_vars( $vars ) {
     $vars[] = '__sg_api';
     $vars[] = 'token';
 
@@ -34,7 +34,7 @@ class Sendgrid_OptIn_API_Endpoint{
    *  
    * @return die if API request
    */
-  public function sniff_requests(){
+  public function sniff_requests() {
     global $wp;
 
     if( isset( $wp->query_vars['__sg_api'] ) )
@@ -50,33 +50,31 @@ class Sendgrid_OptIn_API_Endpoint{
    *
    * @return void 
    */
-  protected function handle_request(){
+  protected function handle_request() {
     global $wp;
 
     $token = $wp->query_vars['token'];
-    if ( !$token )
+    if ( ! $token )
     {
       wp_redirect( 'sg-subscription-missing-token' );
-
       exit();
     }
     
-    $transient = get_transient( $token );
+    $transient = ( is_multisite() ? get_site_transient( $token ) : get_transient( $token ) );
 
-    if ( !$transient || 
-      !is_array( $transient ) || 
-      !isset( $transient['email'] )  || 
-      !isset( $transient['first_name'] ) || 
-      !isset( $transient['last_name'] ) )
+    if ( ! $transient or
+      ! is_array( $transient ) or
+      ! isset( $transient['email'] )  or
+      ! isset( $transient['first_name'] ) or
+      ! isset( $transient['last_name'] ) )
     {
       wp_redirect( 'sg-subscription-invalid-token' );
-
       exit();
     }
 
     $subscribed = Sendgrid_NLVX::create_and_add_recipient_to_list(
-                    $transient['email'], 
-                    $transient['first_name'], 
+                    $transient['email'],
+                    $transient['first_name'],
                     $transient['last_name'] );
 
     if ( $subscribed )
@@ -84,14 +82,18 @@ class Sendgrid_OptIn_API_Endpoint{
       $page = Sendgrid_Tools::get_mc_signup_confirmation_page_url();
 
       if ( $page == false ) {
-        set_transient( $token, null );
+        if ( is_multisite() ) {
+          set_site_transient( $token, null );
+        } else {
+          set_transient( $token, null );
+        }
         wp_redirect( 'sg-subscription-success' );
-
         exit();
       } 
       else 
       {
         $page = add_query_arg( 'sg_token', $token, $page );
+
         wp_redirect( $page );
         exit();
       }
@@ -100,9 +102,8 @@ class Sendgrid_OptIn_API_Endpoint{
     }
     else
     {
-       wp_redirect( 'sg-error' );
-
-       exit();
+      wp_redirect( 'sg-error' );
+      exit();
     }
   }
 
@@ -130,22 +131,31 @@ class Sendgrid_OptIn_API_Endpoint{
 
     $token = Sendgrid_OptIn_API_Endpoint::generate_email_token( $email, $first_name, $last_name );
 
-    $transient = get_transient($token);
+    $transient = ( is_multisite() ? get_site_transient($token) : get_transient($token) );
 
     if ( $transient and isset( $transient['email'] ) and ! $from_settings ) {
       return false;
     }
 
-    if( false == set_transient( $token, 
-      array( 
-        'email' => $email, 
-        'first_name' => $first_name, 
+    if ( is_multisite() ) {
+      if ( false == set_site_transient( $token,
+        array(
+          'email' => $email,
+          'first_name' => $first_name,
+          'last_name' => $last_name ),
+          24 * 60 * 60 ) and ! $from_settings and $transient ) {
+        return false;
+      }
+    } elseif ( false == set_transient( $token,
+      array(
+        'email' => $email,
+        'first_name' => $first_name,
         'last_name' => $last_name ),
         24 * 60 * 60 ) and ! $from_settings and $transient ) {
       return false;
     }
 
-    $confirmation_link = site_url() . '?__sg_api=1&token=' . $token;
+    $confirmation_link = site_url() . '/?__sg_api=1&token=' . $token;
     $headers = new SendGrid\Email();
     $headers->addSubstitution( '%confirmation_link%', array( $confirmation_link ) )
             ->addCategory( 'wp_sendgrid_subscription_widget' );
@@ -183,6 +193,10 @@ function register_shortcode_first_name($atts)
   $token = $_GET['sg_token'];
   $transient = get_transient( $token );
 
+  if ( is_multisite() ) {
+    $transient = get_site_transient( $token );
+  }
+
   if ( ! $transient || 
     ! is_array( $transient ) || 
     ! isset( $transient['first_name'] ) )
@@ -209,8 +223,12 @@ function register_shortcode_last_name($atts)
   $token = $_GET['sg_token'];
   $transient = get_transient( $token );
 
-  if ( ! $transient || 
-    ! is_array( $transient ) || 
+  if ( is_multisite() ) {
+    $transient = get_site_transient( $token );
+  }
+
+  if ( ! $transient or
+    ! is_array( $transient ) or
     ! isset( $transient['last_name'] ) )
   {
     return '';
@@ -235,8 +253,12 @@ function register_shortcode_email($atts)
   $token = $_GET['sg_token'];
   $transient = get_transient( $token );
 
-  if ( ! $transient || 
-    ! is_array( $transient ) || 
+  if ( is_multisite() ) {
+    $transient = get_site_transient( $token );
+  }
+
+  if ( ! $transient or 
+    ! is_array( $transient ) or 
     ! isset( $transient['email'] ) )
   {
     return '';
@@ -264,8 +286,17 @@ function sg_invalidate_token() {
 
   $token = $_GET['sg_token'];
   $transient = get_transient( $token );
-  if ( $token && $transient ) {
-    set_transient( $token, null );
+
+  if ( is_multisite() ) {
+    $transient = get_site_transient( $token );
+  }
+
+  if ( $token and $transient ) {
+    if ( is_multisite() ) {
+      set_site_transient( $token, null );
+    } else {
+      set_transient( $token, null );
+    }
   }
 }
 

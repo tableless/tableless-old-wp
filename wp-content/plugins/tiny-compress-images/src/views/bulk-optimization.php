@@ -51,15 +51,26 @@ div.tiny-bulk-optimization div.dashboard div.optimize div.progressbar div.progre
 						} elseif ( 0 == sizeof( $active_tinify_sizes ) ) {
 							esc_html_e( 'Based on your current settings, nothing will be optimized. There are no active sizes selected for optimization.' );
 						} elseif ( 0 == $stats['available-unoptimised-sizes'] ) {
-							esc_html_e( 'Great! Your entire library is optimimized!' );
+							printf( esc_html__( '%s, this is great! Your entire library is optimized!' ), $this->friendly_user_name() );
 						} elseif ( $stats['optimized-image-sizes'] > 0 ) {
-							( $percentage_of_files > 75 ) ? esc_html_e( 'You are doing great!', 'tiny-compress-images' ) : esc_html_e( 'You are doing good.', 'tiny-compress-images' );
+							if ( $percentage_of_files > 75 ) {
+								printf( esc_html__( '%s, you are doing great!', 'tiny-compress-images' ), $this->friendly_user_name() );
+							} else {
+								printf( esc_html__( '%s, you are doing good.', 'tiny-compress-images' ), $this->friendly_user_name() );
+							}
 							echo ' ';
 							printf( esc_html__( '%d%% of your image library is optimized.', 'tiny-compress-images' ), $percentage_of_files );
 							echo ' ';
 							printf( esc_html__( 'Start the bulk optimization to optimize the remainder of your library.', 'tiny-compress-images' ) );
 						} else {
 							esc_html_e( 'Here you can start optimizing your entire library. Press the big button to start improving your website speed instantly!', 'tiny-compress-images' );
+						}
+						?>
+					</p>
+					<p>
+						<?php
+						if ( Tiny_Settings::wr2x_active() ) {
+							esc_html_e( 'Notice that the WP Retina 2x sizes will not be compressed using this page. You will need to bulk generate the retina sizes separately from the WP Retina 2x page.', 'tiny-compress-images' );
 						}
 						?>
 					</p>
@@ -110,6 +121,16 @@ div.tiny-bulk-optimization div.dashboard div.optimize div.progressbar div.progre
 											}
 											?>
 										</p>
+										<p>
+											<?php esc_html_e( 'For each uploaded image, ', 'tiny-compress-images' ) ?>
+											<strong>
+												<?php echo sizeof( $active_tinify_sizes ) ?>
+												<?php sizeof( $active_tinify_sizes ) > 1 ? esc_html_e( 'sizes', 'tiny-compress-images' ) : esc_html_e( 'size', 'tiny-compress-images' ) ?>
+											</strong>
+											<?php sizeof( $active_tinify_sizes ) > 1 ? esc_html_e( 'are compressed.', 'tiny-compress-images' ) : esc_html_e( 'is compressed.', 'tiny-compress-images' ) ?>
+											<?php esc_html_e( 'You can changed these settings', 'tiny-compress-images' ) ?>
+											<a href="/wp-admin/options-media.php#tiny-compress-images"><?php esc_html_e( 'here', 'tiny-compress-images' )?></a>.
+										</p>
 									</div>
 								</div>
 							</td>
@@ -118,7 +139,23 @@ div.tiny-bulk-optimization div.dashboard div.optimize div.progressbar div.progre
 									<?php echo wp_kses( __( 'Estimated <br> cost', 'tiny-compress-images' ), array( 'br' => array() ) ) ?>
 								</h3>
 								<span id="estimated-cost">$ <?php echo number_format( $estimated_costs, 2 ) ?></span>
-								USD
+								<div class="cost-currency">USD</div>
+								<?php if ( $estimated_costs > 0 ) { ?>
+									<div class="tooltip">
+										<span class="dashicons dashicons-info"></span>
+										<div class="tip">
+											<p>
+												<?php esc_html_e( 'If you wish to compress more than ', 'tiny-compress-images' ) ?>
+												<strong>
+													<?php echo Tiny_Config::MONTHLY_FREE_COMPRESSIONS ?>
+													<?php esc_html_e( 'image sizes', 'tiny-compress-images' ) ?>
+												</strong>
+												<?php esc_html_e( 'a month and you are still on a free account', 'tiny-compress-images' ) ?>
+												<a href="https://tinypng.com/developers"><?php esc_html_e( 'upgrade here.', 'tiny-compress-images' ) ?></a>
+											</p>
+										</div>
+									</div>
+								<?php } ?>
 							</td>
 						</tr>
 					</table>
@@ -171,18 +208,16 @@ div.tiny-bulk-optimization div.dashboard div.optimize div.progressbar div.progre
 			</div>
 		</div>
 		<div class="optimize">
-			<?php if ( true ) { ?>
-				<div class="progressbar" id="compression-progress-bar" data-number-to-optimize="<?php echo $stats['optimized-image-sizes'] + $stats['available-unoptimised-sizes'] ?>" data-amount-optimized="0">
-					<div id="progress-size" class="progress">
-					</div>
-					<div class="numbers" >
-						<span id="optimized-so-far"><?php echo $stats['optimized-image-sizes'] ?></span>
-						/
-						<span><?php echo $stats['optimized-image-sizes'] + $stats['available-unoptimised-sizes'] ?></span>
-						<span id="percentage"></span>
-					</div>
+			<div class="progressbar" id="compression-progress-bar" data-number-to-optimize="<?php echo $stats['optimized-image-sizes'] + $stats['available-unoptimised-sizes'] ?>" data-amount-optimized="0">
+				<div id="progress-size" class="progress">
 				</div>
-			<?php } ?>
+				<div class="numbers" >
+					<span id="optimized-so-far"><?php echo $stats['optimized-image-sizes'] ?></span>
+					/
+					<span><?php echo $stats['optimized-image-sizes'] + $stats['available-unoptimised-sizes'] ?></span>
+					<span id="percentage"></span>
+				</div>
+			</div>
 			<?php
 			if ( $stats['available-unoptimised-sizes'] > 0 ) {
 				require_once dirname( __FILE__ ) . '/bulk-optimization-form.php';

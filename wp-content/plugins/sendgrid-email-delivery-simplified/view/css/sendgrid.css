@@ -80,7 +80,7 @@
 .sendgrid-filters label {
   display: inline-block;
   height: 18px;
-  width: 60px;
+  width: 65px;
   margin-left: 5px;
 }
 
@@ -89,7 +89,7 @@
 }
 
 .sendgrid-filters #sendgrid-start-date, .sendgrid-filters #sendgrid-end-date {
-  width: 86px;
+  width: 95px;
   margin-top: 5px;
 }
 
@@ -236,6 +236,10 @@
   background: url("../images/logo32.png") no-repeat;
   height: 34px;
   display: block;
+}
+
+.sendgrid_settings_mc_input_padding_label {
+  padding-left: 5px;
 }
 
 /*

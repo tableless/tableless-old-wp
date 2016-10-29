@@ -136,7 +136,7 @@ function jetpack_get_module_i18n( $key ) {
 			'sharedaddy' => array(
 				'name' => _x( 'Sharing', 'Module Name', 'jetpack' ),
 				'description' => _x( 'Visitors can share your content.', 'Module Description', 'jetpack' ),
-				'recommended description' => _x( 'Twitter, Facebook and Google+ buttons at the bottom of each post, making it easy for visitors to share your content.', 'Jumpstart Description', 'jetpack' ),
+				'recommended description' => _x( 'Places Twitter, Facebook and Google+ buttons at the bottom of each post, making it easy for visitors to share your content.', 'Jumpstart Description', 'jetpack' ),
 			),
 
 			'shortcodes' => array(
@@ -188,7 +188,7 @@ function jetpack_get_module_i18n( $key ) {
 
 			'verification-tools' => array(
 				'name' => _x( 'Site Verification', 'Module Name', 'jetpack' ),
-				'description' => _x( 'Verify your site or domain with Google Search Console, Pinterest, and others.', 'Module Description', 'jetpack' ),
+				'description' => _x( 'Verify your site or domain with Google Search Console, Pinterest, and Bing.', 'Module Description', 'jetpack' ),
 			),
 
 			'videopress' => array(

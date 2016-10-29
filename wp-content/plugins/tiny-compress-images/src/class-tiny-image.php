@@ -114,7 +114,14 @@ class Tiny_Image {
 		if ( $tiny_metadata ) {
 			foreach ( $tiny_metadata as $size => $meta ) {
 				if ( ! isset( $this->sizes[ $size ] ) ) {
-					$this->sizes[ $size ] = new Tiny_Image_Size();
+					if ( self::is_retina( $size ) && Tiny_Settings::wr2x_active() ) {
+						$retina_path = wr2x_get_retina(
+							$this->sizes[ rtrim( $size, '_wr2x' ) ]->filename
+						);
+						$this->sizes[ $size ] = new Tiny_Image_Size( $retina_path );
+					} else {
+						$this->sizes[ $size ] = new Tiny_Image_Size();
+					}
 				}
 				$this->sizes[ $size ]->meta = $meta;
 			}
@@ -172,6 +179,43 @@ class Tiny_Image {
 			}
 		}
 		return array( 'success' => $success, 'failed' => $failed );
+	}
+
+	public function compress_retina( $size_name, $path ) {
+		if ( $this->settings->get_compressor() === null || ! $this->file_type_allowed() ) {
+			return;
+		}
+
+		if ( ! isset( $this->sizes[ $size_name ] ) ) {
+			$this->sizes[ $size_name ] = new Tiny_Image_Size( $path );
+		}
+		$size = $this->sizes[ $size_name ];
+
+		if ( ! $size->has_been_compressed() ) {
+			$size->add_tiny_meta_start();
+			$this->update_tiny_post_meta();
+			$compressor = $this->settings->get_compressor();
+			$preserve = $this->settings->get_preserve_options( $size_name );
+
+			try {
+				$response = $compressor->compress_file( $path, false, $preserve );
+				$size->add_tiny_meta( $response );
+			} catch (Tiny_Exception $e) {
+				$size->add_tiny_meta_error( $e );
+			}
+			$this->update_tiny_post_meta();
+		}
+	}
+
+	public function remove_retina_metadata() {
+		// Remove metadata from all sizes, as this callback only fires when all
+		// retina sizes are deleted.
+		foreach ( $this->sizes as $size_name => $size ) {
+			if ( self::is_retina( $size_name ) ) {
+				unset( $this->sizes[ $size_name ] );
+			}
+		}
+		$this->update_tiny_post_meta();
 	}
 
 	public function add_wp_metadata( $size_name, $size ) {
@@ -413,5 +457,9 @@ class Tiny_Image {
 
 	public static function is_original( $size ) {
 		return self::ORIGINAL === $size;
+	}
+
+	public static function is_retina( $size ) {
+			return strrpos( $size, 'wr2x' ) === strlen( $size ) - strlen( 'wr2x' );
 	}
 }

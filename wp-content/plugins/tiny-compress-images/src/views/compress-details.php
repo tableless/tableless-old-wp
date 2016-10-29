@@ -87,14 +87,16 @@ ksort( $size_exists );
 				<tr class="<?php echo ( 0 == $i % 2 ) ? 'even' : 'odd' ?>">
 					<?php
 					echo '<td>';
-					echo ( Tiny_Image::is_original( $size_name ) ? esc_html__( 'Original', 'tiny-compress-images' ) : esc_html__( ucfirst( $size_name ) ) );
+					echo ( Tiny_Image::is_original( $size_name ) ? esc_html__( 'Original', 'tiny-compress-images' ) : esc_html__( ucfirst( rtrim( $size_name, '_wr2x' ) ) ) );
 					echo ' ';
-					if ( ! array_key_exists( $size_name, $active_sizes ) ) {
+					if ( ! array_key_exists( $size_name, $active_sizes ) && ! Tiny_Image::is_retina( $size_name ) ) {
 						echo '<em>' . esc_html__( '(not in use)', 'tiny-compress-images' ) . '</em>';
-					} else if ( $size->missing() ) {
+					} else if ( $size->missing() && ( Tiny_Settings::wr2x_active() || ! Tiny_Image::is_retina( $size_name ) ) ) {
 						echo '<em>' . esc_html__( '(file removed)', 'tiny-compress-images' ) . '</em>';
 					} else if ( $size->modified() ) {
 						echo '<em>' . esc_html__( '(modified after compression)', 'tiny-compress-images' ) . '</em>';
+					} else if ( Tiny_Image::is_retina( $size_name ) ) {
+						echo '<em>' . esc_html__( '(WP Retina 2x)', 'tiny-compress-images' ) . '</em>';
 					} else if ( $size->resized() ) {
 						printf( '<em>' . esc_html__( '(resized to %dx%d)', 'tiny-compress-images' ) . '</em>', $size->meta['output']['width'], $size->meta['output']['height'] );
 					}
@@ -110,7 +112,7 @@ ksort( $size_exists );
 					} else if ( ! $size->exists() ) {
 						echo '<td>-</td>';
 						echo '<td colspan=2><em>' . esc_html__( 'Not present', 'tiny-compress-images' ) . '</em></td>';
-					} else if ( isset( $size_active[ $size_name ] ) ) {
+					} else if ( isset( $size_active[ $size_name ] ) || Tiny_Image::is_retina( $size_name ) ) {
 						echo '<td>' . size_format( $size->filesize(), 1 ) . '</td>';
 						echo '<td colspan=2><em>' . esc_html__( 'Not compressed', 'tiny-compress-images' ) . '</em></td>';
 					} else if ( isset( $size_exists[ $size_name ] ) ) {

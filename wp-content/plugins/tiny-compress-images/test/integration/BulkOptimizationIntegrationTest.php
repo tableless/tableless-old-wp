@@ -77,4 +77,8 @@ class BulkOptimizationIntegrationTest extends IntegrationTestCase {
 
 		$this->assertEquals( '9 / 9 (100%)', $this->find( '#compression-progress-bar' )->getText() );
 	}
+
+	public function test_should_display_tooltips() {
+		$this->assertGreaterThanOrEqual( '1', sizeof($this->find_all( 'div.tip' )));
+	}
 }

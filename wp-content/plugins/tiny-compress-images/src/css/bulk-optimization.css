@@ -105,10 +105,6 @@ div.tiny-bulk-optimization div.available table.totals td.item div.tooltip div.ti
 	text-align: left;
 }
 
-div.tiny-bulk-optimization div.available table.totals td.item div.tooltip:hover div.tip {
-	display: block;
-}
-
 div.tiny-bulk-optimization div.available div.notes {
 	display: table;
 }
@@ -263,6 +259,10 @@ div.tiny-bulk-optimization div.optimize div.progressbar div.progress {
 	to {
 		background-position: 3200px 0;
 	}
+}
+
+#tiny-bulk-optimization > div.dashboard > div.statistics td.item.costs > div.cost-currency {
+	display: inline-block;
 }
 
 div.tiny-bulk-optimization div.optimize div.progressbar div.numbers {

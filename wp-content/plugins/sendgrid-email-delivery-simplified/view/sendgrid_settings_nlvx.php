@@ -113,9 +113,80 @@
           </td>
         </tr>
 
+        <tr valign="top">
+          <td colspan="2">
+            <h3><?php echo _e('Form Customization') ?></h3>
+          </td>
+        </tr>
+        <tr valign="top" class="signup_email_label">
+          <th scope="row"> <?php _e("Email Label:"); ?></th>
+          <td>
+            <input type="text" id="signup_email_label" name="sendgrid_mc_email_label" size="50" value="<?php echo $mc_signup_email_label; ?>" <?php disabled( $is_env_mc_email_label ); ?>>
+            <p class="description"><?php _e('The label for \'Email\' field on the subscription form.') ?></p>
+          </td>
+        </tr>
+        <tr valign="top" class="signup_first_name_label">
+          <th scope="row"> <?php _e("First Name Label:"); ?></th>
+          <td>
+            <input type="text" id="signup_first_name_label" name="sendgrid_mc_first_name_label" size="50" value="<?php echo $mc_signup_first_name_label; ?>" <?php disabled( $is_env_mc_first_name_label ); ?>>
+            <p class="description"><?php _e('The label for \'First Name\' field on the subscription form.') ?></p>
+          </td>
+        </tr>
+        <tr valign="top" class="signup_last_name_label">
+          <th scope="row"> <?php _e("Last Name Label:"); ?></th>
+          <td>
+            <input type="text" id="signup_last_name_label" name="sendgrid_mc_last_name_label" size="50" value="<?php echo $mc_signup_last_name_label; ?>" <?php disabled( $is_env_mc_last_name_label ); ?>>
+            <p class="description"><?php _e('The label for \'Last Name\' field on the subscription form.') ?></p>
+          </td>
+        </tr>
+        <tr valign="top" class="signup_subscribe_label">
+          <th scope="row"> <?php _e("Subscribe Label:"); ?></th>
+          <td>
+            <input type="text" id="signup_subscribe_label" name="sendgrid_mc_subscribe_label" size="50" value="<?php echo $mc_signup_subscribe_label; ?>" <?php disabled( $is_env_mc_subscribe_label ); ?>>
+            <p class="description"><?php _e('The label for \'Subscribe\' button on the subscription form.') ?></p>
+          </td>
+        </tr>
+
+        <tr valign="top">
+          <th scope="row"> <?php _e("Input Padding (in px):"); ?></th>
+          <td>
+            <label><?php _e("Top:"); ?></label>
+            <input type="text" name="sendgrid_mc_input_padding_top" size="4" value="<?php echo $mc_signup_input_padding_top; ?>" />
+
+            <label class="sendgrid_settings_mc_input_padding_label"><?php _e("Right:"); ?></label>
+            <input type="text" name="sendgrid_mc_input_padding_right" size="4" value="<?php echo $mc_signup_input_padding_right; ?>" />
+
+            <label class="sendgrid_settings_mc_input_padding_label"><?php _e("Bottom:"); ?></label>
+            <input type="text" name="sendgrid_mc_input_padding_bottom" size="4" value="<?php echo $mc_signup_input_padding_bottom; ?>" />
+
+            <label class="sendgrid_settings_mc_input_padding_label"><?php _e("Left:"); ?></label>
+            <input type="text" name="sendgrid_mc_input_padding_left" size="4" value="<?php echo $mc_signup_input_padding_left; ?>" />
+            <p class="description"><?php _e('The padding values for the input fields on the subscription form.') ?></p>
+          </td>
+        </tr>
+
+        <tr valign="top">
+          <th scope="row"> <?php _e("Button Padding (in px):"); ?></th>
+          <td>
+            <label><?php _e("Top:"); ?></label>
+            <input type="text" name="sendgrid_mc_button_padding_top" size="4" value="<?php echo $mc_signup_button_padding_top; ?>" />
+
+            <label class="sendgrid_settings_mc_input_padding_label"><?php _e("Right:"); ?></label>
+            <input type="text" name="sendgrid_mc_button_padding_right" size="4" value="<?php echo $mc_signup_button_padding_right; ?>" />
+
+            <label class="sendgrid_settings_mc_input_padding_label"><?php _e("Bottom:"); ?></label>
+            <input type="text" name="sendgrid_mc_button_padding_bottom" size="4" value="<?php echo $mc_signup_button_padding_bottom; ?>" />
+
+            <label class="sendgrid_settings_mc_input_padding_label"><?php _e("Left:"); ?></label>
+            <input type="text" name="sendgrid_mc_button_padding_left" size="4" value="<?php echo $mc_signup_button_padding_left; ?>" />
+            <p class="description"><?php _e('The padding values for the button on the subscription form.') ?></p>
+          </td>
+        </tr>
+
         <?php if ( $is_env_mc_api_key or $is_env_mc_opt_use_transactional or $is_env_mc_opt_incl_fname_lname or
                    $is_env_mc_opt_req_fname_lname or $is_env_mc_signup_email_subject or $is_env_mc_signup_email_content or  
-                   $is_env_mc_signup_confirmation_page ) : ?>
+                   $is_env_mc_signup_confirmation_page or $is_env_mc_email_label or $is_env_mc_first_name_label or
+                   $is_env_mc_last_name_label or $is_env_mc_subscribe_label) : ?>
           <tr valign="top">
             <td colspan="2">
               <p>

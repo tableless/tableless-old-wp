@@ -38,6 +38,7 @@ class Jetpack_Sync_Queue {
 	function __construct( $id ) {
 		$this->id           = str_replace( '-', '_', $id ); // necessary to ensure we don't have ID collisions in the SQL
 		$this->row_iterator = 0;
+		$this->random_int = mt_rand( 1, 1000000 );
 	}
 
 	function add( $item ) {
@@ -47,7 +48,7 @@ class Jetpack_Sync_Queue {
 		// it has a unique (microtime-based) option key
 		while ( ! $added ) {
 			$rows_added = $wpdb->query( $wpdb->prepare(
-				"INSERT INTO $wpdb->options (option_name, option_value,autoload) VALUES (%s, %s,%s)",
+				"INSERT INTO $wpdb->options (option_name, option_value, autoload) VALUES (%s, %s,%s)",
 				$this->get_next_data_row_option_name(),
 				serialize( $item ),
 				'no'
@@ -63,7 +64,7 @@ class Jetpack_Sync_Queue {
 		global $wpdb;
 		$base_option_name = $this->get_next_data_row_option_name();
 
-		$query = "INSERT INTO $wpdb->options (option_name, option_value,autoload) VALUES ";
+		$query = "INSERT INTO $wpdb->options (option_name, option_value, autoload) VALUES ";
 
 		$rows = array();
 
@@ -95,15 +96,11 @@ class Jetpack_Sync_Queue {
 	// lag is the difference in time between the age of the oldest item
 	// (aka first or frontmost item) and the current time
 	function lag() {
-		return self::get_lag( $this->id );
-	}
-
-	static function get_lag( $id ) {
 		global $wpdb;
 
 		$first_item_name = $wpdb->get_var( $wpdb->prepare(
 			"SELECT option_name FROM $wpdb->options WHERE option_name LIKE %s ORDER BY option_name ASC LIMIT 1",
-			"jpsq_{$id}-%"
+			"jpsq_{$this->id}-%"
 		) );
 
 		if ( ! $first_item_name ) {
@@ -112,7 +109,7 @@ class Jetpack_Sync_Queue {
 
 		// break apart the item name to get the timestamp
 		$matches = null;
-		if ( preg_match( '/^jpsq_' . $id . '-(\d+\.\d+)-/', $first_item_name, $matches ) ) {
+		if ( preg_match( '/^jpsq_' . $this->id . '-(\d+\.\d+)-/', $first_item_name, $matches ) ) {
 			return microtime( true ) - floatval( $matches[1] );
 		} else {
 			return 0;
@@ -199,21 +196,36 @@ class Jetpack_Sync_Queue {
 			OBJECT
 		);
 
-		$total_memory = 0;
-		$item_ids     = array();
+		if ( count( $items_with_size ) === 0 ) {
+			return false;
+		}
 
-		foreach ( $items_with_size as $item_with_size ) {
+		$total_memory = 0;
+
+		$min_item_id = $max_item_id = $items_with_size[0]->id;
+
+		foreach ( $items_with_size as $id => $item_with_size ) {
 			$total_memory += $item_with_size->value_size;
 
 			// if this is the first item and it exceeds memory, allow loop to continue
 			// we will exit on the next iteration instead
-			if ( $total_memory > $max_memory && count( $item_ids ) > 0 ) {
+			if ( $total_memory > $max_memory && $id > 0 ) {
 				break;
 			}
-			$item_ids[] = $item_with_size->id;
+
+			$max_item_id = $item_with_size->id;
 		}
 
-		$items = $this->fetch_items_by_id( $item_ids );
+		$query = $wpdb->prepare( 
+			"SELECT option_name AS id, option_value AS value FROM $wpdb->options WHERE option_name >= %s and option_name <= %s ORDER BY option_name ASC",
+			$min_item_id,
+			$max_item_id
+		);
+
+		$items = $wpdb->get_results( $query, OBJECT );
+		foreach ( $items as $item ) {
+			$item->value = maybe_unserialize( $item->value );
+		}
 
 		if ( count( $items ) === 0 ) {
 			$this->delete_checkout_id();
@@ -309,22 +321,67 @@ class Jetpack_Sync_Queue {
 	}
 
 	function unlock() {
-		$this->delete_checkout_id();
+		return $this->delete_checkout_id();
 	}
 
 	private function get_checkout_id() {
-		return get_transient( $this->get_checkout_transient_name() );
+		global $wpdb;
+		$checkout_value = $wpdb->get_var( 
+			$wpdb->prepare(
+				"SELECT option_value FROM $wpdb->options WHERE option_name = %s", 
+				$this->get_lock_option_name()
+			)
+		);
+
+		if ( $checkout_value ) {
+			list( $checkout_id, $timestamp ) = explode( ':', $checkout_value );
+			if ( intval( $timestamp ) > time() ) {
+				return $checkout_id;
+			}
+		}
+
+		return false;
 	}
 
 	private function set_checkout_id( $checkout_id ) {
-		return set_transient( $this->get_checkout_transient_name(), $checkout_id, 5 * 60 ); // 5 minute timeout
+		global $wpdb;
+
+		$expires = time() + Jetpack_Sync_Defaults::$default_sync_queue_lock_timeout;
+		$updated_num = $wpdb->query(
+			$wpdb->prepare(
+				"UPDATE $wpdb->options SET option_value = %s WHERE option_name = %s", 
+				"$checkout_id:$expires",
+				$this->get_lock_option_name()
+			)
+		);
+
+		if ( ! $updated_num ) {
+			$updated_num = $wpdb->query(
+				$wpdb->prepare(
+					"INSERT INTO $wpdb->options ( option_name, option_value, autoload ) VALUES ( %s, %s, 'no' )", 
+					$this->get_lock_option_name(),
+					"$checkout_id:$expires"
+				)
+			);
+		}
+
+		return $updated_num;
 	}
 
 	private function delete_checkout_id() {
-		delete_transient( $this->get_checkout_transient_name() );
+		global $wpdb;
+		// rather than delete, which causes fragmentation, we update in place
+		return $wpdb->query(
+			$wpdb->prepare( 
+				"UPDATE $wpdb->options SET option_value = %s WHERE option_name = %s", 
+				"0:0",
+				$this->get_lock_option_name() 
+			) 
+		);
+
 	}
 
-	private function get_checkout_transient_name() {
+	private function get_lock_option_name() {
 		return "jpsq_{$this->id}_checkout";
 	}
 
@@ -343,7 +400,7 @@ class Jetpack_Sync_Queue {
 			$this->row_iterator += 1;
 		}
 
-		return 'jpsq_' . $this->id . '-' . $timestamp . '-' . getmypid() . '-' . $this->row_iterator;
+		return 'jpsq_' . $this->id . '-' . $timestamp . '-' . $this->random_int . '-' . $this->row_iterator;
 	}
 
 	private function fetch_items( $limit = null ) {
@@ -361,23 +418,6 @@ class Jetpack_Sync_Queue {
 		}
 
 		return $items;
-	}
-
-	private function fetch_items_by_id( $item_ids ) {
-		global $wpdb;
-
-		if ( count( $item_ids ) > 0 ) {
-			$sql   = "SELECT option_name AS id, option_value AS value FROM $wpdb->options WHERE option_name IN (" . implode( ', ', array_fill( 0, count( $item_ids ), '%s' ) ) . ') ORDER BY option_name ASC';
-			$query = call_user_func_array( array( $wpdb, 'prepare' ), array_merge( array( $sql ), $item_ids ) );
-			$items = $wpdb->get_results( $query, OBJECT );
-			foreach ( $items as $item ) {
-				$item->value = maybe_unserialize( $item->value );
-			}
-
-			return $items;
-		} else {
-			return array();
-		}
 	}
 
 	private function validate_checkout( $buffer ) {

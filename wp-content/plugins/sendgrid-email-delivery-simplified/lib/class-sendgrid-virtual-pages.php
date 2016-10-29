@@ -1,5 +1,5 @@
 <?php
-if ( !class_exists( 'SGVirtualPage' ) )
+if ( ! class_exists( 'SGVirtualPage' ) )
 {
   class SGVirtualPage
   {
@@ -97,7 +97,7 @@ function sg_create_subscribe_general_error_page()
   {
     $args = array('slug' => 'sg-error',
               'title' => 'Subscribe error',
-              'content' => "Something went wrong while trying to send information.");
+              'content' => 'Something went wrong while trying to send information.' );
     $pg = new SGVirtualPage( $args );
   }
 }
@@ -115,7 +115,7 @@ function sg_create_subscribe_invalid_token_error_page()
   {
     $args = array( 'slug' => 'sg-subscription-invalid-token',
               'title' => 'Subscribe error',
-              'content' => "Token is invalid, you are not subscribed to our newsletter." );
+              'content' => 'Token is invalid, you are not subscribed to our newsletter.' );
     $pg = new SGVirtualPage( $args );
   }
 }
@@ -133,7 +133,7 @@ function sg_create_subscribe_missing_token_error_page()
   {
     $args = array( 'slug' => 'sg-subscription-missing-token',
               'title' => 'Subscribe error',
-              'content' => "Token is missing, you are not subscribed to our newsletter." );
+              'content' => 'Token is missing, you are not subscribed to our newsletter.' );
     $pg = new SGVirtualPage( $args );
   }
 }
@@ -151,7 +151,7 @@ function sg_create_subscribe_success_page()
   {
     $args = array( 'slug' => 'sg-subscription-success',
           'title' => 'Subscribe success',
-          'content' => "You have been successfully subscribed to our newsletter." );
+          'content' => 'You have been successfully subscribed to our newsletter.' );
     $pg = new SGVirtualPage( $args );
   }
 }

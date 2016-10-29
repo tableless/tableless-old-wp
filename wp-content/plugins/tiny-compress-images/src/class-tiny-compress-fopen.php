@@ -193,12 +193,12 @@ class Tiny_Compress_Fopen extends Tiny_Compress {
 		return $res;
 	}
 
-	private function request_options( $method, $body = null ) {
+	private function request_options( $method, $body = null, $content_type = 'image/png' ) {
 		return array(
 			'http' => array(
 				'method' => $method,
 				'header' => array(
-					'Content-type: image/png',
+					'Content-type: ' . $content_type,
 					'Authorization: Basic ' . base64_encode( 'api:' . $this->api_key ),
 					'User-Agent: ' . self::identifier(),
 				 ),
@@ -226,8 +226,7 @@ class Tiny_Compress_Fopen extends Tiny_Compress {
 		}
 
 		if ( $resize_opts || $preserve_opts ) {
-			$options['http']['header'][] = 'Content-Type: application/json';
-			return $this->request_options( 'GET', json_encode( $body ) );
+			return $this->request_options( 'GET', json_encode( $body ), 'application/json' );
 		} else {
 			return $this->request_options( 'GET', null );
 		}

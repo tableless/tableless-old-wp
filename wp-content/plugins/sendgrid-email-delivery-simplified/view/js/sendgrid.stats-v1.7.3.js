@@ -109,7 +109,7 @@ jQuery(document).ready(function($) {
 
       /* Get stats from request */
       response = jQuery.parseJSON(response);
-      if (undefined != response.error) {
+      if (undefined != response.errors) {
         response = [];
       }
       jQuery.each(response, function(key, value) {

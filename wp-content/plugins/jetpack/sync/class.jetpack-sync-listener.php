@@ -47,6 +47,9 @@ class Jetpack_Sync_Listener {
 		add_action( 'jetpack_activate_module', $handler );
 		add_action( 'jetpack_deactivate_module', $handler );
 
+		// Jetpack Upgrade
+		add_action( 'updating_jetpack_version', $handler, 10, 2 );
+
 		// Send periodic checksum
 		add_action( 'jetpack_sync_checksum', $handler );
 	}
@@ -163,6 +166,11 @@ class Jetpack_Sync_Listener {
 	}
 
 	function enqueue_action( $current_filter, $args, $queue ) {
+		// don't enqueue an action during the outbound http request - this prevents recursion
+		if ( Jetpack_Sync_Settings::is_sending() ) {
+			return;
+		}
+
 		/**
 		 * Modify or reject the data within an action before it is enqueued locally.
 		 *

@@ -8,6 +8,10 @@ abstract class Jetpack_Sync_Module {
 
 	abstract public function name();
 
+	public function get_object_by_id( $object_type, $id ) {
+		return false;
+	}
+
 	// override these to set up listeners and set/reset data/defaults
 	public function init_listeners( $callable ) {
 	}
@@ -87,10 +91,24 @@ abstract class Jetpack_Sync_Module {
 		if ( ! $table ) {
 			return array();
 		}
+		$private_meta_whitelist_sql = '';
+		$meta_module = Jetpack_Sync_Modules::get_module( "meta" );
+		
+		switch( $meta_type ) {
+			case 'post':
+				$private_meta_whitelist_sql = "'" . implode( "','", array_map( 'esc_sql', $meta_module->get_post_meta_whitelist() ) ) . "'";
+				break;
+			case 'comment':
+				$private_meta_whitelist_sql = "'" . implode( "','", array_map( 'esc_sql', $meta_module->get_comment_meta_whitelist() ) ) . "'";
+				break;
+		}
 
 		return array_map( 
 			array( $this, 'unserialize_meta' ), 
-			$wpdb->get_results( "SELECT $id, meta_key, meta_value, meta_id FROM $table WHERE $id IN ( " . implode( ',', wp_parse_id_list( $ids ) ) . ' )', OBJECT ) 
+			$wpdb->get_results( 
+				"SELECT $id, meta_key, meta_value, meta_id FROM $table WHERE $id IN ( " . implode( ',', wp_parse_id_list( $ids ) ) . ' )'.
+				" AND meta_key IN ( $private_meta_whitelist_sql ) "
+				, OBJECT )
 		);
 	}
 
@@ -103,5 +121,23 @@ abstract class Jetpack_Sync_Module {
 	public function unserialize_meta( $meta ) {
 		$meta->meta_value = maybe_unserialize( $meta->meta_value );
 		return $meta;
+	}
+
+	public function get_objects_by_id( $object_type, $ids ) {
+		if ( empty( $ids ) || empty( $object_type ) ) {
+			return array();
+		}
+
+		$objects = array();
+		foreach( (array) $ids as $id ) {
+			$object = $this->get_object_by_id( $object_type, $id );
+
+			// Only add object if we have the object.
+			if ( $object ) {
+				$objects[ $id ] = $object;
+			}
+		}
+
+		return $objects;
 	}
 }

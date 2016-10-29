@@ -64,7 +64,7 @@ class Akismet {
 	}
 
 	public static function check_key_status( $key, $ip = null ) {
-		return self::http_post( Akismet::build_query( array( 'key' => $key, 'blog' => get_option('home') ) ), 'verify-key', $ip );
+		return self::http_post( Akismet::build_query( array( 'key' => $key, 'blog' => get_option( 'home' ) ) ), 'verify-key', $ip );
 	}
 
 	public static function verify_key( $key, $ip = null ) {
@@ -77,7 +77,7 @@ class Akismet {
 	}
 
 	public static function deactivate_key( $key ) {
-		$response = self::http_post( Akismet::build_query( array( 'key' => $key, 'blog' => get_option('home') ) ), 'deactivate' );
+		$response = self::http_post( Akismet::build_query( array( 'key' => $key, 'blog' => get_option( 'home' ) ) ), 'deactivate' );
 
 		if ( $response[1] != 'deactivated' )
 			return 'failed';
@@ -124,7 +124,7 @@ class Akismet {
 		$comment['user_ip']      = self::get_ip_address();
 		$comment['user_agent']   = self::get_user_agent();
 		$comment['referrer']     = self::get_referer();
-		$comment['blog']         = get_option('home');
+		$comment['blog']         = get_option( 'home' );
 		$comment['blog_lang']    = get_locale();
 		$comment['blog_charset'] = get_option('blog_charset');
 		$comment['permalink']    = get_permalink( $comment['comment_post_ID'] );
@@ -347,10 +347,11 @@ class Akismet {
 				do_action( 'delete_comment', $comment_id );
 			}
 
-			$comma_comment_ids = implode( ', ', array_map('intval', $comment_ids) );
+			// Prepared as strings since comment_id is an unsigned BIGINT, and using %d will constrain the value to the maximum signed BIGINT.
+			$format_string = implode( ", ", array_fill( 0, count( $comment_ids ), '%s' ) );
 
-			$wpdb->query("DELETE FROM {$wpdb->comments} WHERE comment_id IN ( $comma_comment_ids )");
-			$wpdb->query("DELETE FROM {$wpdb->commentmeta} WHERE comment_id IN ( $comma_comment_ids )");
+			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->comments} WHERE comment_id IN ( " . $format_string . " )", $comment_ids ) );
+			$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->commentmeta} WHERE comment_id IN ( " . $format_string . " )", $comment_ids ) );
 
 			clean_comment_cache( $comment_ids );
 		}
@@ -449,27 +450,72 @@ class Akismet {
 		global $wpdb;
 
 		$c = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->comments} WHERE comment_ID = %d", $id ), ARRAY_A );
-		if ( !$c )
-			return;
+		
+		if ( ! $c ) {
+			return new WP_Error( 'invalid-comment-id', __( 'Comment not found.', 'akismet' ) );
+		}
 
 		$c['user_ip']        = $c['comment_author_IP'];
 		$c['user_agent']     = $c['comment_agent'];
 		$c['referrer']       = '';
-		$c['blog']           = get_option('home');
+		$c['blog']           = get_option( 'home' );
 		$c['blog_lang']      = get_locale();
 		$c['blog_charset']   = get_option('blog_charset');
 		$c['permalink']      = get_permalink($c['comment_post_ID']);
 		$c['recheck_reason'] = $recheck_reason;
+
+		$c['user_role'] = '';
+		if ( isset( $c['user_ID'] ) )
+			$c['user_role'] = Akismet::get_user_roles($c['user_ID']);
 
 		if ( self::is_test_mode() )
 			$c['is_test'] = 'true';
 
 		$response = self::http_post( Akismet::build_query( $c ), 'comment-check' );
 
-		return ( is_array( $response ) && ! empty( $response[1] ) ) ? $response[1] : false;
+		if ( ! empty( $response[1] ) ) {
+			return $response[1];
+		}
+
+		return false;
 	}
 	
-	
+	public static function recheck_comment( $id, $recheck_reason = 'recheck_queue' ) {
+		add_comment_meta( $id, 'akismet_rechecking', true );
+		
+		$api_response = self::check_db_comment( $id, $recheck_reason );
+
+		delete_comment_meta( $id, 'akismet_rechecking' );
+
+		if ( is_wp_error( $api_response ) ) {
+			// Invalid comment ID.
+		}
+		else if ( 'true' === $api_response ) {
+			wp_set_comment_status( $id, 'spam' );
+			update_comment_meta( $id, 'akismet_result', 'true' );
+			delete_comment_meta( $id, 'akismet_error' );
+			delete_comment_meta( $id, 'akismet_delayed_moderation_email' );
+			Akismet::update_comment_history( $id, '', 'recheck-spam' );
+		}
+		elseif ( 'false' === $api_response ) {
+			update_comment_meta( $id, 'akismet_result', 'false' );
+			delete_comment_meta( $id, 'akismet_error' );
+			delete_comment_meta( $id, 'akismet_delayed_moderation_email' );
+			Akismet::update_comment_history( $id, '', 'recheck-ham' );
+		}
+		else {
+			// abnormal result: error
+			update_comment_meta( $id, 'akismet_result', 'error' );
+			Akismet::update_comment_history(
+				$id,
+				'',
+				'recheck-error',
+				array( 'response' => substr( $api_response, 0, 50 ) )
+			);
+		}
+
+		return $api_response;
+	}
 
 	public static function transition_comment_status( $new_status, $old_status, $comment ) {
 		
@@ -538,7 +584,7 @@ class Akismet {
 		if ( $as_submitted && is_array( $as_submitted ) && isset( $as_submitted['comment_content'] ) )
 			$comment = (object) array_merge( (array)$comment, $as_submitted );
 
-		$comment->blog         = get_bloginfo('url');
+		$comment->blog         = get_option( 'home' );
 		$comment->blog_lang    = get_locale();
 		$comment->blog_charset = get_option('blog_charset');
 		$comment->permalink    = get_permalink($comment->comment_post_ID);
@@ -584,7 +630,7 @@ class Akismet {
 		if ( $as_submitted && is_array($as_submitted) && isset($as_submitted['comment_content']) )
 			$comment = (object) array_merge( (array)$comment, $as_submitted );
 
-		$comment->blog         = get_bloginfo('url');
+		$comment->blog         = get_option( 'home' );
 		$comment->blog_lang    = get_locale();
 		$comment->blog_charset = get_option('blog_charset');
 		$comment->permalink    = get_permalink( $comment->comment_post_ID );

@@ -239,37 +239,78 @@ class SendGrid_NLVX_Widget extends WP_Widget {
      * @return  void
      */
     private function display_form() {
-      echo '<form method="post" id="sendgrid_mc_email_form" class="mc_email_form" action="#sendgrid_mc_email_subscribe">';
+      $email_label = htmlspecialchars( Sendgrid_Tools::get_mc_email_label() );
+      if ( false == $email_label ) {
+        $email_label = Sendgrid_Settings::DEFAULT_EMAIL_LABEL;
+      }
+
+      $first_name_label = htmlspecialchars( Sendgrid_Tools::get_mc_first_name_label() );
+      if ( false == $first_name_label ) {
+        $first_name_label = Sendgrid_Settings::DEFAULT_FIRST_NAME_LABEL;
+      }
+
+      $last_name_label = htmlspecialchars( Sendgrid_Tools::get_mc_last_name_label() );
+      if ( false == $last_name_label ) {
+        $last_name_label = Sendgrid_Settings::DEFAULT_LAST_NAME_LABEL;
+      }
+
+      $subscribe_label = htmlspecialchars( Sendgrid_Tools::get_mc_subscribe_label() );
+      if ( false == $subscribe_label ) {
+        $subscribe_label = Sendgrid_Settings::DEFAULT_SUBSCRIBE_LABEL;
+      }
+
+      $input_padding = "padding: ";
+      $input_padding .= Sendgrid_Tools::get_mc_input_padding_by_position( 'top' ) . 'px ';
+      $input_padding .= Sendgrid_Tools::get_mc_input_padding_by_position( 'right' ) . 'px ';
+      $input_padding .= Sendgrid_Tools::get_mc_input_padding_by_position( 'bottom' ) . 'px ';
+      $input_padding .= Sendgrid_Tools::get_mc_input_padding_by_position( 'left' ) . 'px;';
+
+      $button_padding = "margin: ";
+      $button_padding .= Sendgrid_Tools::get_mc_button_padding_by_position( 'top' ) . 'px ';
+      $button_padding .= Sendgrid_Tools::get_mc_button_padding_by_position( 'right' ) . 'px ';
+      $button_padding .= Sendgrid_Tools::get_mc_button_padding_by_position( 'bottom' ) . 'px ';
+      $button_padding .= Sendgrid_Tools::get_mc_button_padding_by_position( 'left' ) . 'px;';
+
+      $require_fname_lname = '';
+
+      echo '<form method="post" id="sendgrid_mc_email_form" class="mc_email_form" action="#sendgrid_mc_email_subscribe" style="padding-top: 10px;">';
         
       if ( 'true' == Sendgrid_Tools::get_mc_opt_incl_fname_lname() ) {
         if ( 'true' == Sendgrid_Tools::get_mc_opt_req_fname_lname() ) {
-          echo '<div class="sendgrid-mc-field">';
-          echo '<label for="sendgrid_mc_first_name">First Name<sup>*</sup> : </label>';
-          echo '<input id="sendgrid_mc_first_name" name="sendgrid_mc_first_name" type="text" value="" required/>';
-          echo '</div>';
-          echo '<div class="sendgrid-mc-field">';
-          echo '<label for="sendgrid_mc_last_name">Last Name<sup>*</sup> : </label>';
-          echo '<input id="sendgrid_mc_last_name" name="sendgrid_mc_last_name" type="text" value="" required/>';
-          echo '</div>';
-        } else {
-          echo '<div class="sendgrid-mc-field">';  
-          echo '<label for="sendgrid_mc_first_name">First Name : </label>';
-          echo '<input id="sendgrid_mc_first_name" name="sendgrid_mc_first_name" type="text" value=""/>';
-          echo '</div>';
-          echo '<div class="sendgrid-mc-field">';
-          echo '<label for="sendgrid_mc_last_name">Last Name : </label>';
-          echo '<input id="sendgrid_mc_last_name" name="sendgrid_mc_last_name" type="text" value=""/>';
-          echo '</div>';
-        } 
+          $require_fname_lname = "required";
+          $first_name_label .= "<sup>*</sup>";
+          $last_name_label .= "<sup>*</sup>";
+        }
+
+        echo '<div class="sendgrid_mc_fields" style="' . $input_padding . '">';  
+        echo '  <div class="sendgrid_mc_label_div">';
+        echo '    <label for="sendgrid_mc_first_name" class="sendgrid_mc_label sendgrid_mc_label_first_name">' . $first_name_label . ' : </label>';
+        echo '  </div>';
+        echo '  <div class="sendgrid_mc_input_div">';
+        echo '    <input class="sendgrid_mc_input sendgrid_mc_input_first_name" id="sendgrid_mc_first_name" name="sendgrid_mc_first_name" type="text" value=""' . $require_fname_lname . ' />';
+        echo '  </div>';
+        echo '</div>';
+        echo '<div class="sendgrid_mc_fields" style="' . $input_padding . '">';
+        echo '  <div class="sendgrid_mc_label_div">';
+        echo '    <label for="sendgrid_mc_last_name" class="sendgrid_mc_label sendgrid_mc_label_last_name">' . $last_name_label . ' : </label>';
+        echo '  </div>';
+        echo '  <div class="sendgrid_mc_input_div">';
+        echo '    <input class="sendgrid_mc_input sendgrid_mc_input_last_name" id="sendgrid_mc_last_name" name="sendgrid_mc_last_name" type="text" value="" ' . $require_fname_lname . '/>';
+        echo '  </div>';
+        echo '</div>';
       }
 
-      echo '<div class="sendgrid-mc-field">';
-      echo '<label for="sendgrid_mc_email">Email<sup>*</sup> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>';
-      echo '<input id="sendgrid_mc_email" name="sendgrid_mc_email"  value="" required/>';
+      echo '<div class="sendgrid_mc_fields" style="' . $input_padding . '">';
+      echo '  <div class="sendgrid_mc_label_div">';
+      echo '    <label for="sendgrid_mc_email" class="sendgrid_mc_label sendgrid_mc_label_email">' . $email_label . '<sup>*</sup> :</label>';
+      echo '  </div>';
+      echo '  <div class="sendgrid_mc_input_div">';
+      echo '    <input class="sendgrid_mc_input sendgrid_mc_input_email" id="sendgrid_mc_email" name="sendgrid_mc_email" type="text" value="" required/>';
+      echo '  </div>';
       echo '</div>';
 
-      echo '<div class="sendgrid-mc-button">';      
-      echo '<input type="submit" id="sendgrid_mc_email_submit" value="Subscribe" />';
+      echo '<div class="sendgrid_mc_button_div">';      
+      echo '  <input style="' . $button_padding . '" class="sendgrid_mc_button" type="submit" id="sendgrid_mc_email_submit" value="' . $subscribe_label . '" />';
       echo '</div>';
       echo '</form>';
     }

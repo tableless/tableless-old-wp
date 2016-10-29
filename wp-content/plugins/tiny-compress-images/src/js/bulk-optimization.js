@@ -211,6 +211,29 @@
     }
   });
 
+  function attachToolTipEventHandlers() {
+    var tooltip = '#tiny-bulk-optimization div.tooltip'
+    var tip = 'div.tip'
+    var toolTipTimeout = null
+    jQuery(tooltip).mouseleave(function(){
+      var that = this
+      toolTipTimeout = setTimeout(function() {
+        if (jQuery(that).find(tip).is(':visible')) {
+          jQuery(tooltip).find(tip).hide()
+        }
+      }, 100)
+    })
+    jQuery(tooltip).mouseenter(function(){
+      jQuery(this).find(tip).show()
+      clearTimeout(toolTipTimeout)
+    })
+    jQuery(tooltip).find(tip).mouseenter(function(){
+      clearTimeout(toolTipTimeout)
+    })
+  }
+
+  attachToolTipEventHandlers()
+
   window.bulkOptimizationAutorun = startBulkOptimization
   window.bulkOptimization = prepareBulkOptimization
 

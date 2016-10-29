@@ -15,8 +15,8 @@
 			), $link );
 		?></p>
 
-		<input type="text" id="tinypng_api_key"
-			name="tinypng_api_key" size="35" spellcheck="false"
+		<input type="text" id="<?php echo esc_attr( self::get_prefixed_name( 'api_key' ) ); ?>"
+			name="<?php echo esc_attr( self::get_prefixed_name( 'api_key' ) ); ?>" size="35" spellcheck="false"
 			value="<?php echo esc_attr( $key ); ?>">
 
 		<button class="button button-primary" data-tiny-action="update-key"><?php

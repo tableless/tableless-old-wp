@@ -10,6 +10,10 @@ matrix:
   include:
   - dist: trusty
     php: 7.0
+    env: WORDPRESS_VERSION=46 INTEGRATION_TESTS=true
+    script: bin/integration-tests
+  - dist: trusty
+    php: 7.0
     env: WORDPRESS_VERSION=45 INTEGRATION_TESTS=true
     script: bin/integration-tests
   - dist: trusty

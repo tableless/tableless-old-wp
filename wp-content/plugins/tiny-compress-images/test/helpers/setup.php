@@ -40,16 +40,18 @@ function restore_wordpress() {
 	}
 }
 
-function mysql_dump_file() {
+// Renamed this function to mysqldump_file without underscore
+// for compatibility with WP Engine PHP Compatibility Checker
+function mysqldump_file() {
 	return dirname( __FILE__ ) . '/../../tmp/mysqldump_' . getenv( 'WORDPRESS_DATABASE' ) . '.sql.gz';
 }
 
 function restore_wordpress_site() {
-	shell_exec( 'gunzip -c < ' . mysql_dump_file() . ' | mysql -h ' . getenv( 'HOST' ) . ' -u root ' . getenv( 'WORDPRESS_DATABASE' ) );
+	shell_exec( 'gunzip -c < ' . mysqldump_file() . ' | mysql -h ' . getenv( 'HOST' ) . ' -u root ' . getenv( 'WORDPRESS_DATABASE' ) );
 }
 
 function backup_wordpress_site() {
-	shell_exec( 'mysqldump -h ' . getenv( 'HOST' ) . ' -u root ' . getenv( 'WORDPRESS_DATABASE' ) . ' | gzip -c > ' . mysql_dump_file() );
+	shell_exec( 'mysqldump -h ' . getenv( 'HOST' ) . ' -u root ' . getenv( 'WORDPRESS_DATABASE' ) . ' | gzip -c > ' . mysqldump_file() );
 }
 
 function set_siteurl( $site_url ) {

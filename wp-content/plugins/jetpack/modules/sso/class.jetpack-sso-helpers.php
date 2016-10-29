@@ -154,6 +154,79 @@ class Jetpack_SSO_Helpers {
 	static function is_match_by_email_checkbox_disabled() {
 		return defined( 'WPCC_MATCH_BY_EMAIL' ) || has_filter( 'jetpack_sso_match_by_email' );
 	}
+
+	/**
+	 * Returns an array of hosts that SSO will redirect to.
+	 *
+	 * Instead of accessing JETPACK__API_BASE within the method directly, we set it as the
+	 * default for $api_base due to restrictions with testing constants in our tests.
+	 *
+	 * @since 4.3.0
+	 *
+	 * @param array $hosts
+	 * @param string $api_base
+	 *
+	 * @return array
+	 */
+	static function allowed_redirect_hosts( $hosts, $api_base = JETPACK__API_BASE ) {
+		if ( empty( $hosts ) ) {
+			$hosts = array();
+		}
+
+		$hosts[] = 'wordpress.com';
+		$hosts[] = 'jetpack.wordpress.com';
+
+		if (
+			( Jetpack::is_development_mode() || Jetpack::is_development_version() ) &&
+			( false === strpos( $api_base, 'jetpack.wordpress.com/jetpack' ) )
+		) {
+			$base_url_parts = parse_url( esc_url_raw( $api_base ) );
+			if ( $base_url_parts && ! empty( $base_url_parts[ 'host' ] ) ) {
+				$hosts[] = $base_url_parts[ 'host' ];
+			}
+		}
+
+		return array_unique( $hosts );
+	}
+
+	static function generate_user( $user_data ) {
+		$username = $user_data->login;
+
+		/**
+		 * Determines how many times the SSO module can attempt to randomly generate a user.
+		 *
+		 * @module sso
+		 *
+		 * @since 4.3.2
+		 *
+		 * @param int 5 By default, SSO will attempt to random generate a user up to 5 times.
+		 */
+		$num_tries = intval( apply_filters( 'jetpack_sso_allowed_username_generate_retries', 5 ) );
+
+		$tries = 0;
+		while ( ( $exists = username_exists( $username ) ) && $tries++ < $num_tries ) {
+			$username = $user_data->login . '_' . $user_data->ID . '_' . mt_rand();
+		}
+
+		if ( $exists ) {
+			return false;
+		}
+
+		$password = wp_generate_password( 20 );
+		$user_id  = wp_create_user( $username, $password, $user_data->email );
+		$user     = get_userdata( $user_id );
+
+		$user->display_name = $user_data->display_name;
+		$user->first_name   = $user_data->first_name;
+		$user->last_name    = $user_data->last_name;
+		$user->url          = $user_data->url;
+		$user->description  = $user_data->description;
+		wp_update_user( $user );
+
+		update_user_meta( $user->ID, 'wpcom_user_id', $user_data->ID );
+		
+		return $user;
+	}
 }
 
 endif;

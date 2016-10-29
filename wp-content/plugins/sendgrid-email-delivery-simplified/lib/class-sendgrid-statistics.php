@@ -6,17 +6,38 @@ class Sendgrid_Statistics
 {
   public function __construct()
   {
-    // Add SendGrid widget in dashboard
-    add_action( 'wp_dashboard_setup', array( __CLASS__, 'add_dashboard_widget' ) );
+    add_action( 'init', array( __CLASS__, 'set_up_menu' ) );
+  }
 
-    // Add SendGrid stats page in menu
-    add_action( 'admin_menu', array( __CLASS__, 'add_statistics_menu' ) );
+  /**
+   * Method that is called to set up the settings menu
+   *
+   * @return void
+   */
+  public static function set_up_menu()
+  {
+    if ( ! is_multisite() and current_user_can('manage_options') ) {
+      // Add SendGrid widget in dashboard
+      add_action( 'wp_dashboard_setup', array( __CLASS__, 'add_dashboard_widget' ) );
 
-    // Add SendGrid javascripts in header
-    add_action( 'admin_enqueue_scripts', array( __CLASS__, 'add_headers' ) );
+      // Add SendGrid stats page in menu
+      add_action( 'admin_menu', array( __CLASS__, 'add_statistics_menu' ) );
 
-    // Add SendGrid page for get statistics through ajax
-    add_action( 'wp_ajax_sendgrid_get_stats', array( __CLASS__, 'get_ajax_statistics' ) );
+      // Add SendGrid javascripts in header
+      add_action( 'admin_enqueue_scripts', array( __CLASS__, 'add_headers' ) );
+
+      // Add SendGrid page for get statistics through ajax
+      add_action( 'wp_ajax_sendgrid_get_stats', array( __CLASS__, 'get_ajax_statistics' ) );
+    } elseif ( is_multisite() and is_super_admin() ) {
+      // Add SendGrid stats page in menu
+      add_action( 'network_admin_menu', array( __CLASS__, 'add_network_statistics_menu' ) );
+
+      // Add SendGrid javascripts in header
+      add_action( 'admin_enqueue_scripts', array( __CLASS__, 'add_headers' ) );
+
+      // Add SendGrid page for get statistics through ajax
+      add_action( 'wp_ajax_sendgrid_get_stats', array( __CLASS__, 'get_ajax_statistics' ) );
+    }
   }
 
   /**
@@ -27,17 +48,23 @@ class Sendgrid_Statistics
    */
   public static function add_dashboard_widget()
   {
+    if ( ! current_user_can('manage_options') ) {
+      return;
+    }
+
     switch ( Sendgrid_Tools::get_auth_method() )
     {
       case "apikey":
         $apikey = Sendgrid_Tools::get_api_key();
-        if ( ! Sendgrid_Tools::check_api_key( $apikey ) or ! Sendgrid_Tools::check_api_key_stats( $apikey ) )
+        if ( ! Sendgrid_Tools::check_api_key( $apikey ) or ! Sendgrid_Tools::check_api_key_stats( $apikey ) ) {
           return;
+        }
       break;
 
       case "credentials":
-        if ( ! Sendgrid_Tools::check_username_password( Sendgrid_Tools::get_username(), Sendgrid_Tools::get_password() ) )
+        if ( ! Sendgrid_Tools::check_username_password( Sendgrid_Tools::get_username(), Sendgrid_Tools::get_password() ) ) {
           return;
+        }
       break;
     }
 
@@ -66,18 +93,46 @@ class Sendgrid_Statistics
     {
       case "apikey":
         $apikey = Sendgrid_Tools::get_api_key();
-        if ( ! Sendgrid_Tools::check_api_key( $apikey ) )
+        if ( ! Sendgrid_Tools::check_api_key( $apikey ) ) {
           return;
+        }
       break;
 
       case "credentials":
-        if ( ! Sendgrid_Tools::check_username_password( Sendgrid_Tools::get_username(), Sendgrid_Tools::get_password() ) )
+        if ( ! Sendgrid_Tools::check_username_password( Sendgrid_Tools::get_username(), Sendgrid_Tools::get_password() ) ) {
           return;
+        }
       break;
     }
 
     add_dashboard_page( "SendGrid Statistics", "SendGrid Statistics", "manage_options", "sendgrid-statistics",
       array( __CLASS__, "show_statistics_page" ) );
+  }
+
+  /**
+   * Add SendGrid statistics page in the network menu
+   *
+   * @return void
+   */
+  public static function add_network_statistics_menu() {
+    switch ( Sendgrid_Tools::get_auth_method() )
+    {
+      case "apikey":
+        $apikey = Sendgrid_Tools::get_api_key();
+        if ( ! Sendgrid_Tools::check_api_key( $apikey ) ) {
+          return;
+        }
+      break;
+
+      case "credentials":
+        if ( ! Sendgrid_Tools::check_username_password( Sendgrid_Tools::get_username(), Sendgrid_Tools::get_password() ) ) {
+          return;
+        }
+      break;
+    }
+
+    add_menu_page( __( 'SendGrid Stats' ), __( 'SendGrid Stats' ), 'manage_options', 'sendgrid-statistics',
+      array( __CLASS__, 'show_statistics_page' ));
   }
 
   /**
@@ -104,7 +159,7 @@ class Sendgrid_Statistics
    */
   public static function add_headers( $hook )
   {
-    if ( "index.php" != $hook && SENDGRID_PLUGIN_STATISTICS != $hook ) {
+    if ( "index.php" != $hook and strpos( $hook, 'sendgrid-statistics' ) === false ) {
       return;
     }
 

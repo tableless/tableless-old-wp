@@ -10,6 +10,12 @@ class Sendgrid_Settings {
   const DEFAULT_SIGNUP_EMAIL_SUBJECT = 'Confirm your subscription to ';
   const DEFAULT_SIGNUP_EMAIL_CONTENT = '&lt;p&gt;Greetings!&lt;/p&gt;&#13;&#10;&#13;&#10;&lt;p&gt;Please click &lt;a href=&quot;%confirmation_link%&quot;&gt;here&lt;/a&gt; in order to subscribe to our newsletter!&lt;/p&gt;&#13;&#10;&#13;&#10;&lt;p&gt;Thank you,&lt;/p&gt;&#13;&#10;&lt;p&gt;';
   const DEFAULT_SIGNUP_EMAIL_CONTENT_TEXT = 'Greetings!&#13;&#10;&#13;&#10;Please open %confirmation_link% in order to subscribe to our newsletter!&#13;&#10;&#13;&#10;Thank you,&#13;&#10;';
+  const DEFAULT_EMAIL_LABEL = 'Email';
+  const DEFAULT_FIRST_NAME_LABEL = 'First Name';
+  const DEFAULT_LAST_NAME_LABEL = 'Last Name';
+  const DEFAULT_SUBSCRIBE_LABEL = 'SUBSCRIBE';
+
+  public static $plugin_directory;
 
   /**
    * Settings class constructor
@@ -20,17 +26,34 @@ class Sendgrid_Settings {
    */
   public function __construct( $plugin_directory )
   {
-    // Add SendGrid settings page in the menu
-    add_action( 'admin_menu', array( __CLASS__, 'add_settings_menu' ) );
+    self::$plugin_directory = $plugin_directory;
+    add_action( 'init', array( __CLASS__, 'set_up_menu' ) );
+  }
 
-    // Add SendGrid settings page in the plugin list
-    add_filter( 'plugin_action_links_' . $plugin_directory, array( __CLASS__, 'add_settings_link' ) );
-
-    // Add SendGrid Help contextual menu in the settings page
-    add_filter( 'contextual_help', array( __CLASS__, 'show_contextual_help' ), 10, 3 );
-
-    // Add SendGrid javascripts in header
-    add_action( 'admin_enqueue_scripts', array( __CLASS__, 'add_headers' ) );
+  /**
+   * Method that is called to set up the settings menu
+   *
+   * @return void
+   */
+  public static function set_up_menu()
+  {
+    if ( ! is_multisite() and current_user_can('manage_options') ) {
+      // Add SendGrid settings page in the menu
+      add_action( 'admin_menu', array( __CLASS__, 'add_settings_menu' ) );
+      // Add SendGrid settings page in the plugin list
+      add_filter( 'plugin_action_links_' . self::$plugin_directory, array( __CLASS__, 'add_settings_link' ) );
+      // Add SendGrid Help contextual menu in the settings page
+      add_filter( 'contextual_help', array( __CLASS__, 'show_contextual_help' ), 10, 3 );
+      // Add SendGrid javascripts in header
+      add_action( 'admin_enqueue_scripts', array( __CLASS__, 'add_headers' ) );
+    } elseif ( is_multisite() and is_super_admin() ) {
+      // Add SendGrid settings page in the network admin menu
+      add_action( 'network_admin_menu', array( __CLASS__, 'add_network_settings_menu' ) );
+      // Add SendGrid Help contextual menu in the settings page
+      add_filter( 'contextual_help', array( __CLASS__, 'show_contextual_help' ), 10, 3 );
+      // Add SendGrid javascripts in header
+      add_action( 'admin_enqueue_scripts', array( __CLASS__, 'add_headers' ) );
+    }
   }
 
   /**
@@ -40,6 +63,16 @@ class Sendgrid_Settings {
    */
   public static function add_settings_menu() {
     add_options_page( __( 'SendGrid' ), __( 'SendGrid' ), 'manage_options', 'sendgrid-settings',
+      array( __CLASS__, 'show_settings_page' ));
+  }
+
+  /**
+   * Add SendGrid settings page in the network menu
+   *
+   * @return void
+   */
+  public static function add_network_settings_menu() {
+    add_menu_page( __( 'SendGrid Settings' ), __( 'SendGrid Settings' ), 'manage_options', 'sendgrid-settings',
       array( __CLASS__, 'show_settings_page' ));
   }
 
@@ -84,7 +117,7 @@ class Sendgrid_Settings {
    */
   public static function add_headers( $hook )
   {
-    if ( SENDGRID_PLUGIN_SETTINGS != $hook ) {
+    if ( strpos( $hook, 'sendgrid-settings' ) === false ) {
       return;
     }
 
@@ -107,7 +140,7 @@ class Sendgrid_Settings {
 
     if ( 'POST' == $_SERVER['REQUEST_METHOD'] and ! isset( $_POST['sg_dismiss_widget_notice'] ) ) {
       $response = self::do_post( $_POST );
-      if( isset( $response['status'] ) and $response['status'] == 'error' ) {
+      if ( isset( $response['status'] ) and $response['status'] == 'error' ) {
         $error_from_update = true;
       }
     }
@@ -136,6 +169,17 @@ class Sendgrid_Settings {
     $mc_opt_incl_fname_lname      = Sendgrid_Tools::get_mc_opt_incl_fname_lname();
     $mc_opt_req_fname_lname       = Sendgrid_Tools::get_mc_opt_req_fname_lname();
     $mc_signup_confirmation_page  = Sendgrid_Tools::get_mc_signup_confirmation_page();
+
+    // input padding
+    $mc_signup_input_padding_top      = Sendgrid_Tools::get_mc_input_padding_by_position( 'top' );
+    $mc_signup_input_padding_right    = Sendgrid_Tools::get_mc_input_padding_by_position( 'right' );
+    $mc_signup_input_padding_bottom   = Sendgrid_Tools::get_mc_input_padding_by_position( 'bottom' );
+    $mc_signup_input_padding_left     = Sendgrid_Tools::get_mc_input_padding_by_position( 'left' );
+    // button padding
+    $mc_signup_button_padding_top     = Sendgrid_Tools::get_mc_button_padding_by_position( 'top' );
+    $mc_signup_button_padding_right   = Sendgrid_Tools::get_mc_button_padding_by_position( 'right' );
+    $mc_signup_button_padding_bottom  = Sendgrid_Tools::get_mc_button_padding_by_position( 'bottom' );
+    $mc_signup_button_padding_left    = Sendgrid_Tools::get_mc_button_padding_by_position( 'left' );
 
     $mc_signup_email_subject = Sendgrid_Tools::get_mc_signup_email_subject();
     if ( false == $mc_signup_email_subject ) {
@@ -251,14 +295,14 @@ class Sendgrid_Settings {
         }
       }
 
-      if( defined( 'SENDGRID_FROM_EMAIL' ) ) {
+      if ( defined( 'SENDGRID_FROM_EMAIL' ) ) {
         if ( ! Sendgrid_Tools::is_valid_email( SENDGRID_FROM_EMAIL ) ) {
           $message = 'Sending email address is not valid in config file.';
           $status = 'error';
         }
       }
 
-      if( defined( 'SENDGRID_REPLY_TO' ) ) {
+      if ( defined( 'SENDGRID_REPLY_TO' ) ) {
         if ( ! Sendgrid_Tools::is_valid_email( SENDGRID_REPLY_TO ) ) {
           $message = 'Reply email address is not valid in config file.';
           $status = 'error';
@@ -271,6 +315,24 @@ class Sendgrid_Settings {
     $no_permission_on_unsubscribe_groups = false;
     if ( ( 'apikey' == $auth_method ) and ( 'true' != Sendgrid_Tools::get_asm_permission() ) ) {
       $no_permission_on_unsubscribe_groups = true;  
+    }
+
+    // get form configuration
+    $mc_signup_email_label = Sendgrid_Tools::get_mc_email_label();
+    if ( false == $mc_signup_email_label ) {
+      $mc_signup_email_label = self::DEFAULT_EMAIL_LABEL;
+    }
+    $mc_signup_first_name_label = Sendgrid_Tools::get_mc_first_name_label();
+    if ( false == $mc_signup_first_name_label ) {
+      $mc_signup_first_name_label = self::DEFAULT_FIRST_NAME_LABEL;
+    }
+    $mc_signup_last_name_label = Sendgrid_Tools::get_mc_last_name_label();
+    if ( false == $mc_signup_last_name_label ) {
+      $mc_signup_last_name_label = self::DEFAULT_LAST_NAME_LABEL;
+    }
+    $mc_signup_subscribe_label = Sendgrid_Tools::get_mc_subscribe_label();
+    if ( false == $mc_signup_subscribe_label ) {
+      $mc_signup_subscribe_label = self::DEFAULT_SUBSCRIBE_LABEL;
     }
 
     $is_env_auth_method                  = defined( 'SENDGRID_AUTH_METHOD' );
@@ -290,6 +352,10 @@ class Sendgrid_Settings {
     $is_env_mc_signup_email_content      = defined( 'SENDGRID_MC_SIGNUP_EMAIL_CONTENT' );
     $is_env_mc_signup_email_content_text = defined( 'SENDGRID_MC_SIGNUP_EMAIL_CONTENT_TEXT' );
     $is_env_mc_signup_confirmation_page  = defined( 'SENDGRID_MC_SIGNUP_CONFIRMATION_PAGE' );
+    $is_env_mc_email_label               = defined( 'SENDGRID_MC_EMAIL_LABEL' );
+    $is_env_mc_first_name_label          = defined( 'SENDGRID_MC_FIRST_NAME_LABEL' );
+    $is_env_mc_last_name_label           = defined( 'SENDGRID_MC_LAST_NAME_LABEL' );
+    $is_env_mc_subscribe_label           = defined( 'SENDGRID_MC_SUBSCRIBE_LABEL' );
 
     if ( $response and $status != 'error' ) {
       $message  = $response['message'];
@@ -450,6 +516,47 @@ class Sendgrid_Settings {
       Sendgrid_Tools::set_mc_signup_confirmation_page( $params['sendgrid_mc_signup_page'] );
     }
 
+    // form configuration
+    // labels
+    if ( isset( $params['sendgrid_mc_email_label'] ) and ! defined( 'SENDGRID_MC_EMAIL_LABEL' ) ) {
+      Sendgrid_Tools::set_mc_email_label( $params['sendgrid_mc_email_label'] );
+    }
+    if ( isset( $params['sendgrid_mc_first_name_label'] ) and ! defined( 'SENDGRID_MC_FIRST_NAME_LABEL' ) ) {
+      Sendgrid_Tools::set_mc_first_name_label( $params['sendgrid_mc_first_name_label'] );
+    }
+    if ( isset( $params['sendgrid_mc_last_name_label'] ) and ! defined( 'SENDGRID_MC_LAST_NAME_LABEL' ) ) {
+      Sendgrid_Tools::set_mc_last_name_label( $params['sendgrid_mc_last_name_label'] );
+    }
+    if ( isset( $params['sendgrid_mc_subscribe_label'] ) and ! defined( 'SENDGRID_MC_SUBSCRIBE_LABEL' ) ) {
+      Sendgrid_Tools::set_mc_subscribe_label( $params['sendgrid_mc_subscribe_label'] );
+    }
+    // input padding
+    if ( isset( $params['sendgrid_mc_input_padding_top'] ) ) {
+      Sendgrid_Tools::set_mc_input_padding( 'top', $params['sendgrid_mc_input_padding_top'] );
+    }
+    if ( isset( $params['sendgrid_mc_input_padding_right'] ) ) {
+      Sendgrid_Tools::set_mc_input_padding( 'right', $params['sendgrid_mc_input_padding_right'] );
+    }
+    if ( isset( $params['sendgrid_mc_input_padding_bottom'] ) ) {
+      Sendgrid_Tools::set_mc_input_padding( 'bottom', $params['sendgrid_mc_input_padding_bottom'] );
+    }
+    if ( isset( $params['sendgrid_mc_input_padding_left'] ) ) {
+      Sendgrid_Tools::set_mc_input_padding( 'left', $params['sendgrid_mc_input_padding_left'] );
+    }
+    // button padding
+    if ( isset( $params['sendgrid_mc_button_padding_top'] ) ) {
+      Sendgrid_Tools::set_mc_button_padding( 'top', $params['sendgrid_mc_button_padding_top'] );
+    }
+    if ( isset( $params['sendgrid_mc_button_padding_right'] ) ) {
+      Sendgrid_Tools::set_mc_button_padding( 'right', $params['sendgrid_mc_button_padding_right'] );
+    }
+    if ( isset( $params['sendgrid_mc_button_padding_bottom'] ) ) {
+      Sendgrid_Tools::set_mc_button_padding( 'bottom', $params['sendgrid_mc_button_padding_bottom'] );
+    }
+    if ( isset( $params['sendgrid_mc_button_padding_left'] ) ) {
+      Sendgrid_Tools::set_mc_button_padding( 'left', $params['sendgrid_mc_button_padding_left'] );
+    }
+
     if ( isset( $response ) and $response['status'] == 'error' ) {
       return $response;
     }
@@ -550,7 +657,7 @@ class Sendgrid_Settings {
     }
 
     if ( isset( $params['sendgrid_name'] ) ) {
-      update_option( 'sendgrid_from_name', $params['sendgrid_name'] );
+      Sendgrid_Tools::set_from_name( $params['sendgrid_name'] );
     }
 
     if ( isset( $params['sendgrid_email'] ) ) {
@@ -560,7 +667,7 @@ class Sendgrid_Settings {
           'status' => 'error'
         );
       } else {
-        update_option( 'sendgrid_from_email', $params['sendgrid_email'] );
+        Sendgrid_Tools::set_from_email( $params['sendgrid_email'] );
       }
     }
 
@@ -571,16 +678,16 @@ class Sendgrid_Settings {
           'status' => 'error'
         );
       } else {
-        update_option( 'sendgrid_reply_to', $params['sendgrid_reply_to'] );
+        Sendgrid_Tools::set_reply_to( $params['sendgrid_reply_to'] );
       }
     }
 
     if ( isset( $params['sendgrid_categories'] ) ) {
-      update_option( 'sendgrid_categories', $params['sendgrid_categories'] );
+      Sendgrid_Tools::set_categories( $params['sendgrid_categories'] );
     }
 
     if ( isset( $params['sendgrid_stats_categories'] ) ) {
-      update_option( 'sendgrid_stats_categories', $params['sendgrid_stats_categories'] );
+      Sendgrid_Tools::set_stats_categories( $params['sendgrid_stats_categories'] );
     }
 
     if ( isset( $params['sendgrid_template'] ) ) {
@@ -590,24 +697,24 @@ class Sendgrid_Settings {
           'status' => 'error'
         );
       } else {
-        update_option( 'sendgrid_template', $params['sendgrid_template'] );
+        Sendgrid_Tools::set_template( $params['sendgrid_template'] );
       }
     }
 
     if ( isset( $params['send_method'] ) ) {
-      update_option( 'sendgrid_api', $params['send_method'] );
+      Sendgrid_Tools::set_send_method( $params['send_method'] );
     }
 
-    if ( isset( $params['auth_method'] ) && in_array( $params['auth_method'], Sendgrid_Tools::$allowed_auth_methods ) ) {
-      update_option( 'sendgrid_auth_method', $params['auth_method'] );
+    if ( isset( $params['auth_method'] ) and in_array( $params['auth_method'], Sendgrid_Tools::$allowed_auth_methods ) ) {
+      Sendgrid_Tools::set_auth_method( $params['auth_method'] );
     }
 
     if ( isset( $params['sendgrid_port'] ) ) {
-      update_option( 'sendgrid_port', $params['sendgrid_port'] );
+      Sendgrid_Tools::set_port( $params['sendgrid_port'] );
     }
 
     if ( isset( $params['content_type'] ) ) {
-      update_option( 'sendgrid_content_type', $params['content_type'] );
+      Sendgrid_Tools::set_content_type( $params['content_type'] );
     }
 
     if ( isset( $params['unsubscribe_group'] ) ) {

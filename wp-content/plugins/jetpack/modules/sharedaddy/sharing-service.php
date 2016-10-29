@@ -162,7 +162,7 @@ class Sharing_Service {
 			'currently_enabled' => $this->get_blog_services()
 		) );
 
-		update_option( 'sharing-services', array( 'visible' => $visible, 'hidden' => $hidden ) );
+		return update_option( 'sharing-services', array( 'visible' => $visible, 'hidden' => $hidden ) );
 	}
 
 	public function get_blog_services() {
@@ -582,6 +582,9 @@ add_action( 'template_redirect', 'sharing_process_requests', 9 );
 
 function sharing_display( $text = '', $echo = false ) {
 	global $post, $wp_current_filter;
+	if ( Jetpack_Sync_Settings::is_syncing() ) {
+		return $text;
+	}
 
 	if ( empty( $post ) )
 		return $text;
