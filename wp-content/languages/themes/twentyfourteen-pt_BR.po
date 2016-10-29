@@ -1,5 +1,5 @@
-# Translation of Twenty Fourteen in Portuguese (Brazil)
-# This file is distributed under the same license as the Twenty Fourteen package.
+# Translation of Themes - Twenty Fourteen in Portuguese (Brazil)
+# This file is distributed under the same license as the Themes - Twenty Fourteen package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2015-07-18 11:27:20+0000\n"
@@ -7,8 +7,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: GlotPress/2.1.0-alpha\n"
-"Project-Id-Version: Twenty Fourteen\n"
+"X-Generator: GlotPress/2.3.0-alpha\n"
+"Language: pt_BR\n"
+"Project-Id-Version: Themes - Twenty Fourteen\n"
 
 #. Description of the plugin/theme
 msgid "In 2014, our default theme lets you create a responsive magazine website with a sleek, modern design. Feature your favorite homepage content in either a grid or a slider. Use the three widget areas to customize your website, and change your content's layout with a full-width page template and a contributor page to show off your authors. Creating a magazine website with WordPress has never been easier."

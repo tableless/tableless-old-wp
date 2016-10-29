@@ -1,5 +1,5 @@
-# Translation of Twenty Fifteen in Portuguese (Brazil)
-# This file is distributed under the same license as the Twenty Fifteen package.
+# Translation of Themes - Twenty Fifteen in Portuguese (Brazil)
+# This file is distributed under the same license as the Themes - Twenty Fifteen package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2015-08-18 16:52:11+0000\n"
@@ -7,8 +7,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: GlotPress/2.1.0-alpha\n"
-"Project-Id-Version: Twenty Fifteen\n"
+"X-Generator: GlotPress/2.3.0-alpha\n"
+"Language: pt_BR\n"
+"Project-Id-Version: Themes - Twenty Fifteen\n"
 
 #. Description of the plugin/theme
 msgid "Our 2015 default theme is clean, blog-focused, and designed for clarity. Twenty Fifteen's simple, straightforward typography is readable on a wide variety of screen sizes, and suitable for multiple languages. We designed it using a mobile-first approach, meaning your content takes center-stage, regardless of whether your visitors arrive by smartphone, tablet, laptop, or desktop computer."
