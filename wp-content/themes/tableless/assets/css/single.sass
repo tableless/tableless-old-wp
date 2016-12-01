@@ -322,10 +322,16 @@
     display: flex
     flex-wrap: wrap
     padding: 0
+    @include break(mobile)
+      flex-direction: column
 
     .tb-box
-      flex: 1 0 30.2%
+      flex: 1 0 90%
       max-width: 30.2%
+
+      @include break(mobile)
+        max-width: 90%
+        margin: 20px auto
 
 .tb-divider
   &:after
