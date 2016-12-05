@@ -54,7 +54,7 @@
 */?>
 
 <script
-        src="http://code.jquery.com/jquery-3.0.0.min.js"
+        src="https://code.jquery.com/jquery-3.0.0.min.js"
         integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="
         crossorigin="anonymous"></script>
 <script id="dsq-count-scr" src="//tableless.disqus.com/count.js" async="async"></script>
