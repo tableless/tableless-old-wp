@@ -11,7 +11,8 @@
     <section class="tb-post-area">
 
       <article class="tb-post-text">
-        <header>
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post();?>        
+<header>
         <?php edit_post_link(); ?>
 
           <h1>
@@ -19,14 +20,16 @@
           </h1>
 
           <a href="<?php the_permalink(); ?>#disqus_thread" class="tb-comment-count">Seja o primeiro a comentar</a>
-
           <span class="tb-author-info">
             <?php echo get_avatar( get_the_author_meta('ID') , 100 ); ?>
             por <?php the_author_posts_link(); ?>
           </span>
         </header>
-
-        <?php the_content();?>
+  <?php the_content(); ?>
+<?php endwhile;
+else:?>
+  <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+<?php endif;?>
 
         <footer>
             <span class="tb-post-time">Publicado no dia <time datetime="<?php the_time('Y-m-d g:i') ?>"> <?php the_time('j') ?> de <?php the_time('F') ?> de <?php the_time('Y') ?></time></span>

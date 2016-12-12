@@ -26,7 +26,8 @@
   googletag.cmd.push(function() {
     googletag.defineSlot('/7969368/banner-comunidades', [300, 125], 'div-gpt-ad-1473429933704-0').addService(googletag.pubads());
     googletag.defineSlot('/7969368/RetanguloMedio-MiddleSidebar', [[300, 250], [336, 280], [300, 300], [360, 360]], 'div-gpt-ad-1473429933704-1').addService(googletag.pubads());
-    googletag.defineSlot('/7969368/RetanguloMedio-TopoSidebar', [[300, 250], [336, 280], [300, 300], [360, 360]], 'div-gpt-ad-1473429933704-2').addService(googletag.pubads());
+    googletag.defineSlot('/7969368/RetanguloMedio-TopoSidebar', [[300, 250], [300, 300], [360, 360], [336, 280]], 'div-gpt-ad-1481540169507-0').addService(googletag.pubads());
+
     googletag.pubads().enableSingleRequest();
     googletag.enableServices();
   });
