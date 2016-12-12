@@ -4,7 +4,8 @@ robots.txt
 license.txt
 readme.html
 wp-content/themes/tableless/style.css
-
+*.dump
+*.swp
 .DS_Store
 wp-content/cache/.htaccess
 wp-content/uploads
