@@ -19,7 +19,7 @@ Para que o projeto funcione, você vai precisar instalar o banco de dados onde c
 
 O link base do site no Banco é [http://localhost/tableless/](http://localhost/tableless/). Você pode mudar isso direto no banco, configurar seu hosts ou qualquer outra maneira que encontrar. [O próprio site do WordPress dá várias opções para fazer isso](https://codex.wordpress.org/Changing_The_Site_URL). Aqui estou usando o Apache padrão do Mac, com meu **localhost** configurado para o diretório **~/Sites**.
 
-Para que os posts apareçam com suas respectivas imagens, [baixe a pasta **uploads**](https://www.dropbox.com/s/19oqay8faqw6p08/uploads.tar.gz?dl=0) e descompactar dentro da pasta **wp-content**. O caminho final é **/wp-content/uploads/**.
+Para que os posts apareçam com suas respectivas imagens, [baixe a pasta **uploads**](https://dl.dropboxusercontent.com/u/177663/uploads.tar.gz?dl=0) e descompactar dentro da pasta **wp-content**. O caminho final é **/wp-content/uploads/**.
 
 ## O Tema
 O tema fica dentro da pasta **wp-content/themes/tableless**.
