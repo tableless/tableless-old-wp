@@ -15,7 +15,7 @@ Se você quer contribuir, simplesmente clone o projeto e submeta as suas mudanç
 ## Wordpress e Banco de Dados
 O site é baseado em WordPress. Nós versionamos não apenas o tema do site, mas todo o WordPress. Por isso, basta clonar o projeto.
 
-Para que o projeto funcione, você vai precisar instalar o banco de dados onde contém os posts do site. Para tanto, [baixe o banco deste link](https://www.dropbox.com/s/z9gjeht841ns6bp/tablelessBancoDemo.sql?dl=0). User: diegoeis Pass: s3nh4d3m0
+Para que o projeto funcione, você vai precisar instalar o banco de dados onde contém os posts do site. Para tanto, [baixe o banco deste link](https://dl.dropboxusercontent.com/u/177663/tablelessBancoDemo.sql?dl=1). User: diegoeis Pass: s3nh4d3m0
 
 O link base do site no Banco é [http://localhost/tableless/](http://localhost/tableless/). Você pode mudar isso direto no banco, configurar seu hosts ou qualquer outra maneira que encontrar. [O próprio site do WordPress dá várias opções para fazer isso](https://codex.wordpress.org/Changing_The_Site_URL). Aqui estou usando o Apache padrão do Mac, com meu **localhost** configurado para o diretório **~/Sites**.
 
