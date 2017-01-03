@@ -117,11 +117,11 @@ class WPSEO_Admin_Asset_Manager {
 	private function scripts_to_be_registered() {
 
 		$select2_language = 'en';
-		$locale           = get_locale();
-		$language         = WPSEO_Utils::get_language( $locale );
+		$user_locale      = WPSEO_Utils::get_user_locale();
+		$language         = WPSEO_Utils::get_language( $user_locale );
 
-		if ( file_exists( WPSEO_PATH . "js/dist/select2/i18n/{$locale}.js" ) ) {
-			$select2_language = $locale; // Chinese and some others use full locale.
+		if ( file_exists( WPSEO_PATH . "js/dist/select2/i18n/{$user_locale}.js" ) ) {
+			$select2_language = $user_locale; // Chinese and some others use full locale.
 		}
 		elseif ( file_exists( WPSEO_PATH . "js/dist/select2/i18n/{$language}.js" ) ) {
 			$select2_language = $language;
@@ -130,7 +130,7 @@ class WPSEO_Admin_Asset_Manager {
 		return array(
 			array(
 				'name' => 'admin-script',
-				'src'  => 'wp-seo-admin-370',
+				'src'  => 'wp-seo-admin-400',
 				'deps' => array(
 					'jquery',
 					'jquery-ui-core',
@@ -159,12 +159,12 @@ class WPSEO_Admin_Asset_Manager {
 			),
 			array(
 				'name' => 'admin-global-script',
-				'src'  => 'wp-seo-admin-global-350',
+				'src'  => 'wp-seo-admin-global-390',
 				'deps' => array( 'jquery' ),
 			),
 			array(
 				'name' => 'metabox',
-				'src'  => 'wp-seo-metabox-370',
+				'src'  => 'wp-seo-metabox-400',
 				'deps' => array(
 					'jquery',
 					'jquery-ui-core',
@@ -189,7 +189,7 @@ class WPSEO_Admin_Asset_Manager {
 			),
 			array(
 				'name' => 'post-scraper',
-				'src'  => 'wp-seo-post-scraper-370',
+				'src'  => 'wp-seo-post-scraper-402',
 				'deps' => array(
 					self::PREFIX . 'replacevar-plugin',
 					self::PREFIX . 'shortcode-plugin',
@@ -198,22 +198,22 @@ class WPSEO_Admin_Asset_Manager {
 			),
 			array(
 				'name' => 'term-scraper',
-				'src'  => 'wp-seo-term-scraper-370',
+				'src'  => 'wp-seo-term-scraper-402',
 				'deps' => array(
 					self::PREFIX . 'replacevar-plugin',
 				),
 			),
 			array(
 				'name' => 'replacevar-plugin',
-				'src'  => 'wp-seo-replacevar-plugin-370',
+				'src'  => 'wp-seo-replacevar-plugin-380',
 			),
 			array(
 				'name' => 'shortcode-plugin',
-				'src'  => 'wp-seo-shortcode-plugin-350',
+				'src'  => 'wp-seo-shortcode-plugin-402',
 			),
 			array(
 				'name' => 'recalculate',
-				'src'  => 'wp-seo-recalculate-370',
+				'src'  => 'wp-seo-recalculate-402',
 				'deps' => array(
 					'jquery',
 					'jquery-ui-core',
@@ -222,7 +222,7 @@ class WPSEO_Admin_Asset_Manager {
 			),
 			array(
 				'name' => 'primary-category',
-				'src'  => 'wp-seo-metabox-category-350',
+				'src'  => 'wp-seo-metabox-category-380',
 				'deps' => array(
 					'jquery',
 					'wp-util',
@@ -249,7 +249,7 @@ class WPSEO_Admin_Asset_Manager {
 			),
 			array(
 				'name' => 'configuration-wizard',
-				'src'  => 'configuration-wizard-371',
+				'src'  => 'configuration-wizard-400',
 				'deps' => array(
 					'jquery',
 				),
@@ -268,18 +268,12 @@ class WPSEO_Admin_Asset_Manager {
 		return array(
 			array(
 				'name' => 'admin-css',
-				'src'  => 'yst_plugin_tools-370',
+				'src'  => 'yst_plugin_tools-400',
 				'deps' => array( self::PREFIX . 'toggle-switch' ),
 			),
 			array(
-				'name'    => 'toggle-switch-lib',
-				'src'     => 'toggle-switch/toggle-switch',
-				'version' => '4.0.2',
-			),
-			array(
 				'name'   => 'toggle-switch',
-				'src'    => 'toggle-switch-330',
-				'deps'   => array( self::PREFIX . 'toggle-switch-lib' ),
+				'src'    => 'toggle-switch-390',
 			),
 			array(
 				'name' => 'dismissible',
@@ -299,7 +293,7 @@ class WPSEO_Admin_Asset_Manager {
 			),
 			array(
 				'name' => 'metabox-css',
-				'src'  => 'metabox-370',
+				'src'  => 'metabox-400',
 				'deps' => array(
 					self::PREFIX . 'select2',
 				),
@@ -310,7 +304,7 @@ class WPSEO_Admin_Asset_Manager {
 			),
 			array(
 				'name' => 'scoring',
-				'src'  => 'yst_seo_score-330',
+				'src'  => 'yst_seo_score-390',
 			),
 			array(
 				'name' => 'snippet',
@@ -345,7 +339,11 @@ class WPSEO_Admin_Asset_Manager {
 			),
 			array(
 				'name' => 'yoast-components',
-				'src'  => 'yoast-components-371',
+				'src'  => 'yoast-components-400',
+			),
+			array(
+				'name' => 'extensions',
+				'src'  => 'yoast-extensions-390',
 			),
 		);
 	}

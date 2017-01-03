@@ -330,6 +330,12 @@ function wp_mail( $to, $subject, $message, $headers = '', $attachments = array()
   $content_type = apply_filters( 'wp_mail_content_type', $content_type );
 
   $text_content = $message;
+  // check if setText() is set in the header
+  $text_content_header = $mail->getText();
+  if ( isset( $text_content_header ) and false != $text_content_header ) {
+     $text_content = $text_content_header;
+  }
+  // check if filter sendgrid_mail_text is set
   if ( array_key_exists( 'sendgrid_mail_text' , $GLOBALS['wp_filter'] ) ) {
     $text_content = apply_filters( 'sendgrid_mail_text', $text_content );
   }

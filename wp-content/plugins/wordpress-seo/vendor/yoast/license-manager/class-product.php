@@ -57,6 +57,9 @@ if ( ! class_exists( "Yoast_Product", false ) ) {
 		/** @var int Product ID in backend system for quick lookup */
 		protected $product_id;
 
+		/** @var string URL referring to the extension page  */
+		protected $extension_url;
+
 		/**
 		 * Yoast_Product constructor.
 		 *
@@ -273,7 +276,34 @@ if ( ! class_exists( "Yoast_Product", false ) ) {
 		 * @return string The full URL
 		 */
 		public function get_tracking_url( $link_identifier = '' ) {
+			return $this->add_campaign_attributes( $this->get_item_url(), $link_identifier );
+		}
 
+		/**
+		 * Returns the extension url if set, otherwise it will be the tracking url.
+		 *
+		 * @param string $link_identifier
+		 *
+		 * @return string
+		 */
+		public function get_extension_url( $link_identifier = '' ) {
+			if ( $this->extension_url ) {
+				return $this->add_campaign_attributes( $this->extension_url, $link_identifier );
+			}
+
+			return $this->get_tracking_url( $link_identifier );
+		}
+
+		/**
+		 * Sets the extension url.
+		 *
+		 * @param string $extension_url
+		 */
+		public function set_extension_url( $extension_url ) {
+			$this->extension_url = $extension_url;
+		}
+
+		private function add_campaign_attributes( $url, $link_identifier ) {
 			$tracking_vars = array(
 				'utm_campaign' => $this->get_item_name() . ' licensing',
 				'utm_medium'   => 'link',
@@ -285,8 +315,9 @@ if ( ! class_exists( "Yoast_Product", false ) ) {
 			$tracking_vars = urlencode_deep( $tracking_vars );
 			$query_string = build_query( $tracking_vars );
 
-			return $this->get_item_url() . '#' . $query_string;
+			return $url . '#' . $query_string;
 		}
+
 	}
 
 }

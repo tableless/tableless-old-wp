@@ -1,9 +1,9 @@
 === Nginx Helper ===
-Contributors: rtcamp, rahul286, saurabhshukla, manishsongirkar36, faishal, desaiuditd, darren-slatten, jk3us, daankortenbach, telofy, pjv, llonchj, jinnko, weskoop, bcole808, gungeekatx, rohanveer, chandrapatel, gagan0123, ravanh, michaelbeil, samedwards, niwreg, entr
+Contributors: rtcamp, rahul286, saurabhshukla, manishsongirkar36, faishal, desaiuditd, darren-slatten, jk3us, daankortenbach, telofy, pjv, llonchj, jinnko, weskoop, bcole808, gungeekatx, rohanveer, chandrapatel, gagan0123, ravanh, michaelbeil, samedwards, niwreg, entr, nuvoPoint
 Tags: nginx, cache, purge, nginx map, nginx cache, maps, fastcgi, proxy, redis, redis-cache, rewrite, permalinks
 Requires at least: 3.0
-Tested up to: 4.6
-Stable tag: 1.9.8
+Tested up to: 4.7
+Stable tag: 1.9.9
 License: GPLv2 or later (of-course)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate Link: http://rtcamp.com/donate/
@@ -21,11 +21,11 @@ Cleans nginx's fastcgi/proxy cache or redis-cache whenever a post is edited/publ
 
 You will need to follow one or more tutorials below to get desired functionality:
 
-* [Nginx Map + WordPress-Multisite + Static Files Handling](http://rtcamp.com/tutorials/nginx-maps-wordpress-multisite-static-files-handling/)
-* [Nginx + WordPress + fastcgi_purge_cache](http://rtcamp.com/tutorials/wordpress-nginx-fastcgi-cache-purge-conditional/)
-* [Nginx + WordPress-Multisite (Subdirectories) + fastcgi_purge_cache](http://rtcamp.com/tutorials/wordpress-multisite-subdirectories-nginx-fastcgi-cache-purge/)
-* [Nginx + WordPress-Multisite (Subdomains/domain-mapping) + fastcgi_purge_cache](http://rtcamp.com/tutorials/wordpress-multisite-subdomains-domain-mapping-nginx-fastcgi-cache-purge/)
-* [Other WordPress-Nginx Tutorials](http://rtcamp.com/wordpress-nginx/tutorials/)
+* [Nginx Map + WordPress-Multisite + Static Files Handling](https://easyengine.io/wordpress-nginx/tutorials/multisite/static-files-handling/)
+* [Nginx + WordPress + fastcgi_purge_cache](https://easyengine.io/wordpress-nginx/tutorials/single-site/fastcgi-cache-with-purging/)
+* [Nginx + WordPress-Multisite (Subdirectories) + fastcgi_purge_cache](https://easyengine.io/wordpress-nginx/tutorials/multisite/subdirectories/fastcgi-cache-with-purging/)
+* [Nginx + WordPress-Multisite (Subdomains/domain-mapping) + fastcgi_purge_cache](https://easyengine.io/wordpress-nginx/tutorials/multisite/subdomains/fastcgi-cache-with-purging/)
+* [Other WordPress-Nginx Tutorials](https://easyengine.io/wordpress-nginx/tutorials/)
 
 
 == Installation ==
@@ -45,13 +45,13 @@ For proper configuration, check out our **tutorial list** in the [Description ta
 
 == Frequently Asked Questions ==
 
-**Important** - Please refer to [http://rtcamp.com/nginx-helper/faq](http://rtcamp.com/nginx-helper/faq) for up-to-date FAQs.
+**Important** - Please refer to [https://easyengine.io/nginx-helper/faq](https://easyengine.io/nginx-helper/faq) for up-to-date FAQs.
 
 = FAQ - Installation/Comptability =
 
 **Q. Will this work out of the box?**
 
-No. You need to make some changes at the Nginx end. Please check our [tutorial list](http://rtcamp.com/wordpress-nginx/tutorials).
+No. You need to make some changes at the Nginx end. Please check our [tutorial list](https://easyengine.io/wordpress-nginx/tutorials/).
 
 = FAQ - Nginx Fastcgi Cache Purge =
 
@@ -113,6 +113,9 @@ Please post your problem in [our free support forum](http://community.rtcamp.com
 2. Remaining settings
 
 == Changelog ==
+
+= 1.9.9 =
+* Fix wp_redirect issue. [#131](https://github.com/rtCamp/nginx-helper/pull/131) - by [matt-h](https://github.com/matt-h)
 
 = 1.9.8 =
 * Fixed homepage cache cleared when WPML plugin used [#116](https://github.com/rtCamp/nginx-helper/pull/116) - by [Niwreg](https://profiles.wordpress.org/niwreg/)
@@ -333,9 +336,5 @@ Fix url escaping [#82](https://github.com/rtCamp/nginx-helper/pull/82) - by
 
 == Upgrade Notice ==
 
-= 1.9.8 =
-* Fixed homepage cache cleared when WPML plugin used [#116](https://github.com/rtCamp/nginx-helper/pull/116) - by [Niwreg](https://profiles.wordpress.org/niwreg/)
-* Fixed Purge Cache clears the whole Redis cache [#113](https://github.com/rtCamp/nginx-helper/issues/113) - by HansVanEijsden
-* One log file for all site in WPMU.
-* Single site Redis cache purge when click on Purge Cache button in WPMU [#122](https://github.com/rtCamp/nginx-helper/pull/122) - by Lars Støttrup Nielsen
-* Fixed notices and warnings.
+= 1.9.9 =
+* Fix wp_redirect issue. [#131](https://github.com/rtCamp/nginx-helper/pull/131) - by [matt-h](https://github.com/matt-h)

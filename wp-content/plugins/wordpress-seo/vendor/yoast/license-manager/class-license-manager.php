@@ -111,9 +111,9 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 			// show notice if license is invalid
 			if ( ! $this->license_is_valid() ) {
 				if ( $this->get_license_key() == '' ) {
-					$message = '<b>Warning!</b> You didn\'t set your %s license key yet, which means you\'re missing out on updates and support! <a href="%s">Enter your license key</a> or <a href="%s" target="_blank">get a license here</a>.';
+					$message = __( '<b>Warning!</b> You didn\'t set your %s license key yet, which means you\'re missing out on updates and support! <a href="%s">Enter your license key</a> or <a href="%s" target="_blank">get a license here</a>.' );
 				} else {
-					$message = '<b>Warning!</b> Your %s license is inactive which means you\'re missing out on updates and support! <a href="%s">Activate your license</a> or <a href="%s" target="_blank">get a license here</a>.';
+					$message = __( '<b>Warning!</b> Your %s license is inactive which means you\'re missing out on updates and support! <a href="%s">Activate your license</a> or <a href="%s" target="_blank">get a license here</a>.' );
 				}
 				?>
 				<div class="error">
@@ -183,11 +183,11 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 
 					// add upgrade notice if user has less than 3 activations left
 					if ( $result->license_limit > 0 && ( $result->license_limit - $result->site_count ) <= 3 ) {
-						$message .= sprintf( __( '<a href="%s">Did you know you can upgrade your license?</a>', $this->product->get_text_domain() ), $this->product->get_tracking_url( 'license-nearing-limit-notice' ) );
+						$message .= sprintf( __( '<a href="%s">Did you know you can upgrade your license?</a>', $this->product->get_text_domain() ), $this->product->get_extension_url( 'license-nearing-limit-notice' ) );
 						// add extend notice if license is expiring in less than 1 month
 					} elseif ( $expiry_date !== false && $expiry_date < strtotime( "+1 month" ) ) {
 						$days_left = round( ( $expiry_date - strtotime( "now" ) ) / 86400 );
-						$message .= sprintf( __( '<a href="%s">Your license is expiring in %d days, would you like to extend it?</a>', $this->product->get_text_domain() ), $this->product->get_tracking_url( 'license-expiring-notice' ), $days_left );
+						$message .= sprintf( __( '<a href="%s">Your license is expiring in %d days, would you like to extend it?</a>', $this->product->get_text_domain() ), $this->product->get_extension_url( 'license-expiring-notice' ), $days_left );
 					}
 
 					$this->set_notice( $message, true );
@@ -196,10 +196,10 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 
 					if ( isset( $result->error ) && $result->error === 'no_activations_left' ) {
 						// show notice if user is at their activation limit
-						$this->set_notice( sprintf( __( 'You\'ve reached your activation limit. You must <a href="%s">upgrade your license</a> to use it on this site.', $this->product->get_text_domain() ), $this->product->get_tracking_url( 'license-at-limit-notice' ) ), false );
+						$this->set_notice( sprintf( __( 'You\'ve reached your activation limit. You must <a href="%s">upgrade your license</a> to use it on this site.', $this->product->get_text_domain() ), $this->product->get_extension_url( 'license-at-limit-notice' ) ), false );
 					} elseif ( isset( $result->error ) && $result->error == "expired" ) {
 						// show notice if the license is expired
-						$this->set_notice( sprintf( __( 'Your license has expired. You must <a href="%s">extend your license</a> in order to use it again.', $this->product->get_text_domain() ), $this->product->get_tracking_url( 'license-expired-notice' ) ), false );
+						$this->set_notice( sprintf( __( 'Your license has expired. You must <a href="%s">extend your license</a> in order to use it again.', $this->product->get_text_domain() ), $this->product->get_extension_url( 'license-expired-notice' ) ), false );
 					} else {
 						// show a general notice if it's any other error
 						$this->set_notice( __( "Failed to activate your license, your license key seems to be invalid.", $this->product->get_text_domain() ), false );

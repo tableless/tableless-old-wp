@@ -1,9 +1,9 @@
 === Jetpack by WordPress.com ===
-Contributors: automattic, adamkheckler, aduth, akirk, allendav, alternatekev, andy, annezazu, apeatling, azaozz, batmoo, barry, beaulebens, blobaugh, cainm, cena, cfinke, chaselivingston, chellycat, csonnek, danielbachhuber, davoraltman, daniloercoli, designsimply, dllh, drawmyface, dsmart, dzver, ebinnion, eliorivero, enej, eoigal, ethitter, gcorne, georgestephanis, gibrown, goldsounds, hew, hugobaeta, hypertextranch, iammattthomas, iandunn, jacobshere, jblz, jeherve, jenhooks, jenia, jgs, jkudish, jmdodd, Joen, johnjamesjacoby, jshreve, koke, kraftbj, lamdayap, lancewillett, lschuyler, macmanx, martinremy, matt, matveb, mattwiebe, maverick3x6, mcsf, mdawaffe, michael-arestad, migueluy, mikeyarce, mkaz, nancythanki, nickmomrik, obenland, pento, professor44, rachelsquirrel, rdcoll, ryancowles, richardmuscat, richardmtl, roccotripaldi, samhotchkiss, scarstocea, sdquirk, stefmattana, stephdau, tmoorewp, Viper007Bond, westi, yoavf, zinigor
+Contributors: automattic, adamkheckler, aduth, akirk, allendav, alternatekev, andy, annezazu, apeatling, azaozz, batmoo, barry, beaulebens, blobaugh, cainm, cena, cfinke, chaselivingston, chellycat, csonnek, danielbachhuber, davoraltman, daniloercoli, designsimply, dllh, drawmyface, dsmart, dzver, ebinnion, eliorivero, enej, eoigal, erania-pinnera, ethitter, gcorne, georgestephanis, gibrown, goldsounds, hew, hugobaeta, hypertextranch, iammattthomas, iandunn, jacobshere, jblz, jeherve, jenhooks, jenia, jgs, jkudish, jmdodd, Joen, johnjamesjacoby, jshreve, koke, kraftbj, lamdayap, lancewillett, lschuyler, macmanx, martinremy, matt, matveb, mattwiebe, maverick3x6, mcsf, mdawaffe, michael-arestad, migueluy, mikeyarce, mkaz, nancythanki, nickmomrik, obenland, pento, professor44, rachelsquirrel, rdcoll, ryancowles, richardmuscat, richardmtl, roccotripaldi, samhotchkiss, scarstocea, sdquirk, stephdau, tmoorewp, Viper007Bond, westi, yoavf, zinigor
 Tags: WordPress.com, jet pack, comments, contact, gallery, performance, sharing, security, shortcodes, stats, subscriptions, widgets
-Stable tag: 4.3.2
+Stable tag: 4.4.2
 Requires at least: 4.5
-Tested up to: 4.6.1
+Tested up to: 4.7
 
 Increase your traffic, view your stats, speed up your site, and protect yourself from hackers with Jetpack.
 
@@ -27,7 +27,7 @@ With Jetpack comes a **centralized dashboard** on WordPress.com. Manage plugins 
 Jetpack includes other features that help you customize your site including Custom CSS, Contact Forms, Galleries and Carousels, Notifications and Subscriptions, Configurable Widgets, and [many more](https://jetpack.com/features).
 
 = Dedicated Support =
-We have an entire team of happiness engineers ready to help you.  Ask your questions in the support forum, or [contact us directly](https://jetpack.com/contact-support).
+We have an entire team of happiness engineers ready to help you. Ask your questions in the support forum, or [contact us directly](https://jetpack.com/contact-support).
 
 = Contributing to Jetpack =
 
@@ -75,6 +75,62 @@ There are opportunities for developers at all levels to contribute. [Learn more 
 
 == Changelog ==
 
+= 4.4.2 =
+
+* Release date: December 6, 2016
+
+This release improves Jetpack compatibility with WordPress 4.7.
+
+**Compatibility changes**
+
+* Custom CSS: Made the Custom CSS feature of Jetpack compatible with the CSS Customizer editor in WordPress 4.7.
+* Sync: improved compatibility with the wp-missed-schedule plugin.
+
+**Bug fixes**
+
+* Featured Content: made sure there is no infinite loop when removing the featured tag from the tag list.
+* Admin: made sure help tabs are not being hidden.
+* Admin: made At a Glance page work nicely when there is no backup data yet.
+* Sync: now making sure that needed classes are loaded, preventing errors.
+* Sync: cleared out unneeded scheduled jobs.
+
+= 4.4.1 =
+
+* Release date: November 22, 2016
+
+**Bug Fixes**
+
+* Fixes an issue where some users with slower servers would get an error on the Jetpack dashboard when `WP_DEBUG` was enabled.
+* Fixes an issue where users on a Jetpack Professional plan who are paying monthly (as opposed to annually) wouldn’t be able to enable SEO Tools.
+
+= 4.4 =
+
+* Release date: November 21, 2016
+* Release post: http://wp.me/p1moTy-3FE
+
+**Enhancements**
+
+* Additional unit tests have been added to improve Jetpack's development process and stability.
+* Custom post types have been added to the WP REST API output.
+* Many of the screenshots throughout the plugin have been replaced by SVGs in order to make Jetpack smaller.
+* New endpoints have been added to allow the installation of plugin and theme zip files via the API.
+* Twelve new filters to make Jetpack more extensible!  See: http://wp.me/p1moTy-3FE.
+* New widget: "Google Translate" to allow users to translate your site into their own language.
+* New widget: "My Community" where you can see who recently interacted with your site.
+* One of the biggest issues facing Jetpack users for years now has been difficulties in moving sites from one domain name to another. This update makes strides towards improving that process.
+* Photon now uses HTTPS by default. Secure all the things!
+* There are now helpful hints throughout the admin interface to make Jetpack easier to use.
+* We now allow you to embed pins, boards and profiles from Pinterest.
+* We've added a new feature: SEO Tools, available to Jetpack Professional subscribers. You can read more about our plans here: https://jetpack.com/features/
+* We've made numerous improvements to the data sync process.
+
+**Bug Fixes:**
+
+* Fixed link to Akismet settings.
+* Improved compatibility between Infinite Scroll and WPML.
+* Move email notification settings back with the other email settings in the Discussion Settings.
+* Various minor performance/compatibility fixes.
+
 = 4.3.2 =
 
 * Release date: October 13, 2016
@@ -86,7 +142,6 @@ There are opportunities for developers at all levels to contribute. [Learn more 
 * Stats are now responding faster.
 * There were several improvements and repairs made to sync including additional endpoints, performance enhancements, whitelisted data, better decision making around when to sync information, and more.
 * Markdown now has a CSS class on footnotes.
-* Site stats have been restored to the Jetpack submenu.
 
 **Improved Compatibility:**
 
@@ -189,7 +244,7 @@ There are opportunities for developers at all levels to contribute. [Learn more 
 
 **Security:**
 
-* We’re continuing our efforts to harden Jetpack security, by implementing the `hash_equals()` function to avoid timing attacks when comparing strings.  We also improved security on CSVs exported from your contact form.
+* We’re continuing our efforts to harden Jetpack security, by implementing the `hash_equals()` function to avoid timing attacks when comparing strings. We also improved security on CSVs exported from your contact form.
 
 **Slightly Less Exciting Feature Improvements:**
 
@@ -214,3 +269,9 @@ There are opportunities for developers at all levels to contribute. [Learn more 
 * The PHP warnings of Sitemaps stylesheets have been eliminated.
 * We’ve done away with the warnings that appeared when Tonesque processes a file which claims to be one filetype, but is actually another.
 * We’ve exterminated PHP notices that appeared when using Random Redirect, as well as when the author wasn't set.
+
+
+== Upgrade Notice ==
+
+= 4.4.2 =
+Jetpack 4.4.2 fixes compatibility issues with WordPress 4.7. Please upgrade immediately.

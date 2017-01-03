@@ -45,7 +45,7 @@ class WPSEO_Metabox extends WPSEO_Meta {
 
 		$this->options = WPSEO_Options::get_options( array( 'wpseo', 'wpseo_social' ) );
 
-		// Check if on of the social settings is checked in the options, if so, initialize the social_admin object.
+		// Check if one of the social settings is checked in the options, if so, initialize the social_admin object.
 		if ( $this->options['opengraph'] === true || $this->options['twitter'] === true ) {
 			$this->social_admin = new WPSEO_Social_Admin( $this->options );
 		}
@@ -185,7 +185,8 @@ class WPSEO_Metabox extends WPSEO_Meta {
 	}
 
 	/**
-	 * Adds the Yoast SEO meta box to the edit boxes in the edit post / page  / cpt pages.
+	 * Adds the Yoast SEO meta box to the edit boxes in the edit post, page,
+	 * attachment, and custom post types pages.
 	 */
 	public function add_meta_box() {
 		$post_types = get_post_types( array( 'public' => true ) );
@@ -198,6 +199,11 @@ class WPSEO_Metabox extends WPSEO_Meta {
 						$product_title .= ' Premium';
 					}
 
+					if ( null !== get_current_screen() ) {
+						$screen_id = get_current_screen()->id;
+						add_filter( "postbox_classes_{$screen_id}_wpseo_meta", array( $this, 'wpseo_metabox_class' ) );
+					}
+
 					add_meta_box( 'wpseo_meta', $product_title, array(
 						$this,
 						'meta_box',
@@ -205,6 +211,18 @@ class WPSEO_Metabox extends WPSEO_Meta {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Adds CSS classes to the meta box.
+	 *
+	 * @param array $classes An array of postbox CSS classes.
+	 *
+	 * @return array
+	 */
+	public function wpseo_metabox_class( $classes ) {
+		$classes[] = 'yoast wpseo-metabox';
+		return $classes;
 	}
 
 	/**
@@ -327,7 +345,7 @@ class WPSEO_Metabox extends WPSEO_Meta {
 		$content_sections = array( $this->get_content_meta_section() );
 
 		// Check if social_admin is an instance of WPSEO_Social_Admin.
-		if ( is_a( $this->social_admin, 'WPSEO_Social_Admin' ) ) {
+		if ( $this->social_admin instanceof WPSEO_Social_Admin ) {
 			$content_sections[] = $this->social_admin->get_meta_section();
 		}
 
@@ -361,7 +379,7 @@ class WPSEO_Metabox extends WPSEO_Meta {
 			$content,
 			__( '', 'wordpress-seo' ),
 			array(
-				'link_class' => 'yoast-seo__remove-tab',
+				'tab_class' => 'yoast-seo__remove-tab',
 			)
 		);
 
@@ -369,10 +387,11 @@ class WPSEO_Metabox extends WPSEO_Meta {
 
 		return new WPSEO_Metabox_Tab_Section(
 			'content',
-			'<span class="yst-traffic-light-container">' . $this->traffic_light_svg() . '</span>',
+			'<span class="screen-reader-text">' . __( 'Content optimization', 'wordpress-seo' ) . '</span><span class="yst-traffic-light-container">' . $this->traffic_light_svg() . '</span>',
 			$tabs,
 			array(
-				'link_title' => __( 'Content optimization', 'wordpress-seo' ),
+				'link_aria_label' => __( 'Content optimization', 'wordpress-seo' ),
+				'link_class'      => 'yoast-tooltip yoast-tooltip-e',
 			)
 		);
 	}
@@ -396,10 +415,11 @@ class WPSEO_Metabox extends WPSEO_Meta {
 
 		return new WPSEO_Metabox_Tab_Section(
 			'advanced',
-			'<span class="dashicons dashicons-admin-generic"></span>',
+			'<span class="screen-reader-text">' . __( 'Advanced', 'wordpress-seo' ) . '</span><span class="dashicons dashicons-admin-generic"></span>',
 			array( $tab ),
 			array(
-				'link_title' => __( 'Advanced', 'wordpress-seo' ),
+				'link_aria_label' => __( 'Advanced', 'wordpress-seo' ),
+				'link_class'      => 'yoast-tooltip yoast-tooltip-e',
 			)
 		);
 	}
@@ -445,7 +465,8 @@ class WPSEO_Metabox extends WPSEO_Meta {
 
 			<p><a target='_blank' class='wpseo-metabox-go-to' href='%s'>%s</a></p>
 		</div>",
-			__( 'You\'re not getting the benefits of Yoast SEO Premium yet. If you had Yoast SEO Premium, you could use its awesome features:', 'wordpress-seo' ),
+			/* translators: %1$s expands to Yoast SEO Premium. */
+			sprintf( __( 'You\'re not getting the benefits of %1$s yet. If you had %1$s, you could use its awesome features:', 'wordpress-seo' ), 'Yoast SEO Premium' ),
 			__( 'Redirect manager', 'wordpress-seo' ),
 			__( 'Create and manage redirects within your WordPress install.', 'wordpress-seo' ),
 			__( 'Multiple focus keywords', 'wordpress-seo' ),
@@ -455,7 +476,8 @@ class WPSEO_Metabox extends WPSEO_Meta {
 			__( 'Premium support', 'wordpress-seo' ),
 			__( 'Gain access to our 24/7 support team.', 'wordpress-seo' ),
 			'https://yoa.st/pe-buy-premium',
-			__( 'Get Yoast SEO Premium now!', 'wordpress-seo' ),
+			/* translators: %s expands to Yoast SEO Premium. */
+			sprintf( __( 'Get %s now!', 'wordpress-seo' ), 'Yoast SEO Premium' ),
 			'https://yoa.st/pe-premium-page',
 			__( 'More info', 'wordpress-seo' )
 			);
@@ -463,7 +485,7 @@ class WPSEO_Metabox extends WPSEO_Meta {
 		$tab = new WPSEO_Metabox_Form_Tab(
 			'premium',
 			$content,
-			__( 'Yoast SEO Premium', 'wordpress-seo' ),
+			'Yoast SEO Premium',
 			array(
 				'single' => true,
 			)
@@ -474,7 +496,8 @@ class WPSEO_Metabox extends WPSEO_Meta {
 			'<span class="dashicons dashicons-star-filled wpseo-buy-premium"></span>',
 			array( $tab ),
 			array(
-				'link_title' => __( 'Yoast SEO Premium', 'wordpress-seo' ),
+				'link_aria_label' => 'Yoast SEO Premium',
+				'link_class'      => 'yoast-tooltip yoast-tooltip-e',
 			)
 		);
 	}
@@ -488,10 +511,11 @@ class WPSEO_Metabox extends WPSEO_Meta {
 	private function get_addons_meta_section() {
 		return new WPSEO_Metabox_Addon_Tab_Section(
 			'addons',
-			'<span class="dashicons dashicons-admin-plugins"></span>',
+			'<span class="screen-reader-text">' . __( 'Add-ons', 'wordpress-seo' ) . '</span><span class="dashicons dashicons-admin-plugins"></span>',
 			array(),
 			array(
-				'link_title' => __( 'Add-ons', 'wordpress-seo' ),
+				'link_aria_label' => __( 'Add-ons', 'wordpress-seo' ),
+				'link_class'      => 'yoast-tooltip yoast-tooltip-e',
 			)
 		);
 	}
@@ -874,7 +898,7 @@ class WPSEO_Metabox extends WPSEO_Meta {
 			wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'shortcode-plugin', 'wpseoShortcodePluginL10n', $this->localize_shortcode_plugin_script() );
 
 			wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'metabox', 'wpseoAdminL10n', WPSEO_Help_Center::get_translated_texts() );
-			wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'metabox', 'wpseoSelect2Locale', WPSEO_Utils::get_language( get_locale() ) );
+			wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'metabox', 'wpseoSelect2Locale', WPSEO_Utils::get_language( WPSEO_Utils::get_user_locale() ) );
 
 			if ( post_type_supports( get_post_type(), 'thumbnail' ) ) {
 				$asset_manager->enqueue_style( 'featured-image' );
@@ -1107,10 +1131,10 @@ SVG;
 						<span class="wpseo-score-icon {{data.score}}"></span>
 						<span class="wpseo-tab-prefix">{{data.prefix}}</span>
 						<span class="wpseo-tab-label">{{data.label}}</span>
-						<span class="screen-reader-text wpseo-generic-tab-textual-score">{{data.scoreText}}.</span>
+						<span class="screen-reader-text wpseo-generic-tab-textual-score">{{data.scoreText}}</span>
 					</a>
 					<# if ( data.hideable ) { #>
-						<a href="#" class="remove-tab"><span>x</span></a>
+						<button type="button" class="remove-tab" aria-label="{{data.removeLabel}}"><span>x</span></button>
 					<# } #>
 				</li>
 			</script>';
@@ -1131,10 +1155,10 @@ SVG;
 						<span class="wpseo-score-icon {{data.score}}"></span>
 						<span class="wpseo-tab-prefix">{{data.prefix}}</span>
 						<em class="wpseo-keyword">{{data.label}}</em>
-						<span class="screen-reader-text wpseo-keyword-tab-textual-score">{{data.scoreText}}.</span>
+						<span class="screen-reader-text wpseo-keyword-tab-textual-score">{{data.scoreText}}</span>
 					</a>
 					<# if ( data.hideable ) { #>
-						<a href="#" class="remove-keyword"><span>x</span></a>
+						<button type="button" class="remove-keyword" aria-label="{{data.removeLabel}}"><span>x</span></button>
 					<# } #>
 				</li>
 			</script>';
