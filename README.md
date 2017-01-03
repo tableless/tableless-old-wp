@@ -17,6 +17,9 @@ O site é baseado em WordPress. Nós versionamos não apenas o tema do site, mas
 
 Para que o projeto funcione, você vai precisar instalar o banco de dados onde contém os posts do site. Para tanto, [baixe o banco deste link](https://dl.dropboxusercontent.com/u/177663/tablelessBancoDemo.sql?dl=1). User: diegoeis Pass: s3nh4d3m0
 
+Fica fácil de importar usando o comando abaixo:
+**mysql -u <username> -p <databasename> < <filename.sql>**
+
 O link base do site no Banco é [http://localhost/tableless/](http://localhost/tableless/). Você pode mudar isso direto no banco, configurar seu hosts ou qualquer outra maneira que encontrar. [O próprio site do WordPress dá várias opções para fazer isso](https://codex.wordpress.org/Changing_The_Site_URL). Aqui estou usando o Apache padrão do Mac, com meu **localhost** configurado para o diretório **~/Sites**.
 
 Para que os posts apareçam com suas respectivas imagens, [baixe a pasta **uploads**](https://dl.dropboxusercontent.com/u/177663/uploads.tar.gz?dl=0) e descompactar dentro da pasta **wp-content**. O caminho final é **/wp-content/uploads/**.
