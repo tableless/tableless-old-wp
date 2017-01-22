@@ -1,8 +1,13 @@
 <div class="wrap clearfix" id="sendgrid-statistics-page">
   <div class="pull-left sendgrid-statistics-header">
-    <div id="icon-sendgrid" class="icon32"><br></div>
+    <div>
+      <a href="http://sendgrid.com" target="_blank">
+        <img src="<?php echo plugins_url( '/images/logo.png', __FILE__ ) ?>" width="100" alt="" />
+      </a>
+    </div>
     <h2 id="sendgrid-wordpress-statistics-header" class="sendgrid-statistics-header-toggle">SendGrid Wordpress Statistics</h2>
     <h2 id="sendgrid-general-statistics-header" class="sendgrid-statistics-header-toggle" style="display: none;">SendGrid General Statistics</h2>
+    <h2 id="sendgrid-category-statistics-header" class="sendgrid-statistics-header-toggle" style="display: none;">SendGrid Categories Statistics</h2>
     <?php if ( isset( $status ) and ( 'error' == $status ) ): ?>
       <div id="message" class="<?php echo $status ?>">
         <p>

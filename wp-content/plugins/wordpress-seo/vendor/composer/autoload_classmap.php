@@ -140,7 +140,7 @@ return array(
     'WPSEO_GSC_Service' => $baseDir . '/admin/google_search_console/class-gsc-service.php',
     'WPSEO_GSC_Settings' => $baseDir . '/admin/google_search_console/class-gsc-settings.php',
     'WPSEO_GSC_Table' => $baseDir . '/admin/google_search_console/class-gsc-table.php',
-    'WPSEO_GooglePlus' => $baseDir . '/frontend/class-googleplus.php',
+    'WPSEO_GooglePlus' => $baseDir . '/deprecated/class-googleplus.php',
     'WPSEO_Help_Center' => $baseDir . '/admin/class-help-center.php',
     'WPSEO_Help_Center_Item' => $baseDir . '/admin/class-help-center-item.php',
     'WPSEO_Import' => $baseDir . '/admin/class-import.php',

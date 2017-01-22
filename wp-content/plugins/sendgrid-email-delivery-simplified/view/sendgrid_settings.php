@@ -13,6 +13,11 @@
   <?php 
     $tabs = array( 'general' => 'General', 'marketing' => 'Subscription Widget' );
 
+    // If network settings display settings for subsites
+    if ( is_multisite() and is_main_site() ) {
+      $tabs['multisite'] = 'Multisite Settings';
+    }
+
     $active_tab = current( array_keys( $tabs ) );
     if ( isset( $_GET[ 'tab' ] ) ) {
       $selected_tab = $_GET[ 'tab' ];
@@ -28,5 +33,6 @@
     require_once plugin_dir_path( __FILE__ ) . 'sendgrid_settings_test_email.php';
     require_once plugin_dir_path( __FILE__ ) . 'sendgrid_settings_nlvx.php';
     require_once plugin_dir_path( __FILE__ ) . 'sendgrid_settings_test_contact.php';
+    require_once plugin_dir_path( __FILE__ ) . 'sendgrid_settings_multisite.php';
   ?>
 </div>  

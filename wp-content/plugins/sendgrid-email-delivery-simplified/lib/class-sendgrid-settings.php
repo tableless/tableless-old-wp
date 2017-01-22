@@ -37,25 +37,20 @@ class Sendgrid_Settings {
    */
   public static function set_up_menu()
   {
-    if ( ! is_multisite() and current_user_can('manage_options') ) {
+    if ( ( ! is_multisite() and current_user_can('manage_options') ) || ( is_multisite() and ! is_main_site() and get_option( 'sendgrid_can_manage_subsite' ) ) ) {
       // Add SendGrid settings page in the menu
       add_action( 'admin_menu', array( __CLASS__, 'add_settings_menu' ) );
       // Add SendGrid settings page in the plugin list
       add_filter( 'plugin_action_links_' . self::$plugin_directory, array( __CLASS__, 'add_settings_link' ) );
-      // Add SendGrid Help contextual menu in the settings page
-      add_filter( 'contextual_help', array( __CLASS__, 'show_contextual_help' ), 10, 3 );
-      // Add SendGrid javascripts in header
-      add_action( 'admin_enqueue_scripts', array( __CLASS__, 'add_headers' ) );
-    } elseif ( is_multisite() and is_super_admin() ) {
+    } elseif ( is_multisite() and is_main_site() ) {
       // Add SendGrid settings page in the network admin menu
       add_action( 'network_admin_menu', array( __CLASS__, 'add_network_settings_menu' ) );
-      // Add SendGrid Help contextual menu in the settings page
-      add_filter( 'contextual_help', array( __CLASS__, 'show_contextual_help' ), 10, 3 );
-      // Add SendGrid javascripts in header
-      add_action( 'admin_enqueue_scripts', array( __CLASS__, 'add_headers' ) );
     }
+    // Add SendGrid Help contextual menu in the settings page
+    add_filter( 'contextual_help', array( __CLASS__, 'show_contextual_help' ), 10, 3 );
+    // Add SendGrid javascripts in header
+    add_action( 'admin_enqueue_scripts', array( __CLASS__, 'add_headers' ) );
   }
-
   /**
    * Add SendGrid settings page in the menu
    *
@@ -376,19 +371,41 @@ class Sendgrid_Settings {
    * @return mixed              response array from the save or send functions
    */
   private static function do_post( $params ) {
-    if ( isset($params['mc_settings'] ) and $params['mc_settings'] ) {
+    if ( isset( $params['mc_settings'] ) and $params['mc_settings'] ) {
       return self::save_mc_settings( $params );
     }
 
-    if ( isset($params['email_test'] ) and $params['email_test'] ) {
+    if ( isset( $params['email_test'] ) and $params['email_test'] ) {
       return self::send_test_email( $params );
     }
 
-    if ( isset($params['contact_upload_test'] ) and $params['contact_upload_test'] ) {
+    if ( isset( $params['contact_upload_test'] ) and $params['contact_upload_test'] ) {
       return self::send_contact_upload_test( $params );
     } 
 
+    if ( isset( $params['subsite_settings'] ) and $params['subsite_settings'] ) {
+      return self::save_subsite_settings( $params );
+    } 
+
     return self::save_general_settings( $params );
+  }
+
+  /**
+   * Saves the Subsite settings sent from the settings page
+   *
+   * @param  mixed   $params    array of parameters from $_POST
+   *
+   * @return mixed              response array with message and status
+   */
+  private static function save_subsite_settings( $params ) {
+    $sites = get_sites();
+    foreach( $sites as $site ) {
+      if ( isset( $params['checked_sites'][$site->blog_id] ) and 'on' == $params['checked_sites'][$site->blog_id] ) {
+        update_blog_option( $site->blog_id, 'sendgrid_can_manage_subsite', 1 );
+      } else {
+        update_blog_option( $site->blog_id, 'sendgrid_can_manage_subsite', 0 );
+      }
+    }
   }
 
   /**

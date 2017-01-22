@@ -149,4 +149,8 @@ jQuery(document).ready(function($) {
   $('#send_method').select2({
     minimumResultsForSearch: Infinity
   });
+
+  $('#sg-check-all-sites').click(function () {
+    $('#subsites-table-sg input:checkbox').prop('checked', this.checked);
+  });
 });
