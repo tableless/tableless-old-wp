@@ -5,10 +5,8 @@
     <h5>Leia também:</h5>
     <?php $posts = get_posts('orderby=rand&numberposts=1'); foreach($posts as $post) { ?>
         <a href="<?php the_permalink();?>">
-          <!-- <h1 class="tb-big-title"><?php the_title(); ?></h1> -->
           <p class="tb-lead-text"><?php echo get_the_excerpt(); ?></p>
         </a>
-        <!--a href="<?php bloginfo('url'); ?>/?author=<?php the_author_meta('ID'); ?>" rel="author" class="tb-author">Por <?php the_author(); ?></a-->
   <?php } ?>
   </div>
 
@@ -43,15 +41,6 @@
     <p class="tb-done-community">Escrito pela e para a comunidade web brasileira. <a href="<?php bloginfo('url'); ?>/seja-um-autor?utm_source=footer&utm_medium=link&utm_campaign=linkAjudeFooter">Ajude</a>. <span class="tb-love">♥</span></p>
   </div>
 </footer>
-<?php /*
-<script type="text/javascript">
-// CrazyEgg
-  setTimeout(function(){var a=document.createElement("script");
-  var b=document.getElementsByTagName("script")[0];
-  a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0000/6090.js?"+Math.floor(new Date().getTime()/3600000);
-  a.async=false;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
-</script>
-*/?>
 
 <script
         src="https://code.jquery.com/jquery-3.0.0.min.js"
@@ -67,19 +56,6 @@
 
     ga('create', 'UA-335027-1', 'tableless.com.br');
     ga('send', 'pageview');
-  </script>
-
-
-  <script type='text/javascript'>
-  /*(function() {
-    /var gads = document.createElement('script');
-    #gads.async = true;
-    #gads.type = 'text/javascript';
-    #var useSSL = 'https:' == document.location.protocol;
-    #gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
-    #var node = document.getElementsByTagName('script')[0];
-    #node.parentNode.insertBefore(gads, node);
-  #})();*/
   </script>
 
 <script type="text/javascript">
@@ -98,12 +74,6 @@
 
 
 <?php wp_footer();?>
-
-<!-- 
-// TypeForm
-<script type="text/javascript">(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}id=id+'_';if(!gi.call(d,id)){qs=ce.call(d,'link');qs.rel='stylesheet';qs.id=id;qs.href=b+'share-button.css';s=gt.call(d,'head')[0];s.appendChild(qs,s)}})();</script> -->
-
-
 
 
 </body>

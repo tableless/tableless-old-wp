@@ -28,10 +28,7 @@
     googletag.enableServices();
   });
 </script>
-<script type="text/javascript">
-yuhuads="//track.yuhuads.com/interstitial/5857a9adf492f00f5c737a21/"+((new Date()).getTime()) + Math.random();
-document.write("<scr"+"ipt language='javascript' type='text/javascript' src='"+yuhuads+"'></scri"+"pt>");
-</script>
+
 <script type="text/javascript">
 window.sendinblue=window.sendinblue||[];window.sendinblue.methods=["identify","init","group","track","page","trackLink"];window.sendinblue.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);window.sendinblue.push(t);return window.sendinblue}};for(var i=0;i<window.sendinblue.methods.length;i++){var key=window.sendinblue.methods[i];window.sendinblue[key]=window.sendinblue.factory(key)}window.sendinblue.load=function(){if(document.getElementById("sendinblue-js"))return;var e=document.createElement("script");e.type="text/javascript";e.id="sendinblue-js";e.async=true;e.src=("https:"===document.location.protocol?"https://":"http://")+"s.sib.im/automation.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)};window.sendinblue.SNIPPET_VERSION="1.0";window.sendinblue.load();window.sendinblue.client_key="swp6ygvsstks39srqk021";window.sendinblue.page();
 </script>
