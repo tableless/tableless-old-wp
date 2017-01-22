@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Themes - Twenty Seventeen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-12-04 18:08:18+0000\n"
+"PO-Revision-Date: 2016-12-27 20:01:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,10 @@ msgstr ""
 "X-Generator: GlotPress/2.3.0-alpha\n"
 "Language: pt_BR\n"
 "Project-Id-Version: Themes - Twenty Seventeen\n"
+
+#. Description of the plugin/theme
+msgid "Twenty Seventeen brings your site to life with header video and immersive featured images. With a focus on business sites, it features multiple sections on the front page as well as widgets, navigation and social menus, a logo, and more. Personalize its asymmetrical grid with a custom color scheme and showcase your multimedia content with post formats. Our default theme for 2017 works great in many languages, for any abilities, and on any device."
+msgstr "Twenty Seventeen dá vida ao seu site com o vídeo de cabeçalho e imagens destacadas imersivas. Focado em sites empresariais, possui suporte para múltiplas seções na página inicial, widgets, navegação, menu de redes sociais, logo e muito mais. Personalize sua grade assimétrica com um padrão de cores e exiba seu conteúdo com formatos de posts. Nosso tema padrão para 2017 funciona perfeitamente em vários idiomas e dispositivos."
 
 #. Theme Name of the plugin/theme
 msgid "Twenty Seventeen"
@@ -20,17 +24,17 @@ msgstr "Twenty Seventeen"
 msgid "Scroll down to content"
 msgstr "Ir para o conteúdo"
 
-#: functions.php:150
+#: functions.php:159
 msgctxt "Theme starter content"
 msgid "Coffee"
 msgstr "Café"
 
-#: functions.php:146
+#: functions.php:155
 msgctxt "Theme starter content"
 msgid "Sandwich"
 msgstr "Sanduíche"
 
-#: functions.php:142
+#: functions.php:151
 msgctxt "Theme starter content"
 msgid "Espresso"
 msgstr "Espresso"
@@ -131,24 +135,24 @@ msgstr "Esquema de cor"
 msgid "Default Header Image"
 msgstr "Imagem padrão do cabeçalho"
 
-#: functions.php:296
+#: functions.php:335
 msgid "Footer 2"
 msgstr "Rodapé 2"
 
-#: functions.php:288 functions.php:298
+#: functions.php:327 functions.php:337
 msgid "Add widgets here to appear in your footer."
 msgstr "Adicione widgets aqui para serem exibidos em seu rodapé."
 
-#: functions.php:286
+#: functions.php:325
 msgid "Footer 1"
 msgstr "Rodapé 2"
 
-#: functions.php:230
+#: functions.php:269
 msgctxt "Libre Franklin font: on or off"
 msgid "on"
 msgstr "ligado"
 
-#: functions.php:60 functions.php:170
+#: functions.php:63 functions.php:183
 #: template-parts/navigation/navigation-top.php:12
 msgid "Top Menu"
 msgstr "Menu do topo"
@@ -205,7 +209,7 @@ msgid "Search Results for: %s"
 msgstr "Resultados da pesquisa por: %s"
 
 #. translators: %s: Name of current post
-#: functions.php:323 template-parts/page/content-front-page-panels.php:43
+#: functions.php:362 template-parts/page/content-front-page-panels.php:43
 #: template-parts/page/content-front-page.php:44
 #: template-parts/post/content-audio.php:80
 #: template-parts/post/content-gallery.php:66
@@ -243,23 +247,23 @@ msgstr "Menu"
 msgid "Skip to content"
 msgstr "Pular para o conteúdo"
 
-#: functions.php:406
+#: functions.php:445
 msgid "Collapse child menu"
 msgstr "Fechar submenu"
 
-#: functions.php:405
+#: functions.php:444
 msgid "Expand child menu"
 msgstr "Expandir submenu"
 
-#: functions.php:278
+#: functions.php:317
 msgid "Add widgets here to appear in your sidebar."
 msgstr "Adicione widgets aqui para aparecerem em sua barra lateral."
 
-#: functions.php:276
+#: functions.php:315
 msgid "Sidebar"
 msgstr "Lateral"
 
-#: functions.php:61 functions.php:179
+#: functions.php:64 functions.php:194
 msgid "Social Links Menu"
 msgstr "Menu de links sociais"
 
@@ -267,7 +271,7 @@ msgstr "Menu de links sociais"
 msgid "Proudly powered by %s"
 msgstr "Orgulhosamente desenvolvido com %s"
 
-#. #-#-#-#-#  twentyseventeen.pot (Twenty Seventeen 1.0)  #-#-#-#-#
+#. #-#-#-#-#  twentyseventeen.pot (Twenty Seventeen 1.1)  #-#-#-#-#
 #. Author URI of the plugin/theme
 #: template-parts/footer/site-info.php:13
 msgid "https://wordpress.org/"
