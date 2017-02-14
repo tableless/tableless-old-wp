@@ -67,7 +67,7 @@ class Jetpack_Sync_Defaults {
 		'comment_whitelist',
 		'comment_max_links',
 		'moderation_keys',
-		'wga',
+		'jetpack_wga',
 		'disabled_likes',
 		'disabled_reblogs',
 		'jetpack_comment_likes_enabled',
@@ -82,6 +82,7 @@ class Jetpack_Sync_Defaults {
 		'jetpack_autoupdate_themes',
 		'jetpack_autoupdate_themes_translations',
 		'jetpack_autoupdate_core',
+		'jetpack_autoupdate_translations',
 		'carousel_background_color',
 		'carousel_display_exif',
 		'jetpack_portfolio',
@@ -174,22 +175,22 @@ class Jetpack_Sync_Defaults {
 	static $default_post_checksum_columns = array(
 		'ID',
 		'post_modified',
-	); 
+	);
 
 	static $default_post_meta_checksum_columns = array(
 		'meta_id',
 		'meta_value'
-	); 
+	);
 
 	static $default_comment_checksum_columns = array(
 		'comment_ID',
 		'comment_content',
-	); 
+	);
 
 	static $default_comment_meta_checksum_columns = array(
 		'meta_id',
 		'meta_value'
-	); 
+	);
 
 	static $default_option_checksum_columns = array(
 		'option_name',

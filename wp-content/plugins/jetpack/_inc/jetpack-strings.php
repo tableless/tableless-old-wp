@@ -41,45 +41,46 @@ __( "Show falling snow in the holiday period.", "jetpack" ), // _inc/client/appe
 __( "Holiday Snow", "jetpack" ), // _inc/client/appearance/index.jsx:99
 __( "Learn More", "jetpack" ), // _inc/client/appearance/index.jsx:87
 __( "Unavailable in Dev Mode", "jetpack" ), // _inc/client/appearance/index.jsx:57
-__( "Download the free WordPress app for your Linux machine", "jetpack" ), // _inc/client/apps/index.jsx:193
-__( "WordPress.com for Linux", "jetpack" ), // _inc/client/apps/index.jsx:192
-__( "Download the free WordPress app for your PC ", "jetpack" ), // _inc/client/apps/index.jsx:189
-__( "WordPress.com for Windows", "jetpack" ), // _inc/client/apps/index.jsx:188
-__( "Download the free WordPress app for your apple computer", "jetpack" ), // _inc/client/apps/index.jsx:184
-__( "WordPress.com for Mac OS X", "jetpack" ), // _inc/client/apps/index.jsx:183
-__( "A desktop app that gives WordPress a permanent home on your computer. Not to mention the distraction free environment you get writing outside of a web browser.", "jetpack" ), // _inc/client/apps/index.jsx:180
-__( "On Your Desktop", "jetpack" ), // _inc/client/apps/index.jsx:179
-__( "Download the free WordPress app for your Android based phone", "jetpack" ), // _inc/client/apps/index.jsx:168
-__( "WordPress.com in Google Play", "jetpack" ), // _inc/client/apps/index.jsx:167
-__( "Download the free WordPress app for your iPhone", "jetpack" ), // _inc/client/apps/index.jsx:159
-__( "WordPress.com in the App Store", "jetpack" ), // _inc/client/apps/index.jsx:158
-__( "Publish content, track stats, moderate comments and so much more from anywhere in the world. Our mobile apps are open source, free and available to you on Apple or Android devices.", "jetpack" ), // _inc/client/apps/index.jsx:155
-__( "In Your Pocket", "jetpack" ), // _inc/client/apps/index.jsx:154
-__( "Example of three devices to use the WordPress apps. An iPhone, Android phone, and a apple laptop computer.", "jetpack" ), // _inc/client/apps/index.jsx:150
-__( "Get WordPress apps for any screen.", "jetpack" ), // _inc/client/apps/index.jsx:147
-__( "Inspiration strikes any time, anywhere.", "jetpack" ), // _inc/client/apps/index.jsx:143
-__( "Image of your WordPress.com reader", "jetpack" ), // _inc/client/apps/index.jsx:127
-__( "Launch Reader", "jetpack" ), // _inc/client/apps/index.jsx:121
-__( "The WordPress apps all have impressively fast and full featured readers so you can catch up with your favorite sites and join the conversation anywhere, any time.", "jetpack" ), // _inc/client/apps/index.jsx:119
-__( "Connect with the Community", "jetpack" ), // _inc/client/apps/index.jsx:118
-__( "Image of your WordPress.com reader", "jetpack" ), // _inc/client/apps/index.jsx:113
-__( "View Your Stats", "jetpack" ), // _inc/client/apps/index.jsx:96
-__( "Monitor your visitors with advanced stats. Watch for trends, learn what content performs the best and understand your visitors from anywhere in the world.", "jetpack" ), // _inc/client/apps/index.jsx:94
-__( "Connect with your Visitors", "jetpack" ), // _inc/client/apps/index.jsx:93
-__( "Image of your sites stats on your WordPress.com dashboard", "jetpack" ), // _inc/client/apps/index.jsx:90
-__( "Image of the new post editor on your WordPress.com dashboard", "jetpack" ), // _inc/client/apps/index.jsx:78
-__( "Try the New Editor", "jetpack" ), // _inc/client/apps/index.jsx:74
-__( "Our new editor is lightning fast, optimized for writers and eliminates distractions, giving you the ability to focus on your work.", "jetpack" ), // _inc/client/apps/index.jsx:72
-__( "Focus on your Writing", "jetpack" ), // _inc/client/apps/index.jsx:71
-__( "Manage Plugins", "jetpack" ), // _inc/client/apps/index.jsx:58
-__( "Most security flaws are found in outdated plugins. Use our Web and Desktop apps to turn on auto-updates or update plugins manually for all your websites in one convenient place.", "jetpack" ), // _inc/client/apps/index.jsx:56
-__( "Bulk and automatic updates", "jetpack" ), // _inc/client/apps/index.jsx:55
-__( "Image of managing your sites plugins on your WordPress.com dashboard", "jetpack" ), // _inc/client/apps/index.jsx:51
-__( "Image of managing your sites themes on your WordPress.com dashboard", "jetpack" ), // _inc/client/apps/index.jsx:34
-__( "All the WordPress apps are built for speed. You'll notice the difference in performance immediately, with near-instant page-loads and less waiting around.", "jetpack" ), // _inc/client/apps/index.jsx:31
-__( "Feel the performance", "jetpack" ), // _inc/client/apps/index.jsx:30
-__( "Manage all your sites from a single dashboard.", "jetpack" ), // _inc/client/apps/index.jsx:25
-__( "Powerful WordPress.com features on every device.", "jetpack" ), // _inc/client/apps/index.jsx:21
+__( "Download the free WordPress app for your Linux machine", "jetpack" ), // _inc/client/apps/index.jsx:202
+__( "WordPress.com for Linux", "jetpack" ), // _inc/client/apps/index.jsx:201
+__( "Download the free WordPress app for your PC ", "jetpack" ), // _inc/client/apps/index.jsx:198
+__( "WordPress.com for Windows", "jetpack" ), // _inc/client/apps/index.jsx:197
+__( "Download the free WordPress app for your apple computer", "jetpack" ), // _inc/client/apps/index.jsx:193
+__( "WordPress.com for Mac OS X", "jetpack" ), // _inc/client/apps/index.jsx:192
+__( "A desktop app that gives WordPress a permanent home on your computer. Not to mention the distraction free environment you get writing outside of a web browser.", "jetpack" ), // _inc/client/apps/index.jsx:189
+__( "On Your Desktop", "jetpack" ), // _inc/client/apps/index.jsx:188
+__( "Download the free WordPress app for your Android based phone", "jetpack" ), // _inc/client/apps/index.jsx:177
+__( "WordPress.com in Google Play", "jetpack" ), // _inc/client/apps/index.jsx:176
+__( "Download the free WordPress app for your iPhone", "jetpack" ), // _inc/client/apps/index.jsx:168
+__( "WordPress.com in the App Store", "jetpack" ), // _inc/client/apps/index.jsx:167
+__( "Publish content, track stats, moderate comments and so much more from anywhere in the world. Our mobile apps are open source, free and available to you on Apple or Android devices.", "jetpack" ), // _inc/client/apps/index.jsx:164
+__( "In Your Pocket", "jetpack" ), // _inc/client/apps/index.jsx:163
+__( "Example of three devices to use the WordPress apps. An iPhone, Android phone, and a apple laptop computer.", "jetpack" ), // _inc/client/apps/index.jsx:159
+__( "Get WordPress apps for any screen.", "jetpack" ), // _inc/client/apps/index.jsx:156
+__( "Inspiration strikes any time, anywhere.", "jetpack" ), // _inc/client/apps/index.jsx:152
+__( "Image of your WordPress.com reader", "jetpack" ), // _inc/client/apps/index.jsx:136
+__( "Launch Reader", "jetpack" ), // _inc/client/apps/index.jsx:130
+__( "The WordPress apps all have impressively fast and full featured readers so you can catch up with your favorite sites and join the conversation anywhere, any time.", "jetpack" ), // _inc/client/apps/index.jsx:128
+__( "Connect with the Community", "jetpack" ), // _inc/client/apps/index.jsx:127
+__( "Image of your WordPress.com reader", "jetpack" ), // _inc/client/apps/index.jsx:122
+__( "View Your Stats", "jetpack" ), // _inc/client/apps/index.jsx:105
+__( "Monitor your visitors with advanced stats. Watch for trends, learn what content performs the best and understand your visitors from anywhere in the world.", "jetpack" ), // _inc/client/apps/index.jsx:103
+__( "Connect with your Visitors", "jetpack" ), // _inc/client/apps/index.jsx:102
+__( "Image of your sites stats on your WordPress.com dashboard", "jetpack" ), // _inc/client/apps/index.jsx:99
+__( "Image of the new post editor on your WordPress.com dashboard", "jetpack" ), // _inc/client/apps/index.jsx:87
+__( "Try the New Editor", "jetpack" ), // _inc/client/apps/index.jsx:83
+__( "Our new editor is lightning fast, optimized for writers and eliminates distractions, giving you the ability to focus on your work.", "jetpack" ), // _inc/client/apps/index.jsx:81
+__( "Focus on your Writing", "jetpack" ), // _inc/client/apps/index.jsx:80
+__( "Manage Plugins", "jetpack" ), // _inc/client/apps/index.jsx:67
+__( "Most security flaws are found in outdated plugins. Use our Web and Desktop apps to turn on auto-updates or update plugins manually for all your websites in one convenient place.", "jetpack" ), // _inc/client/apps/index.jsx:65
+__( "Bulk and automatic updates", "jetpack" ), // _inc/client/apps/index.jsx:64
+__( "Image of managing your sites plugins on your WordPress.com dashboard", "jetpack" ), // _inc/client/apps/index.jsx:60
+__( "Image of managing your sites themes on your WordPress.com dashboard", "jetpack" ), // _inc/client/apps/index.jsx:43
+__( "Download the Free Apps", "jetpack" ), // _inc/client/apps/index.jsx:39
+__( "All the WordPress apps are built for speed. You'll notice the difference in performance immediately, with near-instant page-loads and less waiting around.", "jetpack" ), // _inc/client/apps/index.jsx:32
+__( "Feel the performance", "jetpack" ), // _inc/client/apps/index.jsx:31
+__( "Manage all your sites from a single dashboard.", "jetpack" ), // _inc/client/apps/index.jsx:26
+__( "Powerful WordPress.com features on every device.", "jetpack" ), // _inc/client/apps/index.jsx:22
 _x( "Spam comments blocked.", "Example: \"412 Spam comments blocked\"", "jetpack" ), // _inc/client/at-a-glance/akismet.jsx:129
 __( "Whoops! Your Akismet key is missing or invalid. {{akismetSettings}}Go to Akismet settings to fix{{/akismetSettings}}.", "jetpack" ), // _inc/client/at-a-glance/akismet.jsx:108
 __( "Invalid Key", "jetpack" ), // _inc/client/at-a-glance/akismet.jsx:102
@@ -130,13 +131,13 @@ __( "Security Scanning", "jetpack" ), // _inc/client/at-a-glance/scan.jsx:29
 __( "{{a}}Activate Site Verification{{/a}} to verify your site and increase ranking with Google, Bing, and Pinterest.", "jetpack" ), // _inc/client/at-a-glance/site-verification.jsx:43
 __( "Site Verification Tools are active. Ensure your site is verified with Google, Bing, and Pinterest for more accurate indexing and ranking. {{a}}Verify now{{/a}}", "jetpack" ), // _inc/client/at-a-glance/site-verification.jsx:27
 __( "Site Verification Tools", "jetpack" ), // _inc/client/at-a-glance/site-verification.jsx:21
-__( "By activating ads, you agree to the Automattic Ads {{link}}Terms of Service{{/link}}.", "jetpack" ), // _inc/client/engagement/index.jsx:264
-__( "View your earnings", "jetpack" ), // _inc/client/engagement/index.jsx:239
-__( "View your {{a}}Email Followers{{/a}}", "jetpack" ), // _inc/client/engagement/index.jsx:220
-__( "View {{a}}All Stats{{/a}}", "jetpack" ), // _inc/client/engagement/index.jsx:205
-__( "Learn More", "jetpack" ), // _inc/client/engagement/index.jsx:198
-__( "Paid", "jetpack" ), // _inc/client/engagement/index.jsx:152
-__( "Unavailable in Dev Mode", "jetpack" ), // _inc/client/engagement/index.jsx:127
+__( "By activating ads, you agree to the Automattic Ads {{link}}Terms of Service{{/link}}.", "jetpack" ), // _inc/client/engagement/index.jsx:276
+__( "View your earnings", "jetpack" ), // _inc/client/engagement/index.jsx:251
+__( "View your {{a}}Email Followers{{/a}}", "jetpack" ), // _inc/client/engagement/index.jsx:232
+__( "View {{a}}All Stats{{/a}}", "jetpack" ), // _inc/client/engagement/index.jsx:217
+__( "Learn More", "jetpack" ), // _inc/client/engagement/index.jsx:210
+__( "Paid", "jetpack" ), // _inc/client/engagement/index.jsx:158
+__( "Unavailable in Dev Mode", "jetpack" ), // _inc/client/engagement/index.jsx:128
 __( "Your site must be accessible by search engines for this feature to work properly. You can change this in {{a}}Reading Settings{{/a}}.", "jetpack" ), // _inc/client/engagement/index.jsx:55
 __( "Link your account to WordPress.com to get the most out of Jetpack.", "jetpack" ), // _inc/client/general-settings/connection-settings.jsx:57
 __( "You are connected as ", "jetpack" ), // _inc/client/general-settings/connection-settings.jsx:47
@@ -145,30 +146,34 @@ __( "Manage your Jetpack connection.", "jetpack" ), // _inc/client/general-setti
 __( "Connection Settings", "jetpack" ), // _inc/client/general-settings/index.jsx:88
 __( "Learn More", "jetpack" ), // _inc/client/general-settings/index.jsx:79
 __( "Unavailable in Dev Mode", "jetpack" ), // _inc/client/general-settings/index.jsx:46
-__( "Compare Plans", "jetpack" ), // _inc/client/plans/plan-body.jsx:291
-__( "We support all Jetpack users, regardless of plan. But customers on a paid subscription enjoy priority support so that security issues are identified and fixed for you as soon as possible. ", "jetpack" ), // _inc/client/plans/plan-body.jsx:286
-__( "Enjoy priority support", "jetpack" ), // _inc/client/plans/plan-body.jsx:285
-__( "The Jetpack Premium plan now offers you the ability to generate income from your site by showing high-quality paid ads to your visitors. Professional plan customers also benefit from SEO tools to help optimize search engine traffic.", "jetpack" ), // _inc/client/plans/plan-body.jsx:281
-__( "Premium traffic and monetization tools", "jetpack" ), // _inc/client/plans/plan-body.jsx:280
-__( "Bulletproof spam filtering protects your brand, your readers, and improves SEO. Malware scanning helps maintain peace of mind and keeps your backend safe from intruders.", "jetpack" ), // _inc/client/plans/plan-body.jsx:277
-__( "Real-time backup with unlimited space, one-click restores, bulletproof spam monitoring, malware defense, and brute-force login protection - all in one place and optimized for WordPress.", "jetpack" ), // _inc/client/plans/plan-body.jsx:276
-__( "Maximum grade security", "jetpack" ), // _inc/client/plans/plan-body.jsx:275
-__( "Compare Plans", "jetpack" ), // _inc/client/plans/plan-body.jsx:260
-__( "Income generation from ads", "jetpack" ), // _inc/client/plans/plan-body.jsx:257
-__( "Advanced SEO tools", "jetpack" ), // _inc/client/plans/plan-body.jsx:256
-__( "One-click threat resolution", "jetpack" ), // _inc/client/plans/plan-body.jsx:255
-__( "Real-time backups", "jetpack" ), // _inc/client/plans/plan-body.jsx:254
-__( "On-demand security scanning", "jetpack" ), // _inc/client/plans/plan-body.jsx:253
-__( "If your site is important to you, consider protecting and improving it with some of our advanced features: ", "jetpack" ), // _inc/client/plans/plan-body.jsx:252
-__( "Need more? Running a business site?", "jetpack" ), // _inc/client/plans/plan-body.jsx:251
-__( "Compare Plans", "jetpack" ), // _inc/client/plans/plan-body.jsx:241
-__( "Income generation from ads", "jetpack" ), // _inc/client/plans/plan-body.jsx:238
-__( "Advanced SEO tools", "jetpack" ), // _inc/client/plans/plan-body.jsx:237
-__( "Unlimited and ad-free video hosting", "jetpack" ), // _inc/client/plans/plan-body.jsx:236
-__( "Real-time backups and one-click threat resolution", "jetpack" ), // _inc/client/plans/plan-body.jsx:235
-__( "Daily and on-demand security scanning", "jetpack" ), // _inc/client/plans/plan-body.jsx:234
-__( "If your site is important to you, consider protecting and improving it with some of our advanced features: ", "jetpack" ), // _inc/client/plans/plan-body.jsx:233
-__( "Need more? Running a business site?", "jetpack" ), // _inc/client/plans/plan-body.jsx:232
+__( "Compare Plans", "jetpack" ), // _inc/client/plans/plan-body.jsx:317
+__( "We support all Jetpack users, regardless of plan. But customers on a paid subscription enjoy priority support so that security issues are identified and fixed for you as soon as possible. ", "jetpack" ), // _inc/client/plans/plan-body.jsx:312
+__( "Enjoy priority support", "jetpack" ), // _inc/client/plans/plan-body.jsx:311
+__( "The Jetpack Premium plan now offers you the ability to generate income from your site by showing high-quality paid ads to your visitors. Professional plan customers also benefit from SEO tools to help optimize search engine traffic.", "jetpack" ), // _inc/client/plans/plan-body.jsx:307
+__( "Premium traffic and monetization tools", "jetpack" ), // _inc/client/plans/plan-body.jsx:306
+__( "Bulletproof spam filtering protects your brand, your readers, and improves SEO. Malware scanning helps maintain peace of mind and keeps your backend safe from intruders.", "jetpack" ), // _inc/client/plans/plan-body.jsx:303
+__( "Real-time backup with unlimited space, one-click restores, bulletproof spam monitoring, malware defense, and brute-force login protection - all in one place and optimized for WordPress.", "jetpack" ), // _inc/client/plans/plan-body.jsx:302
+__( "Maximum grade security", "jetpack" ), // _inc/client/plans/plan-body.jsx:301
+__( "Compare Plans", "jetpack" ), // _inc/client/plans/plan-body.jsx:286
+__( "Income generation from ads", "jetpack" ), // _inc/client/plans/plan-body.jsx:283
+__( "Advanced SEO tools", "jetpack" ), // _inc/client/plans/plan-body.jsx:282
+__( "One-click threat resolution", "jetpack" ), // _inc/client/plans/plan-body.jsx:281
+__( "Real-time backups", "jetpack" ), // _inc/client/plans/plan-body.jsx:280
+__( "On-demand security scanning", "jetpack" ), // _inc/client/plans/plan-body.jsx:279
+__( "If your site is important to you, consider protecting and improving it with some of our advanced features: ", "jetpack" ), // _inc/client/plans/plan-body.jsx:278
+__( "Need more? Running a business site?", "jetpack" ), // _inc/client/plans/plan-body.jsx:277
+__( "Compare Plans", "jetpack" ), // _inc/client/plans/plan-body.jsx:267
+__( "Income generation from ads", "jetpack" ), // _inc/client/plans/plan-body.jsx:264
+__( "Advanced SEO tools", "jetpack" ), // _inc/client/plans/plan-body.jsx:263
+__( "Unlimited and ad-free video hosting", "jetpack" ), // _inc/client/plans/plan-body.jsx:262
+__( "Real-time backups and one-click threat resolution", "jetpack" ), // _inc/client/plans/plan-body.jsx:261
+__( "Daily and on-demand security scanning", "jetpack" ), // _inc/client/plans/plan-body.jsx:260
+__( "If your site is important to you, consider protecting and improving it with some of our advanced features: ", "jetpack" ), // _inc/client/plans/plan-body.jsx:259
+__( "Need more? Running a business site?", "jetpack" ), // _inc/client/plans/plan-body.jsx:258
+__( "Activate Google Analytics", "jetpack" ), // _inc/client/plans/plan-body.jsx:247
+__( "Configure Google Analytics", "jetpack" ), // _inc/client/plans/plan-body.jsx:238
+__( "Track website statistics with Google Analytics for a deeper understanding of your website visitors and customers.", "jetpack" ), // _inc/client/plans/plan-body.jsx:233
+__( "Google Analytics", "jetpack" ), // _inc/client/plans/plan-body.jsx:232
 __( "Activate SEO Tools", "jetpack" ), // _inc/client/plans/plan-body.jsx:221
 __( "Configure Site SEO", "jetpack" ), // _inc/client/plans/plan-body.jsx:212
 __( "Advanced SEO tools to help your site get found when people search for relevant content.", "jetpack" ), // _inc/client/plans/plan-body.jsx:207
@@ -211,32 +216,34 @@ __( "With this plan you are provided with spam-protection, daily backups (up to 
 __( "Your site is on the Jetpack Personal plan", "jetpack" ), // _inc/client/plans/plan-header.jsx:71
 __( "Upgrade to a paid plan to unlock world-class security, spam protection tools, priority support, SEO and monetization tools.", "jetpack" ), // _inc/client/plans/plan-header.jsx:57
 __( "Your site is on the Free Jetpack Plan", "jetpack" ), // _inc/client/plans/plan-header.jsx:56
+__( "Image of WordPress login screen protected by Jetpack", "jetpack" ), // _inc/client/plans/plan-header.jsx:42
 __( "Learn more", "jetpack" ), // _inc/client/plans/plan-header.jsx:37
 __( "Hackers, botnets and spammers attack websites indiscriminately. Their goal is to attack everywhere and often. Our goal is to help you prepare by blocking these threats, and in worst-case-scenarios we'll be here to help you restore your site to its former glory.", "jetpack" ), // _inc/client/plans/plan-header.jsx:33
 __( "For less than the price of a coffee a month you can rest easy knowing your hard work (or livelihood) is backed up.", "jetpack" ), // _inc/client/plans/plan-header.jsx:31
 __( "How much is your website worth?", "jetpack" ), // _inc/client/plans/plan-header.jsx:29
 __( "The Personal Plan keeps your data, site, and hard work safe.", "jetpack" ), // _inc/client/plans/plan-header.jsx:25
 __( "Introducing our most affordable backups and security plan yet", "jetpack" ), // _inc/client/plans/plan-header.jsx:22
-__( "ACTIVE", "jetpack" ), // _inc/client/pro-status/index.jsx:166
-__( "ACTIVE", "jetpack" ), // _inc/client/pro-status/index.jsx:151
-__( "Upgrade", "jetpack" ), // _inc/client/pro-status/index.jsx:146
-__( "Upgrade", "jetpack" ), // _inc/client/pro-status/index.jsx:139
-__( "Set up", "jetpack" ), // _inc/client/pro-status/index.jsx:129
-__( "Upgrade", "jetpack" ), // _inc/client/pro-status/index.jsx:119
-__( "Upgrade", "jetpack" ), // _inc/client/pro-status/index.jsx:103
-__( "Invalid Key", "jetpack" ), // _inc/client/pro-status/index.jsx:85
-__( "Threats found!", "jetpack" ), // _inc/client/pro-status/index.jsx:70
-__( "Unavailable in Dev Mode", "jetpack" ), // _inc/client/pro-status/index.jsx:60
-__( "No Results Found.", "jetpack" ), // _inc/client/search/index.jsx:220
-__( "Learn More", "jetpack" ), // _inc/client/search/index.jsx:209
-__( "Upgrade", "jetpack" ), // _inc/client/search/index.jsx:175
-__( "Paid", "jetpack" ), // _inc/client/search/index.jsx:154
-__( "Unavailable in Dev Mode", "jetpack" ), // _inc/client/search/index.jsx:114
-__( "Keep your site backed up!", "jetpack" ), // _inc/client/search/index.jsx:75
-__( "Site Backups", "jetpack" ), // _inc/client/search/index.jsx:74
-__( "Keep those spammers away!", "jetpack" ), // _inc/client/search/index.jsx:68
-__( "Automatically scan your site for common threats and attacks.", "jetpack" ), // _inc/client/search/index.jsx:61
-__( "Security Scanning", "jetpack" ), // _inc/client/search/index.jsx:60
+__( "ACTIVE", "jetpack" ), // _inc/client/pro-status/index.jsx:183
+__( "ACTIVE", "jetpack" ), // _inc/client/pro-status/index.jsx:168
+__( "Upgrade", "jetpack" ), // _inc/client/pro-status/index.jsx:163
+__( "Upgrade", "jetpack" ), // _inc/client/pro-status/index.jsx:156
+__( "Set up", "jetpack" ), // _inc/client/pro-status/index.jsx:146
+__( "Upgrade", "jetpack" ), // _inc/client/pro-status/index.jsx:136
+__( "Upgrade", "jetpack" ), // _inc/client/pro-status/index.jsx:120
+__( "Upgrade", "jetpack" ), // _inc/client/pro-status/index.jsx:104
+__( "Invalid Key", "jetpack" ), // _inc/client/pro-status/index.jsx:86
+__( "Threats found!", "jetpack" ), // _inc/client/pro-status/index.jsx:71
+__( "Unavailable in Dev Mode", "jetpack" ), // _inc/client/pro-status/index.jsx:61
+__( "No Results Found.", "jetpack" ), // _inc/client/search/index.jsx:223
+__( "Learn More", "jetpack" ), // _inc/client/search/index.jsx:212
+__( "Upgrade", "jetpack" ), // _inc/client/search/index.jsx:178
+__( "Paid", "jetpack" ), // _inc/client/search/index.jsx:157
+__( "Unavailable in Dev Mode", "jetpack" ), // _inc/client/search/index.jsx:113
+__( "Keep your site backed up!", "jetpack" ), // _inc/client/search/index.jsx:76
+__( "Site Backups", "jetpack" ), // _inc/client/search/index.jsx:75
+__( "Keep those spammers away!", "jetpack" ), // _inc/client/search/index.jsx:69
+__( "Automatically scan your site for common threats and attacks.", "jetpack" ), // _inc/client/search/index.jsx:62
+__( "Security Scanning", "jetpack" ), // _inc/client/search/index.jsx:61
 __( "Learn More", "jetpack" ), // _inc/client/security/index.jsx:119
 __( "Paid", "jetpack" ), // _inc/client/security/index.jsx:82
 __( "Unavailable in Dev Mode", "jetpack" ), // _inc/client/security/index.jsx:55
@@ -452,18 +459,20 @@ __( "Big iPhone/iPad Update Now Available", "jetpack" ), // _inc/client/componen
 __( "Subscriber", "jetpack" ), // _inc/client/components/module-settings/index.jsx:58
 __( "To get started, click on Add Media in your post editor and upload a video; we’ll take care of the rest!", "jetpack" ), // _inc/client/components/module-settings/index.jsx:44
 __( "The easiest way to upload ad-free and unbranded videos to your site. You get stats on video playback and shares and the player is lightweight and responsive.", "jetpack" ), // _inc/client/components/module-settings/index.jsx:41
+__( "{{link}}Configure your %(module_slug)s Settings {{/link}}", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:200
 __( "{{link}}Configure your %(module_slug)s Settings {{/link}}", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:178
-__( "{{link}}Configure your %(module_slug)s Settings {{/link}}", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:156
-__( "Real-time offsite backups with automated restores deliver peace-of-mind, so you can focus on writing great content and increasing traffic while we protect every aspect of your investment. Upgrade today.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:149
-__( "Let search engines and visitors know that you are serious about your websites integrity by upgrading Jetpack. Our anti-spam tools will eliminate comment spam, protect your SEO, and make it easier for visitors to stay in touch.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:147
-__( "This module has no configuration options", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:140
-__( "Configure your SEO settings.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:111
-__( "Activate this module to use the advanced SEO tools.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:105
-__( "Make sure your site is easily found on search engines with SEO tools for your content and social posts.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:97
-__( "Configure your Security Scans", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:88
-__( "You can see the information about security scanning in the \"At a Glance\" section.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:85
-__( "Upgrade Jetpack and our state-of-the-art security scanner will hunt out malicious files and report them immediately so that you're never unaware of what is happening on your website.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:79
-__( "Search your content.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:51
+__( "Real-time offsite backups with automated restores deliver peace-of-mind, so you can focus on writing great content and increasing traffic while we protect every aspect of your investment. Upgrade today.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:171
+__( "Let search engines and visitors know that you are serious about your websites integrity by upgrading Jetpack. Our anti-spam tools will eliminate comment spam, protect your SEO, and make it easier for visitors to stay in touch.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:169
+__( "This module has no configuration options", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:162
+__( "Configure Google Analytics settings.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:149
+__( "Google Analytics is a free service that complements our {{a}}built-in stats{{/a}} with different insights into your traffic. WordPress.com stats and Google Analytics use different methods to identify and track activity on your site, so they will normally show slightly different totals for your visits, views, etc.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:134
+__( "Configure your SEO settings.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:110
+__( "Activate this module to use the advanced SEO tools.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:104
+__( "Make sure your site is easily found on search engines with SEO tools for your content and social posts.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:96
+__( "Configure your Security Scans", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:87
+__( "You can see the information about security scanning in the \"At a Glance\" section.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:84
+__( "Upgrade Jetpack and our state-of-the-art security scanner will hunt out malicious files and report them immediately so that you're never unaware of what is happening on your website.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:78
+__( "Search your content.", "jetpack" ), // _inc/client/components/module-settings/modules-per-tab-page.jsx:50
 _x( "Apps", "Navigation item.", "jetpack" ), // _inc/client/components/navigation/index.jsx:63
 _x( "At a Glance", "Navigation item.", "jetpack" ), // _inc/client/components/navigation/index.jsx:50
 _x( "Plans", "Navigation item.", "jetpack" ), // _inc/client/components/navigation/index.jsx:39

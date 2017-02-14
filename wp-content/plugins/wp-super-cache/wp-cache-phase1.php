@@ -47,8 +47,10 @@ if ( isset( $wp_cache_make_known_anon ) && $wp_cache_make_known_anon )
 
 do_cacheaction( 'cache_init' );
 
-if (!$cache_enabled || $_SERVER["REQUEST_METHOD"] == 'POST')
+
+if ( ! $cache_enabled || ( isset( $_SERVER["REQUEST_METHOD"] ) && in_array( $_SERVER["REQUEST_METHOD"], array( 'POST', 'PUT', 'DELETE' ) ) ) || isset( $_GET['customize_changeset_uuid'] ) ) {
 	return true;
+}
 
 $file_expired = false;
 $cache_filename = '';
@@ -99,9 +101,11 @@ $wp_start_time = microtime();
 
 function get_wp_cache_key( $url = false ) {
 	global $wp_cache_request_uri, $wp_cache_gzip_encoding, $WPSC_HTTP_HOST;
-	if ( !$url )
+	if ( ! $url ) {
 		$url = $wp_cache_request_uri;
-	return do_cacheaction( 'wp_cache_key', $WPSC_HTTP_HOST . intval( $_SERVER[ 'SERVER_PORT' ] ) . preg_replace('/#.*$/', '', str_replace( '/index.php', '/', $url ) ) . $wp_cache_gzip_encoding . wp_cache_get_cookies_values() );
+	}
+	$server_port = isset( $_SERVER[ 'SERVER_PORT' ] ) ? intval( $_SERVER[ 'SERVER_PORT' ] ) : 0;
+	return do_cacheaction( 'wp_cache_key', $WPSC_HTTP_HOST . $server_port . preg_replace('/#.*$/', '', str_replace( '/index.php', '/', $url ) ) . $wp_cache_gzip_encoding . wp_cache_get_cookies_values() );
 }
 
 function wp_super_cache_init() {

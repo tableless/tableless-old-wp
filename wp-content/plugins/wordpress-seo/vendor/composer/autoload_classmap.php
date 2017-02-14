@@ -241,6 +241,7 @@ return array(
     'Yoast_Form' => $baseDir . '/admin/class-yoast-form.php',
     'Yoast_Form_Element' => $baseDir . '/admin/views/interface-yoast-form-element.php',
     'Yoast_Form_Fieldset' => $baseDir . '/admin/views/class-yoast-form-fieldset.php',
+    'Yoast_I18n_WordPressOrg_v2' => $vendorDir . '/yoast/i18n-module/src/i18n-module-wordpressorg.php',
     'Yoast_Input_Select' => $baseDir . '/admin/views/class-yoast-input-select.php',
     'Yoast_License_Manager' => $vendorDir . '/yoast/license-manager/class-license-manager.php',
     'Yoast_Notification' => $baseDir . '/admin/class-yoast-notification.php',
@@ -260,5 +261,5 @@ return array(
     'iYoast_License_Manager' => $vendorDir . '/yoast/license-manager/class-license-manager.php',
     'xrstf\\Composer52\\AutoloadGenerator' => $vendorDir . '/xrstf/composer-php52/lib/xrstf/Composer52/AutoloadGenerator.php',
     'xrstf\\Composer52\\Generator' => $vendorDir . '/xrstf/composer-php52/lib/xrstf/Composer52/Generator.php',
-    'yoast_i18n' => $vendorDir . '/yoast/i18n-module/i18n-module.php',
+    'yoast_i18n_v2' => $vendorDir . '/yoast/i18n-module/src/i18n-module.php',
 );
