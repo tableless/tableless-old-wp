@@ -9,13 +9,11 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var jsmin = require('gulp-jsmin');
 var rename = require('gulp-rename');
- 
+
 gulp.task('sass', function () {
   gulp.src(themeTableless + '**/*.sass')
-    .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(sass({outputStyle: 'compressed'}))
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./wp-content/themes/tableless/'))
 });
 

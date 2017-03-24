@@ -1,5 +1,6 @@
 .tb-sidebar
   flex: 1
+  max-width: 470px
   padding: 20px
   text-rendering: optimizeLegibility !important
   -moz-osx-font-smoothing: grayscale
@@ -8,7 +9,7 @@
 
   @include break(desk)
     padding: 0 0 0 70px
-  
+
 .tb-sidebar-inner
   @extend %box-white
   padding: 30px
@@ -25,7 +26,7 @@
       text-decoration: none
       font: 20px/24px $font-bold
       color: #4E4E4E
-      
+
       &:hover
         color: $red
 
@@ -39,7 +40,7 @@
   position: relative
   margin-bottom: 15px
   padding-bottom: 5px
-  
+
   & + label
     display: none
 
