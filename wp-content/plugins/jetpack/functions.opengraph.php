@@ -282,27 +282,11 @@ function jetpack_og_get_image( $width = 200, $height = 200, $max_images = 4 ) { 
 				}
 			}
 		}
-	} else if ( is_author() ) {
+	} elseif ( is_author() ) {
 		$author = get_queried_object();
-		if ( function_exists( 'get_avatar_url' ) ) {
-			// Prefer the core function get_avatar_url() if available, WP 4.2+
-			$image['src'] = get_avatar_url( $author->user_email, array( 'size' => $width ) );
-		}
-		else {
-			$has_filter = has_filter( 'pre_option_show_avatars', '__return_true' );
-			if ( ! $has_filter ) {
-				add_filter( 'pre_option_show_avatars', '__return_true' );
-			}
-			$avatar = get_avatar( $author->user_email, $width );
-			if ( ! $has_filter ) {
-				remove_filter( 'pre_option_show_avatars', '__return_true' );
-			}
-
-			if ( ! empty( $avatar ) && ! is_wp_error( $avatar ) ) {
-				if ( preg_match( '/src=["\']([^"\']+)["\']/', $avatar, $matches ) );
-					$image['src'] = wp_specialchars_decode( $matches[1], ENT_QUOTES );
-			}
-		}
+		$image['src'] = get_avatar_url( $author->user_email, array(
+			'size' => $width,
+		) );
 	}
 
 	// First fall back, blavatar
@@ -313,7 +297,13 @@ function jetpack_og_get_image( $width = 200, $height = 200, $max_images = 4 ) { 
 
 			$img_width  = '';
 			$img_height = '';
-			$image_id = attachment_url_to_postid( $image_url );
+			$cached_image_id = get_transient( 'jp_' . $image_url );
+			if ( false !== $cached_image_id ) {
+				$image_id = $cached_image_id;
+			} else {
+				$image_id = attachment_url_to_postid( $image_url );
+				set_transient( 'jp_' . $image_url, $image_id );
+			}
 			$image_size = wp_get_attachment_image_src( $image_id, $width >= 512
 				? 'full'
 				: array( $width, $width ) );
@@ -351,7 +341,15 @@ function jetpack_og_get_image( $width = 200, $height = 200, $max_images = 4 ) { 
 
 		$img_width  = '';
 		$img_height = '';
-		$image_id = attachment_url_to_postid( $image_url );
+		$cached_image_id = get_transient( 'jp_' . $image_url );
+
+		if ( false !== $cached_image_id ) {
+			$image_id = $cached_image_id;
+		} else {
+			$image_id = attachment_url_to_postid( $image_url );
+			set_transient( 'jp_' . $image_url, $image_id );
+		}
+
 		$image_size = wp_get_attachment_image_src( $image_id, $max_side >= 512
 			? 'full'
 			: array( $max_side, $max_side ) );
@@ -404,36 +402,14 @@ function _jetpack_og_get_image_validate_size($width, $height, $req_width, $req_h
 }
 
 /**
-* @param $email
-* @param $width
-* @return array|bool|mixed|string
-*/
+ * Gets a gravatar URL of the specified size.
+ *
+ * @param string $email E-mail address to get gravatar for.
+ * @param int    $width Size of returned gravatar.
+ * @return array|bool|mixed|string
+ */
 function jetpack_og_get_image_gravatar( $email, $width ) {
-	$image = '';
-	if ( function_exists( 'get_avatar_url' ) ) {
-		$avatar = get_avatar_url( $email, $width );
-		if ( ! empty( $avatar ) ) {
-			if ( is_array( $avatar ) )
-				$image = $avatar[0];
-			else
-				$image = $avatar;
-		}
-	} else {
-		$has_filter = has_filter( 'pre_option_show_avatars', '__return_true' );
-		if ( !$has_filter ) {
-			add_filter( 'pre_option_show_avatars', '__return_true' );
-		}
-		$avatar = get_avatar( $email, $width );
-
-		if ( !$has_filter ) {
-			remove_filter( 'pre_option_show_avatars', '__return_true' );
-		}
-
-		if ( !empty( $avatar ) && !is_wp_error( $avatar ) ) {
-			if ( preg_match( '/src=["\']([^"\']+)["\']/', $avatar, $matches ) )
-				$image = wp_specialchars_decode($matches[1], ENT_QUOTES);
-		}
-	}
-
-	return $image;
+	return get_avatar_url( $email, array(
+		'size' => $width,
+	) );
 }

@@ -18,6 +18,12 @@ class Jetpack_Debugger {
 		}
 	}
 
+	private static function what_jetpack_plan() {
+		$plan = Jetpack::get_active_plan();
+		$plan = ! empty( $plan['class'] ) ? $plan['class'] : 'undefined';
+		return 'JetpackPlan' . $plan;
+	}
+
 	static function seconds_to_time( $seconds ) {
 		$units = array(
 			"week"   => 7*24*3600,
@@ -80,6 +86,7 @@ class Jetpack_Debugger {
 		$debug_info .= "\r\n" . esc_html( "JETPACK__PLUGIN_DIR: " . JETPACK__PLUGIN_DIR );
 		$debug_info .= "\r\n" . esc_html( "SITE_URL: " . site_url() );
 		$debug_info .= "\r\n" . esc_html( "HOME_URL: " . home_url() );
+		$debug_info .= "\r\n" . esc_html( "PLAN: " . self::what_jetpack_plan() );
 
 		$debug_info .= "\r\n";
 		require_once JETPACK__PLUGIN_DIR . 'sync/class.jetpack-sync-modules.php';
@@ -163,7 +170,7 @@ class Jetpack_Debugger {
 		$tests['IDENTITY_CRISIS']['result'] = $identity_crisis;
 		$tests['IDENTITY_CRISIS']['fail_message'] = esc_html__( 'Something has gotten mixed up in your Jetpack Connection!', 'jetpack' );
 
-		$self_xml_rpc_url = home_url( 'xmlrpc.php' );
+		$self_xml_rpc_url = site_url( 'xmlrpc.php' );
 
 		$testsite_url = Jetpack::fix_url_for_bad_hosts( JETPACK__API_BASE . 'testsite/1/?url=' );
 
@@ -230,6 +237,7 @@ class Jetpack_Debugger {
 							$default_theme = wp_get_theme( WP_DEFAULT_THEME );
 
 							if ( $default_theme->exists() ) {
+								/* translators: %s is the name of a theme */
 								echo esc_html( sprintf( __( "If your problem isn't known or caused by a plugin, try activating %s (the default WordPress theme).", 'jetpack' ), $default_theme->get( 'Name' ) ) );
 							} else {
 								esc_html_e( "If your problem isn't known or caused by a plugin, try activating the default WordPress theme.", 'jetpack' );
@@ -251,7 +259,7 @@ class Jetpack_Debugger {
 				<hr />
 				<?php if ( Jetpack::is_active() ) : ?>
 					<div id="connected-user-details">
-						<p><?php printf( __( 'The primary connection is owned by <strong>%s</strong>\'s WordPress.com account.', 'jetpack' ), esc_html( Jetpack::get_master_user_email() ) ); ?></p>
+						<p><?php printf( /* translators: %s is an e-mail address */ __( 'The primary connection is owned by <strong>%s</strong>\'s WordPress.com account.', 'jetpack' ), esc_html( Jetpack::get_master_user_email() ) ); ?></p>
 					</div>
 				<?php else : ?>
 					<div id="dev-mode-details">

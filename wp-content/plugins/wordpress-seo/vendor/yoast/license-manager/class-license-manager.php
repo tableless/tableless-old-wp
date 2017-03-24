@@ -4,6 +4,7 @@ if ( ! interface_exists( 'iYoast_License_Manager', false ) ) {
 
 	interface iYoast_License_Manager {
 		public function specific_hooks();
+
 		public function setup_auto_updater();
 	}
 
@@ -13,9 +14,6 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 
 	/**
 	 * Class Yoast_License_Manager
-	 *
-	 * @todo Maybe create a license class that contains key and option
-	 * @todo Not sure if Yoast_License_Manager is a good name for this class, it's more managing the product (plugin or theme)
 	 */
 	abstract class Yoast_License_Manager implements iYoast_License_Manager {
 
@@ -116,10 +114,10 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 					$message = __( '<b>Warning!</b> Your %s license is inactive which means you\'re missing out on updates and support! <a href="%s">Activate your license</a> or <a href="%s" target="_blank">get a license here</a>.' );
 				}
 				?>
-				<div class="error">
-					<p><?php printf( __( $message, $this->product->get_text_domain() ), $this->product->get_item_name(), $this->product->get_license_page_url(), $this->product->get_tracking_url( 'activate-license-notice' ) ); ?></p>
-				</div>
-			<?php
+                <div class="notice notice-error yoast-notice-error">
+                    <p><?php printf( __( $message, $this->product->get_text_domain() ), $this->product->get_item_name(), $this->product->get_license_page_url(), $this->product->get_tracking_url( 'activate-license-notice' ) ); ?></p>
+                </div>
+				<?php
 			}
 
 			// show notice if external requests are blocked through the WP_HTTP_BLOCK_EXTERNAL constant
@@ -130,10 +128,10 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 
 				if ( ! defined( "WP_ACCESSIBLE_HOSTS" ) || stristr( WP_ACCESSIBLE_HOSTS, $host ) === false ) {
 					?>
-					<div class="error">
-						<p><?php printf( __( '<b>Warning!</b> You\'re blocking external requests which means you won\'t be able to get %s updates. Please add %s to %s.', $this->product->get_text_domain() ), $this->product->get_item_name(), '<strong>' . $host . '</strong>', '<code>WP_ACCESSIBLE_HOSTS</code>' ); ?></p>
-					</div>
-				<?php
+                    <div class="notice notice-error yoast-notice-error">
+                        <p><?php printf( __( '<b>Warning!</b> You\'re blocking external requests which means you won\'t be able to get %s updates. Please add %s to %s.', $this->product->get_text_domain() ), $this->product->get_item_name(), '<strong>' . $host . '</strong>', '<code>WP_ACCESSIBLE_HOSTS</code>' ); ?></p>
+                    </div>
+					<?php
 				}
 
 			}
@@ -146,7 +144,7 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 		 * @param string $message The message to display
 		 */
 		protected function set_notice( $message, $success = true ) {
-			$css_class = ( $success ) ? 'updated' : 'error';
+			$css_class = ( $success ) ? 'notice-success yoast-notice-success' : 'notice-error yoast-notice-error';
 			add_settings_error( $this->prefix . 'license', 'license-notice', $message, $css_class );
 		}
 
@@ -158,60 +156,28 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 
 			$result = $this->call_license_api( 'activate' );
 
-
 			if ( $result ) {
-
-				// story expiry date
-				if ( isset( $result->expires ) ) {
-					$this->set_license_expiry_date( $result->expires );
-					$expiry_date = strtotime( $result->expires );
-				} else {
-					$expiry_date = false;
-				}
 
 				// show success notice if license is valid
 				if ( $result->license === 'valid' ) {
-
-					$message = sprintf( __( "Your %s license has been activated. ", $this->product->get_text_domain() ), $this->product->get_item_name() );
-
-					// show a custom notice if users have an unlimited license
-					if ( $result->license_limit == 0 ) {
-						$message .= __( "You have an unlimited license. ", $this->product->get_text_domain() );
-					} else {
-						$message .= sprintf( __( "You have used %d/%d activations. ", $this->product->get_text_domain() ), $result->site_count, $result->license_limit );
-					}
-
-					// add upgrade notice if user has less than 3 activations left
-					if ( $result->license_limit > 0 && ( $result->license_limit - $result->site_count ) <= 3 ) {
-						$message .= sprintf( __( '<a href="%s">Did you know you can upgrade your license?</a>', $this->product->get_text_domain() ), $this->product->get_extension_url( 'license-nearing-limit-notice' ) );
-						// add extend notice if license is expiring in less than 1 month
-					} elseif ( $expiry_date !== false && $expiry_date < strtotime( "+1 month" ) ) {
-						$days_left = round( ( $expiry_date - strtotime( "now" ) ) / 86400 );
-						$message .= sprintf( __( '<a href="%s">Your license is expiring in %d days, would you like to extend it?</a>', $this->product->get_text_domain() ), $this->product->get_extension_url( 'license-expiring-notice' ), $days_left );
-					}
-
-					$this->set_notice( $message, true );
-
+					$success = true;
+					$message = $this->get_successful_activation_message( $result );
 				} else {
-
-					if ( isset( $result->error ) && $result->error === 'no_activations_left' ) {
-						// show notice if user is at their activation limit
-						$this->set_notice( sprintf( __( 'You\'ve reached your activation limit. You must <a href="%s">upgrade your license</a> to use it on this site.', $this->product->get_text_domain() ), $this->product->get_extension_url( 'license-at-limit-notice' ) ), false );
-					} elseif ( isset( $result->error ) && $result->error == "expired" ) {
-						// show notice if the license is expired
-						$this->set_notice( sprintf( __( 'Your license has expired. You must <a href="%s">extend your license</a> in order to use it again.', $this->product->get_text_domain() ), $this->product->get_extension_url( 'license-expired-notice' ) ), false );
-					} else {
-						// show a general notice if it's any other error
-						$this->set_notice( __( "Failed to activate your license, your license key seems to be invalid.", $this->product->get_text_domain() ), false );
-					}
-
 					$this->remote_license_activation_failed = true;
+
+					$success = false;
+					$message = $this->get_unsuccessful_activation_message( $result );
 				}
+
+				// Append custom HTML message to default message.
+				$message .= $this->get_custom_message( $result );
+
+				$this->set_notice( $message, $success );
 
 				$this->set_license_status( $result->license );
 			}
 
-			return ( $this->license_is_valid() );
+			return $this->license_is_valid();
 		}
 
 		/**
@@ -226,10 +192,17 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 
 				// show notice if license is deactivated
 				if ( $result->license === 'deactivated' ) {
-					$this->set_notice( sprintf( __( "Your %s license has been deactivated.", $this->product->get_text_domain() ), $this->product->get_item_name() ) );
+					$success = true;
+					$message = sprintf( __( "Your %s license has been deactivated.", $this->product->get_text_domain() ), $this->product->get_item_name() );
 				} else {
-					$this->set_notice( sprintf( __( "Failed to deactivate your %s license.", $this->product->get_text_domain() ), $this->product->get_item_name() ), false );
+					$success = false;
+					$message = sprintf( __( "Failed to deactivate your %s license.", $this->product->get_text_domain() ), $this->product->get_item_name() );
 				}
+
+				$message .= $this->get_custom_message( $result );
+
+				// Append custom HTML message to default message.
+				$this->set_notice( $message, $success );
 
 				$this->set_license_status( $result->license );
 			}
@@ -254,7 +227,8 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 				'edd_action' => $action . '_license',
 				'license'    => $this->get_license_key(),
 				'item_name'  => urlencode( trim( $this->product->get_item_name() ) ),
-				'url'        => get_option( 'home' )                                    // grab the URL straight from the option to prevent filters from breaking it.
+				'url'        => get_option( 'home' )
+				// grab the URL straight from the option to prevent filters from breaking it.
 			);
 
 			// create api request url
@@ -268,12 +242,7 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 			}
 
 			// get response
-			$response = $request->get_response();
-
-			// update license status
-			$license_data = $response;
-
-			return $license_data;
+			return $request->get_response();
 		}
 
 
@@ -400,7 +369,7 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 		protected function get_option( $name ) {
 			$options = $this->get_options();
 
-			return $options[$name];
+			return $options[ $name ];
 		}
 
 		/**
@@ -414,7 +383,7 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 			$options = $this->get_options();
 
 			// update option
-			$options[$name] = $value;
+			$options[ $name ] = $value;
 
 			// save options
 			$this->set_options( $options );
@@ -422,10 +391,11 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 
 		public function show_license_form_heading() {
 			?>
-			<h3>
-				<?php printf( __( "%s: License Settings", $this->product->get_text_domain() ), $this->product->get_item_name() ); ?>&nbsp; &nbsp;
-			</h3>
-		<?php
+            <h3>
+				<?php printf( __( "%s: License Settings", $this->product->get_text_domain() ), $this->product->get_item_name() ); ?>
+                &nbsp; &nbsp;
+            </h3>
+			<?php
 		}
 
 		/**
@@ -466,7 +436,7 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 			$name = $this->prefix . 'license_key';
 
 			// check if license key was posted and not empty
-			if ( ! isset( $_POST[$name] ) ) {
+			if ( ! isset( $_POST[ $name ] ) ) {
 				return;
 			}
 
@@ -480,13 +450,13 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 			// @TODO: check for user cap?
 
 			// get key from posted value
-			$license_key = $_POST[$name];
+			$license_key = $_POST[ $name ];
 
 			// check if license key doesn't accidentally contain asterisks
 			if ( strstr( $license_key, '*' ) === false ) {
 
 				// sanitize key
-				$license_key = trim( sanitize_key( $_POST[$name] ) );
+				$license_key = trim( sanitize_key( $_POST[ $name ] ) );
 
 				// save license key
 				$this->set_license_key( $license_key );
@@ -503,19 +473,16 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 			$action_name = $this->prefix . 'license_action';
 
 			// was one of the action buttons clicked?
-			if ( isset( $_POST[$action_name] ) ) {
+			if ( isset( $_POST[ $action_name ] ) ) {
 
-				$action = trim( $_POST[$action_name] );
+				$action = trim( $_POST[ $action_name ] );
 
 				switch ( $action ) {
-
 					case 'activate':
 						return $this->activate_license();
-						break;
 
 					case 'deactivate':
 						return $this->deactivate_license();
-						break;
 				}
 
 			}
@@ -546,7 +513,7 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 		 *
 		 * @return array
 		 */
-		protected function get_api_availability(){
+		protected function get_api_availability() {
 			return array(
 				'url'          => $this->product->get_api_url(),
 				'availability' => $this->check_api_host_availability(),
@@ -592,7 +559,10 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 
 			if ( empty( $this->license_constant_name ) ) {
 				// generate license constant name
-				$this->set_license_constant_name( strtoupper( str_replace( array( ' ', '-' ), '', sanitize_key( $this->product->get_item_name() ) ) ) . '_LICENSE' );
+				$this->set_license_constant_name( strtoupper( str_replace( array(
+						' ',
+						'-'
+					), '', sanitize_key( $this->product->get_item_name() ) ) ) . '_LICENSE' );
 			}
 
 			// set license key from constant
@@ -607,6 +577,126 @@ if ( ! class_exists( 'Yoast_License_Manager', false ) ) {
 
 				$this->license_constant_is_defined = true;
 			}
+		}
+
+		/**
+		 * Determine what message should be shown for a successful license activation
+		 *
+		 * @param Object $result Result of a request.
+		 *
+		 * @return string
+		 */
+		protected function get_successful_activation_message( $result ) {
+			// Get expiry date.
+			if ( isset( $result->expires ) ) {
+				$this->set_license_expiry_date( $result->expires );
+				$expiry_date = strtotime( $result->expires );
+			} else {
+				$expiry_date = false;
+			}
+
+			// Always show that it was successful.
+			$message = sprintf( __( "Your %s license has been activated. ", $this->product->get_text_domain() ), $this->product->get_item_name() );
+
+			// Show a custom notice it is an unlimited license.
+			if ( $result->license_limit == 0 ) {
+				$message .= __( "You have an unlimited license. ", $this->product->get_text_domain() );
+			} else {
+				$message .= sprintf( _n( "You have used %d/%d activation. ", "You have used %d/%d activations. ", $result->license_limit, $this->product->get_text_domain() ), $result->site_count, $result->license_limit );
+			}
+
+			// add upgrade notice if user has less than 3 activations left
+			if ( $result->license_limit > 0 && ( $result->license_limit - $result->site_count ) <= 3 ) {
+				$message .= sprintf( __( '<a href="%s">Did you know you can upgrade your license?</a> ', $this->product->get_text_domain() ), $this->product->get_extension_url( 'license-nearing-limit-notice' ) );
+			}
+
+			if ( $expiry_date !== false && $expiry_date < strtotime( "+1 month" ) ) {
+				// Add extend notice if license is expiring in less than 1 month.
+				$days_left = round( ( $expiry_date - time() ) / 86400 );
+				$message .= sprintf( _n( '<a href="%s">Your license is expiring in %d day, would you like to extend it?</a> ', '<a href="%s">Your license is expiring in %d days, would you like to extend it?</a> ', $days_left, $this->product->get_text_domain() ), $this->product->get_extension_url( 'license-expiring-notice' ), $days_left );
+			}
+
+			return $message;
+		}
+
+		/**
+		 * Determine what message should be shown for an unsuccessful activation
+		 *
+		 * @param Object $result Result of a request.
+		 *
+		 * @return string
+		 */
+		protected function get_unsuccessful_activation_message( $result ) {
+			// Default message if we cannot detect anything more specific.
+			$message = __( 'Failed to activate your license, your license key seems to be invalid.', $this->product->get_text_domain() );
+
+			if ( ! empty( $result->error ) ) {
+				switch ( $result->error ) {
+					// Show notice if user is at their activation limit.
+					case 'no_activations_left':
+						$message = sprintf( __( 'You\'ve reached your activation limit. You must <a href="%s">upgrade your license</a> to use it on this site.', $this->product->get_text_domain() ), $this->product->get_extension_url( 'license-at-limit-notice' ) );
+						break;
+
+					// Show notice if the license is expired.
+					case 'expired':
+						$message = sprintf( __( 'Your license has expired. You must <a href="%s">extend your license</a> in order to use it again.', $this->product->get_text_domain() ), $this->product->get_extension_url( 'license-expired-notice' ) );
+						break;
+				}
+			}
+
+			return $message;
+		}
+
+		/**
+		 * Get the locale for the current user
+		 *
+		 * @return string
+		 */
+		protected function get_user_locale() {
+			if ( function_exists( 'get_user_locale' ) ) {
+				return get_user_locale();
+			}
+
+			return get_locale();
+		}
+
+		/**
+		 * Parse custom HTML message from response
+		 *
+		 * @param Object $result Result of the request.
+		 *
+		 * @return string
+		 */
+		protected function get_custom_message( $result ) {
+			$message = '';
+
+			// Allow for translated messages to be used.
+			$localizedDescription = 'custom_message_' . $this->get_user_locale();
+			if ( ! empty( $result->{$localizedDescription} ) ) {
+				$message = $result->{$localizedDescription};
+			}
+
+			// Fall back to non-localized custom message if no locale has been provided.
+			if ( empty( $message ) && ! empty( $result->custom_message ) ) {
+				$message = $result->custom_message;
+			}
+
+			// Make sure we limit the type of HTML elements to be displayed.
+			if ( ! empty( $message ) ) {
+				$message = wp_kses( $message, array(
+					'a' => array(
+						'href'   => array(),
+						'target' => array(),
+						'title'  => array()
+					),
+                    'br' => array(),
+				) );
+
+				// Make sure we are on a new line.
+				$message = '<br />' . $message;
+			}
+
+			return $message;
 		}
 	}
 

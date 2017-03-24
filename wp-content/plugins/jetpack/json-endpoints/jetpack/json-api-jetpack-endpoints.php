@@ -629,7 +629,7 @@ new Jetpack_JSON_API_Sync_Endpoint( array(
 		'users'    => '(string) Comma-delimited list of user IDs to sync',
 	),
 	'response_format' => array(
-		'started' => '(bool) Whether or not the synchronisation was started'
+		'scheduled' => '(bool) Whether or not the synchronisation was started'
 	),
 	'example_request' => 'https://public-api.wordpress.com/rest/v1.1/sites/example.wordpress.org/sync'
 ) );
@@ -1140,6 +1140,7 @@ new Jetpack_JSON_API_Get_Post_Backup_Endpoint( array(
 	'method'         => 'GET',
 	'path'           => '/sites/%s/posts/%d/backup',
 	'stat'           => 'posts:1:backup',
+	'allow_jetpack_site_auth' => true,
 	'path_labels'    => array(
 		'$site' => '(int|string) The site ID, The site domain',
 		'$post' => '(int) The post ID',

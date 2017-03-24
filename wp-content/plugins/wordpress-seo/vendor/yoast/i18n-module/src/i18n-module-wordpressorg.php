@@ -20,7 +20,7 @@ class Yoast_I18n_WordPressOrg_v2 {
 	public function __construct( $args ) {
 		$args = $this->set_defaults( $args );
 
-		$this->i18n = new yoast_i18n_v2( $args );
+		$this->i18n = new Yoast_I18n_v2( $args );
 		$this->set_api_url( $args['textdomain'] );
 	}
 
