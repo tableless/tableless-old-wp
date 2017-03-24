@@ -8,30 +8,34 @@
   <title><?php wp_title( '|', true, 'right' ); ?></title>
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url'); ?>">
   <link href='https://fonts.googleapis.com/css?family=PT+Serif+Caption|Lora:400,700' rel='stylesheet' type='text/css'>
-  
+
   <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta charset="utf-8">
-<link rel="icon" type="image/png" href="<?php bloginfo('template_url');?>/favicon.png">
-<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
-<script>
-  var googletag = googletag || {};
-  googletag.cmd = googletag.cmd || [];
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/7969368/banner-comunidades', [300, 125], 'div-gpt-ad-1473429933704-0').addService(googletag.pubads());
-    googletag.defineSlot('/7969368/RetanguloMedio-MiddleSidebar', [[300, 250], [336, 280], [300, 300], [360, 360]], 'div-gpt-ad-1473429933704-1').addService(googletag.pubads());
-    googletag.defineSlot('/7969368/RetanguloMedio-TopoSidebar', [[300, 250], [300, 300], [360, 360], [336, 280]], 'div-gpt-ad-1481540169507-0').addService(googletag.pubads());
+  <link rel="icon" type="image/png" href="<?php bloginfo('template_url');?>/favicon.png">
+  <script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+  <script>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+  </script>
 
-    googletag.pubads().enableSingleRequest();
-    googletag.enableServices();
-  });
-</script>
+  <script>
+    googletag.cmd.push(function() {
+      googletag.defineSlot('/7969368/banner-comunidades', [300, 125], 'div-gpt-ad-1473429933704-0').addService(googletag.pubads());
+      googletag.defineSlot('/7969368/RetanguloMedio-MiddleSidebar', [[336, 280], [300, 250], [300, 300], [360, 360]], 'div-gpt-ad-1490319314939-0').addService(googletag.pubads());
+      googletag.defineSlot('/7969368/RetanguloMedio-TopoSidebar', [[336, 280], [300, 250], [300, 300], [360, 360]], 'div-gpt-ad-1490319314939-1').addService(googletag.pubads());
+      googletag.pubads().enableSingleRequest();
+      googletag.pubads().collapseEmptyDivs();
+      googletag.enableServices();
+    });
+  </script>
 
-<script type="text/javascript">
+<?php /*script type="text/javascript">
 window.sendinblue=window.sendinblue||[];window.sendinblue.methods=["identify","init","group","track","page","trackLink"];window.sendinblue.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);window.sendinblue.push(t);return window.sendinblue}};for(var i=0;i<window.sendinblue.methods.length;i++){var key=window.sendinblue.methods[i];window.sendinblue[key]=window.sendinblue.factory(key)}window.sendinblue.load=function(){if(document.getElementById("sendinblue-js"))return;var e=document.createElement("script");e.type="text/javascript";e.id="sendinblue-js";e.async=true;e.src=("https:"===document.location.protocol?"https://":"http://")+"s.sib.im/automation.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)};window.sendinblue.SNIPPET_VERSION="1.0";window.sendinblue.load();window.sendinblue.client_key="swp6ygvsstks39srqk021";window.sendinblue.page();
-</script>
+</script */?>
+
   <?php wp_head();?>
 </head>
 <body>
