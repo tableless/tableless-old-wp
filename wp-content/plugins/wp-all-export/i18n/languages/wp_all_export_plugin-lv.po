@@ -1,0 +1,1010 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP All Export Pro v1.1.0 RC7\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2016-01-28 11:50+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: .\n"
+"X-Textdomain-Support: yes\n"
+"Language: lv\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid "#%s Cron job triggered."
+msgstr "#%s Cron darbs izsaukts"
+
+msgid ""
+"%%ID%% will be replaced with the ID of the post being exported, example: "
+"SELECT meta_value FROM wp_postmeta WHERE post_id=%%ID%% AND "
+"meta_key='your_meta_key';"
+msgstr ""
+"%%ID%% tiks aizstāts ar ID rakstam, kurš tiks eksportēts, piemērs: SELECT "
+"meta_value FROM wp_postmeta WHERE post_id=%%ID%% AND "
+"meta_key='your_meta_key';"
+
+msgid "%d %s deleted"
+msgstr "%d %s dzēsts"
+
+msgid "%d Records Exported"
+msgstr "% ieraksti "
+
+msgid "&laquo;"
+msgstr "&laquo;"
+
+msgid "&raquo;"
+msgstr "&raquo;"
+
+msgid "<strong>%s</strong> %s more"
+msgstr "<strong>%s</strong> %s vairāk"
+
+msgid "ACF"
+msgstr "ACF"
+
+msgid "Activation Key"
+msgstr "Aktivizācijas atslēga"
+
+msgid "Add Field To Export"
+msgstr "Izvēlēties lauku eksportēšanai"
+
+msgid "Add Filtering Options"
+msgstr "Pievienot atlases nosacījumus"
+
+msgid "Add Rule"
+msgstr "Pievienot nosacījumus"
+
+msgid "Advanced"
+msgstr "Papildus"
+
+msgid "Advanced Custom Fields"
+msgstr "Advanced Custom Fields"
+
+msgid "Advanced Export"
+msgstr "Papildus eksportēšanas uzstādījumi"
+
+msgid "All"
+msgstr "Visi"
+
+msgid "All Export"
+msgstr "Viss eksports"
+
+msgid "Amount (per tax)"
+msgstr "Nodokļi"
+
+msgid "Apply"
+msgstr "Apstiprināt"
+
+msgid "Apply Filters To Export Data"
+msgstr "Izvēlēties filtrus datu eksportēšanai"
+
+msgid "Are you sure you want to delete <strong>%s</strong> export?"
+msgstr "Vai tu esi pārliecināts, ka vēlies dzēst <strong>%s</strong> eksportu?"
+
+msgid "Are you sure you want to delete <strong>%s</strong> selected %s?"
+msgstr ""
+"Vai tu esi pārliecināts, ka vēlies izdzēst <strong>%s</strong> atlasītos %s?"
+
+msgid "Are you sure you want to re-run <strong>%s</strong> export?"
+msgstr ""
+"Vai tu esi pārliecināts, ka vēlies atkārtoti izpildīt <strong>%s</strong> "
+"eksportu?"
+
+msgid "Attachment"
+msgstr "Pielikums"
+
+msgid "Author"
+msgstr "Autors"
+
+msgid "Auto Generate"
+msgstr "Automātiskā aizpilde"
+
+msgid "Auto Generate Export Template"
+msgstr "Automātiski izveidot eksporta veidni"
+
+msgid "Available Data"
+msgstr "Pieejamie dati"
+
+msgid "Back to Manage Exports"
+msgstr "Atgriezties pie eksportu pārvaldes"
+
+msgid "Back to Step 2"
+msgstr "Atgriezties pie otrā soļa"
+
+msgid "Bulk Actions"
+msgstr "Masveida darbības"
+
+msgid "Bundle"
+msgstr "Paciņa"
+
+msgid "CSV"
+msgstr "CSV"
+
+msgid "CSV delimiter must be specified"
+msgstr "Jānorāda CSV atdalītājs"
+
+msgid "Cancel"
+msgstr "Atcelt"
+
+msgid "Cancel Cron"
+msgstr "Atcelt Cron"
+
+msgid "Categories / Taxonomies"
+msgstr "Kategorijas / Taksonomijas"
+
+msgid "Changing this will require you to re-create your existing cron jobs."
+msgstr "Veicot izmaiņas, jums būs atkārtoti jāizveido esošie cron darbi."
+
+msgid "Choose a post type..."
+msgstr "Izvēlies raksta tipu..."
+
+msgid "Choose data to include in the export file."
+msgstr "Izvēlieties, kādus datus iekļaut eksporta failā."
+
+msgid "Close"
+msgstr "Aizvērt"
+
+msgid "Completed Date"
+msgstr "Izpildes datums"
+
+msgid "Confirm & Run Export"
+msgstr "Apstiprināt un uzsākt eksportu."
+
+msgid "Content"
+msgstr "Saturs"
+
+msgid "Continue to Step 2"
+msgstr "Turpināt ar otro soli"
+
+msgid "Continue to Step 2 to choose data to include in the export file."
+msgstr ""
+"Turpināt ar 2. soli, lai izvēlētos, kādus datus iekļaut eksporta failā."
+
+msgid "Coupons Used"
+msgstr "Izmantotie kuponi"
+
+msgid "Created by"
+msgstr "Autors: "
+
+msgid "Cron Exports"
+msgstr "Cron eksporti"
+
+msgid "Cron Scheduling"
+msgstr "Cron plānošana"
+
+msgid "Custom Field / Post Meta"
+msgstr "Papildus lauki / Raksta metalauki"
+
+msgid "Custom Field / User Meta"
+msgstr "Papildus lauki / Lietotāja metalauki"
+
+msgid "Custom Fields"
+msgstr "Papildus lauki"
+
+msgid "Custom Types: "
+msgstr "Papildus tipi:"
+
+msgid "Customer"
+msgstr "Pircējs"
+
+msgid "Customer Note"
+msgstr "Pircēja piezīmes"
+
+msgid "Customer User ID"
+msgstr "Pircēja identifikators"
+
+msgid "Data"
+msgstr "Dati"
+
+msgid "Data not found."
+msgstr "Dati nav atrasti"
+
+msgid "Date"
+msgstr "Datums"
+
+msgid "Delete"
+msgstr "Dzēst"
+
+msgid "Delete Export"
+msgstr "Dzēst eksportu"
+
+msgid "Delete Permanently"
+msgstr "Neatgriezeniski dzēst"
+
+msgid "Delete field"
+msgstr "Izdzēst lauku"
+
+msgid "Delimiter:"
+msgstr "Atdalītājs: "
+
+msgid "Description"
+msgstr "Apraksts"
+
+msgid "Discount Amount (per coupon)"
+msgstr "Atlaides apjoms (vienam kuponam)"
+
+msgid "Display Name"
+msgstr "Ekrāna vārds"
+
+msgid "Display each product in its own row"
+msgstr "Attēlot katru produktu savā rindā"
+
+msgid "Displaying %s&#8211;%s of %s"
+msgstr "Attēlot %s&#8211;%s no %s"
+
+msgid "Documentation"
+msgstr "Dokumentācija"
+
+msgid "Done"
+msgstr "Darbība pabeigta"
+
+msgid "Download Data"
+msgstr "Lejupielādes dati"
+
+msgid "Download Import Templates"
+msgstr "Lejupielādēt importa veidnes"
+
+msgid ""
+"Download your import templates and use them to import your exported file to "
+"a separate WordPress/WP All Import installation."
+msgstr ""
+"Lejupielādēt importa veidnes un izmantot tās, lai importētu jūsu eksportēto "
+"failu kā atsevišķu Wordpress/WP All Import instalāciju."
+
+msgid ""
+"Drag & drop data from \"Available Data\" on the right to include it in the "
+"export or click \"Add Field To Export\" below."
+msgstr ""
+"Pārvelciet un atlaidiet datus no \"Pieejamie dati\" labajā pusē, lai "
+"iekļautu tos eksportā vai uzspiežiet uz \"Izvēlēties lauku eksportēšanai\" "
+"zemāk"
+
+msgid "Edit"
+msgstr "Rediģēt"
+
+msgid "Edit Export Field"
+msgstr "Labot eksporta lauku"
+
+msgid "Edit Options"
+msgstr "Labošanas nosacījumi"
+
+msgid "Edit Template"
+msgstr "Labot veidni"
+
+msgid "Element"
+msgstr "Elements"
+
+msgid "Email"
+msgstr "E-pasts"
+
+msgid "Error"
+msgstr "Kļūda"
+
+msgid "Every time you want to schedule the import, run the trigger script."
+msgstr "Katru reizi, kad vēlaties plānot importu, palaidiet trigera skriptu."
+
+msgid "Example:"
+msgstr "Piemērs:"
+
+msgid "Excerpt"
+msgstr "Izvilkums"
+
+msgid "Execution Script"
+msgstr "Izpildes skripts"
+
+msgid "Export #%s already processing. Request skipped."
+msgstr "Eksports #%s ir apstrādes procesā. Pieprasījums noraidīts."
+
+msgid "Export #%s already triggered. Request skipped."
+msgstr "Eksports #%s jau izpildīts. Pieprasījums noraidīts."
+
+msgid "Export #%s complete"
+msgstr "Eksports #%s ir izpildīts"
+
+msgid "Export #%s currently in process. Request skipped."
+msgstr "Eksports #%s šobrīd tiek apstrādāts. Pieprasījums noraidīts."
+
+msgid "Export #%s is currently in manually process. Request skipped."
+msgstr "Eksportam #%s ir iesākta manuāla apstrāde. Pieprasījums noraidīts."
+
+msgid "Export #%s is not triggered. Request skipped."
+msgstr "Eksports #%s netika izpildīts. Pieprasījums noraidīts."
+
+msgid "Export <span id=\"status\">in Progress...</span>"
+msgstr "Eksports <span id=\"status\">tiek apstrādāts</span>"
+
+msgid "Export Attempt at %s"
+msgstr "Eksporta mēģinājums %s"
+
+msgid "Export Complete!"
+msgstr "Eksports ir izpildīts!"
+
+msgid "Export File Format:"
+msgstr "Eksporta faila formāts:"
+
+msgid "Export File URL"
+msgstr "Eksporta URL"
+
+msgid "Export Image File Paths"
+msgstr "Eksporta bilžu faila ceļš"
+
+msgid "Export Image Filenames"
+msgstr "Eksporta bilžu failu nosaukumi"
+
+msgid "Export Image URLs"
+msgstr "Eksporta bilžu URL"
+
+msgid "Export canceled"
+msgstr "Eksports atcelts"
+
+msgid "Export currently in progress"
+msgstr "Eksports šobrīd tiek apstrādāts."
+
+msgid "Export deleted"
+msgstr "Eksports dzēsts"
+
+msgid "Export the value returned by a PHP function"
+msgstr "Eksportēt vērtību, ko atgriež PHP funkcija"
+
+msgid "Export to XML"
+msgstr "Eksportēt uz XML formātu"
+
+msgid "Export to XML / CSV"
+msgstr "Eksportēt uz XML / CSV"
+
+msgid "Exported"
+msgstr "Eksportēts"
+
+msgid ""
+"Exported files and temporary files will be placed in a folder with a "
+"randomized name inside of %s."
+msgstr ""
+"Eksportētie faili un pagaidu faili tiks novietoti mapē (folder) ar "
+"automātiski ģenerētu nosaukumu iekš %s"
+
+msgid ""
+"Exporting may take some time. Please do not close your browser or refresh "
+"the page until the process is complete."
+msgstr ""
+"Eksportēšana var aizņemt laiku. Lūdzu neaizveriet savu pārlūkprogrammu, kā "
+"arī nepārlādējiet lapu, līdz process tiek pabeigts."
+
+msgid "Fee Amount (per surcharge)"
+msgstr "Apmaksas apjoms"
+
+msgid "Feedback"
+msgstr "Atsauksmes"
+
+msgid "Fees & Discounts"
+msgstr "Maksas & atlaides"
+
+msgid "Field Name"
+msgstr "Ievadlauka nosaukums"
+
+msgid "File format not supported"
+msgstr "Faila formāts nav atbalstīts"
+
+msgid "Files"
+msgstr "Faili"
+
+msgid "Filters"
+msgstr "Filtri"
+
+msgid "First Name"
+msgstr "Vārds"
+
+msgid "First, choose what to export."
+msgstr "Vispirms izvēlēties, ko eksportēt."
+
+msgid "For WP All Import"
+msgstr "Priekš WP All Import"
+
+msgid "Format: %s"
+msgstr "Formāts: %s"
+
+msgid "Friendly Name:"
+msgstr "Draudzīgais vārds:"
+
+msgid "General"
+msgstr "Galvenais"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "If an order contains multiple products, each product have its own row."
+msgstr ""
+"Ja kāds no pasūtījumiem satur vairākus produktus, katram produktam ir sava "
+"rinda."
+
+msgid "Images / Media"
+msgstr "Bildes / Video"
+
+msgid "Import with WP All Import"
+msgstr "Importēt ar WP All Import"
+
+msgid "In each iteration, process"
+msgstr "Katrā iterācijā, procesā"
+
+msgid "Info & Options"
+msgstr "Informācija & uzstādijumi"
+
+msgid ""
+"Install these import templates in your separate WP All Import installation "
+"from the All Import -> Settings page by clicking the \"Import Templates\" "
+"button."
+msgstr ""
+"Uzstādīt šīs importa veidnes atsevišķā WP All Import instalācijā no All "
+"Import->Iestatījumi, izvēloties \"Importēt veidnes\" pogu."
+
+msgid "Invalid query"
+msgstr "Nederīgs pieprasījums"
+
+msgid ""
+"It also operates this way in case of unexpected crashes by your web host. If "
+"it crashes before the import is finished, the next run of the cron job two "
+"minutes later will continue it where it left off, ensuring reliability."
+msgstr ""
+"Darbība notiek šādi neparedzētos kļūdu gadījumos. Ja process kāda iemesla "
+"pēc tiek pārtraukts pirms importa beigām, nākamais cron darbs divas minūtes "
+"tuprināsies no vietas, kur tas apstājies, nodrošinot sistēmas stabilitāti."
+
+msgid ""
+"It processes in iteration (only importing a few records each time it runs) "
+"to optimize server load. It is recommended you run the execution script "
+"every 2 minutes."
+msgstr ""
+"Tas izpildas iterācijā (importējot tikai dažus ierakstus katrā tā palaišanās "
+"reizē), lai uzlabotu servera noslodzi. Ir ieteicams palaist izpildes skriptu "
+"reizi divās minūtēs."
+
+msgid "Item Cost"
+msgstr "Preces cena"
+
+msgid "Item Total"
+msgstr "Kopējās izmaksas"
+
+msgid "Items"
+msgstr "Preces"
+
+msgid "Last Name"
+msgstr "Uzvārds"
+
+msgid "Last run: %s"
+msgstr "Pēdējā darbība: %s"
+
+msgid "Login"
+msgstr "Autorizācija"
+
+msgid "Manage Exports"
+msgstr "Veikt eksportu pārvaldību"
+
+msgid "Menu Order"
+msgstr "Izvēlnes secība"
+
+msgid "Name"
+msgstr "Vārds"
+
+msgid "Natural Language PHP date()"
+msgstr "Dabiskā valoda PHP date()"
+
+msgid "Network"
+msgstr "Tīkls"
+
+msgid "New Export"
+msgstr "Jauns eksports"
+
+msgid "Nicename"
+msgstr "Iesauka"
+
+msgid "Nickname"
+msgstr "Iesauka"
+
+msgid ""
+"No filtering options. Add filtering options to only export records matching "
+"some specified criteria."
+msgstr ""
+"Nav filtrēšanas iestatījumu. Izveidot filtrēšanas iestatījumus tikai lai "
+"eksportētu ierakstus, kas atbilst kādam noteiktam kritērijam."
+
+msgid "No matching %s found for selected filter rules"
+msgstr "Nav atbilstošu %s ierakstu pēc izvēlētajiem nosacījumiem"
+
+msgid "No matching posts found for WP_Query expression specified"
+msgstr ""
+"Nav atrasti atbilstoši raksti, kas atbilstu norādītajiem WP_Query "
+"nosacījumiem."
+
+msgid "No matching posts found for selected post types"
+msgstr "Nav atbilstoši ieraksti, kas atbilstu izvēlētajiem raksta tipiem"
+
+msgid "No matching users found"
+msgstr "Nav atrasti atbilstoši lietotāji"
+
+msgid "No previous exports found."
+msgstr "Nav atrasti iepriekšēji eksporti."
+
+msgid "Notes"
+msgstr "Piezīmes"
+
+msgid "Options updated"
+msgstr "Uzstādījumi atjaunoti"
+
+msgid "Order"
+msgstr "Pasūtījums"
+
+msgid "Order Currency"
+msgstr "Pasūtījuma valūta."
+
+msgid "Order Date"
+msgstr "Pasūtījuma datums"
+
+msgid "Order ID"
+msgstr "Pasūtījuma ID"
+
+msgid "Order Key"
+msgstr "Pasūtījuma atslēga"
+
+msgid "Order Status"
+msgstr "Pasūtījuma statuss"
+
+msgid "Order Total"
+msgstr "Pasūtījuma kopējās izmaksas"
+
+msgid "Other"
+msgstr "Citi"
+
+msgid "Parent"
+msgstr "Vecāks"
+
+msgid "Password"
+msgstr "Parole"
+
+msgid "Payment Method"
+msgstr "Apmaksas metode"
+
+msgid "Permalink"
+msgstr "Nemainīgā saite"
+
+msgid "Permissive"
+msgstr "Atļaujošs"
+
+msgid ""
+"Please de-activate and remove the free version of the WP All Export before "
+"activating the paid version."
+msgstr ""
+"Lūdzu atspējojiet un izdzēsiet WP All Export bezmaksas versiju pirms maksas "
+"versijas aktivizēšanas."
+
+msgid "Post Format"
+msgstr "Raksta formāts"
+
+msgid "Post Slug"
+msgstr "Raksta adresators (slug)"
+
+msgid "Post Status"
+msgstr "Raksta statuss"
+
+msgid "Post Type"
+msgstr "Raksta tips"
+
+msgid "Post Type Query"
+msgstr "Raksta tipa vaicājums"
+
+msgid "Preview A Row"
+msgstr "Parādīt rindu"
+
+msgid "Product Data"
+msgstr "Produkta dati"
+
+msgid "Product ID"
+msgstr "Produkta ID"
+
+msgid "Product Name"
+msgstr "Produkta nosaukums"
+
+msgid "Product Variation Details"
+msgstr "Produkta dažādības detaļas"
+
+msgid "Product Variations"
+msgstr "Produkta dažādības"
+
+msgid "Quantity"
+msgstr "Daudzums"
+
+msgid "Query"
+msgstr "Pieprasījums"
+
+msgid "Randomize folder names"
+msgstr "Dažādot mapju nosaukumus"
+
+msgid "Rate Code (per tax)"
+msgstr "Nodokļa nosaukums"
+
+msgid "Rate Percentage (per tax)"
+msgstr "Nodokļa likme"
+
+msgid "Re-run Export"
+msgstr "Atkārtoti izpildīt eksportu"
+
+msgid "Record"
+msgstr "Ieraksts"
+
+msgid "Records"
+msgstr "Ieraksti"
+
+msgid "Records Processed %s"
+msgstr "Apstrādātie ieraksti %s"
+
+msgid "Registered Date"
+msgstr "Reģistrācijas datums"
+
+msgid "Restore"
+msgstr "Atjaunot"
+
+msgid "Roles"
+msgstr "Lomas"
+
+msgid "Rule"
+msgstr "Nosacījumi"
+
+msgid "Run Export"
+msgstr "Izpildīt eksportu"
+
+msgid "SKU"
+msgstr "SKU"
+
+msgid "SQL Query"
+msgstr "SQL vaicājums"
+
+msgid "Save Export Configuration"
+msgstr "Saglabāt eksporta konfigurācijas uzstādījumus"
+
+msgid "Save friendly name..."
+msgstr "Saglabāt draudzīgo vārdu..."
+
+msgid "Search Exports"
+msgstr "Meklēt eksportus"
+
+msgid "Secret Key"
+msgstr "Slepenā atslēga"
+
+msgid "Secure Mode"
+msgstr "Drošais režīms"
+
+msgid "Security check"
+msgstr "Drošības pārbaude"
+
+msgid "Select Element"
+msgstr "Izvēlēties elementu"
+
+msgid "Select Rule"
+msgstr "Izvēlēties nosacījumus"
+
+msgid "Settings"
+msgstr "Iestatījumi"
+
+msgid "Settings saved"
+msgstr "Iestatījumi saglabāti"
+
+msgid "Shipping Cost"
+msgstr "Pasta sūtīšanas izmaksas"
+
+msgid "Shipping Method"
+msgstr "Pasta sūtīšanas metode"
+
+msgid "Skip to Step 3"
+msgstr "Pāriet uz 3. soli"
+
+msgid "Specific Post Type"
+msgstr "Noteikts raksta tips"
+
+msgid "Standard"
+msgstr "Standarts"
+
+msgid "Status"
+msgstr "Statuss"
+
+msgid "Strict"
+msgstr "Strikts"
+
+msgid ""
+"Strict matching requires all variations to pass in order for the product to "
+"be exported. Permissive matching allows the product to be exported if any of "
+"the variations pass."
+msgstr ""
+"Strikta atbilstība pieprasa, lai visas produkta variācijas atbilstu, tad "
+"produkts tiks eksportēts. Atļaujošā atbilstība ļaus eksportēt produktu, ja "
+"kāda no variācijām atbildīs."
+
+msgid "Summary"
+msgstr "Kopsavilkums"
+
+msgid "Support"
+msgstr "Atbalsts"
+
+msgid "Taxes & Shipping"
+msgstr "Nodokļi & piegāde"
+
+msgid "Taxonomies"
+msgstr "Taksonomija"
+
+msgid "Template"
+msgstr "Veidne"
+
+msgid ""
+"The Execution script actually executes the import, once it has been "
+"triggered with the Trigger script."
+msgstr ""
+"Izpildes skripts veic importu, kad tas tiek iedarbināts ar trigger skripta "
+"palīdzību."
+
+msgid ""
+"The exported file is missing and can't be downloaded. Please re-run your "
+"export to re-generate it."
+msgstr ""
+"Eksportētais fails iztrūkt un nevar tikt lejupielādēts. Lūdzu atkārtoti "
+"veiciet eksportu, lai veiktu tā izveidošanu no jauna."
+
+msgid ""
+"The other two files in this zip are the export file containing all of your "
+"data and the import template for WP All Import. \n"
+"\n"
+"To import this data, create a new import with WP All Import and upload this "
+"zip file."
+msgstr ""
+"Pārējie divi faili zip arhīvā ir eksporta fails, kas satur visus datus un WP "
+"All Import importa veidne. \n"
+"\n"
+"Lai importētu šos datus izveidojiet jaunu WP All Import importu un "
+"augšupielādējiet šo zip failu."
+
+msgid ""
+"The value of the field chosen for export will be passed to the PHP function."
+msgstr "Izvēlētā eksporta lauka vērtība tiks padota PHP funkcijai."
+
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" class="
+"\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s"
+"\">update now</a>."
+msgstr ""
+"Jauna versija: %1$s ir pieejama. <a target=\"_blank\" class=\"thickbox\" "
+"href=\"%2$s\">Apskatīt versiju %3$s details</a> vai <a href=\"%4$s"
+"\">atjaunināt</a>."
+
+msgid ""
+"There is a new version of %1$s available. <a target=\"_blank\" class="
+"\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+msgstr ""
+"Jauna versija: %1$s ir pieejama. <a target=\"_blank\" class=\"thickbox\" "
+"href=\"%2$s\">Apskatīt versijas %3$s informāciju</a>."
+
+msgid "This format is not supported."
+msgstr "Šis formāts nav atbalstīts."
+
+msgid "Time Elapsed"
+msgstr "Patērētais laiks"
+
+msgid "Title"
+msgstr "Nosaukums (Title)"
+
+msgid ""
+"To schedule an import, you must create two cron jobs in your web hosting "
+"control panel. One cron job will be used to run the Trigger script, the "
+"other to run the Execution script."
+msgstr ""
+"Lai veiktu importu, ir jāizveido divi cron darbi servera vadības panelī. "
+"Viens cron darbs tiks izmantots lai palaistu Trigger skriptu, otrs lai "
+"palaistu izpildes skriptu."
+
+msgid ""
+"To schedule the import to run once every 24 hours, run the trigger script "
+"every 24 hours. Most hosts require you to use “wget” to access a URL. Ask "
+"your host for details."
+msgstr ""
+"Lai ieplānotu importa veikšanu reizi 24 stundās, palaidiet izpildes skriptu "
+"katras 24 stundas. Vairums serveros nepieciešams izmantot \"wget\", lai "
+"piekļūtu URL (saitei). Lai noskaidrotu vairāk, papildus informāciju var "
+"prasīt tīkla pakalpojuma nodrošinātājam."
+
+msgid "Total Discount Amount"
+msgstr "Kopējā piešķirtā atlaide"
+
+msgid "Total Fee Amount"
+msgstr "Kopējā maksa"
+
+msgid "Total Tax Amount"
+msgstr "Kopējā nodokļu summa"
+
+msgid "Trigger Script"
+msgstr "Izsaucamais skripts"
+
+msgid "UNIX timestamp - PHP time()"
+msgstr "UNIX laika zīmogs- PHP time()"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Uploads folder %s must be writable"
+msgstr "Augšupielādes mapei %s ir jābūt rakstīšanas tiesībām."
+
+msgid "User"
+msgstr "Lietotājs"
+
+msgid "User Query"
+msgstr "Lietotāja vaicājums"
+
+msgid "Users"
+msgstr "Lietotāji"
+
+msgid "Value"
+msgstr "Vērtība"
+
+msgid "Variable product matching rules: "
+msgstr "Mainīgā produkta atbilstības nosacījumi:"
+
+msgid "WP All Export"
+msgstr "WP All Export"
+
+msgid "WP All Export Settings"
+msgstr "WP All Export iestatījumi"
+
+msgid "WP All Export Support"
+msgstr "WP All Export atbalsts"
+
+msgid ""
+"WP All Export must be able to process this many records in less than your "
+"server's timeout settings. If your export fails before completion, to "
+"troubleshoot you should lower this number."
+msgstr ""
+"WP All Export ir jānodrošina datu apstrāde mazākā laika posmā, kā servera "
+"noilguma (timeout) uzstādījumos. Ja eksports neizdodās, var mēģināt "
+"samazināt šo skaitli."
+
+msgid "WP All Export successfully exported your data!"
+msgstr "WP All Export ir veiksmīgi eksportējis jūsu datus!"
+
+msgid "WP All Export will export %d %s."
+msgstr "WP All Export eksportēs %d %s."
+
+msgid "WP Query field is required"
+msgstr "Ir nepieciešams WP Query lauks"
+
+msgid "WP_Query Results"
+msgstr "WP_Query rezultāti"
+
+msgid ""
+"Warning: without _sku and product_type columns, you won't be able to re-"
+"import this data using WP All Import."
+msgstr ""
+"Brīdinājums: _sku and product_type kolonnas ir nepieciešamas, lai varētu "
+"importēt šos datus, izmantojot WP All Import."
+
+msgid ""
+"Warning: without an ID column, you won't be able to re-import this data "
+"using WP All Import."
+msgstr ""
+"Brīdinājums: ID kolonna ir nepieciešama, lai varētu importēt šos datus, "
+"izmantojot WP All Import."
+
+msgid ""
+"Warning: without post_type column, you won't be able to re-import this data "
+"using WP All Import."
+msgstr ""
+"Brīdinājums: post_type kolonna ir nepieciešama, lai varētu importēt šos "
+"datus, izmantojot WP All Import."
+
+msgid "What field would you like to export?"
+msgstr "Kādu lauku jūs vēlaties eksportēt?"
+
+msgid "What would you like to name the column/element in your exported file?"
+msgstr "Kā jūs vēlaties nosaukt kolonnu/elementu jūsu eksportētajā failā?"
+
+msgid "WooCommerce Data"
+msgstr "WooCommerce dati"
+
+msgid "WooCommerce Order"
+msgstr "WooCommerce pasūtījums"
+
+msgid "WooCommerce Products"
+msgstr "WooCommerce produkti"
+
+msgid "WooCommerce Taxonomies"
+msgstr "WooCommerce taksonomijas"
+
+msgid "XML"
+msgstr "XML"
+
+msgid "Y/m/d g:i a"
+msgstr "d-m-Y H:i"
+
+msgid "You do not have permission to install plugin updates"
+msgstr "Jums nav lietotāja tiesību instalēt spraudņu atjauninājumus"
+
+msgid "You haven't selected any columns for export."
+msgstr "Jūs neesat izvēlējies nevienu kolonnu eksportam."
+
+msgid "Your export is ready to run."
+msgstr "Eksports ir gatavs izpidei."
+
+msgid ""
+"Your web host may require you to use a command other than wget, although "
+"wget is most common. In this case, you must asking your web hosting provider "
+"for help."
+msgstr ""
+"Neskatoties uz to, ka parasti tiek lietota komanda \"wget\", tavs tīkla "
+"pakalpojumu nodrošinātājs var pieprasīt izmantot citu komandu. Šādos "
+"gadījumos vislabāk konsultēties ar pakalpojumu nodrošinātājiem."
+
+msgid "contains"
+msgstr "satur"
+
+msgid "currently processing with cron"
+msgstr "šobrīd apstrādā ar cron"
+
+msgid "date() Format"
+msgstr "datuma() formāts"
+
+msgid "element"
+msgid_plural "elements"
+msgstr[0] "elements"
+msgstr[1] "elementi"
+msgstr[2] "elementi"
+
+msgid "equals"
+msgstr "vienāds ar"
+
+msgid "equals or greater than"
+msgstr "sakrīt vai lielāks kā"
+
+msgid "equals or less than"
+msgstr "sakrīt vai mazāks kā"
+
+msgid "export"
+msgid_plural "exports"
+msgstr[0] "eksports"
+msgstr[1] "eksporti"
+msgstr[2] "eksporti"
+
+msgid "greater than"
+msgstr "lielāks kā"
+
+msgid "is empty"
+msgstr "ir tukšs"
+
+msgid "is not empty"
+msgstr "nav tukšs"
+
+msgid "last activity %s ago"
+msgstr "pēdējā aktivitāte pirms %s"
+
+msgid "less than"
+msgstr "mazāk kā"
+
+msgid "more"
+msgstr "vairāk"
+
+msgid "never"
+msgstr "nekad"
+
+msgid "not contains"
+msgstr "nesatur"
+
+msgid "not equals"
+msgstr "nav vienāds "
+
+msgid "records"
+msgstr "ieraksti"
+
+msgid "settings edited since last run"
+msgstr "iestatījumi kopš pēdējās reizes ir laboti"
+
+msgid "triggered with cron"
+msgstr "izpildīts ar cron"
