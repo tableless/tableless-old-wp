@@ -1,3 +1,10 @@
+# Projeto descontinuado
+O Tableless em Wordpress foi descontinuado e não é mais o projeto oficial do site. Você pode encontrar o projeto oficial, baseado em Hugo, aqui: [http://github.com/tableless/tableless/](http://github.com/tableless/tableless/)
+
+
+
+----
+
 # Tableless
 A ideia do [Tableless.com.br](http://tableless.com.br) sempre foi contribuir para que a comunidade de desenvolvimento web brasileira crescesse tanto em conhecimento técnico quanto como comunidade. Contribuir com projetos de código aberto, é uma das melhores maneiras de crescer profissionalmente, por que você lida com profissionais de diversos níveis, com códigos de diversos tipos e problemas muito parecidos com problemas dos projetos que você poderá participar na empresa em que trabalha.
 
