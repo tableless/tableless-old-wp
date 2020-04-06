@@ -13,7 +13,7 @@
 
 <section class="tb-latest-posts no-divider">
   
-    <div class="tb-container">
+    <div class="tb-latest-posts-list">
   
       <?php
         $latestPostsargs = array(
