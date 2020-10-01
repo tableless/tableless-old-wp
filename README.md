@@ -1,5 +1,5 @@
 # Projeto descontinuado
-O Tableless em Wordpress foi descontinuado e não é mais o projeto oficial do site. Você pode encontrar o projeto oficial, baseado em Hugo, aqui: [http://github.com/tableless/tableless/](http://github.com/tableless/tableless/)
+ Tableless em Wordpress foi descontinuado e não é mais o projeto oficial do site. Você pode encontrar o projeto oficial, baseado em Hugo, aqui: [http://github.com/tableless/tableless/](http://github.com/tableless/tableless/)
 
 
 
